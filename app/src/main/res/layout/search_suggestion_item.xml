@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:background="@drawable/search_suggestion_item_bg"
+    android:gravity="center_vertical"
+    android:textColor="@color/black"
+    android:textSize="13sp"
+    tools:text="aa12adawdawawda" />

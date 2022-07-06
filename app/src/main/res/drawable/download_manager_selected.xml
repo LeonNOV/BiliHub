@@ -1,0 +1,12 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="18dp"
+    android:height="18dp"
+    android:viewportWidth="26"
+    android:viewportHeight="26">
+    <path
+        android:fillColor="@color/BiliBili_pink"
+        android:pathData="M13,13m-13,0a13,13 0,1 1,26 0a13,13 0,1 1,-26 0" />
+    <path
+        android:fillColor="@color/white"
+        android:pathData="M19.64,8.8a0.63,0.63 0,0 0,-0.9 0l-7.49,7 -4,-4.06a0.65,0.65 0,0 0,-0.9 0,0.65 0.65,0 0,0 0,0.91l4.43,4.49s0,0 0,0a0.64,0.64 0,0 0,0.45 0.18,0.67 0.67,0 0,0 0.46,-0.18 0,0 0,0 0,0 0l7.92,-7.47A0.65,0.65 0,0 0,19.64 8.8Z" />
+</vector>

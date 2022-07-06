@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activities.actionActivities.DataListActivity">
+
+    <com.leon.biuvideo.ui.widget.TopBarWidget
+        android:id="@+id/data_list_topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="DataList" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/data_list_single"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="RecyclerView"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/data_list_multi"
+        layout="@layout/data_list_content_tab"
+        android:visibility="gone" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 进度条颜色/形状 -->
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="20dp" />
+            <solid android:color="#E3E3E3" />
+        </shape>
+    </item>
+
+    <!-- 进度条颜色/形状 -->
+    <item android:id="@android:id/progress">
+        <scale android:scaleWidth="100%">
+            <shape>
+                <corners android:radius="20dp" />
+                <gradient
+                    android:angle="180"
+                    android:endColor="#FBB5C9"
+                    android:startColor="@color/BiliBili_pink" />
+            </shape>
+        </scale>
+    </item>
+</layer-list>

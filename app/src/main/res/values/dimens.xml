@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <dimen name="corner_6dp">6dp</dimen>
+    <dimen name="corner">15dp</dimen>
+
+    <dimen name="topBar_margin">20dp</dimen>
+    <dimen name="topBar_height">56dp</dimen>
+    <dimen name="topBar_padding">5dp</dimen>
+
+    <dimen name="tagView_valueMarginEnd">5dp</dimen>
+
+    <!-- 重写BottomNavigationView的文字与图片的间距，值越小间距越大 -->
+<!--    <dimen name="design_bottom_navigation_margin" tools:override="true">8dp</dimen>-->
+<!--    <dimen tools:override="true" name="design_bottom_navigation_text_size">10sp</dimen>-->
+<!--    <dimen tools:override="true" name="design_bottom_navigation_active_text_size">13sp</dimen>-->
+
+    <dimen name="card_title_layout_margin_bottom">20dp</dimen>
+    <!--    <dimen name="card_title_layout_margin_top_bottom">10dp</dimen>-->
+
+    <dimen name="bottomSheet_topView_width">70dp</dimen>
+    <dimen name="bottomSheet_topView_height">5dp</dimen>
+    <dimen name="bottomSheetTopViewMarginTop">10dp</dimen>
+
+    <dimen name="loadingRecyclerViewProgressBarHW">60dp</dimen>
+
+    <dimen name="face_border_width">1.5dp</dimen>
+
+    <dimen name="itemMarginBottom">10dp</dimen>
+
+    <dimen name="recyclerViewPadding">10dp</dimen>
+
+    <dimen name="cardMargin">20dp</dimen>
+    <dimen name="cardPadding">20dp</dimen>
+
+    <dimen name="BiliUserFaceWH">82dp</dimen>
+
+    <dimen name="swipeMenuPaddingStartEnd">10dp</dimen>
+    <dimen name="swipeMenuItemW">80dp</dimen>
+
+    <dimen name="partition_icon_W">38dp</dimen>
+    <dimen name="partition_icon_H">38dp</dimen>
+    <dimen name="partition_title_size">15sp</dimen>
+
+    <dimen name="tabLayout_size">16sp</dimen>
+
+    <dimen name="qualityDialogWidth">200dp</dimen>
+
+    <dimen name="badgeSize">10sp</dimen>
+
+    <dimen name="itemPadding">5dp</dimen>
+
+    <dimen name="videoCoverWidth">126dp</dimen>
+    <dimen name="videoCoverHeight">96dp</dimen>
+    <dimen name="videoCoverRadius">5dp</dimen>
+
+    <dimen name="small_view_w_h">40dp</dimen>
+    <dimen name="padding_10dp">10dp</dimen>
+    <dimen name="drawer_margin">15dp</dimen>
+    <dimen name="drawer_function_marginTop">20dp</dimen>
+
+    <!--  Activity动画时长  -->
+    <integer name="anim_duration">300</integer>
+
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="elevation">10dp</dimen>
+    <dimen name="top_bar_height">56dp</dimen>
+    <dimen name="top_bar_height_70">70dp</dimen>
+    <dimen name="search_bar_default_height">50dp</dimen>
+    <dimen name="user_face_WH">42dp</dimen>
+    <dimen name="back_WH">36dp</dimen>
+    <dimen name="videoPlayerHeight">230dp</dimen>
+    <dimen name="topBarBottomLineHeight">0.5dp</dimen>
+    <dimen name="dialogH">170dp</dimen>
+</resources>

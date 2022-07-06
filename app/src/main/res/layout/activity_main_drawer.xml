@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.navigation.NavigationView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="315dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:background="@drawable/drawer_navigation_bg"
+    app:headerLayout="@null"
+    tools:openDrawer="start">
+
+    <ScrollView
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="@dimen/drawer_margin"
+        android:layout_marginBottom="@dimen/drawer_margin"
+        android:background="@drawable/drawer_bg">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/user_container"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/drawer_face_bg"
+                android:elevation="@dimen/elevation"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/user_face"
+                    android:layout_width="@dimen/user_face_WH"
+                    android:layout_height="@dimen/user_face_WH"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/user_face_default"
+                    app:civ_border_color="@color/gray"
+                    app:civ_border_width="@dimen/face_border_width" />
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_toStartOf="@+id/user_logout"
+                    android:layout_toEndOf="@id/user_face"
+                    android:text="@string/noLogin"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/user_logout"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="10dp"
+                    android:src="@drawable/logout"
+                    android:visibility="invisible" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/function_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/user_container"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/popular"
+                    style="@style/DrawerFunctionStyle"
+                    android:text="@string/drawer_popular"
+                    app:drawableStartCompat="@drawable/drawer_function_rank" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/partition"
+                    style="@style/DrawerFunctionStyle"
+                    android:text="@string/drawer_partition"
+                    app:drawableStartCompat="@drawable/function_partition" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/orders"
+                    style="@style/DrawerFunctionStyle"
+                    android:text="@string/drawer_orders"
+                    app:drawableStartCompat="@drawable/drawer_function_order" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/favorites"
+                    style="@style/DrawerFunctionStyle"
+                    android:text="@string/drawer_favorites"
+                    app:drawableStartCompat="@drawable/drawer_function_favorite" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/later"
+                    style="@style/DrawerFunctionStyle"
+                    android:text="@string/drawer_later"
+                    app:drawableStartCompat="@drawable/drawer_function_later" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/follows"
+                    style="@style/DrawerFunctionStyle"
+                    android:text="@string/drawer_follows"
+                    app:drawableStartCompat="@drawable/drawer_function_follow" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/history"
+                    style="@style/DrawerFunctionStyle"
+                    android:text="@string/drawer_history"
+                    app:drawableStartCompat="@drawable/drawer_function_history" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/download"
+                    style="@style/DrawerFunctionStyle"
+                    android:text="@string/drawer_download"
+                    app:drawableStartCompat="@drawable/drawer_function_download" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/settings"
+                    style="@style/DrawerFunctionStyle"
+                    android:text="@string/drawer_settings"
+                    app:drawableStartCompat="@drawable/drawer_function_setting" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</com.google.android.material.navigation.NavigationView>

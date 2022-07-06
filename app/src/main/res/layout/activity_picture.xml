@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/picture_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical">
+
+    <com.leon.biuvideo.ui.widget.TopBarWidget
+        android:id="@+id/picture_topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="相簿" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/picture_face"
+            android:layout_width="@dimen/user_face_WH"
+            android:layout_height="@dimen/user_face_WH"
+            android:src="@color/gray"
+            app:civ_border_color="@color/black"
+            app:civ_border_width="@dimen/face_border_width" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/picture_face"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/picture_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                tools:text="awdwdawd" />
+
+            <TextView
+                android:id="@+id/picture_pubTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/infoColor"
+                android:textSize="13sp"
+                tools:text="2021-04-12 17:08" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/picture_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        tools:text="awdawdawdwadawdawdawdawdawdadadadawdadad" />
+
+    <!--    <com.leon.biuvideo.ui.views.LoadingRecyclerView-->
+    <!--        android:id="@+id/picture_data"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="10dp"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:layout_marginEnd="10dp" />-->
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_background" />
+
+    <!--    <FrameLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="10dp"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:layout_marginEnd="10dp">-->
+
+    <!--        <com.leon.biuvideo.ui.views.TagView-->
+    <!--            android:id="@+id/picture_comment"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            app:leftValue="评论"-->
+    <!--            app:rightValue="0" />-->
+
+    <!--        <com.leon.biuvideo.ui.views.TagView-->
+    <!--            android:id="@+id/picture_like"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_gravity="end"-->
+    <!--            app:leftValue="赞"-->
+    <!--            app:rightValue="0" />-->
+
+    <!--    </FrameLayout>-->
+
+</LinearLayout>

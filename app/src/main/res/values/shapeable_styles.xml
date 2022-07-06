@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ShapeableCircleStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="collapsedSize">50dp</item>
+    </style>
+
+    <style name="VideoCoverSingle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/corner</item>
+    </style>
+
+    <style name="VideoCoverDouble">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">@dimen/corner</item>
+        <item name="cornerSizeTopRight">@dimen/corner</item>
+    </style>
+</resources>

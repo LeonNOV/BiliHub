@@ -1,0 +1,266 @@
+<resources>
+    <string name="app_name">BiuVideo</string>
+
+    <string name="search">搜索</string>
+    <string name="favorite">收藏</string>
+    <string name="follows">关注</string>
+    <string name="history">历史记录</string>
+    <string name="followers">粉丝</string>
+    <string name="orders">订阅</string>
+    <string name="settings">设置</string>
+    <string name="biliUserInfo">用户信息</string>
+    <string name="popular">热门&amp;排行</string>
+    <string name="videoRecommend">推荐</string>
+    <string name="downloadManager">下载管理</string>
+    <string name="download">下载</string>
+
+    <string name="hotSearch">热门搜索排行榜</string>
+
+    <string name="home_nav_home">首页</string>
+    <string name="home_nav_composite">综合</string>
+    <string name="home_nav_discover">发现</string>
+    <string name="home_nav_user">我的</string>
+
+    <string name="no_data_str">什么都没有哎~</string>
+    <string name="see_more">查看更多</string>
+
+    <string name="drawer_popular">热门排行</string>
+    <string name="drawer_partition">分区</string>
+    <string name="drawer_orders">我的订阅</string>
+    <string name="drawer_logout">Sign out</string>
+    <string name="drawer_favorites">我的收藏夹</string>
+    <string name="drawer_follows">我关注的人</string>
+    <string name="drawer_history">历史记录</string>
+    <string name="drawer_download">下载管理</string>
+    <string name="drawer_settings">设置</string>
+    <string name="drawer_later">稍后观看</string>
+
+    <string name="search_history">搜索历史</string>
+    <string name="search_clear">清空搜索历史</string>
+
+    <string name="setting_baseSetting">基本设置</string>
+    <string name="setting_imgOriginalMode">原图模式</string>
+    <string name="setting_weatherModel">天气模块</string>
+    <string name="setting_clearCache">清空缓存</string>
+    <string name="setting_setLocation">设置位置</string>
+    <string name="setting_recommendStyle">设置推荐视图样式</string>
+
+    <string name="setting_about">关于</string>
+    <string name="setting_about_app">关于APP</string>
+    <string name="setting_donation">捐赠</string>
+    <string name="setting_open_source_license">开源许可</string>
+    <string name="setting_thanksList">感谢列表</string>
+
+    <string name="setting_play">播放</string>
+    <string name="setting_play_quality">默认播放画质</string>
+    <string name="setting_download_quality">默认下载画质</string>
+
+    <string name="setting_feedBack">反馈</string>
+    <string name="setting_submitFeedback">提交反馈</string>
+
+    <string name="setting_set_location_title">设置城市</string>
+    <string name="setting_set_location_hint">搜索城市</string>
+    <string name="setting_set_location_choose_location">选择位置</string>
+
+    <string name="singleColumn">显示单列</string>
+    <string name="doubleColumn">显示双列</string>
+
+    <string name="user_follow">关注</string>
+    <string name="user_fans">粉丝</string>
+    <string name="user_like">获赞</string>
+    <string name="user_play">播放</string>
+    <string name="user_read">阅读</string>
+
+    <string name="user_baseInfo">基本信息</string>
+    <string name="user_accountInfo">账号信息</string>
+    <string name="user_uid">UID：</string>
+    <string name="user_name">昵称：</string>
+    <string name="user_sex">性别：</string>
+    <string name="user_level">等级：</string>
+    <string name="user_birthday">出生日期：</string>
+    <string name="user_flag">个性签名：</string>
+
+    <string name="checkAll">查看全部</string>
+
+    <string name="remove">移除</string>
+
+    <string name="setting_default_location">北京,北京城区,东城区</string>
+    <string name="setting_default_cacheSize">0.0B</string>
+
+    <string name="setting_default_quality">1080P 高清</string>
+
+    <string name="description">description</string>
+    <string name="no_login">还未进行登录哦~</string>
+    <!-- ========================================================================================== -->
+
+    <string name="cancel_follow">取消关注</string>
+    <string name="remove_follower">移除粉丝</string>
+    <string name="is_mutual_follower">已互粉</string>
+    <string name="follow">关注</string>
+    <string name="follow_A">已关注</string>
+    <string name="default_sign">这家伙也忒懒了，连个介绍都没有</string>
+
+    <string name="downloadedAudio">查看已缓存音频</string>
+
+    <string name="cancel">取消</string>
+    <string name="close">关闭</string>
+
+    <!-- 无网络提示 -->
+    <string name="networkWarn">网络貌似有点问题哎~</string>
+
+    <!-- 加入/删除提示 -->
+
+    <!-- 帮助链接 -->
+
+    <!-- 下载页面 -->
+
+    <!-- 加载数据中显示的默认文字 -->
+    <string name="login">登录</string>
+    <string name="logout">退出</string>
+    <string name="change_account">切换账号</string>
+    <string name="login_account">登录账户</string>
+    <string name="logout_account">退出当前账户</string>
+
+    <!-- 分区 -->
+    <string name="partition_anime">番剧</string>
+    <string name="partition_guochuang">国创</string>
+    <string name="partition_douga">动画</string>
+    <string name="partition_ent">娱乐</string>
+
+    <string name="partition_article">专栏</string>
+    <string name="partition_music">音乐</string>
+    <string name="partition_dance">舞蹈</string>
+    <string name="partition_documentary">纪录片</string>
+
+
+    <string name="partition_game">游戏</string>
+    <string name="partition_technology">知识</string>
+    <string name="partition_digital">数码</string>
+    <string name="partition_life">生活</string>
+
+    <string name="partition_food">美食</string>
+    <string name="partition_animal">动物圈</string>
+    <string name="partition_kichiku">鬼畜</string>
+    <string name="partition_fashion">时尚</string>
+
+    <string name="partition_cinephile">影视</string>
+    <string name="partition_movie">电影</string>
+    <string name="partition_teleplay">电视剧</string>
+    <string name="partition_channel">排行榜</string>
+
+    <string name="popular_comprehensive">综合热门</string>
+    <string name="popular_weekly">每周必看</string>
+    <string name="popular_precious">入站必刷</string>
+    <string name="popular_rank">排行榜</string>
+
+    <string name="popular_top_list_show_otherVideos">显示此UP主全部上榜视频</string>
+    <string name="popular_top_list_hide_otherVideos">隐藏此UP主全部上榜视频</string>
+
+    <string name="searchResultVideoMenuPartitionItemDefault">全部分区</string>
+    <string name="searchResultVideoMenuOrderItemDefault">默认排序</string>
+    <string name="searchResultVideoMenuLengthItemDefault">全部时长</string>
+
+    <string name="searchResultArticleMenuOrderItemDefault">默认排序</string>
+    <string name="searchResultArticleMenuCategoryItemDefault">全部分类</string>
+
+    <string name="searchResultBiliUserMenuOrderItemDefault">默认排序</string>
+    <string name="searchResultBiliUserMenuCategoryItemDefault">全部用户</string>
+
+
+    <string name="videoPlayerPrepareContinuePlay">继续播放</string>
+    <string name="videoPlayerPrepareNetWarning">当前处于移动网络，继续播放将会消耗流量</string>
+
+    <string name="videoPlayerCompleteReplay">重新播放</string>
+
+    <string name="videoPlayerErrorMsg">出了点小问题，请稍后重试</string>
+    <string name="videoPlayerErrorRetry">重试</string>
+
+    <string name="videoPlayerBottomSpeed">倍速</string>
+    <string name="videoPlayerBottomHint">快来分享一下自己的想法吧~</string>
+    <string name="upLiked">UP主已点赞</string>
+    <string name="videoCommentDetail">回复详情</string>
+
+    <string name="biliUserResourcesOrderByDefault">最新发布</string>
+    <string name="biliUserResourcesOrderByClick">最多播放</string>
+    <string name="biliUserResourcesOrderByFav">最多收藏</string>
+    <string name="biliUserResourcesOrderByRead">最多阅读</string>
+    <string name="bangumi_score">分</string>
+    <string name="replay">回复</string>
+
+    <string name="videoNowPlay">正在观看</string>
+    <string name="videoClickChangeAnthology">点击切换</string>
+    <string name="videoClickCheck">点击查看</string>
+    <string name="videoChangeAnthology">切换选集</string>
+    <string name="videoChangeSeries">切换系列</string>
+    <string name="bangumiNowSeries">已选系列</string>
+    <string name="bangumiInfoDetail">详情</string>
+    <string name="videoComment">评论</string>
+
+    <string name="snackBarDataErrorWarn">获取数据失败~</string>
+    <string name="snackBarBuildingWarn">该功能还在开发中~</string>
+
+    <string name="qualityLoginWarn">该清晰度需要 登录 才能观看哦~</string>
+    <string name="qualityVipWarn">该清晰度需要 大会员 才能观看哦~</string>
+    <string name="videoFailed">该视频已失效~</string>
+    <string name="delete">删除</string>
+
+    <string name="downloadManagerPlayAll">全部开始</string>
+    <string name="downloadManagerPauseAll">全部暂停</string>
+    <string name="downloadManagerEdit">编辑</string>
+
+    <string name="downloadManagerSelectedAll">全选</string>
+    <string name="downloadManagerCancelSelectedAll">取消全选</string>
+    <string name="downloadManagerDelete">删除</string>
+    <string name="downloadQualityWarn">注意：如果选择的画质不存在，则最终下载的是比选择画质低一阶的画质</string>
+    <string name="downloadExisted">该资源已下载过了,如果未在\'下载管理\'中,可查看保存路径的文件夹中是否存在</string>
+    <string name="downloadingError">下载出错</string>
+    <string name="downloadingWaiting">等待中</string>
+    <string name="downloadingPaused">已暂停</string>
+    <string name="easterEggWarn">🎉🎉🎉\tSURPRISE\t🎉🎉🎉</string>
+    <string name="downloadJoinQueue">已加入到下载队列中~</string>
+    <string name="topListItemScore">综合评分</string>
+
+    <string name="thanksListStr">以下均为本APP使用到的第三方开源项目</string>
+    <string name="openScreenTitle">使用须知</string>
+    <string name="openScreenOk">好的,我知道了</string>
+
+    <string name="donationDesc">捐赠并不是必须的，不捐赠并不影响该APP的正常使用，当然每一份捐赠都会给予我更多的动力来维护该APP。</string>
+
+    <string name="aboutAppSummaryTitle">简介</string>
+    <string name="aboutAppSummary">V3版本以至，欢迎各位使用，如果对该APP感兴趣的话，可以进行捐赠哦~</string>
+    <string name="aboutAppOpenSourceProject">开源项目</string>
+    <string name="aboutAppJoinGroupChat">加入群聊</string>
+
+    <string name="aboutAppCopyrightNotice">版权声明</string>
+    <string name="aboutAppCopyrightDesc">「BiuVideo」该APP的初衷是打造一款轻量级的B站第三方客户端，该APP含有
+        资源缓存功能，请合理使用，资源版权归属于原作者，请不要用于商业用途，否则一切后果自负。</string>
+    <string name="videoPlayerDanmakuHint">来一发~~~</string>
+    <string name="downloadVideo">视频下载</string>
+    <string name="downloadNowQuality">当前已选择画质</string>
+    <string name="loading">正在加载中...</string>
+
+    <string name="partition">频道分区</string>
+
+
+    <string name="title_activity_search">SearchActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_data_list">DataListActivity</string>
+    <string name="noLogin">未登录</string>
+    <string name="filter">筛选</string>
+    <string name="data_list_filter_default">默认排序</string>
+    <string name="data_list_filter_publish">新发布</string>
+    <string name="data_list_filter_play">播放多</string>
+    <string name="data_list_filter_danmaku">弹幕多</string>
+    <string name="title_activity_search_result">SearchResultActivity</string>
+</resources>

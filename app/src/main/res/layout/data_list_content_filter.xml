@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/subTabContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/subTab"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/topBar_height"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_text" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/more"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="10dp"
+            android:src="@drawable/expand_more"
+            android:tint="@color/infoColor" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/unchanged"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:visibility="gone">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filterDefault"
+            style="@style/DataListDefaultFilterStyle"
+            android:text="@string/data_list_filter_default" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filterPublish"
+            style="@style/DataListDefaultFilterStyle"
+            android:text="@string/data_list_filter_publish" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filterPlay"
+            style="@style/DataListDefaultFilterStyle"
+            android:text="@string/data_list_filter_play" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filterDanmaku"
+            style="@style/DataListDefaultFilterStyle"
+            android:text="@string/data_list_filter_danmaku" />
+
+        <include
+            android:id="@+id/filterMore"
+            layout="@layout/data_list_content_filter_more" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/topBarBottomLineHeight"
+        android:background="@color/topBarBottomLine" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

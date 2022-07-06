@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="simple_topBar_backView" type="id"/>
+
+    <item name="tag_view_tagName" type="id"/>
+    <item name="tag_view_value" type="id"/>
+
+    <item name="card_title_action" type="id"/>
+</resources>

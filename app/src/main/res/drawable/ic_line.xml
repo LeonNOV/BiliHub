@@ -1,0 +1,9 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="5dp"
+    android:height="28dp"
+    android:viewportWidth="9"
+    android:viewportHeight="48">
+  <path
+      android:pathData="M0,4.5v39C0,46 2,48 4.5,48S9,46 9,43.5v-39C9,2 7,0 4.5,0S0,2 0,4.5z"
+      android:fillColor="@color/tabLayoutIndicatorColor"/>
+</vector>

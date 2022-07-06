@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ic_biu_video_background">#000000</color>
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+    <color name="blue">#2196f3</color>
+    <color name="BiliBili_pink">#FB7299</color>
+    <color name="gray">#545555</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="bg">#f5f5f5</color>
+    <color name="topBarBottomLine">#CCCCCC</color>
+    <color name="tabTextColor">#888888</color>
+    <color name="hintColor">#a4a4a4</color>
+    <color name="bottomSheet_topView_bg">#DCDCDC</color>
+
+    <color name="warn_dialog_cancel_color">#bdbdbd</color>
+    <color name="warn_dialog_confirm_color">#00bfa5</color>
+    <color name="rippleColor">#80E5E5E5</color>
+
+    <color name="video_length_bg">#99000000</color>
+    <color name="invalid_foreground">#80000000</color>
+    <color name="cancel_color">#F13939</color>
+    <color name="operation_color">#0288D1</color>
+    <color name="tabLayoutIndicatorColor">#FFA200</color>
+
+    <color name="popular_top_list_first_img_color">#fed442</color>
+    <color name="popular_top_list_second_img_color">#c0cfe2</color>
+    <color name="popular_top_list_third_img_color">#d3b59d</color>
+    <color name="popular_top_list_other_img_color">#e7e7e7</color>
+
+    <color name="popular_top_list_first_text_color">#d6a80d</color>
+    <color name="popular_top_list_second_text_color">#99a4b6</color>
+    <color name="popular_top_list_third_text_color">#a28671</color>
+    <color name="popular_top_list_other_text_color">#c0c0c0</color>
+    <color name="infoColor">#686868</color>
+
+    <color name="qualityBg">#80000000</color>
+    <color name="drawer_bg">#B5B5B5</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
+    <color name="light_blue_A200">#FF40C4FF</color>
+    <color name="light_blue_A400">#FF00B0FF</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="topBar">#ffffff</color>
+    <color name="follow_color">#757575</color>
+</resources>

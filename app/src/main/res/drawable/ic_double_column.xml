@@ -1,0 +1,36 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="23.5dp"
+    android:height="14.3dp"
+    android:viewportWidth="23.5"
+    android:viewportHeight="14.3">
+  <path
+      android:pathData="M10.1,0h-9C0.5,0 0,0.5 0,1.1v5.5c0,0.6 0.5,1.1 1.2,1.1h9c0.6,0 1.2,-0.5 1.2,-1.1V1.1C11.3,0.5 10.7,0 10.1,0zM10.3,6.6c0,0.1 -0.1,0.1 -0.2,0.1h-9C1.1,6.8 1,6.7 1,6.6V1.1C1,1.1 1.1,1 1.2,1h9c0.1,0 0.2,0.1 0.2,0.1V6.6z"
+      android:fillColor="@color/blue"/>
+  <path
+      android:pathData="M10.7,8.8H0.5c-0.2,0 -0.3,0.2 -0.3,0.3v0.4c0,0.2 0.2,0.3 0.3,0.3h10.2c0.2,0 0.3,-0.2 0.3,-0.3V9.1C11.1,8.9 10.9,8.8 10.7,8.8z"
+      android:fillColor="@color/blue"/>
+  <path
+      android:pathData="M0.5,12.1h6.3C6.9,12.1 7,12 7,11.9v-0.6C7,11.1 6.9,11 6.7,11H0.5c-0.2,0 -0.3,0.1 -0.3,0.3v0.6C0.2,12 0.3,12.1 0.5,12.1z"
+      android:fillColor="@color/blue"/>
+  <path
+      android:pathData="M3.5,13.1H0.4c-0.1,0 -0.2,0.1 -0.2,0.2v0.7c0,0.1 0.1,0.2 0.2,0.2h3.1c0.1,0 0.2,-0.1 0.2,-0.2v-0.7C3.7,13.2 3.6,13.1 3.5,13.1z"
+      android:fillColor="@color/blue"/>
+  <path
+      android:pathData="M8.7,13.1H5.6c-0.1,0 -0.2,0.1 -0.2,0.2v0.7c0,0.1 0.1,0.2 0.2,0.2h3.1c0.1,0 0.2,-0.1 0.2,-0.2v-0.7C8.9,13.2 8.8,13.1 8.7,13.1z"
+      android:fillColor="@color/blue"/>
+  <path
+      android:pathData="M22.4,0h-9c-0.6,0 -1.2,0.5 -1.2,1.1v5.5c0,0.6 0.5,1.1 1.2,1.1h9c0.6,0 1.2,-0.5 1.2,-1.1V1.1C23.5,0.5 23,0 22.4,0zM22.5,6.6c0,0.1 -0.1,0.1 -0.2,0.1h-9c-0.1,0 -0.2,-0.1 -0.2,-0.1V1.1c0,-0.1 0.1,-0.1 0.2,-0.1h9c0.1,0 0.2,0.1 0.2,0.1V6.6z"
+      android:fillColor="@color/blue"/>
+  <path
+      android:pathData="M23,8.8H12.8c-0.2,0 -0.3,0.2 -0.3,0.3v0.4c0,0.2 0.2,0.3 0.3,0.3H23c0.2,0 0.3,-0.2 0.3,-0.3V9.1C23.3,8.9 23.2,8.8 23,8.8z"
+      android:fillColor="@color/blue"/>
+  <path
+      android:pathData="M12.7,12.1H19c0.2,0 0.3,-0.1 0.3,-0.3v-0.6c0,-0.2 -0.1,-0.3 -0.3,-0.3h-6.3c-0.2,0 -0.3,0.1 -0.3,0.3v0.6C12.4,12 12.6,12.1 12.7,12.1z"
+      android:fillColor="@color/blue"/>
+  <path
+      android:pathData="M15.7,13.1h-3.1c-0.1,0 -0.2,0.1 -0.2,0.2v0.7c0,0.1 0.1,0.2 0.2,0.2h3.1c0.1,0 0.2,-0.1 0.2,-0.2v-0.7C15.9,13.2 15.8,13.1 15.7,13.1z"
+      android:fillColor="@color/blue"/>
+  <path
+      android:pathData="M20.9,13.1h-3.1c-0.1,0 -0.2,0.1 -0.2,0.2v0.7c0,0.1 0.1,0.2 0.2,0.2h3.1c0.1,0 0.2,-0.1 0.2,-0.2v-0.7C21.1,13.2 21,13.1 20.9,13.1z"
+      android:fillColor="@color/blue"/>
+</vector>

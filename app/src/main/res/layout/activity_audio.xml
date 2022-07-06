@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/audio_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@color/gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/topBar_height"
+            android:background="@android:color/transparent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/audio_back"
+                android:layout_width="@dimen/back_WH"
+                android:layout_height="@dimen/back_WH"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="@dimen/topBar_padding"
+                android:src="@drawable/back" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <!--        <RelativeLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="@dimen/topBar_height"-->
+        <!--            android:paddingStart="20dp"-->
+        <!--            android:paddingEnd="20dp">-->
+
+        <!--            <androidx.appcompat.widget.AppCompatImageView-->
+        <!--                android:id="@+id/audio_back"-->
+        <!--                android:layout_width="@dimen/back_WH"-->
+        <!--                android:layout_height="@dimen/back_WH"-->
+        <!--                android:layout_centerVertical="true"-->
+        <!--                android:padding="5dp"-->
+        <!--                android:src="@drawable/back" />-->
+
+        <!--        </RelativeLayout>-->
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_margin="20dp"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="@dimen/elevation"
+            app:cardMaxElevation="@dimen/elevation">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/audio_cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="#979797" />
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/audio_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        tools:text="TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/audio_favorite"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:src="@drawable/favorite" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/audio_author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="15sp"
+                    tools:text="UserName" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/audio_progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/audio_seekBar"
+                    android:layout_marginTop="5dp"
+                    android:text="00:00"
+                    android:textColor="@color/infoColor" />
+
+                <SeekBar
+                    android:id="@+id/audio_seekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="1000"
+                    android:maxHeight="4dp"
+                    android:minHeight="4dp"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    android:progressDrawable="@drawable/audio_progress_bar"
+                    android:thumb="@drawable/audio_thumb"
+                    android:thumbOffset="0dp"
+                    tools:progress="600"
+                    tools:secondaryProgress="650" />
+
+                <TextView
+                    android:id="@+id/audio_length"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/audio_seekBar"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="5dp"
+                    android:text="00:00"
+                    android:textColor="@color/infoColor" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/audio_download"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="50dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/audio_download" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/audio_control"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/audio_control_bg"
+                    android:padding="20dp"
+                    android:src="@drawable/audio_play_stat" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/audio_mv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/audio_play_video" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
