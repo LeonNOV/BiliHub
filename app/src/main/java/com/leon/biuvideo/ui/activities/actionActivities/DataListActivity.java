@@ -21,8 +21,6 @@ import java.util.List;
  * @Desc
  */
 public class DataListActivity extends BaseActivity<ActivityDataListBinding> {
-    private static final int SCROLLABLE_THRESHOLD = 5;
-
     @Override
     public ActivityDataListBinding getViewBinding() {
         return ActivityDataListBinding.inflate(getLayoutInflater());

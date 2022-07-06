@@ -15,6 +15,7 @@ import com.leon.biuvideo.base.BindingInterface;
 import com.leon.biuvideo.ui.ViewPagerTouchMonitorListener;
 import com.leon.biuvideo.ui.activities.publicActivities.ArticleActivity;
 
+import java.util.Map;
 import java.util.Stack;
 
 /**
@@ -115,6 +116,10 @@ public abstract class BaseActivity<T extends ViewBinding> extends AppCompatActiv
 
     protected void startActivity(Class<? extends BaseActivity<? extends ViewBinding>> targetClass) {
         ActivityManager.startActivity(context, targetClass);
+    }
+
+    protected void startActivity(Class<? extends BaseActivity<? extends ViewBinding>> targetClass, Map<String, String> params) {
+        ActivityManager.startActivity(context, targetClass, params);
     }
 
     @Override

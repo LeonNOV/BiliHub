@@ -46,12 +46,12 @@ public class SeriesPopupWindow extends PopupWindow {
         seriesAdapter.appendHead(itemList);
 
         binding.content.setAdapter(seriesAdapter);
-        binding.content.smoothScrollToPosition(selectedIndex + 2);
     }
 
     public void setAdapter(SeriesAdapter seriesAdapter) {
         binding.content.setAdapter(seriesAdapter);
         seriesAdapter.appendHead(itemList);
+        binding.content.smoothScrollToPosition(selectedIndex + 2);
     }
 
     public void show(View anchor) {

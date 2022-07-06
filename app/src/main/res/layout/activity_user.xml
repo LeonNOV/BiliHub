@@ -15,7 +15,6 @@
             android:id="@+id/user_banner"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:contentDescription="@string/description"
             android:scaleType="centerCrop"
             android:src="@drawable/user_default_banner" />
 
@@ -45,7 +44,7 @@
             app:civ_border_width="@dimen/face_border_width" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/user_follow"
+            android:id="@+id/follow"
             android:layout_width="70dp"
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"
@@ -72,21 +71,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lynaz Sanehe"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="Lynaz Sanehe" />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/level"
                 android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 app:srcCompat="@drawable/bili_user_level_4" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/vip"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/round_bg"
+                android:backgroundTint="@color/BiliBili_pink"
+                android:gravity="center"
+                android:paddingStart="7dp"
+                android:paddingEnd="7dp"
+                android:textColor="@color/white"
+                android:textSize="7sp"
+                android:visibility="gone"
+                tools:text="年度大会员" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -97,25 +114,38 @@
             android:gravity="center_vertical">
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/gender"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
+                android:layout_marginEnd="10dp"
                 app:srcCompat="@drawable/gender_woman" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/uid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/infoColor"
+                android:textSize="11sp"
+                tools:text="UID: 67676767" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/accountType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="UID: 67676767"
-                android:textColor="@color/infoColor" />
+                android:textColor="#999999"
+                android:textSize="11sp"
+                tools:text="争议账号" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="After last year, I couldn’t wait to return to the amazing crowd at Untold Festival. And this year’s edition proved even more magical than the last. I can’t thank you guys enough for making this possible, lots of love to Romania! "
-            android:textColor="@color/infoColor" />
+            android:textColor="@color/infoColor"
+            tools:text="After last year, I couldn’t wait to return to the amazing crowd at Untold Festival. And this year’s edition proved even more magical than the last. I can’t thank you guys enough for making this possible, lots of love to Romania! " />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -135,12 +165,13 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fans"
                 style="@style/UserData"
-                android:text="78" />
+                tools:text="78" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/UserData"
-                android:text="粉丝" />
+                android:text="@string/user_fans" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -152,12 +183,13 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/followers"
                 style="@style/UserData"
-                android:text="678" />
+                tools:text="678" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/UserData"
-                android:text="关注" />
+                android:text="@string/user_follow" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -169,22 +201,25 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/likes"
                 style="@style/UserData"
-                android:text="678" />
+                tools:text="678" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/UserData"
-                android:text="获赞" />
+                tools:text="获赞" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

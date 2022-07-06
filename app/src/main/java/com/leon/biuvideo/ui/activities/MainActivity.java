@@ -28,11 +28,13 @@ import com.leon.biuvideo.ui.activities.actionActivities.DataListActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.PartitionActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.PopularActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.SettingActivity;
+import com.leon.biuvideo.ui.activities.publicActivities.UserActivity;
 import com.leon.biuvideo.ui.adapters.HomeRecommendAdapter;
 import com.leon.biuvideo.utils.RefreshLoader;
 import com.leon.biuvideo.utils.ViewUtils;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -59,7 +61,13 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         });
         binding.drawer.userContainer.setOnTouchListener((v, event) -> ViewUtils.Zoom(event, binding.drawer.userContainer));
         binding.drawer.userContainer.setOnClickListener(v -> {
-            startActivity(LoginActivity.class);
+            boolean isLogin = false;
+
+            if (isLogin) {
+                startActivity(UserActivity.class);
+            } else {
+                startActivity(LoginActivity.class);
+            }
         });
 
         setDrawerFunctionListener();
@@ -75,8 +83,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 //        loader.setGuide(homeRecommend -> homeRecommend.getData().getItem());
     }
 
-
-
     /**
      * drawer function action
      */
@@ -84,7 +90,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         binding.drawer.popular.setOnClickListener(v -> startActivity(PopularActivity.class));
 //        binding.drawer.popular.setOnClickListener(v -> functionGo(PopularAction.class));
         binding.drawer.partition.setOnClickListener(v -> {
-            startActivity(PartitionActivity.class);
+            startActivity(UserActivity.class, Map.of(UserActivity.PARAM, "212535360"));
             delayCloseDrawer();
         });
         binding.drawer.orders.setOnClickListener(v -> functionGo(OrderAction.class));

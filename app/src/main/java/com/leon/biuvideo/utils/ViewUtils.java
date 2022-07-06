@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleableRes;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewpager2.widget.ViewPager2;
@@ -36,6 +37,9 @@ public class ViewUtils {
     @StyleableRes
     private static final int[] ATTRS = new int[android.R.attr.selectableItemBackground];
 
+    private static final int SCROLLABLE_THRESHOLD = 5;
+
+
     public static void setImage(Context context, String imgUrl, ImageView imageView) {
         Glide.with(context).load(imgUrl).into(imageView);
     }
@@ -57,10 +61,14 @@ public class ViewUtils {
      * @param fragments  fragments
      */
     public static void initTabLayout(BaseActivity<? extends ViewBinding> activity, TabLayout tabLayout, ViewPager2 viewPager2,
-                                     @NonNull List<Fragment> fragments, @NonNull String ... titles) {
+                                     @NonNull List<Fragment> fragments, @NonNull String... titles) {
         viewPager2.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         viewPager2.setCurrentItem(0);
         viewPager2.setAdapter(new ViewPager2Adapter(activity, fragments));
+
+        if (titles.length > SCROLLABLE_THRESHOLD) {
+            tabLayout.setTabMode(TabLayout.MODE_AUTO);
+        }
 
         new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {
 //            if (position == 0) {
@@ -84,7 +92,8 @@ public class ViewUtils {
             }
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {}
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
         });
     }
 
@@ -175,5 +184,12 @@ public class ViewUtils {
             affectedView.setScaleY(1F);
         }
         return false;
+    }
+
+    public static void setImg(Context context, ImageView imageView, String imgUrl) {
+        Glide
+                .with(context)
+                .load(imgUrl)
+                .into(imageView);
     }
 }

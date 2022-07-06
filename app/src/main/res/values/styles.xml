@@ -99,7 +99,6 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@color/white</item>
         <item name="tabIndicator">@drawable/indicator</item>
-        <item name="tabMode">auto</item>
         <item name="tabIndicatorAnimationMode">elastic</item>
         <item name="tabIndicatorColor">@color/tabLayoutIndicatorColor</item>
         <item name="tabIndicatorFullWidth">false</item>
