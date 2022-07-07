@@ -72,15 +72,15 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
         setDrawerFunctionListener();
 
-//        HashMap<String, String> headers = new HashMap<>(1);
-//        headers.put("Cookie", HttpApi.DEFAULT_COOKIE);
-//
-//        RefreshLoader<HomeRecommend, HomeRecommend.Data.Item> loader = new RefreshLoader<>(new RetrofitClient(BaseUrl.API, headers).getHttpApi().getHomeRecommend(),
-//                binding.home.data.getRoot());
-//
-//        loader.init(new HomeRecommendAdapter(context));
-//        loader.setLayoutManager(new GridLayoutManager(context, 2));
-//        loader.setGuide(homeRecommend -> homeRecommend.getData().getItem());
+        /*HashMap<String, String> headers = new HashMap<>(1);
+        headers.put("Cookie", HttpApi.DEFAULT_COOKIE);
+
+        RefreshLoader<HomeRecommend, HomeRecommend.Data.Item> loader = new RefreshLoader<>(new RetrofitClient(BaseUrl.API, headers).getHttpApi().getHomeRecommend(),
+                binding.home.data.getRoot());
+
+        loader.init(new HomeRecommendAdapter(context));
+        loader.setLayoutManager(new GridLayoutManager(context, 2));
+        loader.setGuide(homeRecommend -> homeRecommend.getData().getItem());*/
     }
 
     /**

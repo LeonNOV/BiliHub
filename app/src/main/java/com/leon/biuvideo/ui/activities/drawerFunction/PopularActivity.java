@@ -23,7 +23,7 @@ public class PopularActivity extends BaseActivity<ActivityPopularBinding> {
 
     @Override
     protected void init() {
-        ViewUtils.initTabLayout(this, binding.content.dataListContentTab, binding.content.dataListContentViewPager,
+        ViewUtils.initTabLayout(this, binding.content.tabLayout, binding.content.viewPager,
                 List.of(new HotFragment(), new WeeklyFragment(), new PreciousFragment()),
                 "综合热门", "每周必看", "入站必刷");
     }

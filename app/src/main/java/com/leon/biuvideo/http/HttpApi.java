@@ -2,7 +2,9 @@ package com.leon.biuvideo.http;
 
 import com.leon.biuvideo.beans.home.HomeRecommend;
 import com.leon.biuvideo.beans.home.drawerFunction.Series;
-import com.leon.biuvideo.beans.publicBeans.UserInfo;
+import com.leon.biuvideo.beans.publicBeans.user.UserInfo;
+import com.leon.biuvideo.beans.publicBeans.user.UserStat;
+import com.leon.biuvideo.beans.publicBeans.user.UserVideo;
 import com.leon.biuvideo.beans.search.SearchSuggestion;
 
 import io.reactivex.rxjava3.core.Observable;
@@ -20,45 +22,68 @@ public interface HttpApi {
     /**
      * 搜索建议接口
      *
-     * @return SearchSuggestion
-     * @param keyword   keyword
+     * @param keyword keyword
+     * @return {@link SearchSuggestion}
      */
     @GET("main/suggest?main_ver=v1")
     Observable<SearchSuggestion> getSearchSuggestion(@Query("term") String keyword);
-
-    // x/web-interface/
 
     /**
      * 首页推荐接口
      * 如果没有登录账户的话只能获取系统推荐的内容
      * 如果登录上的话，需要在请求头加入Cookie数据，即可获取个人推荐数据
      *
-     * @return HomeRecommend
+     * @return {@link HomeRecommend}
      */
     @GET("x/web-interface/index/top/rcmd?fresh_type=3&version=1&ps=10&fresh_idx=1&fresh_idx_1h=1&homepage_ver=1")
     Observable<HomeRecommend> getHomeRecommend();
 
     /**
      * https://www.bilibili.com/v/popular/rank/all
-     *
+     * <p>
      * https://api.bilibili.com/x/web-interface/popular/series/list
      *
-     * @return  Series
+     * @return {@link Series}
      */
     @GET("x/web-interface/popular/series/list")
     Observable<Series> getSeries();
 
     /**
      * https://space.bilibili.com/492393
+     * <p>
+     * http://api.bilibili.com/x/space/acc/info?mid=492393
      *
-     * http://api.bilibili.com/x/web-interface/card?mid=492393&photo=true
-     *
-     * @return  UserCard
+     * @return {@link UserInfo}
      */
     @GET("x/space/acc/info")
     Observable<UserInfo> getUserInfo(@Query("mid") String mid);
 
-    // x/web-interface/
+    /**
+     * https://space.bilibili.com/492393
+     * <p>
+     * http://api.bilibili.com/x/relation/stat?vmid=492393
+     *
+     * @param mid
+     * @return {@link UserStat}
+     */
+    @GET("x/relation/stat")
+    Observable<UserStat> getUserStat(@Query("vmid") String mid);
+
+    /**
+     * 用户视频数据
+     * <p>
+     * https://api.bilibili.com/x/space/arc/search?ps=30
+     * <p>
+     * 默认单页条目数为30
+     * order：排序方式，默认为pubdate，可选
+     * 最新发布：pubdate
+     * 最多播放：click
+     * 最多收藏：stow
+     *
+     * @return {@link UserVideo}
+     */
+    @GET("x/space/arc/search?ps=30")
+    Observable<UserVideo> getUserVideo(@Query("mid") String mid, @Query("pn") int pageNum, @Query("order") String order);
 
     /**
      * 热搜榜接口

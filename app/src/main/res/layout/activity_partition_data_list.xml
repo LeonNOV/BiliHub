@@ -15,6 +15,6 @@
 
     <include
         android:id="@+id/partition_data_list_multi"
-        layout="@layout/data_list_content_tab" />
+        layout="@layout/compose_tab_vp" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

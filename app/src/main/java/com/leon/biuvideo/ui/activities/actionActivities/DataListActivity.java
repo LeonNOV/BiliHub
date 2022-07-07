@@ -48,7 +48,7 @@ public class DataListActivity extends BaseActivity<ActivityDataListBinding> {
                     fragments.add(new DataListFragment(action, i));
                 }
 
-                ViewUtils.initTabLayout(this, binding.dataListMulti.dataListContentTab, binding.dataListMulti.dataListContentViewPager,
+                ViewUtils.initTabLayout(this, binding.dataListMulti.tabLayout, binding.dataListMulti.viewPager,
                         fragments, actionData.getTabTitles());
             }
 

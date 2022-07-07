@@ -6,11 +6,11 @@
     android:orientation="vertical">
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/data_list_content_tab"
+        android:id="@+id/tabLayout"
         style="@style/TabLayoutStyle" />
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/data_list_content_viewPager"
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"

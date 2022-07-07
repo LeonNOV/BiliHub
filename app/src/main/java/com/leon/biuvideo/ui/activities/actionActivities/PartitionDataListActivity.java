@@ -39,8 +39,8 @@ public class PartitionDataListActivity extends BaseActivity<ActivityPartitionDat
                 fragments.add(new PartitionDataListFragment(partition, action, i));
             }
 
-            binding.partitionDataListMulti.dataListContentTab.setTabMode(TabLayout.MODE_SCROLLABLE);
-            ViewUtils.initTabLayout(this, binding.partitionDataListMulti.dataListContentTab, binding.partitionDataListMulti.dataListContentViewPager,
+            binding.partitionDataListMulti.tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+            ViewUtils.initTabLayout(this, binding.partitionDataListMulti.tabLayout, binding.partitionDataListMulti.viewPager,
                     fragments, actionData.getTabTitles());
 
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {

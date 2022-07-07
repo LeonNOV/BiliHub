@@ -1,4 +1,4 @@
-package com.leon.biuvideo.beans.publicBeans
+package com.leon.biuvideo.beans.publicBeans.user
 
 import com.google.gson.annotations.SerializedName
 import android.os.Parcelable
@@ -30,7 +30,7 @@ data class UserInfo(
         @SerializedName("fans_badge")
         val fansBadge: Boolean,
         @SerializedName("is_followed")
-        val isFollowed: Boolean,
+        var isFollowed: Boolean,
         @SerializedName("is_senior_member")
         val isSeniorMember: Int,
         @SerializedName("jointime")
