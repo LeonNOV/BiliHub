@@ -2,12 +2,9 @@ package com.leon.biuvideo.ui.activities;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.core.view.GravityCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.leon.biuvideo.actions.drawerActions.DownloadAction;
 import com.leon.biuvideo.actions.drawerActions.FavoriteAction;
@@ -16,24 +13,15 @@ import com.leon.biuvideo.actions.drawerActions.HistoryAction;
 import com.leon.biuvideo.actions.drawerActions.OrderAction;
 import com.leon.biuvideo.actions.drawerActions.WatchLaterAction;
 import com.leon.biuvideo.base.baseAction.BaseAction;
-import com.leon.biuvideo.actions.drawerActions.PopularAction;
 import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
-import com.leon.biuvideo.beans.home.HomeRecommend;
 import com.leon.biuvideo.databinding.ActivityMainBinding;
-import com.leon.biuvideo.http.BaseUrl;
-import com.leon.biuvideo.http.HttpApi;
-import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.ui.activities.actionActivities.DataListActivity;
-import com.leon.biuvideo.ui.activities.drawerFunction.PartitionActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.PopularActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.SettingActivity;
 import com.leon.biuvideo.ui.activities.publicActivities.UserActivity;
-import com.leon.biuvideo.ui.adapters.HomeRecommendAdapter;
-import com.leon.biuvideo.utils.RefreshLoader;
 import com.leon.biuvideo.utils.ViewUtils;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -90,7 +78,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         binding.drawer.popular.setOnClickListener(v -> startActivity(PopularActivity.class));
 //        binding.drawer.popular.setOnClickListener(v -> functionGo(PopularAction.class));
         binding.drawer.partition.setOnClickListener(v -> {
-            startActivity(UserActivity.class, Map.of(UserActivity.PARAM, "212535360"));
+            startActivity(UserActivity.class, Map.of(UserActivity.PARAM, "492393"));
             delayCloseDrawer();
         });
         binding.drawer.orders.setOnClickListener(v -> functionGo(OrderAction.class));

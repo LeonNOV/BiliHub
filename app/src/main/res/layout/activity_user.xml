@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical">
+    android:background="@color/white">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
@@ -219,32 +218,6 @@
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-<!--            <androidx.appcompat.widget.AppCompatImageView-->
-<!--                android:id="@+id/article_back"-->
-<!--                android:layout_width="@dimen/back_WH"-->
-<!--                android:layout_height="@dimen/back_WH"-->
-<!--                android:layout_margin="@dimen/topBar_margin"-->
-<!--                android:background="?attr/selectableItemBackgroundBorderless"-->
-<!--                android:padding="@dimen/topBar_padding"-->
-<!--                app:layout_collapseMode="pin"-->
-<!--                android:src="@drawable/back" />-->
-
-<!--            <androidx.appcompat.widget.Toolbar-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="@dimen/topBar_height"-->
-<!--                android:background="@android:color/transparent"-->
-<!--                app:layout_collapseMode="pin">-->
-
-<!--                <androidx.appcompat.widget.AppCompatImageView-->
-<!--                    android:id="@+id/article_back"-->
-<!--                    android:layout_width="@dimen/back_WH"-->
-<!--                    android:layout_height="@dimen/back_WH"-->
-<!--                    android:background="?attr/selectableItemBackgroundBorderless"-->
-<!--                    android:padding="@dimen/topBar_padding"-->
-<!--                    android:src="@drawable/back" />-->
-
-<!--            </androidx.appcompat.widget.Toolbar>-->
-
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolBar"
                 android:layout_width="match_parent"
@@ -264,11 +237,22 @@
                     android:id="@+id/toolBarName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:visibility="gone"
-                    android:layout_marginStart="30dp"
-                    tools:text="Test"/>
+                    tools:text="Test" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/music"
+                    android:layout_width="@dimen/back_WH"
+                    android:layout_height="@dimen/back_WH"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="20dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="@dimen/topBar_padding"
+                    android:src="@drawable/user_music_note"
+                    app:tint="@color/black" />
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -280,7 +264,7 @@
         android:id="@+id/userWorks"
         layout="@layout/compose_tab_vp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

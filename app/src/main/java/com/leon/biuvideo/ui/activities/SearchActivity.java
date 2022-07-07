@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -18,7 +17,7 @@ import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.ui.adapters.SearchSuggestionAdapter;
-import com.leon.biuvideo.utils.RefreshLoader;
+import com.leon.biuvideo.utils.RecyclerViewLoader;
 import com.leon.biuvideo.utils.ViewUtils;
 
 import java.util.Objects;
@@ -29,11 +28,10 @@ import java.util.Objects;
  * @Desc
  */
 public class SearchActivity extends BaseActivity<ActivitySearchBinding> {
-
     private ViewGroup.LayoutParams layoutParams;
     private HttpApi httpApi;
     private SearchSuggestionAdapter adapter;
-    private RefreshLoader<SearchSuggestion, SearchSuggestion.Result.Tag> loader;
+    private RecyclerViewLoader<SearchSuggestion, SearchSuggestion.Result.Tag> loader;
 
     @Override
     public ActivitySearchBinding getViewBinding() {
@@ -91,23 +89,13 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding> {
      * @param keyword keyword
      */
     private void getSuggestion(String keyword) {
-        Log.d(TAG, "getSuggestion: " + keyword);
-
         if (httpApi == null) {
             httpApi = new RetrofitClient(BaseUrl.SEARCH).getHttpApi();
-            loader = new RefreshLoader<>(binding.searchBarSuggestion);
-            loader.init(adapter);
+            loader = new RecyclerViewLoader<>(binding.searchBarSuggestion, adapter);
             loader.setGuide(searchSuggestion -> searchSuggestion.getResult().getTag());
         }
 
-        if (adapter.hasData()) {
-            adapter.removeAll();
-        }
-
-        loader.setObservable(httpApi.getSearchSuggestion(keyword));
-        loader.obtain();
-
-        Log.d(TAG, "getSuggestion: obtain done");
+        loader.setObservable(httpApi.getSearchSuggestion(keyword)).obtain(true);
     }
 
     /**

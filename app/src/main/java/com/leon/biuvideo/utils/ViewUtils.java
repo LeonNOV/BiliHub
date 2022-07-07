@@ -39,7 +39,6 @@ public class ViewUtils {
 
     private static final int SCROLLABLE_THRESHOLD = 5;
 
-
     public static void setImage(Context context, String imgUrl, ImageView imageView) {
         Glide.with(context).load(imgUrl).into(imageView);
     }

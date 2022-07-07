@@ -30,21 +30,22 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 /**
  * @Author Leon
  * @Time 2021/11/02
- * @Desc 处理RecyclerView 刷新/加载 逻辑，适用于{@see custom_view_refresh_recycler_view.xml}和指定条件的自定义布局
+ * @Desc 分页加载器，适用于多页面加载；单一页面使用{@link RecyclerViewLoader}
  *
  * @param <T>   Retrofit响应数据
  * @param <B>   列表展示数据，需通过{@link GuideInterface}来指定
+ * //todo
  */
-public class RefreshLoader<T extends Parcelable, B extends Parcelable> {
+public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
     /**
      * 加载至顶部标记
      */
-    public static final int LOAD_TYPE_HEAD = 1;
+    private static final int LOAD_TYPE_HEAD = 1;
 
     /**
      * 加载至尾部标记
      */
-    public static final int LOAD_TYPE_TAIL = 2;
+    private static final int LOAD_TYPE_TAIL = 2;
 
     /**
      * 首次插入标记
@@ -62,7 +63,7 @@ public class RefreshLoader<T extends Parcelable, B extends Parcelable> {
     /**
      * 直接指定RecyclerView，适用于无刷新/加载功能的RecyclerView
      */
-    public RefreshLoader(RecyclerView recyclerView) {
+    public PaginationLoader(RecyclerView recyclerView) {
         this.recyclerView = recyclerView;
     }
 
@@ -70,7 +71,7 @@ public class RefreshLoader<T extends Parcelable, B extends Parcelable> {
      * @param observable    {@link com.leon.biuvideo.http.HttpApi}
      * @param rootView  refresh_content root view
      */
-    public RefreshLoader(Observable<T> observable, View rootView) {
+    public PaginationLoader(Observable<T> observable, View rootView) {
         this.observable = observable;
         this.rootView = rootView;
 

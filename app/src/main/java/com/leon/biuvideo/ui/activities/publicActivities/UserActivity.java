@@ -42,6 +42,7 @@ public class UserActivity extends AsyncHttpActivity<ActivityUserBinding, UserInf
     protected void init() {
         mid = params.getString(PARAM, null);
         binding.back.setOnClickListener(v -> backPressed());
+        binding.music.setOnClickListener(v -> Toast.makeText(context, "Music", Toast.LENGTH_SHORT).show());
 
         if (mid == null) {
             Toast.makeText(context, "mid无效", Toast.LENGTH_SHORT).show();
@@ -113,30 +114,32 @@ public class UserActivity extends AsyncHttpActivity<ActivityUserBinding, UserInf
             binding.uid.setText(String.format(Locale.CHINESE, "UID: %d", userInfo.getData().getMid()));
             binding.desc.setText(userInfo.getData().getSign());
 
-            String sysNotice = "";
-            switch (userInfo.getData().getSysNotice().getId()) {
-                case 8:
-                    sysNotice = "争议账户";
-                    break;
-                case 11:
-                case 24:
-                    sysNotice = "合约争议";
-                    break;
-                case 20:
-                    sysNotice = "纪念账号";
-                    break;
-                case 22:
-                    sysNotice = "合约诉讼";
-                    break;
-                case 25:
-                    sysNotice = "严重指控";
-                    break;
-                default:
-                    break;
-            }
+            if (userInfo.getData().getSysNotice().getId() != 0) {
+                String sysNotice = "";
+                switch (userInfo.getData().getSysNotice().getId()) {
+                    case 8:
+                        sysNotice = "争议账户";
+                        break;
+                    case 11:
+                    case 24:
+                        sysNotice = "合约争议";
+                        break;
+                    case 20:
+                        sysNotice = "纪念账号";
+                        break;
+                    case 22:
+                        sysNotice = "合约诉讼";
+                        break;
+                    case 25:
+                        sysNotice = "严重指控";
+                        break;
+                    default:
+                        break;
+                }
 
-            binding.accountType.setText(sysNotice);
-            binding.accountType.setTextColor(Color.parseColor(userInfo.getData().getSysNotice().getTextColor()));
+                binding.accountType.setText(sysNotice);
+                binding.accountType.setTextColor(Color.parseColor(userInfo.getData().getSysNotice().getTextColor()));
+            }
 
             getStat();
         }).doIt();

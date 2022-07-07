@@ -10,7 +10,7 @@ import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.ui.adapters.UserVideoItemAdapter;
-import com.leon.biuvideo.utils.RefreshLoader;
+import com.leon.biuvideo.utils.PaginationLoader;
 import com.leon.biuvideo.utils.ViewUtils;
 
 /**
@@ -20,7 +20,7 @@ import com.leon.biuvideo.utils.ViewUtils;
  */
 public class UserMediaFragment extends BaseLazyFragment<FragmentUserMediaBinding> {
     private HttpApi httpApi;
-    private RefreshLoader<UserVideo, UserVideo.Data.DataList.Video> loader;
+    private PaginationLoader<UserVideo, UserVideo.Data.DataList.Video> loader;
     private final String mid;
     private int pageNum = 0;
 
@@ -36,8 +36,8 @@ public class UserMediaFragment extends BaseLazyFragment<FragmentUserMediaBinding
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void initView() {
-        binding.audio.setOnTouchListener((v, event) -> ViewUtils.Zoom(event, v));
-        binding.audio.setOnClickListener(v -> Toast.makeText(context, "UserMusic", Toast.LENGTH_SHORT).show());
+//        binding.audio.setOnTouchListener((v, event) -> ViewUtils.Zoom(event, v));
+//        binding.audio.setOnClickListener(v -> Toast.makeText(context, "UserMusic", Toast.LENGTH_SHORT).show());
     }
 
     @Override
@@ -45,11 +45,10 @@ public class UserMediaFragment extends BaseLazyFragment<FragmentUserMediaBinding
         getVideoList();
     }
 
-    // TODO
     private void getVideoList() {
         if (httpApi == null) {
-            httpApi = new RetrofitClient(BaseUrl.SEARCH).getHttpApi();
-            loader = new RefreshLoader<>(binding.content.refresh.container.content);
+            httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
+            loader = new PaginationLoader<>(binding.content.refresh.container.content);
             loader.init(new UserVideoItemAdapter(context));
             loader.setGuide(userVideo -> userVideo.getData().getList().getVideoList());
         }
