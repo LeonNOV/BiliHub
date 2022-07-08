@@ -7,18 +7,18 @@
 
     <include
         android:id="@+id/content"
-        layout="@layout/refresh" />
+        layout="@layout/refresh_content" />
 
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@+id/audio"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_margin="16dp"-->
-<!--        android:src="@drawable/user_music_note"-->
-<!--        app:backgroundTint="@color/infoColor"-->
-<!--        app:fabSize="normal"-->
-<!--        app:layout_anchor="@id/content"-->
-<!--        android:layout_gravity="bottom|end"-->
-<!--        tools:ignore="ContentDescription" />-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/audio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/user_music_note"
+        app:backgroundTint="@color/infoColor"
+        app:fabSize="normal"
+        app:layout_anchor="@id/content"
+        android:layout_gravity="bottom|end"
+        tools:ignore="ContentDescription" />
 
 </FrameLayout>

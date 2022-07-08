@@ -9,8 +9,13 @@ import com.leon.biuvideo.databinding.RefreshContentBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.ui.adapters.UserVideoItemAdapter;
+import com.leon.biuvideo.ui.activities.publicActivities.UserActivity;
+import com.leon.biuvideo.ui.activities.publicActivities.UserAudioActivity;
+import com.leon.biuvideo.ui.adapters.userAdapters.UserVideoAdapter;
 import com.leon.biuvideo.utils.PaginationLoader;
+import com.leon.biuvideo.utils.ViewUtils;
+
+import java.util.Map;
 
 /**
  * @Author Leon
@@ -35,10 +40,12 @@ public class UserMediaFragment extends BaseLazyFragment<FragmentUserMediaBinding
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void initView() {
-        binding.content.refresh.container.container.setEnableRefresh(false);
+        binding.audio.setOnTouchListener((v, event) -> ViewUtils.Zoom(event, binding.audio));
+        binding.audio.setOnClickListener(v -> startActivity(UserAudioActivity.class, Map.of(UserActivity.PARAM, mid)));
 
         httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
-        loader = new PaginationLoader<>(RefreshContentBinding.bind(binding.content.refresh.getRoot()), new UserVideoItemAdapter(context));
+        loader = new PaginationLoader<>(RefreshContentBinding.bind(binding.content.getRoot()), new UserVideoAdapter(context));
+        loader.closeRefresh();
         loader.setGuide(userVideo -> userVideo.getData().getList().getVideoList());
         loader.setUpdateInterface(loadType -> loader.setObservable(httpApi.getUserVideo(mid, ++pageNum, "pubdate")));
     }

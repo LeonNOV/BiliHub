@@ -15,9 +15,9 @@ import com.leon.biuvideo.http.ApiHelper;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.RequestData;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.ui.fragments.searchResultFragments.AnimeResultResultFragment;
-import com.leon.biuvideo.ui.fragments.searchResultFragments.ComprehensiveResultFragment;
+import com.leon.biuvideo.ui.fragments.userFragments.UserArticleFragment;
 import com.leon.biuvideo.ui.fragments.userFragments.UserMediaFragment;
+import com.leon.biuvideo.ui.fragments.userFragments.UserPictureFragment;
 import com.leon.biuvideo.utils.ViewUtils;
 
 import java.util.List;
@@ -44,7 +44,6 @@ public class UserActivity extends AsyncHttpActivity<ActivityUserBinding, UserInf
     protected void init() {
         mid = params.getString(PARAM, null);
         binding.back.setOnClickListener(v -> backPressed());
-        binding.music.setOnClickListener(v -> Toast.makeText(context, "Music", Toast.LENGTH_SHORT).show());
 
         if (mid == null) {
             Toast.makeText(context, "mid无效", Toast.LENGTH_SHORT).show();
@@ -63,7 +62,7 @@ public class UserActivity extends AsyncHttpActivity<ActivityUserBinding, UserInf
         });
 
         ViewUtils.initTabLayout(this, binding.userWorks.tabLayout, binding.userWorks.viewPager,
-                List.of(new UserMediaFragment(mid), new ComprehensiveResultFragment(mid), new AnimeResultResultFragment(mid)), "视频", "专栏", "相簿");
+                List.of(new UserMediaFragment(mid), new UserArticleFragment(mid), new UserPictureFragment(mid)), "视频", "专栏", "相簿");
     }
 
     @Override
@@ -189,7 +188,7 @@ public class UserActivity extends AsyncHttpActivity<ActivityUserBinding, UserInf
     private void crossFade(boolean isShow) {
         binding.toolBarName.animate()
                 .alpha(isShow ? 1f : 0f)
-                .setDuration(700)
+                .setDuration(500)
                 .setListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {

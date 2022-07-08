@@ -38,6 +38,9 @@
             android:name=".ui.activities.publicActivities.UserActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.activities.publicActivities.UserAudioActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activities.publicActivities.VideoActivity"
             android:exported="false" />
         <activity

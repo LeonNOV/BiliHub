@@ -12,6 +12,10 @@ import androidx.fragment.app.Fragment;
 import androidx.viewbinding.ViewBinding;
 
 import com.leon.biuvideo.base.BindingInterface;
+import com.leon.biuvideo.base.baseActivity.ActivityManager;
+import com.leon.biuvideo.base.baseActivity.BaseActivity;
+
+import java.util.Map;
 
 /**
  * @Author Leon
@@ -22,8 +26,6 @@ public abstract class BaseFragment<V extends ViewBinding> extends Fragment imple
     protected Context context;
     protected View rootView;
     protected V binding;
-
-    private BaseFragmentOnDestroyListener baseFragmentOnDestroyListener;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -61,19 +63,16 @@ public abstract class BaseFragment<V extends ViewBinding> extends Fragment imple
 
     @Override
     public void onDestroy() {
-        if (baseFragmentOnDestroyListener != null) {
-            baseFragmentOnDestroyListener.onDestroy();
-        }
+        super.onDestroy();
 
         binding = null;
-        super.onDestroy();
     }
 
-    public void setBaseFragmentOnDestroyListener(BaseFragmentOnDestroyListener baseFragmentOnDestroyListener) {
-        this.baseFragmentOnDestroyListener = baseFragmentOnDestroyListener;
+    protected void startActivity(Class<? extends BaseActivity<? extends ViewBinding>> targetClass) {
+        ActivityManager.startActivity(context, targetClass);
     }
 
-    public interface BaseFragmentOnDestroyListener {
-        void onDestroy();
+    protected void startActivity(Class<? extends BaseActivity<? extends ViewBinding>> targetClass, Map<String, String> params) {
+        ActivityManager.startActivity(context, targetClass, params);
     }
 }

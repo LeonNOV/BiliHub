@@ -243,17 +243,6 @@
                     android:visibility="gone"
                     tools:text="Test" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/music"
-                    android:layout_width="@dimen/back_WH"
-                    android:layout_height="@dimen/back_WH"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="20dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="@dimen/topBar_padding"
-                    android:src="@drawable/user_music_note"
-                    app:tint="@color/black" />
-
             </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>

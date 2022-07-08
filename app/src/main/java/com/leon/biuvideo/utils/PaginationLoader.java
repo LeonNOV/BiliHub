@@ -201,11 +201,18 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
     }
 
     /**
-     * 关闭刷新控件
+     * 关闭刷新和加载控件
      */
     public void closeSmart() {
         binding.container.container.setEnableRefresh(false);
         binding.container.container.setEnableLoadMore(false);
+    }
+
+    /**
+     * 关闭刷新控件
+     */
+    public void closeRefresh() {
+        binding.container.container.setEnableRefresh(false);
     }
 
     public void setGuide(GuideInterface<T, B> guideInterface) {
