@@ -15,6 +15,8 @@ import com.leon.biuvideo.http.ApiHelper;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.RequestData;
 import com.leon.biuvideo.http.RetrofitClient;
+import com.leon.biuvideo.ui.fragments.searchResultFragments.AnimeResultResultFragment;
+import com.leon.biuvideo.ui.fragments.searchResultFragments.ComprehensiveResultFragment;
 import com.leon.biuvideo.ui.fragments.userFragments.UserMediaFragment;
 import com.leon.biuvideo.utils.ViewUtils;
 
@@ -61,7 +63,7 @@ public class UserActivity extends AsyncHttpActivity<ActivityUserBinding, UserInf
         });
 
         ViewUtils.initTabLayout(this, binding.userWorks.tabLayout, binding.userWorks.viewPager,
-                List.of(new UserMediaFragment(mid), new UserMediaFragment(mid), new UserMediaFragment(mid)), "视频", "专栏", "相簿");
+                List.of(new UserMediaFragment(mid), new ComprehensiveResultFragment(mid), new AnimeResultResultFragment(mid)), "视频", "专栏", "相簿");
     }
 
     @Override

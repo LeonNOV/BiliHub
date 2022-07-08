@@ -78,7 +78,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         binding.drawer.popular.setOnClickListener(v -> startActivity(PopularActivity.class));
 //        binding.drawer.popular.setOnClickListener(v -> functionGo(PopularAction.class));
         binding.drawer.partition.setOnClickListener(v -> {
-            startActivity(UserActivity.class, Map.of(UserActivity.PARAM, "492393"));
+            startActivity(UserActivity.class, Map.of(UserActivity.PARAM, "49405324"));
             delayCloseDrawer();
         });
         binding.drawer.orders.setOnClickListener(v -> functionGo(OrderAction.class));
