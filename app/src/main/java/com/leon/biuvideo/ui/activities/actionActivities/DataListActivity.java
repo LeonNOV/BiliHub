@@ -4,7 +4,6 @@ import android.view.View;
 
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.tabs.TabLayout;
 import com.leon.biuvideo.base.baseAction.BaseAction;
 import com.leon.biuvideo.base.baseAction.ActionData;
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
@@ -29,26 +28,28 @@ public class DataListActivity extends BaseActivity<ActivityDataListBinding> {
     @Override
     protected void init() {
         try {
-            BaseAction action = (BaseAction) Class.forName(params.getString(BaseAction.ACTION)).newInstance();
+            BaseAction action =
+                    (BaseAction) Class.forName(params.getString(BaseAction.ACTION)).newInstance();
             ActionData actionData = action.createActionData();
 
-            binding.dataListTopBar.setTopBarTitle(actionData.getTitle());
+            binding.topBar.setTopBarTitle(actionData.getTitle());
 
             if (actionData.isSingle()) {
-                binding.dataListSingle.setVisibility(View.VISIBLE);
-                binding.getRoot().removeView(binding.dataListMulti.getRoot());
+                binding.contentSingle.getRoot().setVisibility(View.VISIBLE);
+                binding.getRoot().removeView(binding.contentMulti.getRoot());
 
-                action.createAdapter(0);
+
+//                action.createAdapter(0);
             } else {
-                binding.dataListMulti.getRoot().setVisibility(View.VISIBLE);
-                binding.getRoot().removeView(binding.dataListSingle);
+                binding.contentMulti.getRoot().setVisibility(View.VISIBLE);
+                binding.getRoot().removeView(binding.contentSingle.getRoot());
 
                 List<Fragment> fragments = new ArrayList<>();
                 for (int i = 0; i < actionData.getSubPageCount(); i++) {
-                    fragments.add(new DataListFragment(action, i));
+                    fragments.add(new DataListFragment(i, actionData.getFilterItems()).setExternalInterface(action));
                 }
 
-                ViewUtils.initTabLayout(this, binding.dataListMulti.tabLayout, binding.dataListMulti.viewPager,
+                ViewUtils.initTabLayout(this, binding.contentMulti.tabLayout, binding.contentMulti.viewPager,
                         fragments, actionData.getTabTitles());
             }
 

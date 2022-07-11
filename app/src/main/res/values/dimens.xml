@@ -71,4 +71,6 @@
     <dimen name="videoPlayerHeight">230dp</dimen>
     <dimen name="topBarBottomLineHeight">0.5dp</dimen>
     <dimen name="dialogH">170dp</dimen>
+
+    <dimen name="DataFilterTextSize">13sp</dimen>
 </resources>

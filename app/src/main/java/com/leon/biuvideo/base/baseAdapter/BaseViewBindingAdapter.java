@@ -17,6 +17,8 @@ import java.util.List;
  * @Author Leon
  * @Time 2020/11/16
  * @Desc 基本的RecyclerViewAdapter为RecyclerView创建适配器时最好使用该抽象类进行创建ViewHolder为同包下的BaseViewHolder
+ * @param <B>   展示数据
+ * @param <V>   ItemViewBinding
  */
 public abstract class BaseViewBindingAdapter<B, V extends ViewBinding> extends RecyclerView.Adapter<BaseViewBindingAdapter.BaseViewHolder> {
     private final List<B> beans;

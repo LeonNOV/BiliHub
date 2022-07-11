@@ -8,23 +8,17 @@
     tools:context=".ui.activities.actionActivities.DataListActivity">
 
     <com.leon.biuvideo.ui.widget.TopBarWidget
-        android:id="@+id/data_list_topBar"
+        android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="DataList" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/data_list_single"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="RecyclerView"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:visibility="gone" />
+    <include
+        android:id="@+id/contentSingle"
+        layout="@layout/refresh_content" />
 
     <include
-        android:id="@+id/data_list_multi"
+        android:id="@+id/contentMulti"
         layout="@layout/compose_tab_vp"
         android:visibility="gone" />
 

@@ -5,6 +5,7 @@ import com.leon.biuvideo.beans.home.drawerFunction.Series;
 import com.leon.biuvideo.beans.publicBeans.user.UserArticle;
 import com.leon.biuvideo.beans.publicBeans.user.UserAudio;
 import com.leon.biuvideo.beans.publicBeans.user.UserInfo;
+import com.leon.biuvideo.beans.publicBeans.user.UserOrder;
 import com.leon.biuvideo.beans.publicBeans.user.UserPicture;
 import com.leon.biuvideo.beans.publicBeans.user.UserStat;
 import com.leon.biuvideo.beans.publicBeans.user.UserVideo;
@@ -95,9 +96,9 @@ public interface HttpApi {
      * <p>
      * https://api.bilibili.com/audio/music-service/web/song/upper?uid=11253297&pn=1&ps=30&order=1
      *
-     * @param mid   UID
-     * @param pageNum   页码
-     * @return  {@link UserAudio}
+     * @param mid     UID
+     * @param pageNum 页码
+     * @return {@link UserAudio}
      */
     @GET("audio/music-service/web/song/upper?ps=30&order=1")
     Observable<UserAudio> getUserAudio(@Query("uid") String mid, @Query("pn") int pageNum);
@@ -109,9 +110,9 @@ public interface HttpApi {
      * <p>
      * https://api.bilibili.com/x/space/article?mid=38366371&pn=1&ps=15
      *
-     * @param mid   UID
-     * @param pageNum   页码
-     * @return  {@link UserArticle}
+     * @param mid     UID
+     * @param pageNum 页码
+     * @return {@link UserArticle}
      */
     @GET("x/space/article?ps=15")
     Observable<UserArticle> getUserArticle(@Query("mid") String mid, @Query("pn") int pageNum);
@@ -123,12 +124,28 @@ public interface HttpApi {
      * <p>
      * https://api.bilibili.com/x/dynamic/feed/draw/doc_list?uid=38366371&page_num=0&page_size=30&biz=all
      *
-     * @param mid   UID
-     * @param pageNum   页码，从0开始
-     * @return  {@link UserPicture}
+     * @param mid     UID
+     * @param pageNum 页码，从0开始
+     * @return {@link UserPicture}
      */
     @GET("x/dynamic/feed/draw/doc_list?page_size=30&biz=all")
     Observable<UserPicture> getUserPicture(@Query("uid") String mid, @Query("page_num") int pageNum);
+
+    /**
+     * 用户订阅数据
+     * <p>
+     * https://space.bilibili.com/17783613/bangumi
+     * <p>
+     * https://api.bilibili.com/x/space/bangumi/follow/list?type=1&follow_status=0&pn=1&ps=15&vmid=17783613
+     *
+     * @param type         1：番剧；2： 剧集
+     * @param followStatus 0: 全部；1：想看；2：在看；3：看过
+     * @param pageNum      页码
+     * @param mid          UID
+     * @return {@link UserOrder}
+     */
+    @GET("x/space/bangumi/follow/list?ps=15")
+    Observable<UserOrder> getUserOrder(@Query("type") int type, @Query("follow_status") int followStatus, @Query("pn") int pageNum, @Query("vmid") String mid);
 
     /**
      * 热搜榜接口

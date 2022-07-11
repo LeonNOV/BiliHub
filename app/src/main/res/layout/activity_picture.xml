@@ -69,14 +69,6 @@
         android:textSize="17sp"
         tools:text="awdawdawdwadawdawdawdawdawdadadadawdadad" />
 
-    <!--    <com.leon.biuvideo.ui.views.LoadingRecyclerView-->
-    <!--        android:id="@+id/picture_data"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="10dp"-->
-    <!--        android:layout_marginTop="10dp"-->
-    <!--        android:layout_marginEnd="10dp" />-->
-
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="match_parent"
         android:layout_height="300dp"
@@ -85,29 +77,5 @@
         android:layout_marginEnd="20dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_launcher_background" />
-
-    <!--    <FrameLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="10dp"-->
-    <!--        android:layout_marginTop="20dp"-->
-    <!--        android:layout_marginEnd="10dp">-->
-
-    <!--        <com.leon.biuvideo.ui.views.TagView-->
-    <!--            android:id="@+id/picture_comment"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            app:leftValue="评论"-->
-    <!--            app:rightValue="0" />-->
-
-    <!--        <com.leon.biuvideo.ui.views.TagView-->
-    <!--            android:id="@+id/picture_like"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_gravity="end"-->
-    <!--            app:leftValue="赞"-->
-    <!--            app:rightValue="0" />-->
-
-    <!--    </FrameLayout>-->
 
 </LinearLayout>

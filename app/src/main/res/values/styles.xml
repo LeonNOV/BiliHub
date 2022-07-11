@@ -105,4 +105,14 @@
         <item name="tabSelectedTextColor">@color/black</item>
     </style>
 
+    <style name="ItemStyle">
+        <item name="android:padding">10dp</item>
+        <item name="android:background">@drawable/ripple_bg</item>
+    </style>
+
+    <style name="CoverStyle">
+        <item name="android:scaleType">centerCrop</item>
+        <item name="shapeAppearance">@style/Cover</item>
+    </style>
+
 </resources>

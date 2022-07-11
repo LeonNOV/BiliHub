@@ -12,6 +12,7 @@ import java.util.List;
 public class ActionData {
     private final String title;
     private final String[] tabTitles;
+    private String[] filterItems;
     private List<Partition> partitionList;
     private final int subPageCount;
     private final boolean isSingle;
@@ -45,6 +46,14 @@ public class ActionData {
             this.subPageCount = tabTitles.length;
             this.isSingle = false;
         }
+    }
+
+    public String[] getFilterItems() {
+        return filterItems;
+    }
+
+    public void setFilterItems(String ... filterItems) {
+        this.filterItems = filterItems;
     }
 
     public String getTitle() {

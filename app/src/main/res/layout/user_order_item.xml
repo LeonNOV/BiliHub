@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ItemStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:layout_width="80dp"
+        android:layout_height="120dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/cover"
+            style="@style/CoverStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/lsp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/badge"
+            android:layout_width="25dp"
+            android:layout_height="20dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/badge" />
+
+    </FrameLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            tools:text="Title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/epCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/infoColor"
+            android:textSize="12sp"
+            tools:text="全16话" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/infoColor"
+            android:textSize="12sp"
+            tools:text="看到第005话 3:14" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
