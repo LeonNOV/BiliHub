@@ -13,13 +13,13 @@
         android:layout_height="wrap_content"
         app:title="DataList" />
 
-    <include
-        android:id="@+id/contentSingle"
-        layout="@layout/refresh_content" />
+<!--    <include-->
+<!--        android:id="@+id/contentSingle"-->
+<!--        layout="@layout/refresh_content" />-->
 
     <include
         android:id="@+id/contentMulti"
         layout="@layout/compose_tab_vp"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

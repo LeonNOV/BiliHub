@@ -1,7 +1,6 @@
 package com.leon.biuvideo.ui.adapters;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseActivity.ActivityManager;
@@ -10,7 +9,6 @@ import com.leon.biuvideo.beans.search.SearchSuggestion;
 import com.leon.biuvideo.databinding.SearchSuggestionItemBinding;
 import com.leon.biuvideo.ui.activities.SearchResultActivity;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -25,7 +23,7 @@ public class SearchSuggestionAdapter extends BaseViewBindingAdapter<SearchSugges
 
     @Override
     public int getLayout(int viewType) {
-        return R.layout.search_suggestion_item;
+        return R.layout.item_search_suggestion;
     }
 
     @Override

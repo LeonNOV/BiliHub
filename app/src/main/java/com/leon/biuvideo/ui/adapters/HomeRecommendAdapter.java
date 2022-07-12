@@ -20,7 +20,7 @@ public class HomeRecommendAdapter extends BaseViewBindingAdapter<HomeRecommend.D
 
     @Override
     public int getLayout(int viewType) {
-        return R.layout.video_item_b;
+        return R.layout.item_video_b;
     }
 
     @Override

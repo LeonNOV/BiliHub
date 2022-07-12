@@ -73,4 +73,5 @@
     <dimen name="dialogH">170dp</dimen>
 
     <dimen name="DataFilterTextSize">13sp</dimen>
+    <dimen name="infoSize">15sp</dimen>
 </resources>

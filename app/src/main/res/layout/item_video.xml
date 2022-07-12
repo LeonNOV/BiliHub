@@ -7,9 +7,9 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <RelativeLayout
-        android:layout_width="126dp"
-        android:layout_height="96dp">
+    <FrameLayout
+        android:layout_width="@dimen/videoCoverWidth"
+        android:layout_height="@dimen/videoCoverHeight">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/cover"
@@ -23,7 +23,6 @@
             android:id="@+id/extra"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_gravity="bottom|start"
             android:layout_margin="6dp"
             android:background="@drawable/video_item_extra_bg"
@@ -32,7 +31,7 @@
             android:textSize="13sp"
             tools:text="02:49" />
 
-    </RelativeLayout>
+    </FrameLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -42,41 +41,52 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:textColor="@color/black"
-            android:textSize="15sp"
+            style="@style/VideoTitleStyle"
             tools:text="TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/view"
+                android:id="@+id/author"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_video_play"
+                android:drawableStart="@drawable/ic_up_user"
                 android:drawablePadding="5dp"
                 android:textColor="@color/infoColor"
-                android:textSize="15sp"
-                tools:text="4.7万" />
+                android:textSize="@dimen/infoSize"
+                tools:text="1234" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/danmaku"
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:drawableStart="@drawable/ic_danmaku"
-                android:drawablePadding="5dp"
-                android:textColor="@color/infoColor"
-                android:textSize="15sp"
-                tools:text="106" />
+                android:layout_marginTop="10dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_video_play"
+                    android:drawablePadding="5dp"
+                    android:textColor="@color/infoColor"
+                    android:textSize="15sp"
+                    tools:text="4.7万" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/danmaku"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:drawableStart="@drawable/ic_danmaku"
+                    android:drawablePadding="5dp"
+                    android:textColor="@color/infoColor"
+                    android:textSize="15sp"
+                    tools:text="106" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

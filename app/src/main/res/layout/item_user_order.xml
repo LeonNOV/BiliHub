@@ -41,6 +41,15 @@
             tools:text="Title" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/extra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/infoColor"
+            android:textSize="12sp"
+            tools:text="电影 | 英国、漂亮国" />
+
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/epCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -24,7 +24,7 @@ public class UserAudioAdapter extends BaseViewBindingAdapter<UserAudio.Data.Audi
 
     @Override
     public int getLayout(int viewType) {
-        return R.layout.user_audio_item;
+        return R.layout.item_user_audio;
     }
 
     @Override

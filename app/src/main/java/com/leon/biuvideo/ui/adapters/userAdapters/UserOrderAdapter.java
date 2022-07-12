@@ -24,7 +24,7 @@ public class UserOrderAdapter extends BaseViewBindingAdapter<UserOrder.Data.Orde
 
     @Override
     public int getLayout(int viewType) {
-        return R.layout.user_order_item;
+        return R.layout.item_user_order;
     }
 
     @Override
@@ -39,7 +39,15 @@ public class UserOrderAdapter extends BaseViewBindingAdapter<UserOrder.Data.Orde
         ViewUtils.setImg(context, binding.cover, data.getCover());
         ViewUtils.setImg(context, binding.badge, data.getBadgeInfo().getImg());
         binding.title.setText(data.getTitle());
+
+        StringBuilder areaStr = new StringBuilder();
+        for (UserOrder.Data.Order.Area area : data.getAreas()) {
+            areaStr.append(area.getName()).append("、");
+        }
+        areaStr.delete(areaStr.length() - 1, areaStr.length());
+
+        binding.extra.setText(String.format(Locale.CHINESE, "%s | %s", data.getSeasonTypeName(), areaStr));
         binding.epCount.setText(String.format(Locale.CHINESE, "全%d话", data.getTotalCount()));
-        binding.progress.setText(data.getProgress());
+        binding.progress.setText("".equals(data.getProgress()) ? "尚未观看" : data.getProgress());
     }
 }

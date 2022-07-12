@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ItemStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        tools:text="FolderName" />
+
+    <View
+        android:id="@+id/point"
+        android:layout_width="3dp"
+        android:layout_height="3dp"
+        android:layout_toEndOf="@id/name"
+        android:layout_centerVertical="true"
+        android:background="@drawable/round_bg"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="@color/infoColor" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/point"
+        android:textColor="@color/infoColor"
+        android:textSize="15sp"
+        tools:ignore="RelativeOverlap"
+        tools:text="15" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_enter"
+        android:tint="@color/infoColor" />
+
+</RelativeLayout>

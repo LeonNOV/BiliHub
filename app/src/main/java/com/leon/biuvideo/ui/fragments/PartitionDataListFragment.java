@@ -40,6 +40,6 @@ public class PartitionDataListFragment extends BaseLazyFragment<FragmentDataList
         for (PartitionTag tag : partition.getTags()) {
             text.append(tag.getTitle()).append("\n");
         }
-        binding.dataListAction.setText(text);
+//        binding.dataListAction.setText(text);
     }
 }

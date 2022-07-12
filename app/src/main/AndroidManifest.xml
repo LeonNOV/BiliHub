@@ -20,8 +20,26 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme.NoActionBar">
+        android:theme="@style/AppTheme.NoActionBar"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".RelationListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FollowActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WatchLaterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FavoriteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DownloadActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activities.SearchResultActivity"
             android:exported="false" />

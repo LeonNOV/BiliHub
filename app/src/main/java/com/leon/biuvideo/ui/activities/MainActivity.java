@@ -6,21 +6,21 @@ import android.os.Parcelable;
 import android.widget.Toast;
 
 import androidx.core.view.GravityCompat;
-import androidx.viewbinding.ViewBinding;
 
-import com.leon.biuvideo.actions.drawerActions.DownloadAction;
 import com.leon.biuvideo.actions.drawerActions.FavoriteAction;
-import com.leon.biuvideo.actions.drawerActions.FollowsAction;
-import com.leon.biuvideo.actions.drawerActions.HistoryAction;
 import com.leon.biuvideo.actions.drawerActions.OrderAction;
-import com.leon.biuvideo.actions.drawerActions.WatchLaterAction;
 import com.leon.biuvideo.base.baseAction.BaseAction;
 import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
 import com.leon.biuvideo.databinding.ActivityMainBinding;
 import com.leon.biuvideo.ui.activities.actionActivities.DataListActivity;
+import com.leon.biuvideo.ui.activities.drawerFunction.FavoriteActivity;
+import com.leon.biuvideo.ui.activities.drawerFunction.FollowActivity;
+import com.leon.biuvideo.ui.activities.drawerFunction.OrderActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.PopularActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.SettingActivity;
+import com.leon.biuvideo.ui.activities.drawerFunction.WatchLaterActivity;
+import com.leon.biuvideo.ui.activities.publicActivities.DownloadActivity;
 import com.leon.biuvideo.ui.activities.publicActivities.UserActivity;
 import com.leon.biuvideo.utils.ViewUtils;
 
@@ -78,26 +78,17 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
      */
     private void setDrawerFunctionListener() {
         binding.drawer.popular.setOnClickListener(v -> startActivity(PopularActivity.class));
-//        binding.drawer.popular.setOnClickListener(v -> functionGo(PopularAction.class));
         binding.drawer.partition.setOnClickListener(v -> {
             startActivity(UserActivity.class, Map.of(UserActivity.PARAM, "38366371"));
             delayCloseDrawer();
         });
 
-        /**
-         * tile
-         * tabTitles
-         *
-         * adapter
-         * httpApi
-         * refreshLoader
-         */
-        binding.drawer.orders.setOnClickListener(v -> functionGo(OrderAction.class));
-//        binding.drawer.favorites.setOnClickListener(v -> functionGo(FavoriteAction.class));
-//        binding.drawer.later.setOnClickListener(v -> functionGo(WatchLaterAction.class));
-//        binding.drawer.follows.setOnClickListener(v -> functionGo(FollowsAction.class));
+        binding.drawer.orders.setOnClickListener(v -> startActivity(OrderActivity.class));
+        binding.drawer.favorites.setOnClickListener(v -> startActivity(FavoriteActivity.class));
+        binding.drawer.later.setOnClickListener(v -> startActivity(WatchLaterActivity.class));
+        binding.drawer.follows.setOnClickListener(v -> startActivity(FollowActivity.class));
 //        binding.drawer.history.setOnClickListener(v -> functionGo(HistoryAction.class));
-//        binding.drawer.download.setOnClickListener(v -> functionGo(DownloadAction.class));
+        binding.drawer.download.setOnClickListener(v -> startActivity(DownloadActivity.class));
         binding.drawer.settings.setOnClickListener(v -> {
             startActivity(SettingActivity.class);
             delayCloseDrawer();
@@ -107,7 +98,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     /**
      * start the DataListActivity
      */
-    private void functionGo(Class<? extends BaseAction<? extends Parcelable, ? extends Parcelable>> targetClass) {
+    private void functionGo(Class<? extends BaseAction> targetClass) {
         Bundle bundle = new Bundle();
         bundle.putString(BaseAction.ACTION, targetClass.getName());
         ActivityManager.startActivity(context, DataListActivity.class, bundle);

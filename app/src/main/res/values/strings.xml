@@ -237,25 +237,8 @@
     <string name="videoPlayerDanmakuHint">来一发~~~</string>
     <string name="downloadVideo">视频下载</string>
     <string name="downloadNowQuality">当前已选择画质</string>
-    <string name="loading">正在加载中...</string>
-
+    <string name="loading">正在加载中…</string>
     <string name="partition">频道分区</string>
-
-
-    <string name="title_activity_search">SearchActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="title_activity_data_list">DataListActivity</string>
     <string name="noLogin">未登录</string>
     <string name="filter">筛选</string>
     <string name="data_list_filter_default">默认排序</string>
@@ -263,4 +246,6 @@
     <string name="data_list_filter_play">播放多</string>
     <string name="data_list_filter_danmaku">弹幕多</string>
     <string name="title_activity_search_result">SearchResultActivity</string>
+    <string name="clear">一键清空</string>
+    <string name="removeWatched">移除已观看</string>
 </resources>

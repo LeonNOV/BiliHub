@@ -5,16 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.activities.actionActivities.PartitionDataListActivity">
+    tools:context=".ui.activities.drawerFunction.OrderActivity">
 
     <com.leon.biuvideo.ui.widget.TopBarWidget
-        android:id="@+id/partition_data_list_topBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="DataList" />
+        app:title="@string/orders" />
 
     <include
-        android:id="@+id/multi"
-        layout="@layout/compose_tab_vp" />
+        android:id="@+id/content"
+        layout="@layout/compose_tab_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

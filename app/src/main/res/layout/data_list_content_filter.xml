@@ -37,7 +37,8 @@
         android:id="@+id/unchanged"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:visibility="gone">
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/filterDefault"

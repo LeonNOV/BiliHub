@@ -23,7 +23,7 @@ public class UserArticleAdapter extends BaseViewBindingAdapter<UserArticle.Data.
 
     @Override
     public int getLayout(int viewType) {
-        return R.layout.user_article_item;
+        return R.layout.item_user_article;
     }
 
     @Override

@@ -1,5 +1,9 @@
 package com.leon.biuvideo.http;
 
+import com.leon.biuvideo.beans.account.Collect;
+import com.leon.biuvideo.beans.account.FavoriteFolder;
+import com.leon.biuvideo.beans.account.RelationTags;
+import com.leon.biuvideo.beans.account.WatchLater;
 import com.leon.biuvideo.beans.home.HomeRecommend;
 import com.leon.biuvideo.beans.home.drawerFunction.Series;
 import com.leon.biuvideo.beans.publicBeans.user.UserArticle;
@@ -18,7 +22,7 @@ import retrofit2.http.Query;
 /**
  * @Author Leon
  * @Time 2021/10/30
- * @Desc
+ * @Desc 各API接口，详细文档看{https://console-docs.apipost.cn/preview/7efb949e265ab7d7/9fdcecbd7dd69d3f}
  */
 public interface HttpApi {
     String DEFAULT_COOKIE = "buvid3=A290DE6B-616B-F0ED-6C7E-3D347D9E2D6E37118infoc; rpdid=|(J~R~JullRY0J'uYkkmYRkl); LIVE_BUVID=AUTO3516235748669920; CURRENT_BLACKGAP=0; buvid_fp_plain=F8208EDA-C9C6-4C28-8A8D-99DE65A59945148830infoc; video_page_version=v_old_home; fingerprint_s=221bcc4bcfd2a7f6c417ff21c667c1db; buvid_fp=3e09918cc6353c4587ae0d12b648ed13; buvid4=A3F49DF4-3996-B186-977E-1D42F2DD958289040-022031514-RXW3vQfQ66OKIFi3lDC3SA==; PVID=2; fingerprint3=db99ea80e0ab1b86b10e1781bf9f0a4b; hit-dyn-v2=1; nostalgia_conf=-1; CURRENT_QUALITY=112; fingerprint=e5abcdec47965bf6034a4ee15f814d5f; blackside_state=0; is-2022-channel=1; sid=93azlu17; innersign=0; CURRENT_FNVAL=80; bp_video_offset_49405324=677488283035369500; i-wanna-go-back=-1; b_ut=7";
@@ -146,6 +150,59 @@ public interface HttpApi {
      */
     @GET("x/space/bangumi/follow/list?ps=15")
     Observable<UserOrder> getUserOrder(@Query("type") int type, @Query("follow_status") int followStatus, @Query("pn") int pageNum, @Query("vmid") String mid);
+
+    /**
+     * 用户收藏夹
+     * <p>
+     * https://space.bilibili.com/29120845/favlist
+     * <p>
+     * https://api.bilibili.com/x/v3/fav/folder/created/list-all?up_mid=29120845&jsonp=jsonp
+     *
+     * @param mid UID
+     * @return {@link FavoriteFolder}
+     */
+    @GET("x/v3/fav/folder/created/list-all?jsonp=jsonp")
+    Observable<FavoriteFolder> getUserFolder(@Query("up_mid") String mid);
+
+    /**
+     * 用户收藏和订阅文件夹
+     * <p>
+     * https://space.bilibili.com/37090048/favlist
+     * <p>
+     * https://api.bilibili.com/x/v3/fav/folder/collected/list?pn=1&ps=20&up_mid=37090048&platform=web&jsonp=jsonp
+     *
+     * @param pageNum 页码，从1开始
+     * @param mid     UID
+     * @return {@link Collect}
+     */
+    @GET("x/v3/fav/folder/collected/list?ps=20&platform=web&jsonp=jsonp")
+    Observable<Collect> getUserCollect(@Query("pn") int pageNum, @Query("up_mid") String mid);
+
+    /**
+     * 用户稍后观看
+     * <strong>只需要Cookie</strong>
+     * <p>
+     * https://www.bilibili.com/watchlater/#/list
+     * <p>
+     * http://api.bilibili.com/x/v2/history/toview
+     *
+     * @return {@link WatchLater}
+     */
+    @GET("x/v2/history/toview")
+    Observable<WatchLater> getUserWatchLater();
+
+    /**
+     * 用户关注分组
+     * <strong>只需要Cookie</strong>
+     * <p>
+     * https://space.bilibili.com/49405324/fans/follow
+     * <p>
+     * http://api.bilibili.com/x/relation/tags
+     *
+     * @return {@link RelationTags}
+     */
+    @GET("x/relation/tags")
+    Observable<RelationTags> getUserRelationTags();
 
     /**
      * 热搜榜接口

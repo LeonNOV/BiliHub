@@ -26,7 +26,7 @@ public class UserPictureAdapter extends BaseViewBindingAdapter<UserPicture.Data.
 
     @Override
     public int getLayout(int viewType) {
-        return R.layout.user_picture_item;
+        return R.layout.item_user_picture;
     }
 
     @Override

@@ -93,7 +93,9 @@ public class RecyclerViewLoader<T extends Parcelable, B extends Parcelable>{
                 });
     }
 
-    public void setGuide(PaginationLoader.GuideInterface<T, B> guideInterface) {
+    public RecyclerViewLoader<T, B> setGuide(PaginationLoader.GuideInterface<T, B> guideInterface) {
         this.guideInterface = guideInterface;
+
+        return this;
     }
 }

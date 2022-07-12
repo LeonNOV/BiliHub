@@ -9,6 +9,7 @@
 
     <style name="VideoCoverSingle">
         <item name="cornerFamily">rounded</item>
+        <item name="android:scaleType">centerCrop</item>
         <item name="cornerSize">@dimen/corner</item>
     </style>
 

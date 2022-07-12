@@ -22,7 +22,7 @@ public class UserVideoAdapter extends BaseViewBindingAdapter<UserVideo.Data.Data
 
     @Override
     public int getLayout(int viewType) {
-        return R.layout.video_item;
+        return R.layout.item_video;
     }
 
     @Override
