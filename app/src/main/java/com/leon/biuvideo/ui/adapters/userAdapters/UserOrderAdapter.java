@@ -6,7 +6,7 @@ import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.beans.publicBeans.user.UserOrder;
-import com.leon.biuvideo.databinding.UserOrderItemBinding;
+import com.leon.biuvideo.databinding.ItemUserOrderBinding;
 import com.leon.biuvideo.ui.activities.publicActivities.VideoActivity;
 import com.leon.biuvideo.utils.ViewUtils;
 
@@ -17,7 +17,7 @@ import java.util.Locale;
  * @Time 2022/07/11
  * @Desc
  */
-public class UserOrderAdapter extends BaseViewBindingAdapter<UserOrder.Data.Order, UserOrderItemBinding> {
+public class UserOrderAdapter extends BaseViewBindingAdapter<UserOrder.Data.Order, ItemUserOrderBinding> {
     public UserOrderAdapter(Context context) {
         super(context);
     }
@@ -28,12 +28,12 @@ public class UserOrderAdapter extends BaseViewBindingAdapter<UserOrder.Data.Orde
     }
 
     @Override
-    protected UserOrderItemBinding getItemViewBinding() {
-        return UserOrderItemBinding.bind(itemView);
+    protected ItemUserOrderBinding getItemViewBinding() {
+        return ItemUserOrderBinding.bind(itemView);
     }
 
     @Override
-    protected void onBindViewHolder(UserOrder.Data.Order data, UserOrderItemBinding binding, int position) {
+    protected void onBindViewHolder(UserOrder.Data.Order data, ItemUserOrderBinding binding, int position) {
         binding.getRoot().setOnClickListener(v -> ActivityManager.startActivity(context, VideoActivity.class));
 
         ViewUtils.setImg(context, binding.cover, data.getCover());

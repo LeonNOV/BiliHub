@@ -6,7 +6,7 @@ import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.beans.publicBeans.user.UserArticle;
-import com.leon.biuvideo.databinding.UserArticleItemBinding;
+import com.leon.biuvideo.databinding.ItemUserArticleBinding;
 import com.leon.biuvideo.ui.activities.publicActivities.ArticleActivity;
 import com.leon.biuvideo.utils.ValueUtils;
 import com.leon.biuvideo.utils.ViewUtils;
@@ -16,7 +16,7 @@ import com.leon.biuvideo.utils.ViewUtils;
  * @Time 2022/07/08
  * @Desc
  */
-public class UserArticleAdapter extends BaseViewBindingAdapter<UserArticle.Data.Article, UserArticleItemBinding> {
+public class UserArticleAdapter extends BaseViewBindingAdapter<UserArticle.Data.Article, ItemUserArticleBinding> {
     public UserArticleAdapter(Context context) {
         super(context);
     }
@@ -27,12 +27,12 @@ public class UserArticleAdapter extends BaseViewBindingAdapter<UserArticle.Data.
     }
 
     @Override
-    protected UserArticleItemBinding getItemViewBinding() {
-        return UserArticleItemBinding.bind(itemView);
+    protected ItemUserArticleBinding getItemViewBinding() {
+        return ItemUserArticleBinding.bind(itemView);
     }
 
     @Override
-    protected void onBindViewHolder(UserArticle.Data.Article data, UserArticleItemBinding binding, int position) {
+    protected void onBindViewHolder(UserArticle.Data.Article data, ItemUserArticleBinding binding, int position) {
         binding.getRoot().setOnClickListener(v -> ActivityManager.startActivity(context, ArticleActivity.class));
 
         binding.title.setText(data.getTitle());

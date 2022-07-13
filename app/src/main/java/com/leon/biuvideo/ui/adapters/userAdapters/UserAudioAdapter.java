@@ -6,7 +6,7 @@ import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.beans.publicBeans.user.UserAudio;
-import com.leon.biuvideo.databinding.UserAudioItemBinding;
+import com.leon.biuvideo.databinding.ItemUserAudioBinding;
 import com.leon.biuvideo.ui.activities.publicActivities.AudioActivity;
 import com.leon.biuvideo.utils.ValueUtils;
 import com.leon.biuvideo.utils.ViewUtils;
@@ -16,7 +16,7 @@ import com.leon.biuvideo.utils.ViewUtils;
  * @Time 2022/07/08
  * @Desc
  */
-public class UserAudioAdapter extends BaseViewBindingAdapter<UserAudio.Data.Audio, UserAudioItemBinding> {
+public class UserAudioAdapter extends BaseViewBindingAdapter<UserAudio.Data.Audio, ItemUserAudioBinding> {
 
     public UserAudioAdapter(Context context) {
         super(context);
@@ -28,12 +28,12 @@ public class UserAudioAdapter extends BaseViewBindingAdapter<UserAudio.Data.Audi
     }
 
     @Override
-    protected UserAudioItemBinding getItemViewBinding() {
-        return UserAudioItemBinding.bind(itemView);
+    protected ItemUserAudioBinding getItemViewBinding() {
+        return ItemUserAudioBinding.bind(itemView);
     }
 
     @Override
-    protected void onBindViewHolder(UserAudio.Data.Audio audio, UserAudioItemBinding binding, int position) {
+    protected void onBindViewHolder(UserAudio.Data.Audio audio, ItemUserAudioBinding binding, int position) {
         binding.getRoot().setOnClickListener(v -> ActivityManager.startActivity(context, AudioActivity.class));
 
         binding.extra.setText(ValueUtils.lengthGenerate(audio.getDuration()));

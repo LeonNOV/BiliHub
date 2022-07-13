@@ -6,7 +6,7 @@ import com.leon.biuvideo.databinding.PageRecyclerBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.ui.adapters.RelationTagsAdapter;
+import com.leon.biuvideo.ui.adapters.drawerAdapters.relation.RelationTagsAdapter;
 import com.leon.biuvideo.utils.RecyclerViewLoader;
 
 /**
@@ -14,7 +14,7 @@ import com.leon.biuvideo.utils.RecyclerViewLoader;
  * @Time 2022/7/12
  * @Desc
  */
-public class FollowActivity extends BaseActivity<PageRecyclerBinding> {
+public class RelationActivity extends BaseActivity<PageRecyclerBinding> {
     @Override
     public PageRecyclerBinding getViewBinding() {
         return PageRecyclerBinding.inflate(getLayoutInflater());
@@ -23,7 +23,7 @@ public class FollowActivity extends BaseActivity<PageRecyclerBinding> {
     @Override
     protected void init() {
         HttpApi httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
-        RecyclerViewLoader<RelationTags, RelationTags.Data> loader = new RecyclerViewLoader<>(binding.getRoot(), new RelationTagsAdapter(context));
+        RecyclerViewLoader<RelationTags, RelationTags.Data> loader = new RecyclerViewLoader<>(binding.content, new RelationTagsAdapter(context));
         loader
                 .setGuide(RelationTags::getData)
                 .setObservable(httpApi.getUserRelationTags())

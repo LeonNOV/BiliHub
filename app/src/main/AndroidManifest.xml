@@ -23,22 +23,25 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".RelationListActivity"
+            android:name=".ui.activities.drawerFunction.HistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".FollowActivity"
+            android:name=".ui.activities.publicActivities.RelationDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".WatchLaterActivity"
+            android:name=".ui.activities.drawerFunction.RelationActivity"
             android:exported="false" />
         <activity
-            android:name=".FavoriteActivity"
+            android:name=".ui.activities.drawerFunction.WatchLaterActivity"
             android:exported="false" />
         <activity
-            android:name=".OrderActivity"
+            android:name=".ui.activities.drawerFunction.FavoriteActivity"
             android:exported="false" />
         <activity
-            android:name=".DownloadActivity"
+            android:name=".ui.activities.drawerFunction.OrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.publicActivities.DownloadActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.SearchResultActivity"
@@ -74,7 +77,7 @@
             android:name=".ui.activities.drawerFunction.PopularActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.drawerFunction.PartitionActivity"
+            android:name=".ui.activities.drawerFunction.partition.PartitionActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.drawerFunction.SettingActivity"

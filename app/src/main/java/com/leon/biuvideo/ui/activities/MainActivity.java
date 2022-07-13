@@ -2,20 +2,19 @@ package com.leon.biuvideo.ui.activities;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.widget.Toast;
 
 import androidx.core.view.GravityCompat;
+import androidx.viewbinding.ViewBinding;
+import androidx.viewbinding.ViewBindings;
 
-import com.leon.biuvideo.actions.drawerActions.FavoriteAction;
-import com.leon.biuvideo.actions.drawerActions.OrderAction;
-import com.leon.biuvideo.base.baseAction.BaseAction;
 import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
 import com.leon.biuvideo.databinding.ActivityMainBinding;
 import com.leon.biuvideo.ui.activities.actionActivities.DataListActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.FavoriteActivity;
-import com.leon.biuvideo.ui.activities.drawerFunction.FollowActivity;
+import com.leon.biuvideo.ui.activities.drawerFunction.HistoryActivity;
+import com.leon.biuvideo.ui.activities.drawerFunction.RelationActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.OrderActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.PopularActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.SettingActivity;
@@ -77,31 +76,26 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
      * drawer function action
      */
     private void setDrawerFunctionListener() {
-        binding.drawer.popular.setOnClickListener(v -> startActivity(PopularActivity.class));
-        binding.drawer.partition.setOnClickListener(v -> {
-            startActivity(UserActivity.class, Map.of(UserActivity.PARAM, "38366371"));
-            delayCloseDrawer();
-        });
-
-        binding.drawer.orders.setOnClickListener(v -> startActivity(OrderActivity.class));
-        binding.drawer.favorites.setOnClickListener(v -> startActivity(FavoriteActivity.class));
-        binding.drawer.later.setOnClickListener(v -> startActivity(WatchLaterActivity.class));
-        binding.drawer.follows.setOnClickListener(v -> startActivity(FollowActivity.class));
-//        binding.drawer.history.setOnClickListener(v -> functionGo(HistoryAction.class));
-        binding.drawer.download.setOnClickListener(v -> startActivity(DownloadActivity.class));
-        binding.drawer.settings.setOnClickListener(v -> {
-            startActivity(SettingActivity.class);
-            delayCloseDrawer();
-        });
+        binding.drawer.popular.setOnClickListener(v -> startPage(PopularActivity.class, null));
+        binding.drawer.partition.setOnClickListener(v -> startPage(UserActivity.class, Map.of(UserActivity.PARAM, "38366371")));
+        binding.drawer.orders.setOnClickListener(v -> startPage(OrderActivity.class, null));
+        binding.drawer.favorites.setOnClickListener(v -> startPage(FavoriteActivity.class, null));
+        binding.drawer.later.setOnClickListener(v -> startPage(WatchLaterActivity.class, null));
+        binding.drawer.follows.setOnClickListener(v -> startPage(RelationActivity.class, null));
+        binding.drawer.history.setOnClickListener(v -> startPage(HistoryActivity.class, null));
+        binding.drawer.download.setOnClickListener(v -> startPage(DownloadActivity.class, null));
+        binding.drawer.settings.setOnClickListener(v -> startPage(SettingActivity.class, null));
     }
 
     /**
      * start the DataListActivity
      */
-    private void functionGo(Class<? extends BaseAction> targetClass) {
-        Bundle bundle = new Bundle();
-        bundle.putString(BaseAction.ACTION, targetClass.getName());
-        ActivityManager.startActivity(context, DataListActivity.class, bundle);
+    private void startPage(Class<? extends BaseActivity<? extends ViewBinding>> targetClass, Map<String, String> params) {
+        if (params == null) {
+            startActivity(targetClass);
+        } else {
+            startActivity(targetClass, params);
+        }
 
         delayCloseDrawer();
     }

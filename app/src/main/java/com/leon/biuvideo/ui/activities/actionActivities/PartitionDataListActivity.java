@@ -3,8 +3,6 @@ package com.leon.biuvideo.ui.activities.actionActivities;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.tabs.TabLayout;
-import com.leon.biuvideo.base.baseAction.ActionData;
-import com.leon.biuvideo.base.baseAction.BaseAction;
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
 import com.leon.biuvideo.beans.Partition;
 import com.leon.biuvideo.databinding.ActivityPartitionDataListBinding;
@@ -27,24 +25,6 @@ public class PartitionDataListActivity extends BaseActivity<ActivityPartitionDat
 
     @Override
     protected void init() {
-        try {
-            BaseAction action = (BaseAction) Class.forName(params.getString(BaseAction.ACTION)).newInstance();
-            ActionData actionData = action.createActionData();
 
-            binding.partitionDataListTopBar.setTopBarTitle(actionData.getTitle());
-
-            List<Fragment> fragments = new ArrayList<>();
-            for (int i = 0; i < actionData.getSubPageCount(); i++) {
-                Partition partition = actionData.getPartitionList().get(i);
-                fragments.add(new PartitionDataListFragment(partition, action, i));
-            }
-
-            binding.multi.tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-            ViewUtils.initTabLayout(this, binding.multi.tabLayout, binding.multi.viewPager,
-                    fragments, actionData.getTabTitles());
-
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
     }
 }

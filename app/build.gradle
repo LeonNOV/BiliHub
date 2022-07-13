@@ -133,6 +133,9 @@ dependencies {
     //CircleImageview
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
+//    implementation "com.daimajia.swipelayout:library:1.2.0@aar"
+    implementation "com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0"
+
     // Room
     def roomVersion = "2.3.0"
     implementation "androidx.room:room-runtime:$roomVersion"

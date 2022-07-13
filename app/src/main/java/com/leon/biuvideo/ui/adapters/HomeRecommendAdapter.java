@@ -6,14 +6,14 @@ import android.widget.Toast;
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.beans.home.HomeRecommend;
-import com.leon.biuvideo.databinding.VideoItemBBinding;
+import com.leon.biuvideo.databinding.ItemVideoBBinding;
 
 /**
  * @Author Leon
  * @Time 2022/06/24
  * @Desc
  */
-public class HomeRecommendAdapter extends BaseViewBindingAdapter<HomeRecommend.Data.Item, VideoItemBBinding> {
+public class HomeRecommendAdapter extends BaseViewBindingAdapter<HomeRecommend.Data.Item, ItemVideoBBinding> {
     public HomeRecommendAdapter(Context context) {
         super(context);
     }
@@ -24,12 +24,12 @@ public class HomeRecommendAdapter extends BaseViewBindingAdapter<HomeRecommend.D
     }
 
     @Override
-    protected VideoItemBBinding getItemViewBinding() {
-        return VideoItemBBinding.bind(itemView);
+    protected ItemVideoBBinding getItemViewBinding() {
+        return ItemVideoBBinding.bind(itemView);
     }
 
     @Override
-    protected void onBindViewHolder(HomeRecommend.Data.Item data, VideoItemBBinding binding, int position) {
+    protected void onBindViewHolder(HomeRecommend.Data.Item data, ItemVideoBBinding binding, int position) {
         binding.play.setText(String.valueOf(data.getStat().getView()));
         binding.extra.setText(String.valueOf(data.getDuration()));
         binding.danmaku.setText(String.valueOf(data.getStat().getDanmaku()));

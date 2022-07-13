@@ -26,7 +26,7 @@ public class FolderListFragment extends BaseLazyFragment<PageRecyclerBinding> {
     @Override
     protected void initView() {
         HttpApi httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
-        loader = new RecyclerViewLoader<FavoriteFolder, FavoriteFolder.Data.Folder>(binding.getRoot(), new FolderAdapter(context))
+        loader = new RecyclerViewLoader<FavoriteFolder, FavoriteFolder.Data.Folder>(binding.content, new FolderAdapter(context))
                 .setGuide(favoriteFolder -> favoriteFolder.getData().getList())
                 .setObservable(httpApi.getUserFolder("29120845"));
     }

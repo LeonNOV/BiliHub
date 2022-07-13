@@ -6,7 +6,7 @@ import android.widget.Toast;
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.beans.publicBeans.user.UserVideo;
-import com.leon.biuvideo.databinding.VideoItemBinding;
+import com.leon.biuvideo.databinding.ItemVideoBinding;
 import com.leon.biuvideo.utils.ValueUtils;
 import com.leon.biuvideo.utils.ViewUtils;
 
@@ -15,7 +15,7 @@ import com.leon.biuvideo.utils.ViewUtils;
  * @Time 2022/07/07
  * @Desc
  */
-public class UserVideoAdapter extends BaseViewBindingAdapter<UserVideo.Data.DataList.Video, VideoItemBinding> {
+public class UserVideoAdapter extends BaseViewBindingAdapter<UserVideo.Data.DataList.Video, ItemVideoBinding> {
     public UserVideoAdapter(Context context) {
         super(context);
     }
@@ -26,12 +26,12 @@ public class UserVideoAdapter extends BaseViewBindingAdapter<UserVideo.Data.Data
     }
 
     @Override
-    protected VideoItemBinding getItemViewBinding() {
-        return VideoItemBinding.bind(itemView);
+    protected ItemVideoBinding getItemViewBinding() {
+        return ItemVideoBinding.bind(itemView);
     }
 
     @Override
-    protected void onBindViewHolder(UserVideo.Data.DataList.Video data, VideoItemBinding binding, int position) {
+    protected void onBindViewHolder(UserVideo.Data.DataList.Video data, ItemVideoBinding binding, int position) {
         binding.danmaku.setText(ValueUtils.generateCN(data.getVideoReview()));
         binding.extra.setText(data.getLength());
         binding.title.setText(data.getTitle());

@@ -7,7 +7,7 @@ import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.beans.publicBeans.user.UserPicture;
-import com.leon.biuvideo.databinding.UserPictureItemBinding;
+import com.leon.biuvideo.databinding.ItemUserPictureBinding;
 import com.leon.biuvideo.ui.activities.publicActivities.PictureActivity;
 import com.leon.biuvideo.utils.ValueUtils;
 import com.leon.biuvideo.utils.ViewUtils;
@@ -19,7 +19,7 @@ import java.util.Locale;
  * @Time 2022/07/08
  * @Desc
  */
-public class UserPictureAdapter extends BaseViewBindingAdapter<UserPicture.Data.Item, UserPictureItemBinding> {
+public class UserPictureAdapter extends BaseViewBindingAdapter<UserPicture.Data.Item, ItemUserPictureBinding> {
     public UserPictureAdapter(Context context) {
         super(context);
     }
@@ -30,12 +30,12 @@ public class UserPictureAdapter extends BaseViewBindingAdapter<UserPicture.Data.
     }
 
     @Override
-    protected UserPictureItemBinding getItemViewBinding() {
-        return UserPictureItemBinding.bind(itemView);
+    protected ItemUserPictureBinding getItemViewBinding() {
+        return ItemUserPictureBinding.bind(itemView);
     }
 
     @Override
-    protected void onBindViewHolder(UserPicture.Data.Item data, UserPictureItemBinding binding, int position) {
+    protected void onBindViewHolder(UserPicture.Data.Item data, ItemUserPictureBinding binding, int position) {
         binding.getRoot().setOnClickListener(v -> ActivityManager.startActivity(context, PictureActivity.class));
 
         ViewUtils.setImg(context, binding.cover, data.getPictures().get(0).getImgSrc());

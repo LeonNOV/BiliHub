@@ -3,7 +3,6 @@ package com.leon.biuvideo;
 import android.app.Application;
 
 import com.leon.biuvideo.parser.PartitionParser;
-import com.leon.biuvideo.ui.activities.drawerFunction.PartitionActivity;
 
 /**
  * @Author Leon

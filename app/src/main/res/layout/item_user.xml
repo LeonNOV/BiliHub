@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.mcxtzhang.swipemenulib.SwipeMenuLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ItemStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <FrameLayout
+            android:layout_width="64dp"
+            android:layout_height="64dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/face"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@color/gray"
+                app:civ_border_color="@color/black"
+                app:civ_border_width="1dp" />
+
+            <ImageView
+                android:id="@+id/mark"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="bottom|end"
+                android:contentDescription="@string/description"
+                android:src="@drawable/ic_person_verify"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/infoSize"
+                android:textStyle="bold"
+                tools:text="撒飞洒地方撒旦发射点发生飞洒发顺丰发撒" />
+
+            <TextView
+                android:id="@+id/sign"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/infoColor"
+                android:textSize="@dimen/infoSize"
+                tools:text="descdescdescdescdescdesc" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/action"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/ripple_bg"
+            android:backgroundTint="@color/cancel_color"
+            android:gravity="center"
+            android:text="@string/cancel_follow"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</com.mcxtzhang.swipemenulib.SwipeMenuLayout>
+

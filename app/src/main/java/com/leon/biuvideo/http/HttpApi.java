@@ -2,6 +2,7 @@ package com.leon.biuvideo.http;
 
 import com.leon.biuvideo.beans.account.Collect;
 import com.leon.biuvideo.beans.account.FavoriteFolder;
+import com.leon.biuvideo.beans.account.RelationDetail;
 import com.leon.biuvideo.beans.account.RelationTags;
 import com.leon.biuvideo.beans.account.WatchLater;
 import com.leon.biuvideo.beans.home.HomeRecommend;
@@ -203,6 +204,21 @@ public interface HttpApi {
      */
     @GET("x/relation/tags")
     Observable<RelationTags> getUserRelationTags();
+
+    /**
+     * 用户关注分组
+     * <strong>只需要Cookie</strong>
+     * <p>
+     * https://space.bilibili.com/49405324/fans/follow
+     * <p>
+     * http://api.bilibili.com/x/relation/tag?tagid=-10&ps=50&pn=1
+     *
+     * @param tagId 特别关注恒为-10；默认分组恒为0
+     * @param pn    页码
+     * @return {@link RelationTags}
+     */
+    @GET("x/relation/tag?ps=50")
+    Observable<RelationDetail> getUserRelationDetail(@Query("tagid") String tagId, @Query("pn") int pn);
 
     /**
      * 热搜榜接口
