@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="280dp"
     android:background="@drawable/ripple_bg"
+    android:elevation="@dimen/elevation"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -29,7 +30,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_margin="10dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="3dp"
             android:gravity="center_vertical">
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -39,8 +42,8 @@
                 android:gravity="center_vertical">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="24dp"
-                    android:layout_height="22dp"
+                    android:layout_width="16dp"
+                    android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_video_play"
                     android:tint="@color/white" />
@@ -49,9 +52,9 @@
                     android:id="@+id/play"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="2dp"
                     android:textColor="@color/white"
-                    android:textSize="13sp"
+                    android:textSize="11sp"
                     tools:text="27.8万" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -65,8 +68,8 @@
                 android:gravity="center_vertical">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="24dp"
-                    android:layout_height="22dp"
+                    android:layout_width="16dp"
+                    android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_danmaku"
                     android:tint="@color/white" />
@@ -75,9 +78,9 @@
                     android:id="@+id/danmaku"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="2dp"
                     android:textColor="@color/white"
-                    android:textSize="13sp"
+                    android:textSize="11sp"
                     tools:text="245" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -89,7 +92,7 @@
                 android:layout_alignParentEnd="true"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:textSize="13sp"
+                android:textSize="11sp"
                 tools:ignore="RelativeOverlap"
                 tools:text="02:49" />
 
@@ -97,46 +100,50 @@
 
     </RelativeLayout>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:layout_gravity="top"
             android:ellipsize="end"
             android:maxLines="2"
             android:textColor="@color/black"
-            android:textSize="13sp"
+            android:textSize="11sp"
             tools:text="阿瓦达吴大维大大伟大阿瓦达吴大维大大伟大阿瓦达吴大维大大伟大阿瓦达吴大维大大伟大阿瓦达吴大维大大伟大阿瓦达吴大维大大伟大" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="16dp"
+            android:layout_alignParentBottom="true"
             android:layout_marginTop="10dp"
             android:gravity="center_vertical">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="24dp"
-                android:layout_height="22dp"
-                android:scaleType="centerCrop"
+                android:layout_width="15dp"
+                android:layout_height="match_parent"
                 android:src="@drawable/ic_up_user" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/author"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="5dp"
                 android:textColor="@color/infoColor"
-                android:textSize="13sp"
+                android:textSize="10sp"
                 tools:text="阿瓦德瓦达" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </RelativeLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

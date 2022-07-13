@@ -5,12 +5,17 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.core.view.GravityCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 
 import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
+import com.leon.biuvideo.beans.home.HomeRecommend;
 import com.leon.biuvideo.databinding.ActivityMainBinding;
+import com.leon.biuvideo.http.BaseUrl;
+import com.leon.biuvideo.http.HttpApi;
+import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.ui.activities.actionActivities.DataListActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.FavoriteActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.HistoryActivity;
@@ -19,10 +24,14 @@ import com.leon.biuvideo.ui.activities.drawerFunction.OrderActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.PopularActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.SettingActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.WatchLaterActivity;
+import com.leon.biuvideo.ui.activities.drawerFunction.partition.PartitionActivity;
 import com.leon.biuvideo.ui.activities.publicActivities.DownloadActivity;
 import com.leon.biuvideo.ui.activities.publicActivities.UserActivity;
+import com.leon.biuvideo.ui.adapters.HomeRecommendAdapter;
+import com.leon.biuvideo.utils.PaginationLoader;
 import com.leon.biuvideo.utils.ViewUtils;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -61,15 +70,14 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
         setDrawerFunctionListener();
 
-        /*HashMap<String, String> headers = new HashMap<>(1);
-        headers.put("Cookie", HttpApi.DEFAULT_COOKIE);
+        /*HttpApi httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.Cookie, HttpApi.DEFAULT_COOKIE)).getHttpApi();
+        PaginationLoader<HomeRecommend, HomeRecommend.Data.Item> loader = new PaginationLoader<>(binding.home.data, new HomeRecommendAdapter(context));
 
-        RefreshLoader<HomeRecommend, HomeRecommend.Data.Item> loader = new RefreshLoader<>(new RetrofitClient(BaseUrl.API, headers).getHttpApi().getHomeRecommend(),
-                binding.home.data.getRoot());
-
-        loader.init(new HomeRecommendAdapter(context));
         loader.setLayoutManager(new GridLayoutManager(context, 2));
-        loader.setGuide(homeRecommend -> homeRecommend.getData().getItem());*/
+        loader.closeRefresh();
+        loader.setGuide(homeRecommend -> homeRecommend.getData().getItem());
+        loader.setObservable(httpApi.getHomeRecommend());
+        loader.firstObtain();*/
     }
 
     /**
@@ -77,7 +85,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
      */
     private void setDrawerFunctionListener() {
         binding.drawer.popular.setOnClickListener(v -> startPage(PopularActivity.class, null));
-        binding.drawer.partition.setOnClickListener(v -> startPage(UserActivity.class, Map.of(UserActivity.PARAM, "38366371")));
+        binding.drawer.partition.setOnClickListener(v -> startPage(PartitionActivity.class, null));
         binding.drawer.orders.setOnClickListener(v -> startPage(OrderActivity.class, null));
         binding.drawer.favorites.setOnClickListener(v -> startPage(FavoriteActivity.class, null));
         binding.drawer.later.setOnClickListener(v -> startPage(WatchLaterActivity.class, null));

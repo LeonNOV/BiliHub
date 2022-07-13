@@ -1,4 +1,4 @@
-package com.leon.biuvideo.beans
+package com.leon.biuvideo.beans.partition
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

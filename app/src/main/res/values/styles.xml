@@ -124,4 +124,12 @@
         <item name="android:textSize">15sp</item>
     </style>
 
+    <style name="PointerStyle">
+        <item name="android:layout_width">3dp</item>
+        <item name="android:layout_height">3dp</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:src">@drawable/pointer</item>
+    </style>
+
 </resources>

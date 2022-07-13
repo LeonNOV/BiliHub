@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg"
-    tools:context=".ui.fragments.DataListFragment">
+    tools:context=".ui.fragments.drawerFragments.partition.PartitionFragment">
 
     <include
         android:id="@+id/data_list_filter"

@@ -3,10 +3,13 @@ package com.leon.biuvideo.utils;
 import android.os.Parcelable;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewbinding.ViewBinding;
 
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.biuvideo.ui.widget.GridSpacingItemDecoration;
 
 import java.util.List;
 
@@ -44,6 +47,18 @@ public class RecyclerViewLoader<T extends Parcelable, B extends Parcelable>{
         this.recyclerView.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
         this.recyclerView.setMotionEventSplittingEnabled(false);
         this.recyclerView.setHasFixedSize(true);
+
+        int spanCount;
+        RecyclerView.LayoutManager layoutManager = this.recyclerView.getLayoutManager();
+        if (layoutManager instanceof LinearLayoutManager) {
+            spanCount = 1;
+        } else if (layoutManager instanceof StaggeredGridLayoutManager) {
+            spanCount = ((StaggeredGridLayoutManager) layoutManager).getSpanCount();
+        } else {
+            spanCount = 1;
+        }
+
+        this.recyclerView.addItemDecoration(new GridSpacingItemDecoration(adapter.context, spanCount, GridSpacingItemDecoration.INCLUDE_EDGE));
     }
 
     public RecyclerViewLoader<T, B> setObservable(Observable<T> observable) {

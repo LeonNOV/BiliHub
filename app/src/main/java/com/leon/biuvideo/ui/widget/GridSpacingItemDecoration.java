@@ -1,10 +1,13 @@
 package com.leon.biuvideo.ui.widget;
 
+import android.content.Context;
 import android.graphics.Rect;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.leon.biuvideo.R;
 
 /**
  * @Author Leon
@@ -12,10 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
  * @Desc 为RecyclerViewItem添加间距
  */
 public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
-    /**
-     * item间距
-     */
-    public static final int SPACING = 25;
 
     /**
      * 是否包含边缘
@@ -37,25 +36,25 @@ public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
      */
     private final boolean includeEdge;
 
-    public GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge) {
+    public GridSpacingItemDecoration(Context context, int spanCount, boolean includeEdge) {
         this.spanCount = spanCount;
-        this.spacing = spacing;
+        this.spacing = context.getResources().getDimensionPixelSize(R.dimen.ItemSpacing);
         this.includeEdge = includeEdge;
     }
 
     /**
      * 直接设置间距
      */
-    public static void setItemDecoration (int spanCount, RecyclerView recyclerView) {
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(spanCount, SPACING, INCLUDE_EDGE));
-    }
+//    public static void setItemDecoration (int spanCount, RecyclerView recyclerView) {
+//        recyclerView.addItemDecoration(new GridSpacingItemDecoration(spanCount, SPACING, INCLUDE_EDGE));
+//    }
 
     /**
      * 直接设置间距
      */
-    public static void setItemDecoration (int spanCount, int spacing, boolean includeEdge, RecyclerView recyclerView) {
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(spanCount, spacing, includeEdge));
-    }
+//    public static void setItemDecoration (int spanCount, int spacing, boolean includeEdge, RecyclerView recyclerView) {
+//        recyclerView.addItemDecoration(new GridSpacingItemDecoration(spanCount, spacing, includeEdge));
+//    }
 
     @Override
     public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, RecyclerView parent, @NonNull RecyclerView.State state) {

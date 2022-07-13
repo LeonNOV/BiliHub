@@ -1,11 +1,11 @@
-package com.leon.biuvideo.ui.adapters;
+package com.leon.biuvideo.ui.adapters.partition;
 
 import android.content.Context;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
-import com.leon.biuvideo.beans.home.HomeRecommend;
+import com.leon.biuvideo.beans.partition.PartitionRecommend;
 import com.leon.biuvideo.databinding.ItemVideoBBinding;
 import com.leon.biuvideo.ui.activities.publicActivities.VideoActivity;
 import com.leon.biuvideo.utils.ValueUtils;
@@ -15,11 +15,11 @@ import java.util.Map;
 
 /**
  * @Author Leon
- * @Time 2022/06/24
+ * @Time 2022/07/13
  * @Desc
  */
-public class HomeRecommendAdapter extends BaseViewBindingAdapter<HomeRecommend.Data.Item, ItemVideoBBinding> {
-    public HomeRecommendAdapter(Context context) {
+public class PartitionHomeRecommendChildAdapter extends BaseViewBindingAdapter<PartitionRecommend.Data.Archive, ItemVideoBBinding> {
+    public PartitionHomeRecommendChildAdapter(Context context) {
         super(context);
     }
 
@@ -34,7 +34,7 @@ public class HomeRecommendAdapter extends BaseViewBindingAdapter<HomeRecommend.D
     }
 
     @Override
-    protected void onBindViewHolder(HomeRecommend.Data.Item data, ItemVideoBBinding binding, int position) {
+    protected void onBindViewHolder(PartitionRecommend.Data.Archive data, ItemVideoBBinding binding, int position) {
         binding.getRoot().setOnClickListener(v -> ActivityManager.startActivity(context, VideoActivity.class, Map.of(VideoActivity.PARAM, data.getBvid())));
 
         ViewUtils.setImg(context, binding.cover, data.getPic());

@@ -34,7 +34,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 /**
  * @param <T> Retrofit响应数据
  * @param <B> 列表展示数据，需通过{@link GuideInterface}来指定
- *
  * @Author Leon
  * @Time 2021/11/02
  * @Desc 分页加载器，适用于多页面加载；单一页面使用{@link RecyclerViewLoader}
@@ -89,7 +88,11 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
             spanCount = 1;
         }
 
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(spanCount, GridSpacingItemDecoration.SPACING, GridSpacingItemDecoration.INCLUDE_EDGE));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(adapter.context, spanCount, GridSpacingItemDecoration.INCLUDE_EDGE));
+    }
+
+    public void setLayoutManager(RecyclerView.LayoutManager layoutManager) {
+        binding.container.content.setLayoutManager(layoutManager);
     }
 
     public void setObservable(Observable<T> observable) {
@@ -112,48 +115,48 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
     private void insertData(@LoadType int loadType, RefreshLayout refreshLayout) {
         if (updateInterface != null) {
             updateInterface.update(loadType);
+        }
 
-            observable
-                    .subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<>() {
-                        @Override
-                        public void onSubscribe(@NonNull Disposable d) {
+        observable
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
 
-                        }
+                    }
 
-                        @Override
-                        public void onNext(@NonNull T t) {
-                            if (guideInterface != null) {
-                                List<B> bs = guideInterface.guide(t);
+                    @Override
+                    public void onNext(@NonNull T t) {
+                        if (guideInterface != null) {
+                            List<B> bs = guideInterface.guide(t);
 
-                                if (bs == null || bs.isEmpty()) {
-                                    onError(new RuntimeException("已经到底了~"));
+                            if (bs == null || bs.isEmpty()) {
+                                onError(new RuntimeException("已经到底了~"));
+                            } else {
+                                if (loadType == LoadType.LOAD_TYPE_TAIL) {
+                                    adapter.appendTail(bs);
+                                } else if (loadType == LoadType.LOAD_TYPE_HEAD) {
+                                    adapter.appendHead(bs);
                                 } else {
-                                    if (loadType == LoadType.LOAD_TYPE_TAIL) {
-                                        adapter.appendTail(bs);
-                                    } else if (loadType == LoadType.LOAD_TYPE_HEAD) {
-                                        adapter.appendHead(bs);
-                                    } else {
-                                        onError(new RuntimeException());
-                                    }
+                                    onError(new RuntimeException());
                                 }
                             }
                         }
+                    }
 
-                        @Override
-                        public void onError(@NonNull Throwable e) {
-                            // TODO 待替换为SnackBar
-                            Toast.makeText(binding.getRoot().getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                            insertFinish(loadType, refreshLayout, false);
-                        }
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        // TODO 待替换为SnackBar
+                        Toast.makeText(binding.getRoot().getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        insertFinish(loadType, refreshLayout, false);
+                    }
 
-                        @Override
-                        public void onComplete() {
-                            insertFinish(loadType, refreshLayout, true);
-                        }
-                    });
-        }
+                    @Override
+                    public void onComplete() {
+                        insertFinish(loadType, refreshLayout, true);
+                    }
+                });
     }
 
     /**
@@ -193,7 +196,7 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
         }
     }
 
-    public void firstObtain () {
+    public void firstObtain() {
         if (!isFirstInsertFlag) {
             // 获取第一页数据
             insertData(LoadType.LOAD_TYPE_HEAD, binding.container.container);
@@ -237,7 +240,7 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
         /**
          * 更新请求参数
          *
-         * @param loadType  LoadType
+         * @param loadType LoadType
          */
         void update(@LoadType int loadType);
     }

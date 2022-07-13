@@ -9,6 +9,7 @@ import com.leon.biuvideo.databinding.ActivityVideoBinding;
  * @Desc
  */
 public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
+    public static final String PARAM = "bvid";
 
     @Override
     public ActivityVideoBinding getViewBinding() {

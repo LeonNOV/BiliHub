@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.leon.biuvideo.beans.Partition
+import com.leon.biuvideo.beans.partition.Partition
 import kotlinx.coroutines.*
 import java.io.BufferedReader
 import java.io.IOException
