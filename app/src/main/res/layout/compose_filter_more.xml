@@ -12,14 +12,12 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/filterMore"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        style="@style/DataListDefaultFilterStyle"
         android:layout_marginStart="10dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:drawableEnd="@drawable/expand_more"
         android:drawablePadding="5dp"
         android:drawableTint="@color/infoColor"
-        android:gravity="center"
         android:text="@string/filter" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

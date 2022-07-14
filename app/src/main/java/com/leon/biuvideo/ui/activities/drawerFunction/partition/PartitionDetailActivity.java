@@ -37,7 +37,16 @@ public class PartitionDetailActivity extends BaseActivity<ActivityPartitionDetai
         ArrayList<Partition> partitionData = PartitionParser.Companion.getPartitionData(partitionName);
         if (partitionData != null) {
             int pageCount = partitionData.size();
-            List<String> ridList = new ArrayList<>(pageCount);
+            String[] titles = new String[pageCount];
+            List<Fragment> fragments = new ArrayList<>(pageCount);
+
+            for (int i = 0; i < partitionData.size(); i++) {
+                Partition partition = partitionData.get(i);
+                fragments.add(new PartitionFragment(partition.getTags()));
+                titles[i] = partition.getTitle();
+            }
+
+            /*List<String> ridList = new ArrayList<>(pageCount);
 
             String[] titles = new String[pageCount + 1];
             titles[0] = "推荐";
@@ -52,7 +61,7 @@ public class PartitionDetailActivity extends BaseActivity<ActivityPartitionDetai
 
             List<Fragment> fragments = new ArrayList<>();
             fragments.add(new PartitionHomeFragment(ridList, titles, binding.content.viewPager));
-            fragments.addAll(fragmentsTemp);
+            fragments.addAll(fragmentsTemp);*/
             ViewUtils.initTabLayout(this, binding.content.tabLayout, binding.content.viewPager, fragments, titles);
         } else {
             backPressed();

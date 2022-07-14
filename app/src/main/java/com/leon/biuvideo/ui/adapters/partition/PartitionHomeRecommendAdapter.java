@@ -13,6 +13,7 @@ import com.leon.biuvideo.utils.RecyclerViewLoader;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * @Author Leon
@@ -23,6 +24,11 @@ public class PartitionHomeRecommendAdapter extends BaseViewBindingAdapter<String
     private final List<String> ridList;
     private final HttpApi httpApi;
     private OnMoveToPage onMoveToPage;
+
+    /**
+     * pageNum不用自增
+     */
+    Random pageNum = new Random();
 
     public PartitionHomeRecommendAdapter(Context context, List<String> ridList) {
         super(context);
@@ -59,7 +65,8 @@ public class PartitionHomeRecommendAdapter extends BaseViewBindingAdapter<String
     }
 
     private void reload(RecyclerViewLoader<PartitionRecommend, PartitionRecommend.Data.Archive> loader, String rid) {
-        loader.setObservable(httpApi.getPartitionRecommend(1, rid)).obtain(false);
+        // todo 获取数据相同问题，待修复
+        loader.setObservable(httpApi.getPartitionRecommend(pageNum.nextInt(5) + 1, rid)).obtain(true);
     }
 
     public void setOnMoveToPage(OnMoveToPage onMoveToPage) {

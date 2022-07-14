@@ -7,31 +7,33 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <RelativeLayout
         android:id="@+id/subTabContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/subTab"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/topBar_height"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_text" />
-
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/more"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentEnd="true"
             android:layout_gravity="center_vertical"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:padding="10dp"
+            android:background="?attr/selectableItemBackground"
+            android:padding="6dp"
             android:src="@drawable/expand_more"
             android:tint="@color/infoColor" />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        <com.leon.biuvideo.ui.widget.HorizontalRecyclerView
+            android:id="@+id/subTab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/more"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_filter" />
+
+    </RelativeLayout>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/unchanged"
@@ -62,7 +64,7 @@
 
         <include
             android:id="@+id/filterMore"
-            layout="@layout/data_list_content_filter_more" />
+            layout="@layout/compose_filter_more" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

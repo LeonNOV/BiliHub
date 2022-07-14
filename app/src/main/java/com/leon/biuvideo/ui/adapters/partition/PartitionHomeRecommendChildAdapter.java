@@ -1,6 +1,11 @@
 package com.leon.biuvideo.ui.adapters.partition;
 
 import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.core.content.ContextCompat;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseActivity.ActivityManager;
@@ -35,6 +40,10 @@ public class PartitionHomeRecommendChildAdapter extends BaseViewBindingAdapter<P
 
     @Override
     protected void onBindViewHolder(PartitionRecommend.Data.Archive data, ItemVideoBBinding binding, int position) {
+        ViewGroup.LayoutParams layoutParams = binding.getRoot().getLayoutParams();
+        layoutParams.width = context.getResources().getDimensionPixelSize(R.dimen.ItemPartitionRecommendWidth);
+        binding.getRoot().setLayoutParams(layoutParams);
+
         binding.getRoot().setOnClickListener(v -> ActivityManager.startActivity(context, VideoActivity.class, Map.of(VideoActivity.PARAM, data.getBvid())));
 
         ViewUtils.setImg(context, binding.cover, data.getPic());

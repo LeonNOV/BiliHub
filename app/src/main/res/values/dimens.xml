@@ -76,4 +76,5 @@
     <dimen name="infoSize">15sp</dimen>
 
     <dimen name="ItemSpacing">10dp</dimen>
+    <dimen name="ItemPartitionRecommendWidth">200dp</dimen>
 </resources>

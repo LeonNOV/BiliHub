@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/filter"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ripple_bg"
+    android:paddingStart="15dp"
+    android:paddingTop="5dp"
+    android:paddingEnd="15dp"
+    android:paddingBottom="5dp"
+    android:textColor="@color/infoColor"
+    android:textSize="13sp"
+    tools:text="百年之美" />

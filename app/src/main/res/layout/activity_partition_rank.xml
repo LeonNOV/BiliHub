@@ -14,7 +14,7 @@
 
     <include
         android:id="@+id/filter"
-        layout="@layout/data_list_content_filter"
+        layout="@layout/compose_filter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

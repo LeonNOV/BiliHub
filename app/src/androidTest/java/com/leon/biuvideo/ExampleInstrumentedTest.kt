@@ -6,7 +6,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.leon.biuvideo.beans.Partition
+import com.leon.biuvideo.beans.partition.Partition
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
