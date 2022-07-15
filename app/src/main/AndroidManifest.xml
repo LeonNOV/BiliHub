@@ -23,7 +23,10 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.activities.drawerFunction.ChannelActivity"
+            android:name=".ui.activities.drawerFunction.channel.ChannelDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.drawerFunction.channel.ChannelActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.drawerFunction.HistoryActivity"
@@ -45,12 +48,6 @@
             android:exported="false" />
         <activity
             android:name=".ui.activities.publicActivities.DownloadActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activities.actionActivities.PartitionDataListActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activities.actionActivities.DataListActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.publicActivities.LiveStreamActivity"

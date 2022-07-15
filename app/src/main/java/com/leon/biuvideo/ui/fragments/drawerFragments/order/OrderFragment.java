@@ -6,7 +6,7 @@ import com.leon.biuvideo.databinding.FragmentDrawerOrderBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.ui.adapters.userAdapters.UserOrderAdapter;
+import com.leon.biuvideo.ui.adapters.user.UserOrderAdapter;
 import com.leon.biuvideo.utils.PaginationLoader;
 
 /**

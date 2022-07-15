@@ -33,7 +33,7 @@ public class PartitionHomeRecommendAdapter extends BaseViewBindingAdapter<String
     public PartitionHomeRecommendAdapter(Context context, List<String> ridList) {
         super(context);
         this.ridList = ridList;
-        this.httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.Cookie, HttpApi.DEFAULT_COOKIE)).getHttpApi();
+        this.httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, HttpApi.DEFAULT_COOKIE)).getHttpApi();
     }
 
     @Override

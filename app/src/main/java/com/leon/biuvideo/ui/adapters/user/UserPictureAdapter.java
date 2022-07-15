@@ -1,4 +1,4 @@
-package com.leon.biuvideo.ui.adapters.userAdapters;
+package com.leon.biuvideo.ui.adapters.user;
 
 import android.content.Context;
 import android.view.View;

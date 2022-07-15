@@ -1,7 +1,5 @@
 package com.leon.biuvideo.http;
 
-import android.os.Parcelable;
-
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
@@ -14,7 +12,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
  * @Time 2022/07/05
  * @Desc
  */
-public class ApiHelper<T extends Parcelable> {
+public class ApiHelper<T> {
     private final Observable<T> observable;
     private OnResult<T> onResult;
 

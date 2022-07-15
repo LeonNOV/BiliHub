@@ -1,4 +1,4 @@
-package com.leon.biuvideo.ui.adapters.drawerAdapters;
+package com.leon.biuvideo.ui.adapters.drawer;
 
 import android.content.Context;
 

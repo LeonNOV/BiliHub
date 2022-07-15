@@ -8,7 +8,7 @@ import com.leon.biuvideo.databinding.RefreshContentBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.ui.adapters.userAdapters.UserPictureAdapter;
+import com.leon.biuvideo.ui.adapters.user.UserPictureAdapter;
 import com.leon.biuvideo.utils.PaginationLoader;
 
 /**

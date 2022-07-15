@@ -6,7 +6,7 @@ import com.leon.biuvideo.databinding.RefreshContentBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.ui.adapters.drawerAdapters.CollectAdapter;
+import com.leon.biuvideo.ui.adapters.drawer.CollectAdapter;
 import com.leon.biuvideo.utils.PaginationLoader;
 
 /**

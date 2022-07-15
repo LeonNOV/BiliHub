@@ -6,7 +6,7 @@ import com.leon.biuvideo.databinding.PageRecyclerBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.ui.adapters.drawerAdapters.FolderAdapter;
+import com.leon.biuvideo.ui.adapters.drawer.FolderAdapter;
 import com.leon.biuvideo.utils.RecyclerViewLoader;
 
 /**

@@ -3,11 +3,10 @@ package com.leon.biuvideo.ui.activities.publicActivities;
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
 import com.leon.biuvideo.beans.publicBeans.user.UserAudio;
 import com.leon.biuvideo.databinding.ActivityUserAudioBinding;
-import com.leon.biuvideo.databinding.RefreshContentBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.ui.adapters.userAdapters.UserAudioAdapter;
+import com.leon.biuvideo.ui.adapters.user.UserAudioAdapter;
 import com.leon.biuvideo.utils.PaginationLoader;
 
 /**

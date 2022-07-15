@@ -4,17 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
     android:orientation="vertical"
-    tools:context=".ui.activities.drawerFunction.channel.ChannelActivity">
+    tools:context=".ui.activities.drawerFunction.channel.ChannelDetailActivity">
 
     <com.leon.biuvideo.ui.widget.TopBarWidget
+        android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="频道" />
+        app:withBottomLine="true" />
 
-    <include
-        android:id="@+id/content"
-        layout="@layout/compose_tab_vp" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/channelId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="awdawdaw"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

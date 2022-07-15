@@ -8,7 +8,7 @@ import androidx.viewbinding.ViewBinding;
 
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
 import com.leon.biuvideo.databinding.ActivityMainBinding;
-import com.leon.biuvideo.ui.activities.drawerFunction.ChannelActivity;
+import com.leon.biuvideo.ui.activities.drawerFunction.channel.ChannelActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.FavoriteActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.HistoryActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.RelationActivity;

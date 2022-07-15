@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
-    android:orientation="vertical"
-    tools:context=".ui.activities.drawerFunction.channel.ChannelActivity">
+    android:orientation="vertical">
 
-    <com.leon.biuvideo.ui.widget.TopBarWidget
-        android:layout_width="match_parent"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/count"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:title="频道" />
+        android:padding="10dp"
+        android:textColor="@color/infoColor"
+
+        android:textSize="15sp"
+        tools:text="共23个频道" />
 
     <include
         android:id="@+id/content"
-        layout="@layout/compose_tab_vp" />
+        layout="@layout/refresh_content" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

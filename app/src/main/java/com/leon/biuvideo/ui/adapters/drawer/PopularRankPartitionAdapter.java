@@ -1,10 +1,6 @@
-package com.leon.biuvideo.ui.adapters.drawerAdapters;
+package com.leon.biuvideo.ui.adapters.drawer;
 
 import android.content.Context;
-import android.util.Log;
-import android.view.View;
-
-import androidx.appcompat.widget.AppCompatTextView;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;

@@ -8,7 +8,7 @@ import com.leon.biuvideo.databinding.ActivityWatchLaterBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.ui.adapters.drawerAdapters.WatchLaterAdapter;
+import com.leon.biuvideo.ui.adapters.drawer.WatchLaterAdapter;
 import com.leon.biuvideo.utils.PaginationLoader;
 
 /**

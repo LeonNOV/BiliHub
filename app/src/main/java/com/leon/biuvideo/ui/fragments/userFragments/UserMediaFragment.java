@@ -11,7 +11,7 @@ import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.ui.activities.publicActivities.UserActivity;
 import com.leon.biuvideo.ui.activities.publicActivities.UserAudioActivity;
-import com.leon.biuvideo.ui.adapters.userAdapters.UserVideoAdapter;
+import com.leon.biuvideo.ui.adapters.user.UserVideoAdapter;
 import com.leon.biuvideo.utils.PaginationLoader;
 import com.leon.biuvideo.utils.ViewUtils;
 

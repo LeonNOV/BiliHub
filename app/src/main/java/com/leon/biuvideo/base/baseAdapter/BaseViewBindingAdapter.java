@@ -10,8 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
+import com.leon.biuvideo.base.baseActivity.ActivityManager;
+import com.leon.biuvideo.base.baseActivity.BaseActivity;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author Leon
@@ -161,6 +165,13 @@ public abstract class BaseViewBindingAdapter<B, V extends ViewBinding> extends R
         return this.beans.size() > 0;
     }
 
+    protected void startActivity(Class<? extends BaseActivity<? extends ViewBinding>> targetClass) {
+        ActivityManager.startActivity(context, targetClass);
+    }
+
+    protected void startActivity(Class<? extends BaseActivity<? extends ViewBinding>> targetClass, Map<String, String> params) {
+        ActivityManager.startActivity(context, targetClass, params);
+    }
 
     /**
      * @Author Leon

@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.leon.biuvideo.R;
@@ -88,7 +89,7 @@ public class TopBarWidget extends LinearLayoutCompat {
     private void addBackView() {
         ImageView backView = new ImageView(context);
         backView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.back, null));
-        backView.setElevation(getResources().getDimensionPixelSize(R.dimen.elevation));
+        backView.setBackground(ContextCompat.getDrawable(context, R.drawable.ripple_bg));
         backView.setPadding(getResources().getDimensionPixelOffset(R.dimen.topBar_padding), getResources().getDimensionPixelOffset(R.dimen.topBar_padding),
                 getResources().getDimensionPixelOffset(R.dimen.topBar_padding), getResources().getDimensionPixelOffset(R.dimen.topBar_padding));
         backView.setOnClickListener(v -> ActivityManager.BackPressed());
@@ -130,7 +131,7 @@ public class TopBarWidget extends LinearLayoutCompat {
 
         LinearLayoutCompat.LayoutParams layoutParams = (LinearLayoutCompat.LayoutParams) view.getLayoutParams();
         layoutParams.width = LinearLayoutCompat.LayoutParams.MATCH_PARENT;
-        layoutParams.height = getResources().getDimensionPixelOffset(R.dimen.topBarBottomLineHeight);
+        layoutParams.height = getResources().getDimensionPixelSize(R.dimen.topBarBottomLineHeight);
         view.setLayoutParams(layoutParams);
     }
 
@@ -139,8 +140,7 @@ public class TopBarWidget extends LinearLayoutCompat {
      *
      * @param title 标题
      */
-    public TopBarWidget setTopBarTitle(String title) {
+    public void setTopBarTitle(String title) {
         this.topBarTitleView.setText(title);
-        return this;
     }
 }
