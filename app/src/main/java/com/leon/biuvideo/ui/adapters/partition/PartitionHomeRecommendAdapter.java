@@ -61,7 +61,7 @@ public class PartitionHomeRecommendAdapter extends BaseViewBindingAdapter<String
         });
         binding.name.setText(data);
 
-        reload(loader, ridList.get(position));
+//        reload(loader, ridList.get(position));
     }
 
     private void reload(RecyclerViewLoader<PartitionRecommend, PartitionRecommend.Data.Archive> loader, String rid) {

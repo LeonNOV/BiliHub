@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class PartitionFilterAdapter extends BaseViewBindingAdapter<PartitionTag, ItemFilterBinding> {
     private final ArrayList<AppCompatTextView> textViews = new ArrayList<>();
     private int selectedPosition = 0;
+    private OnRefreshData onRefreshData;
 
     public PartitionFilterAdapter(Context context) {
         super(context);
@@ -43,6 +44,9 @@ public class PartitionFilterAdapter extends BaseViewBindingAdapter<PartitionTag,
         textViews.add(binding.filter);
         binding.getRoot().setOnClickListener(v -> {
             if (selectedPosition != position) {
+                if (onRefreshData != null) {
+                    onRefreshData.onRefresh(data);
+                }
                 changeColor(position);
             }
         });
@@ -55,5 +59,13 @@ public class PartitionFilterAdapter extends BaseViewBindingAdapter<PartitionTag,
         textViews.get(selectedPosition).setTextColor(context.getColor(R.color.infoColor));
 
         selectedPosition = position;
+    }
+
+    public void setOnRefreshData(OnRefreshData onRefreshData) {
+        this.onRefreshData = onRefreshData;
+    }
+
+    public interface OnRefreshData {
+        void onRefresh(PartitionTag data);
     }
 }

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="280dp"
+    android:background="@drawable/ripple_bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/cover"
+            style="@style/CoverStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/lsp"
+            app:shapeAppearance="@style/Cover" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/video_item_bottom_bg" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="3dp"
+            android:gravity="center_vertical">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:drawableStart="@drawable/ic_video_play"
+                android:drawablePadding="3dp"
+                android:drawableTint="@color/white"
+                android:gravity="center_vertical"
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                tools:text="27.8万" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/extra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                tools:ignore="RelativeOverlap"
+                tools:text="02:49" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="top"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            tools:text="阿瓦达吴大维大大伟大阿瓦达吴大维大大伟大阿瓦达吴大维大大伟大阿瓦达吴大维大大伟大阿瓦达吴大维大大伟大阿瓦达吴大维大大伟大" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
+            android:drawableStart="@drawable/ic_up_user"
+            android:drawablePadding="3dp"
+            android:drawableTint="@color/infoColor"
+            android:gravity="center_vertical"
+            android:textColor="@color/infoColor"
+            android:textSize="11sp"
+            tools:text="阿瓦德瓦达" />
+
+    </RelativeLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

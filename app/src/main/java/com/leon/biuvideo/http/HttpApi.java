@@ -7,6 +7,7 @@ import com.leon.biuvideo.beans.account.RelationTags;
 import com.leon.biuvideo.beans.account.WatchLater;
 import com.leon.biuvideo.beans.home.HomeRecommend;
 import com.leon.biuvideo.beans.home.drawerFunction.Series;
+import com.leon.biuvideo.beans.partition.PartitionData;
 import com.leon.biuvideo.beans.partition.PartitionRecommend;
 import com.leon.biuvideo.beans.publicBeans.user.UserArticle;
 import com.leon.biuvideo.beans.publicBeans.user.UserAudio;
@@ -223,7 +224,7 @@ public interface HttpApi {
     Observable<RelationDetail> getUserRelationDetail(@Query("tagid") String tagId, @Query("pn") int pn);
 
     /**
-     * 分组子Tag推荐
+     * 分区子Tag推荐
      * <p>
      * https://www.bilibili.com/v/kichiku
      * <p>
@@ -235,6 +236,22 @@ public interface HttpApi {
      */
     @GET("x/web-interface/dynamic/region?ps=20")
     Observable<PartitionRecommend> getPartitionRecommend(@Query("pn") int pageNum, @Query("rid") String rid);
+
+    /**
+     * 分区数据
+     * <p>
+     * https://www.bilibili.com/v/kichiku/guide
+     * <p>
+     * https://s.search.bilibili.com/cate/search?main_ver=v3&search_type=video&view_type=hot_rank&copy_right=-1&new_web_tag=1&order=click&cate_id=22&page=1&pagesize=30&time_from=20220615&time_to=20220715
+     *
+     * @param tagId     标签ID
+     * @param pageNum   页码，从1开始
+     * @param startTime 搜索结果发布区间，开始，格式：yyyyMMdd
+     * @param endTime   搜索结果发布区间，开始，格式：yyyyMMdd
+     * @return {@link PartitionData}
+     */
+    @GET("cate/search?main_ver=v3&search_type=video&view_type=hot_rank&copy_right=-1&new_web_tag=1&order=click&pagesize=30")
+    Observable<PartitionData> getPartitionData(@Query("cate_id") String tagId, @Query("keyword") String keyword, @Query("page") int pageNum, @Query("time_from") String startTime, @Query("time_to") String endTime);
 
     /**
      * 热搜榜接口

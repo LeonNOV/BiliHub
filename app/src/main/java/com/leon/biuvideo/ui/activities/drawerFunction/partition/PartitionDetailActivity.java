@@ -37,31 +37,20 @@ public class PartitionDetailActivity extends BaseActivity<ActivityPartitionDetai
         ArrayList<Partition> partitionData = PartitionParser.Companion.getPartitionData(partitionName);
         if (partitionData != null) {
             int pageCount = partitionData.size();
-            String[] titles = new String[pageCount];
-            List<Fragment> fragments = new ArrayList<>(pageCount);
 
-            for (int i = 0; i < partitionData.size(); i++) {
-                Partition partition = partitionData.get(i);
-                fragments.add(new PartitionFragment(partition.getTags()));
-                titles[i] = partition.getTitle();
-            }
-
-            /*List<String> ridList = new ArrayList<>(pageCount);
-
+            List<String> ridList = new ArrayList<>(pageCount);
             String[] titles = new String[pageCount + 1];
             titles[0] = "推荐";
 
-            List<Fragment> fragmentsTemp = new ArrayList<>(pageCount);
+            List<Fragment> fragments = new ArrayList<>(pageCount);
             for (int i = 0; i < pageCount; i++) {
                 Partition partition = partitionData.get(i);
-                fragmentsTemp.add(new PartitionFragment(partition.getTags()));
+                fragments.add(new PartitionFragment(partition.getTags(), partition.getId()));
                 titles[i + 1] = partition.getTitle();
                 ridList.add(partition.getId());
             }
+            fragments.add(0, new PartitionHomeFragment(ridList, titles, binding.content.viewPager));
 
-            List<Fragment> fragments = new ArrayList<>();
-            fragments.add(new PartitionHomeFragment(ridList, titles, binding.content.viewPager));
-            fragments.addAll(fragmentsTemp);*/
             ViewUtils.initTabLayout(this, binding.content.tabLayout, binding.content.viewPager, fragments, titles);
         } else {
             backPressed();

@@ -58,7 +58,7 @@ public class RecyclerViewLoader<T extends Parcelable, B extends Parcelable>{
             spanCount = 1;
         }
 
-        this.recyclerView.addItemDecoration(new GridSpacingItemDecoration(adapter.context, spanCount, GridSpacingItemDecoration.INCLUDE_EDGE));
+//        this.recyclerView.addItemDecoration(new GridSpacingItemDecoration(adapter.context, spanCount, GridSpacingItemDecoration.INCLUDE_EDGE));
     }
 
     public RecyclerViewLoader<T, B> setObservable(Observable<T> observable) {

@@ -4,14 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg"
+    android:orientation="vertical"
     tools:context=".ui.fragments.drawerFragments.partition.PartitionFragment">
 
     <include
         android:id="@+id/filter"
-        layout="@layout/compose_filter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone" />
+        layout="@layout/compose_filter" />
 
     <include
         android:id="@+id/content"
