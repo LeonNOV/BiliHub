@@ -1,22 +1,14 @@
 package com.leon.biuvideo.ui.activities;
 
 import android.annotation.SuppressLint;
-import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.core.view.GravityCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.viewbinding.ViewBinding;
-import androidx.viewbinding.ViewBindings;
 
-import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
-import com.leon.biuvideo.beans.home.HomeRecommend;
 import com.leon.biuvideo.databinding.ActivityMainBinding;
-import com.leon.biuvideo.http.BaseUrl;
-import com.leon.biuvideo.http.HttpApi;
-import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.ui.activities.actionActivities.DataListActivity;
+import com.leon.biuvideo.ui.activities.drawerFunction.ChannelActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.FavoriteActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.HistoryActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.RelationActivity;
@@ -27,11 +19,9 @@ import com.leon.biuvideo.ui.activities.drawerFunction.WatchLaterActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.partition.PartitionActivity;
 import com.leon.biuvideo.ui.activities.publicActivities.DownloadActivity;
 import com.leon.biuvideo.ui.activities.publicActivities.UserActivity;
-import com.leon.biuvideo.ui.adapters.HomeRecommendAdapter;
-import com.leon.biuvideo.utils.PaginationLoader;
+import com.leon.biuvideo.ui.activities.search.SearchActivity;
 import com.leon.biuvideo.utils.ViewUtils;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -86,6 +76,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     private void setDrawerFunctionListener() {
         binding.drawer.popular.setOnClickListener(v -> startPage(PopularActivity.class, null));
         binding.drawer.partition.setOnClickListener(v -> startPage(PartitionActivity.class, null));
+        binding.drawer.channel.setOnClickListener(v -> startPage(ChannelActivity.class, null));
         binding.drawer.orders.setOnClickListener(v -> startPage(OrderActivity.class, null));
         binding.drawer.favorites.setOnClickListener(v -> startPage(FavoriteActivity.class, null));
         binding.drawer.later.setOnClickListener(v -> startPage(WatchLaterActivity.class, null));

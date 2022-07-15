@@ -6,6 +6,7 @@ import com.leon.biuvideo.beans.account.RelationDetail;
 import com.leon.biuvideo.beans.account.RelationTags;
 import com.leon.biuvideo.beans.account.WatchLater;
 import com.leon.biuvideo.beans.home.HomeRecommend;
+import com.leon.biuvideo.beans.home.HotSearch;
 import com.leon.biuvideo.beans.home.drawerFunction.Series;
 import com.leon.biuvideo.beans.partition.PartitionData;
 import com.leon.biuvideo.beans.partition.PartitionRecommend;
@@ -254,17 +255,14 @@ public interface HttpApi {
     Observable<PartitionData> getPartitionData(@Query("cate_id") String tagId, @Query("keyword") String keyword, @Query("page") int pageNum, @Query("time_from") String startTime, @Query("time_to") String endTime);
 
     /**
-     * 热搜榜接口
+     * 热搜排行榜
      * <p>
-     * 参数：
-     * build：可为0
-     * limit：默认为10，且只能为10
-     * https://app.bilibili.com/x/v2/search/square
-     * </p>
+     * https://www.bilibili.com/
+     * <p>
+     * https://api.bilibili.com/x/web-interface/search/square?limit=10
      *
      * @return HotSearch
      */
-//    @GET("x/v2/search/square?build=0&limit=10")
-//    Observable<HotSearch> getHotSearch();
-    String hotSearch = "https://app.bilibili.com/x/v2/search/square";
+    @GET("x/web-interface/search/square?limit=10")
+    Observable<HotSearch> getHotSearch();
 }

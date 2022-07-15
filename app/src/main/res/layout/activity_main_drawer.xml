@@ -96,6 +96,12 @@
                     app:drawableStartCompat="@drawable/function_partition" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/channel"
+                    style="@style/DrawerFunctionStyle"
+                    android:text="@string/drawer_channel"
+                    app:drawableStartCompat="@drawable/drawer_function_channel" />
+
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/orders"
                     style="@style/DrawerFunctionStyle"
                     android:text="@string/drawer_orders"

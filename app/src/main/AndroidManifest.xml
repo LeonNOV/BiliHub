@@ -23,6 +23,9 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.activities.drawerFunction.ChannelActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activities.drawerFunction.HistoryActivity"
             android:exported="false" />
         <activity
@@ -42,9 +45,6 @@
             android:exported="false" />
         <activity
             android:name=".ui.activities.publicActivities.DownloadActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activities.SearchResultActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.actionActivities.PartitionDataListActivity"
@@ -86,7 +86,13 @@
             android:name=".ui.activities.drawerFunction.SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.SearchActivity"
+            android:name=".ui.activities.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.search.SearchResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.search.SearchActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.LoginActivity"

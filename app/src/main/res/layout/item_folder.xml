@@ -3,14 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ItemStyle"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="60dp"
+    android:gravity="center_vertical">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:textColor="@color/black"
-        android:textSize="15sp"
+        android:textSize="16sp"
         tools:text="FolderName" />
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -23,6 +25,7 @@
         android:id="@+id/count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_toEndOf="@id/point"
         android:textColor="@color/infoColor"
         android:textSize="15sp"
@@ -30,9 +33,10 @@
         tools:text="15" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
         android:src="@drawable/ic_enter"
         android:tint="@color/infoColor" />
 

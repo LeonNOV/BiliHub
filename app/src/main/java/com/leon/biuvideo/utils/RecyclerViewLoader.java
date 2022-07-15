@@ -58,6 +58,7 @@ public class RecyclerViewLoader<T extends Parcelable, B extends Parcelable>{
             spanCount = 1;
         }
 
+        // todo 试用状态
 //        this.recyclerView.addItemDecoration(new GridSpacingItemDecoration(adapter.context, spanCount, GridSpacingItemDecoration.INCLUDE_EDGE));
     }
 
@@ -68,10 +69,8 @@ public class RecyclerViewLoader<T extends Parcelable, B extends Parcelable>{
     }
 
     public void obtain(boolean needClean) {
-        if (needClean) {
-            if (adapter.hasData()) {
-                adapter.removeAll();
-            }
+        if (needClean && adapter.hasData()) {
+            adapter.removeAll();
         }
 
         observable

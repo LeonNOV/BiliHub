@@ -7,7 +7,7 @@ import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.beans.search.SearchSuggestion;
 import com.leon.biuvideo.databinding.ItemSearchSuggestionBinding;
-import com.leon.biuvideo.ui.activities.SearchResultActivity;
+import com.leon.biuvideo.ui.activities.search.SearchResultActivity;
 
 import java.util.Map;
 

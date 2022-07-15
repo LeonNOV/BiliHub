@@ -5,16 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".ui.activities.SearchActivity">
+    tools:context=".ui.activities.search.SearchActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/search_topBar_container"
+        android:id="@+id/topBarContainer"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height_70"
         android:background="@color/topBar">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/top_bar_back"
+            android:id="@+id/back"
             android:layout_width="47dp"
             android:layout_height="47dp"
             android:layout_marginStart="20dp"
@@ -27,25 +27,25 @@
             app:srcCompat="@drawable/back" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/top_bar_title"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="搜索"
+            android:text="@string/search"
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/top_bar_back"
+            app:layout_constraintStart_toEndOf="@+id/back"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/search_bar_container"
+        android:id="@+id/searchContainer"
         android:layout_width="match_parent"
         android:layout_height="@dimen/search_bar_default_height"
-        android:layout_below="@id/search_topBar_container"
+        android:layout_below="@id/topBarContainer"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
@@ -59,7 +59,7 @@
             android:layout_height="@dimen/search_bar_default_height">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/search_bar_go"
+                android:id="@+id/searchGo"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_centerVertical="true"
@@ -68,7 +68,7 @@
                 app:srcCompat="@drawable/home_search" />
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/search_bar_editor"
+                android:id="@+id/searchEditor"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="40dp"
@@ -82,7 +82,7 @@
                 android:textSize="15sp" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/search_bar_clean"
+                android:id="@+id/searchClear"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_alignParentEnd="true"
@@ -102,7 +102,7 @@
             android:background="@color/topBarBottomLine" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/search_bar_suggestion"
+            android:id="@+id/searchSuggestion"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -112,10 +112,10 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/search_rank_container"
+        android:id="@+id/hotSearchContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/search_topBar_container"
+        android:layout_height="match_parent"
+        android:layout_below="@id/topBarContainer"
         android:layout_marginStart="20dp"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="20dp"
@@ -124,17 +124,18 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="B站热搜"
+            android:text="@string/hotSearch"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/search_rank_recyclerView"
+            android:id="@+id/hotSearch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="5dp"
-            tools:listitem="@layout/support_simple_spinner_dropdown_item" />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_hot_search" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

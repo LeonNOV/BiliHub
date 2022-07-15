@@ -47,19 +47,17 @@
                         app:civ_border_width="@dimen/face_border_width" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/follow"
+                        android:id="@+id/edit"
                         android:layout_width="wrap_content"
                         android:layout_height="33dp"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:paddingStart="30dp"
-                        android:paddingEnd="30dp"
                         android:layout_marginEnd="20dp"
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/follow_bg"
                         android:elevation="5dp"
                         android:gravity="center"
-                        android:text="@string/follow"
+                        android:text="@string/editProfile"
                         android:textColor="@color/follow_color"
                         android:textSize="14sp"
                         tools:ignore="RelativeOverlap" />
@@ -70,50 +68,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
+                    android:gravity="center_vertical"
                     android:orientation="vertical">
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        tools:text="Lynaz Sanehe" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/black"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            tools:text="Lynaz Sanehe" />
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/level"
-                            android:layout_width="20dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="10dp"
-                            app:srcCompat="@drawable/bili_user_level_4" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/vip"
-                            android:layout_width="wrap_content"
-                            android:layout_height="15dp"
-                            android:layout_marginStart="10dp"
-                            android:background="@drawable/round_bg"
-                            android:backgroundTint="@color/BiliBili_pink"
-                            android:gravity="center"
-                            android:paddingStart="7dp"
-                            android:paddingEnd="7dp"
-                            android:textColor="@color/white"
-                            android:textSize="7sp"
-                            android:visibility="gone"
-                            tools:text="年度大会员" />
-
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -130,20 +99,120 @@
                             android:id="@+id/uid"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/gender"
                             android:textColor="@color/infoColor"
                             android:textSize="11sp"
                             tools:text="UID: 67676767" />
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/accountType"
+                            android:id="@+id/more"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:textColor="#999999"
-                            android:textSize="11sp"
-                            tools:text="争议账号" />
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="end"
+                            android:textColor="@color/infoColor"
+                            android:textSize="12sp"
+                            android:text="@string/profileMore"
+                            tools:ignore="RelativeOverlap" />
+
+                    </RelativeLayout>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/detailInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/level"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:textColor="@color/black"
+                                android:textSize="15sp"
+                                tools:text="Lv5" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/ex"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:textColor="@color/black"
+                                android:textSize="15sp"
+                                tools:text="123/10800" />
+
+                        </FrameLayout>
+
+                        <ProgressBar
+                            android:id="@+id/exProgress"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="5dp"
+                            android:layout_marginTop="5dp"
+                            android:progressDrawable="@drawable/user_level_progress_layer"
+                            tools:progress="80" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/money"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:drawablePadding="10dp"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            app:drawableStartCompat="@drawable/ic_coin_a" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/coin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="30dp"
+                            android:layout_toEndOf="@id/money"
+                            android:drawablePadding="10dp"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            app:drawableStartCompat="@drawable/ic_b_coin" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/vip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/round_corners6dp_bg"
+                            android:backgroundTint="@color/BiliBili_pink"
+                            android:ellipsize="end"
+                            android:maxLength="10"
+                            android:padding="5dp"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            tools:ignore="RelativeOverlap" />
+
+                    </RelativeLayout>
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/desc"

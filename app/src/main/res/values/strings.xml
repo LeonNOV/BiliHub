@@ -14,7 +14,7 @@
     <string name="downloadManager">下载管理</string>
     <string name="download">下载</string>
 
-    <string name="hotSearch">热门搜索排行榜</string>
+    <string name="hotSearch">热搜排行榜</string>
 
     <string name="home_nav_home">首页</string>
     <string name="home_nav_composite">综合</string>
@@ -26,6 +26,7 @@
 
     <string name="drawer_popular">热门排行</string>
     <string name="drawer_partition">分区</string>
+    <string name="drawer_channel">频道</string>
     <string name="drawer_orders">我的订阅</string>
     <string name="drawer_logout">Sign out</string>
     <string name="drawer_favorites">我的收藏夹</string>
@@ -98,6 +99,9 @@
     <string name="is_mutual_follower">已互粉</string>
     <string name="follow">关注</string>
     <string name="follow_A">已关注</string>
+    <string name="editProfile">编辑资料</string>
+    <string name="profileMore">更多</string>
+    <string name="profileShrink">收起</string>
     <string name="default_sign">这家伙也忒懒了，连个介绍都没有</string>
 
     <string name="downloadedAudio">查看已缓存音频</string>

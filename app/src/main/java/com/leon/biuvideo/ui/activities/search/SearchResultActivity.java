@@ -1,4 +1,4 @@
-package com.leon.biuvideo.ui.activities;
+package com.leon.biuvideo.ui.activities.search;
 
 import androidx.fragment.app.Fragment;
 
@@ -22,6 +22,7 @@ import java.util.List;
  * @Desc
  */
 public class SearchResultActivity extends BaseActivity<ActivitySearchResultBinding> {
+    public static final String PARAM = "keyword";
 
     @Override
     public ActivitySearchResultBinding getViewBinding() {
@@ -30,7 +31,7 @@ public class SearchResultActivity extends BaseActivity<ActivitySearchResultBindi
 
     @Override
     protected void init() {
-        String keyword = params.getString("keyword", "");
+        String keyword = params.getString(PARAM, "");
 
         binding.searchResultKeyword.setText(keyword);
         binding.searchResultCancel.setOnClickListener(v -> cancel());
