@@ -77,4 +77,5 @@
 
     <dimen name="ItemSpacing">10dp</dimen>
     <dimen name="ItemPartitionRecommendWidth">200dp</dimen>
+    <dimen name="filterItemSize">13sp</dimen>
 </resources>

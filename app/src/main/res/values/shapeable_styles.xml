@@ -5,6 +5,11 @@
         <item name="collapsedSize">50dp</item>
     </style>
 
+    <style name="RoundedButton">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/corner</item>
+    </style>
+
     <style name="Cover" parent="VideoCoverSingle"/>
 
     <style name="VideoCoverSingle">

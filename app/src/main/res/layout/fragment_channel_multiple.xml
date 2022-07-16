@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/sortHot"
+            style="@style/FilterItemStyle"
+            android:layout_weight="1"
+            android:text="@string/channelMultipleFilterHot"
+            android:textColor="@color/BiliBili_pink" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/sortView"
+            style="@style/FilterItemStyle"
+            android:layout_weight="1"
+            android:text="@string/channelMultipleFilterView" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/sortNew"
+            style="@style/FilterItemStyle"
+            android:layout_weight="1"
+            android:text="@string/channelMultipleFilterNew" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="排行榜"
+        android:textColor="@color/black"
+        android:textSize="@dimen/infoSize" />
+
+    <com.leon.biuvideo.ui.widget.HorizontalRecyclerView
+        android:id="@+id/topContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_video_b" />
+
+    <!--todo content位置待优化-->
+    <include
+        android:id="@+id/content"
+        layout="@layout/refresh_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -18,7 +18,7 @@ public class ActivityManager {
     /**
      * Activity Stack
      */
-    public static Stack<AppCompatActivity> ACTIVITY_STACK = new Stack<>();
+    private final static Stack<AppCompatActivity> ACTIVITY_STACK = new Stack<>();
 
     /**
      * 打开一个Activity

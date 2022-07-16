@@ -14,6 +14,7 @@ import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -122,7 +123,7 @@ public abstract class BaseViewBindingAdapter<B, V extends ViewBinding> extends R
      *
      * @param addOns    要加入的数据
      */
-    public void appendHead (List<B> addOns) {
+    public void appendHead (Collection<B> addOns) {
         this.beans.addAll(0, addOns);
 
         notifyItemRangeInserted(0, this.beans.size());
@@ -155,10 +156,12 @@ public abstract class BaseViewBindingAdapter<B, V extends ViewBinding> extends R
      * 清空已存在的数据
      */
     public void removeAll() {
-        int count = this.beans.size();
-        this.beans.clear();
+        if (hasData()) {
+            int count = this.beans.size();
+            this.beans.clear();
 
-        notifyItemRangeRemoved(0, count);
+            notifyItemRangeRemoved(0, count);
+        }
     }
 
     public boolean hasData() {

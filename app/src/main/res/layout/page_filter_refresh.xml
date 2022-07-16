@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg"
     android:orientation="vertical"
-    tools:context=".ui.activities.drawerFunction.channel.ChannelDetailActivity">
+    tools:context=".ui.fragments.drawerFragments.partition.PartitionFragment">
 
-    <com.leon.biuvideo.ui.widget.TopBarWidget
-        android:id="@+id/topBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:withBottomLine="true" />
+    <include
+        android:id="@+id/filter"
+        layout="@layout/compose_filter" />
 
     <include
         android:id="@+id/content"
-        layout="@layout/compose_tab_vp" />
+        layout="@layout/refresh_content" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

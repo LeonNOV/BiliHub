@@ -254,4 +254,7 @@
     <string name="removeWatched">移除已观看</string>
     <string name="partitionHomeSubRefresh">换一换</string>
     <string name="partitionHomeSubMore">查看更多</string>
+    <string name="channelMultipleFilterHot">近期热门</string>
+    <string name="channelMultipleFilterView">播放最多</string>
+    <string name="channelMultipleFilterNew">最新投稿</string>
 </resources>

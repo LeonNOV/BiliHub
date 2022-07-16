@@ -2,6 +2,11 @@ package com.leon.biuvideo.ui.activities.drawerFunction.channel;
 
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
 import com.leon.biuvideo.databinding.ActivityChannelDetailBinding;
+import com.leon.biuvideo.ui.fragments.channelFragments.ChannelFeaturedFragment;
+import com.leon.biuvideo.ui.fragments.channelFragments.ChannelMultipleFragment;
+import com.leon.biuvideo.utils.ViewUtils;
+
+import java.util.List;
 
 /**
  * @Author Leon
@@ -9,8 +14,9 @@ import com.leon.biuvideo.databinding.ActivityChannelDetailBinding;
  * @Desc
  */
 public class ChannelDetailActivity extends BaseActivity<ActivityChannelDetailBinding> {
-    public static final String PARAM_A = "id";
-    public static final String PARAM_B = "name";
+    public static final String PARAM_ID = "id";
+    public static final String PARAM_NAME = "name";
+    public String channelId;
 
     @Override
     public ActivityChannelDetailBinding getViewBinding() {
@@ -19,7 +25,10 @@ public class ChannelDetailActivity extends BaseActivity<ActivityChannelDetailBin
 
     @Override
     protected void init() {
-        binding.topBar.setTopBarTitle(params.getString(PARAM_B));
-        binding.channelId.setText(params.getString(PARAM_A));
+        this.channelId = params.getString(PARAM_ID);
+        binding.topBar.setTopBarTitle(params.getString(PARAM_NAME));
+
+        ViewUtils.initTabLayout(this, binding.content.tabLayout, binding.content.viewPager,
+                List.of(new ChannelFeaturedFragment(channelId), new ChannelMultipleFragment(channelId)), "精选", "综合");
     }
 }

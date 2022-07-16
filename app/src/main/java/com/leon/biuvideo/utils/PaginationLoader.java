@@ -196,6 +196,9 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
         }
     }
 
+    /**
+     * 适合在页面初始化后调用
+     */
     public void firstObtain() {
         if (!isFirstInsertFlag) {
             // 获取第一页数据
@@ -232,6 +235,11 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
         List<B> guide(T t);
     }
 
+    /**
+     * 更新接口参数时调用该方法，并实现{@link UpdateInterface}
+     *
+     * @param updateInterface updateInterface
+     */
     public void setUpdateInterface(UpdateInterface updateInterface) {
         this.updateInterface = updateInterface;
     }

@@ -1,10 +1,12 @@
 package com.leon.biuvideo.ui.adapters.channel;
 
 import android.content.Context;
+import android.view.Gravity;
+import android.widget.FrameLayout;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
-import com.leon.biuvideo.beans.home.channel.ChannelData;
+import com.leon.biuvideo.beans.home.channel.UserChannelCategory;
 import com.leon.biuvideo.databinding.ItemChannelBinding;
 import com.leon.biuvideo.ui.activities.drawerFunction.channel.ChannelDetailActivity;
 import com.leon.biuvideo.utils.ValueUtils;
@@ -15,11 +17,11 @@ import java.util.Map;
 
 /**
  * @Author Leon
- * @Time 2022/07/15
+ * @Time 2022/07/16
  * @Desc
  */
-public class ChannelAdapter extends BaseViewBindingAdapter<ChannelData.Data.ArchiveChannel, ItemChannelBinding> {
-    public ChannelAdapter(Context context) {
+public class UserChannelAdapter extends BaseViewBindingAdapter<UserChannelCategory.Data.NormalChannel, ItemChannelBinding> {
+    public UserChannelAdapter(Context context) {
         super(context);
     }
 
@@ -34,14 +36,17 @@ public class ChannelAdapter extends BaseViewBindingAdapter<ChannelData.Data.Arch
     }
 
     @Override
-    protected void onBindViewHolder(ChannelData.Data.ArchiveChannel data, ItemChannelBinding binding, int position) {
+    protected void onBindViewHolder(UserChannelCategory.Data.NormalChannel data, ItemChannelBinding binding, int position) {
         binding.container.setOnClickListener(v -> startActivity(ChannelDetailActivity.class, Map.of(ChannelDetailActivity.PARAM_ID, data.getId(),
                 ChannelDetailActivity.PARAM_NAME, data.getName())));
 
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) binding.name.getLayoutParams();
+        layoutParams.gravity = Gravity.CENTER_VERTICAL;
+        binding.name.setLayoutParams(layoutParams);
+
+
         ViewUtils.setImg(context, binding.face, data.getCover());
         binding.name.setText(data.getName());
-        binding.extraA.setText(String.format(Locale.CHINESE, "%s个视频", data.getArchiveCount()));
-        binding.extraB.setText(String.format(Locale.CHINESE, "%s个精选视频", ValueUtils.generateCN(data.getFeaturedCount())));
         binding.subscribe.setText(String.format(Locale.CHINESE, "订阅 %s", ValueUtils.generateCN(data.getSubscribedCount())));
     }
 }

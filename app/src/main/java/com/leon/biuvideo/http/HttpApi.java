@@ -7,8 +7,9 @@ import com.leon.biuvideo.beans.account.RelationTags;
 import com.leon.biuvideo.beans.account.WatchLater;
 import com.leon.biuvideo.beans.home.HomeRecommend;
 import com.leon.biuvideo.beans.home.HotSearch;
-import com.leon.biuvideo.beans.home.channel.Channel;
+import com.leon.biuvideo.beans.home.channel.ChannelCategory;
 import com.leon.biuvideo.beans.home.channel.ChannelData;
+import com.leon.biuvideo.beans.home.channel.UserChannelCategory;
 import com.leon.biuvideo.beans.home.drawerFunction.Series;
 import com.leon.biuvideo.beans.partition.PartitionData;
 import com.leon.biuvideo.beans.partition.PartitionRecommend;
@@ -20,6 +21,8 @@ import com.leon.biuvideo.beans.publicBeans.user.UserPicture;
 import com.leon.biuvideo.beans.publicBeans.user.UserStat;
 import com.leon.biuvideo.beans.publicBeans.user.UserVideo;
 import com.leon.biuvideo.beans.search.SearchSuggestion;
+import com.leon.biuvideo.beans.home.channel.ChannelDetailFeatured;
+import com.leon.biuvideo.beans.home.channel.ChannelDetailMultiple;
 
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.GET;
@@ -68,6 +71,7 @@ public interface HttpApi {
      * <p>
      * http://api.bilibili.com/x/space/acc/info?mid=492393
      *
+     * @param mid UID
      * @return {@link UserInfo}
      */
     @GET("x/space/acc/info")
@@ -78,7 +82,7 @@ public interface HttpApi {
      * <p>
      * http://api.bilibili.com/x/relation/stat?vmid=492393
      *
-     * @param mid
+     * @param mid UID
      * @return {@link UserStat}
      */
     @GET("x/relation/stat")
@@ -89,12 +93,11 @@ public interface HttpApi {
      * <p>
      * https://api.bilibili.com/x/space/arc/search?ps=30
      * <p>
-     * 默认单页条目数为30
-     * order：排序方式，默认为pubdate，可选
-     * 最新发布：pubdate
-     * 最多播放：click
-     * 最多收藏：stow
+     * https://space.bilibili.com/492393/video
      *
+     * @param mid     UID
+     * @param pageNum 页码，从1开始
+     * @param order   排序方式，默认为pubdate<br>pubdate：最新发布<br>click：最多播放<br>stow：最多收藏
      * @return {@link UserVideo}
      */
     @GET("x/space/arc/search?ps=30")
@@ -149,8 +152,8 @@ public interface HttpApi {
      * <p>
      * https://api.bilibili.com/x/space/bangumi/follow/list?type=1&follow_status=0&pn=1&ps=15&vmid=17783613
      *
-     * @param type         1：番剧；2： 剧集
-     * @param followStatus 0: 全部；1：想看；2：在看；3：看过
+     * @param type         1：番剧<br>2： 剧集
+     * @param followStatus 0: 全部<br>1：想看<br>2：在看<br>3：看过
      * @param pageNum      页码
      * @param mid          UID
      * @return {@link UserOrder}
@@ -248,6 +251,7 @@ public interface HttpApi {
      * https://s.search.bilibili.com/cate/search?main_ver=v3&search_type=video&view_type=hot_rank&copy_right=-1&new_web_tag=1&order=click&cate_id=22&page=1&pagesize=30&time_from=20220615&time_to=20220715
      *
      * @param tagId     标签ID
+     * @param keyword   关键字
      * @param pageNum   页码，从1开始
      * @param startTime 搜索结果发布区间，开始，格式：yyyyMMdd
      * @param endTime   搜索结果发布区间，开始，格式：yyyyMMdd
@@ -269,19 +273,33 @@ public interface HttpApi {
     Observable<HotSearch> getHotSearch();
 
     /**
-     * 频道列表
+     * 频道列表分组
      * <p>
      * https://www.bilibili.com/v/channel
      * <p>
      * https://api.bilibili.com/x/web-interface/web/channel/category/list
      *
-     * @return {@link Channel}
+     * @return {@link ChannelCategory}
      */
     @GET("x/web-interface/web/channel/category/list")
-    Observable<Channel> getChannel();
+    Observable<ChannelCategory> getChannelCategory();
+
+    /**
+     * 用户频道列表
+     * <strong>只需要Cookie</strong>
+     * <p>
+     * https://www.bilibili.com/v/channel
+     * <p>
+     * https://api.bilibili.com/x/web-interface/web/channel/subscribe/list
+     *
+     * @return {@link UserChannelCategory}
+     */
+    @GET("x/web-interface/web/channel/subscribe/list")
+    Observable<UserChannelCategory> getUserChannelCategory();
 
     /**
      * 频道列表详细数据
+     *
      * <p>
      * https://www.bilibili.com/v/channel/type/3
      * <p>
@@ -292,5 +310,37 @@ public interface HttpApi {
      * @return {@link ChannelData}
      */
     @GET("x/web-interface/web/channel/category/channel_arc/list")
-    Observable<ChannelData> getChannelData(@Query("id") int id, @Query("offset") int offset);
+    Observable<ChannelData> getChannelData(@Query("id") int id, @Query("offset") String offset);
+
+    /**
+     * 频道详情-精选
+     *
+     * <p>
+     * https://www.bilibili.com/v/channel/17683
+     * <p>
+     * https://api.bilibili.com/x/web-interface/web/channel/featured/list?channel_id=17683&filter_type=0&offset=&page_size=30
+     *
+     * @param id     频道分类ID
+     * @param type   0：全部<br>2022-2009：2022-2009年精选
+     * @param offset offset
+     * @return {@link ChannelDetailFeatured}
+     */
+    @GET("x/web-interface/web/channel/featured/list?page_size=30")
+    Observable<ChannelDetailFeatured> getChannelDetailFeatured(@Query("channel_id") String id, @Query("filter_type") int type, @Query("offset") String offset);
+
+    /**
+     * 频道详情-综合
+     *
+     * <p>
+     * https://www.bilibili.com/v/channel/17683
+     * <p>
+     * https://api.bilibili.com/x/web-interface/web/channel/multiple/list?channel_id=17683&sort_type=hot&offset=&page_size=30
+     *
+     * @param id     频道分类ID
+     * @param sort   hot：近期热门<br>view：播放最多<br>new：最新投稿
+     * @param offset offset
+     * @return {@link ChannelDetailMultiple}
+     */
+    @GET("x/web-interface/web/channel/multiple/list?page_size=30")
+    Observable<ChannelDetailMultiple> getChannelDetailMultiple(@Query("channel_id") String id, @Query("sort_type") String sort, @Query("offset") String offset);
 }
