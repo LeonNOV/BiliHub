@@ -24,7 +24,7 @@ public class ValueUtils {
      * @return  返回结果
      */
     public static String generateCN(long number) {
-        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+        DecimalFormat decimalFormat = new DecimalFormat("#.0");
 
         //确定数量区间
         if (number < 10000) {

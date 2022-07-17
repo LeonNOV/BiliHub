@@ -15,6 +15,7 @@ import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.ui.adapters.PartitionFilterAdapter;
 import com.leon.biuvideo.ui.adapters.partition.PartitionDataAdapter;
 import com.leon.biuvideo.utils.PaginationLoader;
+import com.leon.biuvideo.utils.ValueUtils;
 
 import java.util.List;
 
@@ -61,12 +62,11 @@ public class PartitionFragment extends BaseLazyFragment<FragmentPartitionBinding
             Toast.makeText(context, "More", Toast.LENGTH_SHORT).show();
         });
 
-        loader = new PaginationLoader<>(binding.content, new PartitionDataAdapter(context));
-
         httpApi = new RetrofitClient(BaseUrl.SEARCH).getHttpApi();
+
+        loader = new PaginationLoader<>(binding.content, new PartitionDataAdapter(context));
         loader.closeRefresh();
         loader.setGuide(PartitionData::getResult);
-        loader.setObservable(httpApi.getPartitionData(id, null, ++pageNum, "20220708", "20220715"));
         loader.setLayoutManager(new GridLayoutManager(context, 2));
     }
 
@@ -75,9 +75,9 @@ public class PartitionFragment extends BaseLazyFragment<FragmentPartitionBinding
         loader.firstObtain();
     }
 
-    // todo 数据存留还未解决
     private void reload(String keyword) {
         pageNum = 0;
-        loader.setUpdateInterface(loadType -> loader.setObservable(httpApi.getPartitionData(id, keyword, ++pageNum, "20220708", "20220715")));
+        long end = System.currentTimeMillis()/1000;
+        loader.setUpdateInterface(loadType -> loader.setObservable(httpApi.getPartitionData(id, keyword, ++pageNum, ValueUtils.generateTime(end - 604800, "yyyyMMdd", false), ValueUtils.generateTime(end, "yyyyMMdd", true))));
     }
 }

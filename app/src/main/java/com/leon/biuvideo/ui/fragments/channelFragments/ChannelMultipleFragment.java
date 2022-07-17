@@ -1,8 +1,9 @@
 package com.leon.biuvideo.ui.fragments.channelFragments;
 
+import android.util.Log;
+
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseFragment.BaseLazyFragment;
@@ -12,7 +13,6 @@ import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.beans.home.channel.ChannelDetailMultiple;
 import com.leon.biuvideo.ui.adapters.channel.ChannelMultipleContentAdapter;
-import com.leon.biuvideo.ui.adapters.channel.ChannelMultipleTopAdapter;
 import com.leon.biuvideo.utils.PaginationLoader;
 
 import java.util.ArrayList;
@@ -62,25 +62,18 @@ public class ChannelMultipleFragment extends BaseLazyFragment<FragmentChannelMul
             changeSelectedColor(2);
         });
 
-        ChannelMultipleTopAdapter topAdapter = new ChannelMultipleTopAdapter(context);
-        binding.topContent.setAdapter(topAdapter);
-        binding.topContent.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
-        binding.topContent.setMotionEventSplittingEnabled(false);
-        binding.topContent.setNestedScrollingEnabled(false);
-        binding.topContent.setHasFixedSize(true);
-
         contentAdapter = new ChannelMultipleContentAdapter(context);
-
         httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
         loader = new PaginationLoader<>(binding.content, contentAdapter);
+
         loader.closeRefresh();
         loader.setLayoutManager(new GridLayoutManager(context, 2));
         loader.setGuide(channelDetailMultiple -> {
             offset = channelDetailMultiple.getData().getOffset();
 
-            List<ChannelDetailMultiple.Data.Archive.Item> items = channelDetailMultiple.getData().getList().get(0).getItems();
-            if (items != null) {
-                topAdapter.appendHead(items);
+            //todo 由于第一页的第一项为该频道排行榜，此阶段并不打算加入该功能，所以在这里直接移除掉
+            //后期加入需用到com.leon.biuvideo.ui.adapters.channel.ChannelMultipleTopAdapter
+            if (channelDetailMultiple.getData().getList().get(0).getItems() != null) {
                 channelDetailMultiple.getData().getList().remove(0);
             }
             return channelDetailMultiple.getData().getList();
@@ -92,7 +85,7 @@ public class ChannelMultipleFragment extends BaseLazyFragment<FragmentChannelMul
     private void changeSelectedColor(int index) {
         if (selectedIndex != index) {
             textViews.get(selectedIndex).setTextColor(context.getColor(R.color.infoColor));
-            textViews.get(index).setTextColor(context.getColor(R.color.infoColor));
+            textViews.get(index).setTextColor(context.getColor(R.color.BiliBili_pink));
 
             selectedIndex = index;
             reload();
@@ -101,13 +94,17 @@ public class ChannelMultipleFragment extends BaseLazyFragment<FragmentChannelMul
 
     @Override
     protected void onLazyLoad() {
-        loader.firstObtain();
     }
 
-    // todo 重置没有进行自动加载，待修复
+    // todo 重载数据错误待修复
     private void reload() {
         offset = null;
         contentAdapter.removeAll();
-        loader.setUpdateInterface(loadType -> loader.setObservable(httpApi.getChannelDetailMultiple(channelId, sort, offset)));
+        loader
+                .setUpdateInterface(loadType -> {
+                    loader.setObservable(httpApi.getChannelDetailMultiple(channelId, sort, offset));
+                    Log.d(TAG, "reload: id=" + channelId + ";sort=" + sort + ";offset=" + offset);
+                })
+                .obtain();
     }
 }

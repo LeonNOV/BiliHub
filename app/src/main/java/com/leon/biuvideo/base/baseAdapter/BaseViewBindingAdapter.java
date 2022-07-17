@@ -110,9 +110,8 @@ public abstract class BaseViewBindingAdapter<B, V extends ViewBinding> extends R
      *
      * @param addOns    要加入的数据
      */
-    public void appendTail(List<B> addOns) {
+    public void appendTail(Collection<B> addOns) {
         int positionStart = this.beans.size();
-
         this.beans.addAll(addOns);
 
         notifyItemRangeInserted(positionStart, addOns.size());

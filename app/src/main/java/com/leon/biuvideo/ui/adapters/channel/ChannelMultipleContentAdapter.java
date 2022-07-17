@@ -35,15 +35,18 @@ public class ChannelMultipleContentAdapter extends BaseViewBindingAdapter<Channe
 
     @Override
     protected void onBindViewHolder(ChannelDetailMultiple.Data.Archive data, ItemVideoBBinding binding, int position) {
-        if ("archive".equals(data.getCardType())) {
-            binding.getRoot().setOnClickListener(v -> ActivityManager.startActivity(context, VideoActivity.class, Map.of(VideoActivity.PARAM, data.getBvid())));
+        binding.getRoot().setOnClickListener(v -> ActivityManager.startActivity(context, VideoActivity.class, Map.of(VideoActivity.PARAM, data.getBvid())));
 
-            ViewUtils.setImg(context, binding.cover, data.getCover());
-            binding.play.setText(data.getViewCount());
+        ViewUtils.setImg(context, binding.cover, data.getCover());
+        binding.play.setText(data.getViewCount());
+
+        if (data.getDanmaku() == null) {
+            binding.danmaku.setText("-");
+        } else {
             binding.danmaku.setText(ValueUtils.generateCN(data.getDanmaku()));
-            binding.extra.setText(data.getDuration());
-            binding.title.setText(data.getName());
-            binding.author.setText(data.getAuthorName());
         }
+        binding.extra.setText(data.getDuration());
+        binding.title.setText(data.getName());
+        binding.author.setText(data.getAuthorName());
     }
 }

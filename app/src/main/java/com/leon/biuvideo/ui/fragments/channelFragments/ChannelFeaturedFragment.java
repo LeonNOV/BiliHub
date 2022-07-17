@@ -1,7 +1,5 @@
 package com.leon.biuvideo.ui.fragments.channelFragments;
 
-import android.widget.Toast;
-
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.leon.biuvideo.base.baseFragment.BaseLazyFragment;
@@ -71,16 +69,15 @@ public class ChannelFeaturedFragment extends BaseLazyFragment<PageFilterRefreshB
 
     @Override
     protected void onLazyLoad() {
-        if (loader != null) {
-            loader.firstObtain();
-        }
     }
 
-    // todo 重置没有进行自动加载，待修复
+    // todo 重载数据错误待修复
     private void reload() {
-        Toast.makeText(context, String.valueOf(type), Toast.LENGTH_SHORT).show();
         offset = null;
+
         adapter.removeAll();
-        loader.setUpdateInterface(loadType -> loader.setObservable(httpApi.getChannelDetailFeatured(id, type, offset)));
+        loader
+                .setUpdateInterface(loadType -> loader.setObservable(httpApi.getChannelDetailFeatured(id, type, offset)))
+                .obtain();
     }
 }

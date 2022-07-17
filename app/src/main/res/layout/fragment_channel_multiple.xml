@@ -9,7 +9,7 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:background="@color/white">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -33,28 +33,11 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="排行榜"
-        android:textColor="@color/black"
-        android:textSize="@dimen/infoSize" />
-
-    <com.leon.biuvideo.ui.widget.HorizontalRecyclerView
-        android:id="@+id/topContent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_video_b" />
-
-    <!--todo content位置待优化-->
     <include
         android:id="@+id/content"
         layout="@layout/refresh_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="10dp" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

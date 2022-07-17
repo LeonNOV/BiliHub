@@ -207,6 +207,14 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
     }
 
     /**
+     * 适合在页面数据清空后调用
+     */
+    public void obtain() {
+        // 获取第一页数据
+        insertData(LoadType.LOAD_TYPE_HEAD, binding.container.container);
+    }
+
+    /**
      * 关闭刷新和加载控件
      */
     public void closeSmart() {
@@ -240,8 +248,10 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
      *
      * @param updateInterface updateInterface
      */
-    public void setUpdateInterface(UpdateInterface updateInterface) {
+    public PaginationLoader<T, B> setUpdateInterface(UpdateInterface updateInterface) {
         this.updateInterface = updateInterface;
+
+        return this;
     }
 
     public interface UpdateInterface {

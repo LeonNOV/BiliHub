@@ -257,4 +257,5 @@
     <string name="channelMultipleFilterHot">近期热门</string>
     <string name="channelMultipleFilterView">播放最多</string>
     <string name="channelMultipleFilterNew">最新投稿</string>
+    <string name="channelRank">排行榜</string>
 </resources>
