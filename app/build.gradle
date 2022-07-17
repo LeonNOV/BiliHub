@@ -136,6 +136,8 @@ dependencies {
 //    implementation "com.daimajia.swipelayout:library:1.2.0@aar"
     implementation "com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0"
 
+    implementation 'org.jsoup:jsoup:1.15.2'
+
     // Room
     def roomVersion = "2.3.0"
     implementation "androidx.room:room-runtime:$roomVersion"

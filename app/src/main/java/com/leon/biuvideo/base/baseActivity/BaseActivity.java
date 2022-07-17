@@ -111,7 +111,7 @@ public abstract class BaseActivity<T extends ViewBinding> extends AppCompatActiv
      * 初始化沉浸式
      */
     protected void onImmersion() {
-        ImmersionBar.with(this).fitsSystemWindows(true).init();
+        ImmersionBar.with(this).statusBarColorInt(context.getColor(R.color.black)).fitsSystemWindows(true).init();
     }
 
     protected void startActivity(Class<? extends BaseActivity<? extends ViewBinding>> targetClass) {

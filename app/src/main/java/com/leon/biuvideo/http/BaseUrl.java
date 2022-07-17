@@ -8,8 +8,6 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import retrofit2.http.Field;
-
 /**
  * @Author Leon
  * @Time 2022/06/30
@@ -17,7 +15,7 @@ import retrofit2.http.Field;
  */
 @Retention(RetentionPolicy.SOURCE)
 @Target({ElementType.PARAMETER, ElementType.FIELD})
-@StringDef(value = {BaseUrl.API, BaseUrl.SEARCH})
+@StringDef(value = {BaseUrl.API, BaseUrl.SEARCH, BaseUrl.MAIN})
 public @interface BaseUrl {
 
     /**
@@ -25,4 +23,5 @@ public @interface BaseUrl {
      */
     String API = "https://api.bilibili.com/";
     String SEARCH = "https://s.search.bilibili.com/";
+    String MAIN = "https://www.bilibili.com/";
 }

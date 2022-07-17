@@ -25,7 +25,10 @@ import com.leon.biuvideo.beans.home.channel.ChannelDetailFeatured;
 import com.leon.biuvideo.beans.home.channel.ChannelDetailMultiple;
 
 import io.reactivex.rxjava3.core.Observable;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -343,4 +346,17 @@ public interface HttpApi {
      */
     @GET("x/web-interface/web/channel/multiple/list?page_size=30")
     Observable<ChannelDetailMultiple> getChannelDetailMultiple(@Query("channel_id") String id, @Query("sort_type") String sort, @Query("offset") String offset);
+
+    interface HttpRaw {
+        /**
+         * 频道页面
+         * <p>
+         * https://www.bilibili.com/v/channel/17683
+         *
+         * @param channelId 频道ID
+         * @return source code
+         */
+        @GET("v/channel/{channelId}")
+        Call<ResponseBody> getChannelFeatured(@Path("channelId") String channelId);
+    }
 }

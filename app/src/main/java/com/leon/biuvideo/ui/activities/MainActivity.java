@@ -1,13 +1,22 @@
 package com.leon.biuvideo.ui.activities;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.core.view.GravityCompat;
 import androidx.viewbinding.ViewBinding;
 
+import com.google.gson.Gson;
+import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
+import com.leon.biuvideo.beans.home.drawerFunction.Series;
 import com.leon.biuvideo.databinding.ActivityMainBinding;
+import com.leon.biuvideo.http.ApiHelper;
+import com.leon.biuvideo.http.BaseUrl;
+import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.ui.activities.drawerFunction.channel.ChannelActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.FavoriteActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.HistoryActivity;
@@ -20,11 +29,29 @@ import com.leon.biuvideo.ui.activities.drawerFunction.partition.PartitionActivit
 import com.leon.biuvideo.ui.activities.publicActivities.DownloadActivity;
 import com.leon.biuvideo.ui.activities.publicActivities.UserActivity;
 import com.leon.biuvideo.ui.activities.search.SearchActivity;
+import com.leon.biuvideo.ui.fragments.popularFragments.WeeklyFragment;
 import com.leon.biuvideo.utils.ViewUtils;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+
+import okhttp3.Call;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttp;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * @Author Leon
