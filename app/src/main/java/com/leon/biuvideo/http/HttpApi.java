@@ -2,6 +2,7 @@ package com.leon.biuvideo.http;
 
 import com.leon.biuvideo.beans.account.Collect;
 import com.leon.biuvideo.beans.account.FavoriteFolder;
+import com.leon.biuvideo.beans.account.History;
 import com.leon.biuvideo.beans.account.RelationDetail;
 import com.leon.biuvideo.beans.account.RelationTags;
 import com.leon.biuvideo.beans.account.WatchLater;
@@ -9,6 +10,7 @@ import com.leon.biuvideo.beans.home.HomeRecommend;
 import com.leon.biuvideo.beans.home.HotSearch;
 import com.leon.biuvideo.beans.home.channel.ChannelCategory;
 import com.leon.biuvideo.beans.home.channel.ChannelData;
+import com.leon.biuvideo.beans.home.channel.ChannelDetail;
 import com.leon.biuvideo.beans.home.channel.UserChannelCategory;
 import com.leon.biuvideo.beans.home.drawerFunction.Series;
 import com.leon.biuvideo.beans.partition.PartitionData;
@@ -192,6 +194,21 @@ public interface HttpApi {
     Observable<Collect> getUserCollect(@Query("pn") int pageNum, @Query("up_mid") String mid);
 
     /**
+     * 用户历史记录
+     * <strong>只需要Cookie</strong>
+     * <p>
+     * https://www.bilibili.com/account/history
+     * <p>
+     * http://api.bilibili.com/x/v2/history/toview
+     *
+     * @param max    默认为0
+     * @param viewAt 默认为0
+     * @return {@link WatchLater}
+     */
+    @GET("x/web-interface/history/cursor?business=archive")
+    Observable<History> getUserHistory(@Query("max") int max, @Query("view_at") int viewAt);
+
+    /**
      * 用户稍后观看
      * <strong>只需要Cookie</strong>
      * <p>
@@ -323,13 +340,13 @@ public interface HttpApi {
      * <p>
      * https://api.bilibili.com/x/web-interface/web/channel/featured/list?channel_id=17683&filter_type=0&offset=&page_size=30
      *
-     * @param id     频道分类ID
-     * @param type   0：全部<br>2022-2009：2022-2009年精选
-     * @param offset offset
+     * @param channelId 频道分类ID
+     * @param type      0：全部<br>2022-2009：2022-2009年精选
+     * @param offset    offset
      * @return {@link ChannelDetailFeatured}
      */
     @GET("x/web-interface/web/channel/featured/list?page_size=30")
-    Observable<ChannelDetailFeatured> getChannelDetailFeatured(@Query("channel_id") String id, @Query("filter_type") int type, @Query("offset") String offset);
+    Observable<ChannelDetailFeatured> getChannelDetailFeatured(@Query("channel_id") String channelId, @Query("filter_type") int type, @Query("offset") String offset);
 
     /**
      * 频道详情-综合
@@ -339,13 +356,27 @@ public interface HttpApi {
      * <p>
      * https://api.bilibili.com/x/web-interface/web/channel/multiple/list?channel_id=17683&sort_type=hot&offset=&page_size=30
      *
-     * @param id     频道分类ID
-     * @param sort   hot：近期热门<br>view：播放最多<br>new：最新投稿
-     * @param offset offset
+     * @param channelId 频道分类ID
+     * @param sort      hot：近期热门<br>view：播放最多<br>new：最新投稿
+     * @param offset    offset
      * @return {@link ChannelDetailMultiple}
      */
     @GET("x/web-interface/web/channel/multiple/list?page_size=30")
-    Observable<ChannelDetailMultiple> getChannelDetailMultiple(@Query("channel_id") String id, @Query("sort_type") String sort, @Query("offset") String offset);
+    Observable<ChannelDetailMultiple> getChannelDetailMultiple(@Query("channel_id") String channelId, @Query("sort_type") String sort, @Query("offset") String offset);
+
+    /**
+     * 频道详情-频道详情数据
+     *
+     * <p>
+     * https://www.bilibili.com/v/channel/17683
+     * <p>
+     * https://api.bilibili.com/x/web-interface/web/channel/detail?channel_id=17683
+     *
+     * @param channelId 频道分类ID
+     * @return {@link ChannelDetail}
+     */
+    @GET("x/web-interface/web/channel/detail")
+    Observable<ChannelDetail> getChannelDetail(@Query("channel_id") String channelId);
 
     interface HttpRaw {
         /**

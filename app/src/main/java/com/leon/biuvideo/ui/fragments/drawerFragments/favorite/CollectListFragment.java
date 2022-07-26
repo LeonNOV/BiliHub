@@ -32,7 +32,7 @@ public class CollectListFragment extends BaseLazyFragment<RefreshContentBinding>
         loader = new PaginationLoader<>(binding, new CollectAdapter(context));
         loader.closeRefresh();
         loader.setGuide(collect -> collect.getData().getList());
-        loader.setUpdateInterface(loadType -> loader.setObservable(httpApi.getUserCollect(++pageNum, "49405324")));
+        loader.setUpdateInterface(loadType -> httpApi.getUserCollect(++pageNum, "49405324"));
     }
 
     @Override

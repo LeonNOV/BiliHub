@@ -44,9 +44,10 @@ public class DataFilter extends LinearLayoutCompat implements View.OnClickListen
 
     public DataFilter setFilterItem(String ... items) {
         for (int i = 0; i < items.length; i++) {
-            AppCompatTextView itemView = new AppCompatTextView(context);
+            AppCompatTextView itemView = new AppCompatTextView(context, null, R.style.FilterItemStyle);
             itemView.setText(items[i]);
             itemView.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.DataFilterTextSize));
+            itemView.setOnClickListener(this);
 
             if (i == 0) {
                 itemView.setTextColor(selectedColor);

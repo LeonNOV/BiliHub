@@ -1,7 +1,5 @@
 package com.leon.biuvideo.ui.fragments.channelFragments;
 
-import android.util.Log;
-
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.GridLayoutManager;
 
@@ -93,18 +91,12 @@ public class ChannelMultipleFragment extends BaseLazyFragment<FragmentChannelMul
     }
 
     @Override
-    protected void onLazyLoad() {
-    }
+    protected void onLazyLoad() {}
 
     // todo 重载数据错误待修复
     private void reload() {
         offset = null;
         contentAdapter.removeAll();
-        loader
-                .setUpdateInterface(loadType -> {
-                    loader.setObservable(httpApi.getChannelDetailMultiple(channelId, sort, offset));
-                    Log.d(TAG, "reload: id=" + channelId + ";sort=" + sort + ";offset=" + offset);
-                })
-                .obtain();
+        loader.setUpdateInterface(loadType -> httpApi.getChannelDetailMultiple(channelId, sort, offset)).obtain();
     }
 }

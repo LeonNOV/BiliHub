@@ -15,7 +15,6 @@ import com.leon.biuvideo.utils.PaginationLoader;
  * @Desc
  */
 public class UserArticleFragment extends BaseLazyFragment<RefreshContentBinding> {
-    private HttpApi httpApi;
     private PaginationLoader<UserArticle, UserArticle.Data.Article> loader;
     private final String mid;
     private int pageNum = 0;
@@ -31,11 +30,11 @@ public class UserArticleFragment extends BaseLazyFragment<RefreshContentBinding>
 
     @Override
     protected void initView() {
-        httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
+        HttpApi httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
         loader = new PaginationLoader<>(binding, new UserArticleAdapter(context));
         loader.closeRefresh();
         loader.setGuide(userArticle -> userArticle.getData().getArticles());
-        loader.setUpdateInterface(loadType -> loader.setObservable(httpApi.getUserArticle(mid, ++pageNum)));
+        loader.setUpdateInterface(loadType -> httpApi.getUserArticle(mid, ++pageNum));
     }
 
     @Override

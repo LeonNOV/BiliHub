@@ -47,7 +47,7 @@ public class UserMediaFragment extends BaseLazyFragment<FragmentUserMediaBinding
         loader = new PaginationLoader<>(RefreshContentBinding.bind(binding.content.getRoot()), new UserVideoAdapter(context));
         loader.closeRefresh();
         loader.setGuide(userVideo -> userVideo.getData().getList().getVideoList());
-        loader.setUpdateInterface(loadType -> loader.setObservable(httpApi.getUserVideo(mid, ++pageNum, "pubdate")));
+        loader.setUpdateInterface(loadType -> httpApi.getUserVideo(mid, ++pageNum, "pubdate"));
     }
 
     @Override

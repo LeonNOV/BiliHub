@@ -48,7 +48,7 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
     private final BaseViewBindingAdapter<B, ? extends ViewBinding> adapter;
 
     private Observable<T> observable;
-    private UpdateInterface updateInterface;
+    private UpdateInterface<T> updateInterface;
     private GuideInterface<T, B> guideInterface;
 
     public PaginationLoader(@NonNull RefreshContentBinding binding, BaseViewBindingAdapter<B, ? extends ViewBinding> adapter) {
@@ -95,10 +95,6 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
         binding.container.content.setLayoutManager(layoutManager);
     }
 
-    public void setObservable(Observable<T> observable) {
-        this.observable = observable;
-    }
-
     /**
      * 初始化 customViewRefreshViewSmart
      */
@@ -114,49 +110,49 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
      */
     private void insertData(@LoadType int loadType, RefreshLayout refreshLayout) {
         if (updateInterface != null) {
-            updateInterface.update(loadType);
-        }
+            this.observable = updateInterface.update(loadType);
 
-        observable
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<>() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
+            observable
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<>() {
+                        @Override
+                        public void onSubscribe(@NonNull Disposable d) {
 
-                    }
+                        }
 
-                    @Override
-                    public void onNext(@NonNull T t) {
-                        if (guideInterface != null) {
-                            List<B> bs = guideInterface.guide(t);
+                        @Override
+                        public void onNext(@NonNull T t) {
+                            if (guideInterface != null) {
+                                List<B> bs = guideInterface.guide(t);
 
-                            if (bs == null || bs.isEmpty()) {
-                                onError(new RuntimeException("已经到底了~"));
-                            } else {
-                                if (loadType == LoadType.LOAD_TYPE_TAIL) {
-                                    adapter.appendTail(bs);
-                                } else if (loadType == LoadType.LOAD_TYPE_HEAD) {
-                                    adapter.appendHead(bs);
+                                if (bs == null || bs.isEmpty()) {
+                                    onError(new RuntimeException("已经到底了~"));
                                 } else {
-                                    onError(new RuntimeException());
+                                    if (loadType == LoadType.LOAD_TYPE_TAIL) {
+                                        adapter.appendTail(bs);
+                                    } else if (loadType == LoadType.LOAD_TYPE_HEAD) {
+                                        adapter.appendHead(bs);
+                                    } else {
+                                        onError(new RuntimeException());
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        // TODO 待替换为SnackBar
-                        Toast.makeText(binding.getRoot().getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                        insertFinish(loadType, refreshLayout, false);
-                    }
+                        @Override
+                        public void onError(@NonNull Throwable e) {
+                            // TODO 待替换为SnackBar
+                            Toast.makeText(binding.getRoot().getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                            insertFinish(loadType, refreshLayout, false);
+                        }
 
-                    @Override
-                    public void onComplete() {
-                        insertFinish(loadType, refreshLayout, true);
-                    }
-                });
+                        @Override
+                        public void onComplete() {
+                            insertFinish(loadType, refreshLayout, true);
+                        }
+                    });
+        }
     }
 
     /**
@@ -248,19 +244,20 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
      *
      * @param updateInterface updateInterface
      */
-    public PaginationLoader<T, B> setUpdateInterface(UpdateInterface updateInterface) {
+    public PaginationLoader<T, B> setUpdateInterface(UpdateInterface<T> updateInterface) {
         this.updateInterface = updateInterface;
 
         return this;
     }
 
-    public interface UpdateInterface {
+    public interface UpdateInterface<T> {
         /**
          * 更新请求参数
          *
          * @param loadType LoadType
+         * @return Observable<T>
          */
-        void update(@LoadType int loadType);
+        Observable<T> update(@LoadType int loadType);
     }
 }
 

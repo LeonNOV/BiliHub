@@ -35,8 +35,7 @@ public class ChannelAdapter extends BaseViewBindingAdapter<ChannelData.Data.Arch
 
     @Override
     protected void onBindViewHolder(ChannelData.Data.ArchiveChannel data, ItemChannelBinding binding, int position) {
-        binding.container.setOnClickListener(v -> startActivity(ChannelDetailActivity.class, Map.of(ChannelDetailActivity.PARAM_ID, data.getId(),
-                ChannelDetailActivity.PARAM_NAME, data.getName())));
+        binding.container.setOnClickListener(v -> startActivity(ChannelDetailActivity.class, Map.of(ChannelDetailActivity.PARAM_ID, data.getId())));
 
         ViewUtils.setImg(context, binding.face, data.getCover());
         binding.name.setText(data.getName());

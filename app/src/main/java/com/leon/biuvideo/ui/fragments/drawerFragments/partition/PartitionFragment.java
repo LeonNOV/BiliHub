@@ -78,6 +78,6 @@ public class PartitionFragment extends BaseLazyFragment<FragmentPartitionBinding
     private void reload(String keyword) {
         pageNum = 0;
         long end = System.currentTimeMillis()/1000;
-        loader.setUpdateInterface(loadType -> loader.setObservable(httpApi.getPartitionData(id, keyword, ++pageNum, ValueUtils.generateTime(end - 604800, "yyyyMMdd", false), ValueUtils.generateTime(end, "yyyyMMdd", true))));
+        loader.setUpdateInterface(loadType -> httpApi.getPartitionData(id, keyword, ++pageNum, ValueUtils.generateTime(end - 604800, "yyyyMMdd", false), ValueUtils.generateTime(end, "yyyyMMdd", true)));
     }
 }

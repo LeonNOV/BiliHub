@@ -37,8 +37,7 @@ public class UserChannelAdapter extends BaseViewBindingAdapter<UserChannelCatego
 
     @Override
     protected void onBindViewHolder(UserChannelCategory.Data.NormalChannel data, ItemChannelBinding binding, int position) {
-        binding.container.setOnClickListener(v -> startActivity(ChannelDetailActivity.class, Map.of(ChannelDetailActivity.PARAM_ID, data.getId(),
-                ChannelDetailActivity.PARAM_NAME, data.getName())));
+        binding.container.setOnClickListener(v -> startActivity(ChannelDetailActivity.class, Map.of(ChannelDetailActivity.PARAM_ID, data.getId())));
 
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) binding.name.getLayoutParams();
         layoutParams.gravity = Gravity.CENTER_VERTICAL;

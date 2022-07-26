@@ -77,7 +77,7 @@ public class ChannelFragment extends BaseLazyFragment<FragmentChannelBinding> {
                 offset = channelData.getData().getOffset();
                 return channelData.getData().getArchiveChannels();
             });
-            loader.setUpdateInterface(loadType -> loader.setObservable(httpApi.getChannelData(category.getId(), offset)));
+            loader.setUpdateInterface(loadType -> httpApi.getChannelData(category.getId(), offset));
         }
     }
 

@@ -29,9 +29,11 @@ public class RelationDetailActivity extends BaseActivity<RefreshContentBinding> 
 
         HttpApi httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
         PaginationLoader<RelationDetail, RelationDetail.Data> loader = new PaginationLoader<>(binding, new RelationDetailAdapter(context));
-        loader.setGuide(RelationDetail::getData);
         loader.closeRefresh();
-        loader.setObservable(httpApi.getUserRelationDetail(tagId, ++pageNum));
-        loader.firstObtain();
+        loader.setGuide(RelationDetail::getData);
+
+        loader
+                .setUpdateInterface(loadType -> httpApi.getUserRelationDetail(tagId, ++pageNum))
+                .obtain();
     }
 }

@@ -4,18 +4,17 @@ import android.content.Context;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.biuvideo.beans.home.channel.ChannelDetail;
 import com.leon.biuvideo.databinding.ItemFilterBinding;
 import com.leon.biuvideo.utils.FilterUtils;
-
-import java.util.Map;
 
 /**
  * @Author Leon
  * @Time 2022/07/16
  * @Desc
  */
-public class ChannelFeaturedFilterAdapter extends BaseViewBindingAdapter<Map.Entry<Integer, String>, ItemFilterBinding> {
-    private final FilterUtils<Map.Entry<Integer, String>> filterUtils;
+public class ChannelFeaturedFilterAdapter extends BaseViewBindingAdapter<ChannelDetail.Data.Tab.Option, ItemFilterBinding> {
+    private final FilterUtils<ChannelDetail.Data.Tab.Option> filterUtils;
 
     public ChannelFeaturedFilterAdapter(Context context) {
         super(context);
@@ -34,14 +33,14 @@ public class ChannelFeaturedFilterAdapter extends BaseViewBindingAdapter<Map.Ent
     }
 
     @Override
-    protected void onBindViewHolder(Map.Entry<Integer, String> data, ItemFilterBinding binding, int position) {
+    protected void onBindViewHolder(ChannelDetail.Data.Tab.Option data, ItemFilterBinding binding, int position) {
         this.filterUtils.addTextView(position, binding.filter);
         binding.getRoot().setOnClickListener(v -> this.filterUtils.selected(data, position));
 
-        binding.filter.setText(data.getValue());
+        binding.filter.setText(data.getTitle());
     }
 
-    public ChannelFeaturedFilterAdapter setOnFilterCallback(FilterUtils.OnFilterCallback<Map.Entry<Integer, String>> onFilterCallback) {
+    public ChannelFeaturedFilterAdapter setOnFilterCallback(FilterUtils.OnFilterCallback<ChannelDetail.Data.Tab.Option> onFilterCallback) {
         this.filterUtils.setOnFilterCallback(onFilterCallback);
 
         return this;

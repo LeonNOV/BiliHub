@@ -54,7 +54,6 @@
     <dimen name="videoCoverRadius">5dp</dimen>
 
     <dimen name="small_view_w_h">40dp</dimen>
-    <dimen name="padding_10dp">10dp</dimen>
     <dimen name="drawer_margin">15dp</dimen>
     <dimen name="drawer_function_marginTop">20dp</dimen>
 

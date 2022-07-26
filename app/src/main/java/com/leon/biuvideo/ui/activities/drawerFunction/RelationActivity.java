@@ -6,8 +6,11 @@ import com.leon.biuvideo.databinding.PageRecyclerBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
+import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.adapters.drawer.relation.RelationTagsAdapter;
 import com.leon.biuvideo.utils.RecyclerViewLoader;
+
+import java.util.Map;
 
 /**
  * @Author Leon
@@ -22,11 +25,11 @@ public class RelationActivity extends BaseActivity<PageRecyclerBinding> {
 
     @Override
     protected void init() {
-        HttpApi httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
+        binding.topBar.setTopBarTitle("我的关注");
         RecyclerViewLoader<RelationTags, RelationTags.Data> loader = new RecyclerViewLoader<>(binding.content, new RelationTagsAdapter(context));
         loader
                 .setGuide(RelationTags::getData)
-                .setObservable(httpApi.getUserRelationTags())
+                .setObservable(new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi().getUserRelationTags())
                 .obtain(false);
     }
 }

@@ -15,8 +15,6 @@ import com.leon.biuvideo.utils.PaginationLoader;
  * @Desc
  */
 public class UserAudioActivity extends BaseActivity<ActivityUserAudioBinding> {
-    private HttpApi httpApi;
-    private PaginationLoader<UserAudio, UserAudio.Data.Audio> loader;
     private int pageNum = 0;
 
     @Override
@@ -28,11 +26,10 @@ public class UserAudioActivity extends BaseActivity<ActivityUserAudioBinding> {
     protected void init() {
         String mid = params.getString(UserActivity.PARAM);
 
-        httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
-        loader = new PaginationLoader<>(binding.content, new UserAudioAdapter(context));
+        HttpApi httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
+        PaginationLoader<UserAudio, UserAudio.Data.Audio> loader = new PaginationLoader<>(binding.content, new UserAudioAdapter(context));
         loader.closeRefresh();
         loader.setGuide(userAudio -> userAudio.getData().getAudioList());
-        loader.setUpdateInterface(loadType -> loader.setObservable(httpApi.getUserAudio(mid, ++pageNum)));
-        loader.firstObtain();
+        loader.setUpdateInterface(loadType -> httpApi.getUserAudio(mid, ++pageNum)).obtain();
     }
 }

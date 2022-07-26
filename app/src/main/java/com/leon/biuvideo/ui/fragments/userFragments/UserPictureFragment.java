@@ -39,7 +39,7 @@ public class UserPictureFragment extends BaseLazyFragment<RefreshContentBinding>
         loader = new PaginationLoader<>(binding, new UserPictureAdapter(context));
         loader.closeRefresh();
         loader.setGuide(userPicture -> userPicture.getData().getItems());
-        loader.setUpdateInterface(loadType -> loader.setObservable(httpApi.getUserPicture(mid, ++pageNum)));
+        loader.setUpdateInterface(loadType -> httpApi.getUserPicture(mid, ++pageNum));
     }
 
     @Override

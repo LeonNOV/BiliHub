@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.activities.drawerFunction.HistoryActivity">
+    android:orientation="vertical">
 
     <com.leon.biuvideo.ui.widget.TopBarWidget
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="历史记录" />
+        app:title="我的收藏夹" />
 
     <include
         android:id="@+id/content"
-        layout="@layout/refresh_content" />
+        layout="@layout/compose_tab_vp" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

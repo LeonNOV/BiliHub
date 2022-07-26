@@ -6,8 +6,11 @@ import com.leon.biuvideo.databinding.FragmentDrawerOrderBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
+import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.adapters.user.UserOrderAdapter;
 import com.leon.biuvideo.utils.PaginationLoader;
+
+import java.util.Map;
 
 /**
  * @Author Leon
@@ -23,7 +26,7 @@ public class OrderFragment extends BaseLazyFragment<FragmentDrawerOrderBinding> 
 
     private HttpApi httpApi;
     private PaginationLoader<UserOrder, UserOrder.Data.Order> loader;
-    private UserOrderAdapter userOrderAdapter;
+    private UserOrderAdapter adapter;
 
     public OrderFragment(int type, String mid) {
         this.type = type;
@@ -39,13 +42,11 @@ public class OrderFragment extends BaseLazyFragment<FragmentDrawerOrderBinding> 
     protected void initView() {
         binding.filter.setFilterItem(this.FILTER_ITEMS).setOnSelected(this::reload);
 
-        httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
-
-        userOrderAdapter = new UserOrderAdapter(context);
-        loader = new PaginationLoader<>(binding.content, userOrderAdapter);
+        adapter = new UserOrderAdapter(context);
+        httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
+        loader = new PaginationLoader<>(binding.content, adapter);
         loader.closeRefresh();
         loader.setGuide(userOrder -> userOrder.getData().getList());
-
         reload(0);
     }
 
@@ -54,9 +55,10 @@ public class OrderFragment extends BaseLazyFragment<FragmentDrawerOrderBinding> 
         loader.firstObtain();
     }
 
+    //todo 筛选功能待完善
     private void reload(int followStatus) {
         pageNum = 0;
-        userOrderAdapter.removeAll();
-        loader.setUpdateInterface(loadType -> loader.setObservable(httpApi.getUserOrder(type, followStatus, pageNum, mid)));
+        adapter.removeAll();
+        loader.setUpdateInterface(loadType -> httpApi.getUserOrder(type, followStatus, ++pageNum, mid)).obtain();
     }
 }
