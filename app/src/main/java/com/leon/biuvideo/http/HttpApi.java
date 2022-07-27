@@ -15,6 +15,9 @@ import com.leon.biuvideo.beans.home.channel.UserChannelCategory;
 import com.leon.biuvideo.beans.home.drawerFunction.Series;
 import com.leon.biuvideo.beans.partition.PartitionData;
 import com.leon.biuvideo.beans.partition.PartitionRecommend;
+import com.leon.biuvideo.beans.publicBeans.resources.article.ArticleInfo;
+import com.leon.biuvideo.beans.publicBeans.resources.audio.AudioInfo;
+import com.leon.biuvideo.beans.publicBeans.resources.audio.AudioResources;
 import com.leon.biuvideo.beans.publicBeans.user.UserArticle;
 import com.leon.biuvideo.beans.publicBeans.user.UserAudio;
 import com.leon.biuvideo.beans.publicBeans.user.UserInfo;
@@ -72,6 +75,7 @@ public interface HttpApi {
     Observable<Series> getSeries();
 
     /**
+     * 用户详细数据-包含大部分信息
      * https://space.bilibili.com/492393
      * <p>
      * http://api.bilibili.com/x/space/acc/info?mid=492393
@@ -83,6 +87,7 @@ public interface HttpApi {
     Observable<UserInfo> getUserInfo(@Query("mid") String mid);
 
     /**
+     * 用户详细数据-主要含有粉丝数
      * https://space.bilibili.com/492393
      * <p>
      * http://api.bilibili.com/x/relation/stat?vmid=492393
@@ -378,6 +383,48 @@ public interface HttpApi {
     @GET("x/web-interface/web/channel/detail")
     Observable<ChannelDetail> getChannelDetail(@Query("channel_id") String channelId);
 
+    /**
+     * 音频详细数据
+     *
+     * <p>
+     * https://www.bilibili.com/audio/au305581
+     * <p>
+     * https://www.bilibili.com/audio/music-service-c/web/song/info?sid=305581
+     *
+     * @param sid 音频ID
+     * @return {@link AudioInfo}
+     */
+    @GET("audio/music-service-c/web/song/info")
+    Observable<AudioInfo> getAudioInfo(@Query("sid") String sid);
+
+    /**
+     * 音频资源链接
+     *
+     * <p>
+     * https://www.bilibili.com/audio/au305581
+     * <p>
+     * https://www.bilibili.com/audio/music-service-c/web/url?sid=2478206
+     *
+     * @param sid 音频ID
+     * @return {@link AudioResources}
+     */
+    @GET("audio/music-service-c/web/url")
+    Observable<AudioResources> getAudioResources(@Query("sid") String sid);
+
+    /**
+     * 文章详细数据
+     *
+     * <p>
+     * https://www.bilibili.com/read/cv17456178
+     * <p>
+     * https://api.bilibili.com/x/article/viewinfo?id=17456178
+     *
+     * @param articleId 音频ID
+     * @return {@link ArticleInfo}
+     */
+    @GET("x/article/viewinfo")
+    Observable<ArticleInfo> getArticleInfo(@Query("articleId") String articleId);
+
     interface HttpRaw {
         /**
          * 频道页面
@@ -389,5 +436,16 @@ public interface HttpApi {
          */
         @GET("v/channel/{channelId}")
         Call<ResponseBody> getChannelFeatured(@Path("channelId") String channelId);
+
+        /**
+         * 文章页面
+         * <p>
+         * https://www.bilibili.com/read/cv17456178
+         *
+         * @param articleId 文章ID
+         * @return source code
+         */
+        @GET("read/cv{articleId}")
+        Call<ResponseBody> getArticleRaw(@Path("articleId") String articleId);
     }
 }

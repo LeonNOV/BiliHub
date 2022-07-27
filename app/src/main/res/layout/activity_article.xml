@@ -18,7 +18,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/article_banner"
+                android:id="@+id/banner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -30,7 +30,7 @@
                 app:layout_collapseMode="pin">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/article_back"
+                    android:id="@+id/back"
                     android:layout_width="@dimen/back_WH"
                     android:layout_height="@dimen/back_WH"
                     android:background="?attr/selectableItemBackgroundBorderless"
@@ -61,7 +61,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/article_title"
+                    android:id="@+id/title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -77,7 +77,7 @@
                     android:layout_marginBottom="10dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/article_user_face"
+                        android:id="@+id/face"
                         android:layout_width="@dimen/user_face_WH"
                         android:layout_height="@dimen/user_face_WH"
                         android:layout_centerVertical="true"
@@ -87,20 +87,20 @@
                         app:civ_border_width="@dimen/face_border_width" />
 
                     <TextView
-                        android:id="@+id/article_user_name"
+                        android:id="@+id/author"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
-                        android:layout_toStartOf="@+id/article_follow"
-                        android:layout_toEndOf="@id/article_user_face"
+                        android:layout_toStartOf="@+id/follow"
+                        android:layout_toEndOf="@id/face"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         tools:text="awdwdawd" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/article_follow"
+                        android:id="@+id/follow"
                         android:layout_width="70dp"
                         android:layout_height="30dp"
                         android:layout_alignParentEnd="true"
@@ -116,7 +116,7 @@
                 </RelativeLayout>
 
                 <WebView
-                    android:id="@+id/article_webView"
+                    android:id="@+id/content"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="20dp"

@@ -11,6 +11,8 @@ import com.leon.biuvideo.ui.activities.publicActivities.AudioActivity;
 import com.leon.biuvideo.utils.ValueUtils;
 import com.leon.biuvideo.utils.ViewUtils;
 
+import java.util.Map;
+
 /**
  * @Author Leon
  * @Time 2022/07/08
@@ -34,7 +36,7 @@ public class UserAudioAdapter extends BaseViewBindingAdapter<UserAudio.Data.Audi
 
     @Override
     protected void onBindViewHolder(UserAudio.Data.Audio audio, ItemUserAudioBinding binding, int position) {
-        binding.getRoot().setOnClickListener(v -> ActivityManager.startActivity(context, AudioActivity.class));
+        binding.getRoot().setOnClickListener(v -> startActivity(AudioActivity.class, Map.of(AudioActivity.PARAM, String.valueOf(audio.getStatistic().getSid()))));
 
         binding.extra.setText(ValueUtils.lengthGenerate(audio.getDuration()));
         ViewUtils.setImg(context, binding.cover, audio.getCover());
