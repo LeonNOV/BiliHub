@@ -423,7 +423,7 @@ public interface HttpApi {
      * @return {@link ArticleInfo}
      */
     @GET("x/article/viewinfo")
-    Observable<ArticleInfo> getArticleInfo(@Query("articleId") String articleId);
+    Observable<ArticleInfo> getArticleInfo(@Query("id") String articleId);
 
     interface HttpRaw {
         /**
