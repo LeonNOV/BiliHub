@@ -258,4 +258,6 @@
     <string name="channelMultipleFilterView">播放最多</string>
     <string name="channelMultipleFilterNew">最新投稿</string>
     <string name="channelRank">排行榜</string>
+    <string name="dialog_pic_viewer_save_current">保存当前原图</string>
+    <string name="dialog_pic_viewer_save_all">保存所有图片为原图</string>
 </resources>

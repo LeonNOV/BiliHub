@@ -29,6 +29,7 @@ import com.leon.biuvideo.ui.activities.drawerFunction.partition.PartitionActivit
 import com.leon.biuvideo.ui.activities.publicActivities.ArticleActivity;
 import com.leon.biuvideo.ui.activities.publicActivities.AudioActivity;
 import com.leon.biuvideo.ui.activities.publicActivities.DownloadActivity;
+import com.leon.biuvideo.ui.activities.publicActivities.PictureActivity;
 import com.leon.biuvideo.ui.activities.publicActivities.UserActivity;
 import com.leon.biuvideo.ui.activities.search.SearchActivity;
 import com.leon.biuvideo.ui.fragments.popularFragments.WeeklyFragment;
@@ -72,7 +73,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     @Override
     protected void init() {
         binding.home.userFace.setOnClickListener(v -> binding.getRoot().openDrawer(GravityCompat.START));
-        binding.home.search.setOnClickListener(v -> startActivity(ArticleActivity.class, Map.of(ArticleActivity.PARAM, "17456178")));
+        binding.home.search.setOnClickListener(v -> startActivity(PictureActivity.class, Map.of(PictureActivity.PARAM, "656073292606603282")));
 //        binding.home.search.setOnClickListener(v -> startActivity(SearchActivity.class));
         binding.drawer.userLogout.setOnClickListener(v -> {
             Toast.makeText(context, "Logout", Toast.LENGTH_SHORT).show();

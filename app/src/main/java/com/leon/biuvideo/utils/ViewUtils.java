@@ -14,6 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleableRes;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -22,8 +25,10 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
+import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.ui.ViewPagerTouchMonitorListener;
 import com.leon.biuvideo.ui.adapters.ViewPager2Adapter;
+import com.leon.biuvideo.ui.widget.GridSpacingItemDecoration;
 
 import java.util.List;
 
@@ -37,10 +42,6 @@ public class ViewUtils {
     private static final int[] ATTRS = new int[android.R.attr.selectableItemBackground];
 
     private static final int SCROLLABLE_THRESHOLD = 5;
-
-    public static void setImage(Context context, String imgUrl, ImageView imageView) {
-        Glide.with(context).load(imgUrl).into(imageView);
-    }
 
     public static void setRipple(View view) {
         TypedArray typedArray = view.getContext().obtainStyledAttributes(ATTRS);
@@ -189,5 +190,40 @@ public class ViewUtils {
                 .with(context)
                 .load(imgUrl)
                 .into(imageView);
+    }
+
+    // 初始化器
+    public static void listInitializer(RecyclerView recyclerView, BaseViewBindingAdapter<?, ?> adapter, RecyclerView.LayoutManager layoutManager, int spanCount) {
+
+        recyclerView.setAdapter(adapter);
+        recyclerView.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+        recyclerView.setMotionEventSplittingEnabled(false);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
+
+        // todo 试用状态
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(adapter.context, spanCount, GridSpacingItemDecoration.INCLUDE_EDGE));
+
+    }
+
+    public static void listInitializer(RecyclerView recyclerView, BaseViewBindingAdapter<?, ?> adapter) {
+        recyclerView.setAdapter(adapter);
+        recyclerView.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+        recyclerView.setMotionEventSplittingEnabled(false);
+        recyclerView.setHasFixedSize(true);
+
+        int spanCount;
+        RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+        if (layoutManager instanceof LinearLayoutManager) {
+            spanCount = 1;
+        } else if (layoutManager instanceof StaggeredGridLayoutManager) {
+            spanCount = ((StaggeredGridLayoutManager) layoutManager).getSpanCount();
+        } else {
+            spanCount = 1;
+        }
+
+        // todo 试用状态
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(adapter.context, spanCount, GridSpacingItemDecoration.INCLUDE_EDGE));
+
     }
 }

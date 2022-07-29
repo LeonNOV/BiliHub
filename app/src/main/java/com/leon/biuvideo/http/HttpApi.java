@@ -18,6 +18,7 @@ import com.leon.biuvideo.beans.partition.PartitionRecommend;
 import com.leon.biuvideo.beans.publicBeans.resources.article.ArticleInfo;
 import com.leon.biuvideo.beans.publicBeans.resources.audio.AudioInfo;
 import com.leon.biuvideo.beans.publicBeans.resources.audio.AudioResources;
+import com.leon.biuvideo.beans.publicBeans.resources.picture.PictureInfo;
 import com.leon.biuvideo.beans.publicBeans.user.UserArticle;
 import com.leon.biuvideo.beans.publicBeans.user.UserAudio;
 import com.leon.biuvideo.beans.publicBeans.user.UserInfo;
@@ -424,6 +425,20 @@ public interface HttpApi {
      */
     @GET("x/article/viewinfo")
     Observable<ArticleInfo> getArticleInfo(@Query("id") String articleId);
+
+    /**
+     * 相簿详细数据
+     *
+     * <p>
+     * https://t.bilibili.com/645930194838749188
+     * <p>
+     * https://api.bilibili.com/x/polymer/web-dynamic/v1/detail?id=645930194838749188
+     *
+     * @param dynamicId 相簿ID
+     * @return {@link PictureInfo}
+     */
+    @GET("x/polymer/web-dynamic/v1/detail")
+    Observable<PictureInfo> getPictureInfo(@Query("id") String dynamicId);
 
     interface HttpRaw {
         /**

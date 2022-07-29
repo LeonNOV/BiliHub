@@ -23,4 +23,10 @@
         <item name="cornerSizeTopLeft">@dimen/corner</item>
         <item name="cornerSizeTopRight">@dimen/corner</item>
     </style>
+
+    <style name="PictureItemStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="cornerSize">@dimen/corner_picture</item>
+    </style>
 </resources>

@@ -2,6 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <dimen name="corner_6dp">6dp</dimen>
     <dimen name="corner">15dp</dimen>
+    <dimen name="corner_picture">10dp</dimen>
 
     <dimen name="topBar_margin">20dp</dimen>
     <dimen name="topBar_height">56dp</dimen>
@@ -77,4 +78,6 @@
     <dimen name="ItemSpacing">10dp</dimen>
     <dimen name="ItemPartitionRecommendWidth">200dp</dimen>
     <dimen name="filterItemSize">13sp</dimen>
+
+    <dimen name="dialog_width">270dp</dimen>
 </resources>

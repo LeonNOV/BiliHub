@@ -23,6 +23,9 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.activities.publicActivities.PictureViewerActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activities.drawerFunction.channel.ChannelDetailActivity"
             android:exported="false" />
         <activity

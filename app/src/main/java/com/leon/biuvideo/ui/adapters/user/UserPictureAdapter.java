@@ -13,6 +13,7 @@ import com.leon.biuvideo.utils.ValueUtils;
 import com.leon.biuvideo.utils.ViewUtils;
 
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * @Author Leon
@@ -36,7 +37,7 @@ public class UserPictureAdapter extends BaseViewBindingAdapter<UserPicture.Data.
 
     @Override
     protected void onBindViewHolder(UserPicture.Data.Item data, ItemUserPictureBinding binding, int position) {
-        binding.getRoot().setOnClickListener(v -> ActivityManager.startActivity(context, PictureActivity.class));
+        binding.getRoot().setOnClickListener(v -> startActivity(PictureActivity.class, Map.of(PictureActivity.PARAM, data.getDynId())));
 
         ViewUtils.setImg(context, binding.cover, data.getPictures().get(0).getImgSrc());
         if (data.getCount() > 1) {

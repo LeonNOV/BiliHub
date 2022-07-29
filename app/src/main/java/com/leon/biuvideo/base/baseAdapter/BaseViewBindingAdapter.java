@@ -1,6 +1,7 @@
 package com.leon.biuvideo.base.baseAdapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.viewbinding.ViewBinding;
 import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
 
+import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -173,6 +175,10 @@ public abstract class BaseViewBindingAdapter<B, V extends ViewBinding> extends R
 
     protected void startActivity(Class<? extends BaseActivity<? extends ViewBinding>> targetClass, Map<String, String> params) {
         ActivityManager.startActivity(context, targetClass, params);
+    }
+
+    protected void startActivity(Class<? extends BaseActivity<? extends ViewBinding>> targetClass, Bundle bundle) {
+        ActivityManager.startActivity(context, targetClass, bundle);
     }
 
     /**

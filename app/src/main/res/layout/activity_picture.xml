@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/picture_container"
@@ -9,10 +9,9 @@
     android:orientation="vertical">
 
     <com.leon.biuvideo.ui.widget.TopBarWidget
-        android:id="@+id/picture_topBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="相簿" />
+        app:title="详情" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,22 +21,22 @@
         android:layout_marginEnd="20dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/picture_face"
+            android:id="@+id/face"
             android:layout_width="@dimen/user_face_WH"
             android:layout_height="@dimen/user_face_WH"
             android:src="@color/gray"
             app:civ_border_color="@color/black"
             app:civ_border_width="@dimen/face_border_width" />
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@id/picture_face"
+            android:layout_toEndOf="@id/face"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/picture_user_name"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -45,8 +44,8 @@
                 android:textSize="17sp"
                 tools:text="awdwdawd" />
 
-            <TextView
-                android:id="@+id/picture_pubTime"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -54,28 +53,113 @@
                 android:textSize="13sp"
                 tools:text="2021-04-12 17:08" />
 
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </RelativeLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/picture_content"
+        android:id="@+id/describe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:textColor="@color/black"
         android:textSize="17sp"
         tools:text="awdawdawdwadawdawdawdawdawdadadadawdadad" />
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginStart="20dp"
+        android:layout_height="match_parent"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_launcher_background" />
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
+        tools:listitem="@layout/item_picture" />
 
-</LinearLayout>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/user_works_share"
+                android:textColor="@color/infoColor"
+                android:textSize="15sp"
+                tools:text="123" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:textColor="@color/infoColor"
+                android:textSize="15sp"
+                tools:text="123" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/user_works_comment"
+                android:textColor="@color/infoColor"
+                android:textSize="15sp"
+                tools:text="123" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:textColor="@color/infoColor"
+                android:textSize="15sp"
+                tools:text="123" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/user_works_like"
+                android:textColor="@color/infoColor"
+                android:textSize="15sp"
+                tools:text="123" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:textColor="@color/infoColor"
+                android:textSize="15sp"
+                tools:text="123" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
