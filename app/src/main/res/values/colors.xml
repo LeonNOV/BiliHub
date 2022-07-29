@@ -49,4 +49,5 @@
     <color name="black_overlay">#66000000</color>
     <color name="topBar">#ffffff</color>
     <color name="follow_color">#757575</color>
+    <color name="picture_viewer_theme">#878787</color>
 </resources>

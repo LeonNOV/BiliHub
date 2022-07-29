@@ -25,7 +25,7 @@ import java.util.Locale;
 /**
  * @Author Leon
  * @Time 2022/7/29
- * @Desc
+ * @Desc 图片查看界面
  */
 public class PictureViewerActivity extends BaseActivity<ActivityPictureViewerBinding> {
     public static final String PARAM_A = "images";
@@ -61,7 +61,7 @@ public class PictureViewerActivity extends BaseActivity<ActivityPictureViewerBin
     /**
      * 图片查看页面适配器
      */
-    private static class PictureViewerAdapter extends PagerAdapter {
+    private class PictureViewerAdapter extends PagerAdapter {
         private final Context context;
         private final List<PictureInfo.Data.Item.Modules.ModuleDynamic.Major.Draw.Item> pictures;
         private final List<AppCompatImageView> imageViews;
@@ -73,6 +73,8 @@ public class PictureViewerActivity extends BaseActivity<ActivityPictureViewerBin
             imageViews = new ArrayList<>(pictures.size());
             for (int i = 0; i < pictures.size(); i++) {
                 AppCompatImageView imageView = new AppCompatImageView(context);
+                imageView.setOnClickListener(v -> PictureViewerActivity.this.backPressed());
+
                 imageView.setOnLongClickListener(v -> {
                     new PictureViewerDialog(context).show();
                     return true;

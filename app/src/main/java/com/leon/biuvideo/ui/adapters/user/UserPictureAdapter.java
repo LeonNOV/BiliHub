@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.View;
 
 import com.leon.biuvideo.R;
-import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.beans.publicBeans.user.UserPicture;
 import com.leon.biuvideo.databinding.ItemUserPictureBinding;

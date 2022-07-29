@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/round_bg"
-    android:backgroundTint="#878787"
+    android:backgroundTint="@color/picture_viewer_theme"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -13,6 +13,7 @@
         android:gravity="center"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
+        android:background="@drawable/picture_viewer_item_bg"
         android:text="@string/dialog_pic_viewer_save_current"
         android:textColor="@color/white"
         android:textSize="15sp" />
@@ -24,6 +25,7 @@
         android:gravity="center"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
+        android:background="@drawable/picture_viewer_item_bg"
         android:text="@string/dialog_pic_viewer_save_all"
         android:textColor="@color/white"
         android:textSize="15sp" />

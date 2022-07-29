@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDialog;
 
+import com.google.android.material.ripple.RippleUtils;
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.databinding.DialogPictureViewerBinding;
 
@@ -19,7 +21,7 @@ import com.leon.biuvideo.databinding.DialogPictureViewerBinding;
  * @Desc
  */
 public class PictureViewerDialog extends AppCompatDialog {
-    private Context context;
+    private final Context context;
 
     public PictureViewerDialog(Context context) {
         super(context);
@@ -32,14 +34,21 @@ public class PictureViewerDialog extends AppCompatDialog {
         DialogPictureViewerBinding binding = DialogPictureViewerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.all.setOnClickListener(v -> {
+            Toast.makeText(context, "save all", Toast.LENGTH_SHORT).show();
+            dismiss();
+        });
+
+        binding.current.setOnClickListener(v -> {
+            Toast.makeText(context, "save current", Toast.LENGTH_SHORT).show();
+            dismiss();
+        });
+
         Window window = this.getWindow();
         if (window != null) {
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             window.setLayout(context.getResources().getDimensionPixelSize(R.dimen.dialog_width), WindowManager.LayoutParams.WRAP_CONTENT);
             window.setDimAmount(0f);
         }
-//        ((View) binding.getRoot().getParent()).setBackgroundColor(context.getColor(android.R.color.transparent));
-//        ViewUtils.setRipple(binding.all);
-//        ViewUtils.setRipple(binding.current);
     }
 }
