@@ -110,9 +110,9 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_gravity="end"
+                            android:text="@string/profileMore"
                             android:textColor="@color/infoColor"
                             android:textSize="12sp"
-                            android:text="@string/profileMore"
                             tools:ignore="RelativeOverlap" />
 
                     </RelativeLayout>

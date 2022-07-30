@@ -44,7 +44,7 @@
                     app:civ_border_color="@color/gray"
                     app:civ_border_width="@dimen/face_border_width" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/user_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
 
             </RelativeLayout>
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/function_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -143,7 +143,7 @@
                     android:text="@string/drawer_settings"
                     app:drawableStartCompat="@drawable/drawer_function_setting" />
 
-            </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </RelativeLayout>
 

@@ -1,6 +1,7 @@
 package com.leon.biuvideo.ui.activities;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
@@ -10,12 +11,10 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
-import com.leon.biuvideo.R;
-import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
 import com.leon.biuvideo.databinding.ActivityLoginBinding;
+import com.leon.biuvideo.http.DataStoreKey;
+import com.leon.biuvideo.utils.DataStoreUtils;
 import com.leon.biuvideo.utils.ViewUtils;
 
 import java.util.HashMap;
@@ -26,7 +25,7 @@ import java.util.Map;
  * @Time 2021/11/3
  * @Desc
  */
-public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements View.OnClickListener {
+public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
     private static final String ORIGINAL_URL = "https://passport.bilibili.com/login?gourl=https://m.bilibili.com/index.html";
     private static final int PROGRESS_MAX = 100;
 
@@ -37,15 +36,20 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
         return ActivityLoginBinding.inflate(getLayoutInflater());
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void init() {
-        binding.activityLoginBack.setOnClickListener(this);
-        binding.activityLoginRefresh.setOnClickListener(this);
+        binding.activityLoginBack.setOnTouchListener((v, event) -> ViewUtils.Zoom(event, binding.activityLoginBack));
+        binding.activityLoginBack.setOnClickListener(v -> backPressed());
 
+        binding.activityLoginRefresh.setOnTouchListener((v, event) -> ViewUtils.Zoom(event, binding.activityLoginRefresh));
+        binding.activityLoginRefresh.setOnClickListener(v -> binding.activityLoginWebView.reload());
+
+        binding.activityLoginWebView.loadUrl(ORIGINAL_URL);
         initWebView();
     }
 
-    @SuppressLint({"SetJavaScriptEnabled", "ClickableViewAccessibility"})
+    @SuppressLint("SetJavaScriptEnabled")
     private void initWebView() {
         WebSettings webViewSettings = binding.activityLoginWebView.getSettings();
         webViewSettings.setJavaScriptEnabled(true);
@@ -54,9 +58,6 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
         //是否可以缩放，默认true
         webViewSettings.setSupportZoom(true);
         webViewSettings.setBuiltInZoomControls(true);
-
-        //是否使用缓存
-        webViewSettings.setAppCacheEnabled(true);
 
         //DOM Storage
         webViewSettings.setDomStorageEnabled(true);
@@ -88,19 +89,17 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
         });
 
         binding.activityLoginWebView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
 
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 //判断加载完成的页面是否为B站手机版主页
                 if ("https://m.bilibili.com/index.html".equals(url)) {
-//                    SimpleSnackBar.make(view, "正在获取用户信息中，请不要进行任何操作", SimpleSnackBar.LENGTH_LONG).show();
                     CookieManager cookieManager = CookieManager.getInstance();
                     String cookieStr = cookieManager.getCookie(url).trim();
 
                     //获取用户ID
                     String[] split = cookieStr.split("; ");
-                    Map<String, String> cookieMap = new HashMap<>();
+                    Map<String, String> cookieMap = new HashMap<>(split.length);
                     for (String s : split) {
                         if (s.startsWith("DedeUserID")) {
                             String[] arrayTemp = s.split("=");
@@ -109,54 +108,29 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
                     }
 
                     if (!cookieMap.containsKey("DedeUserID")) {
-//                        SimpleSnackBar.make(view, "获取不到登录信息，请重新进行登录", SimpleSnackBar.LENGTH_SHORT).show();
-                        return;
+                        updateViewModel(false);
+                        backPressed();
                     }
 
-                    // TODO 将用户信息添加至配置文件
-//                    PreferenceUtils.setCookie(cookieStr);
-//                    PreferenceUtils.setUserId(cookieMap.get("DedeUserID"));
-//                    PreferenceUtils.setLoginStatus(true);
+                    DataStoreUtils.INSTANCE.putData(DataStoreKey.COOKIE, cookieStr);
+                    DataStoreUtils.INSTANCE.putData(DataStoreKey.UID, cookieMap.get("DedeUserID"));
+                    DataStoreUtils.INSTANCE.putData(DataStoreKey.LOGIN_STATUS, true);
 
-                    // 登录成功，发送广播
-                    sendBroadcast();
+                    updateViewModel(true);
 
                     backPressed();
                 }
+
+                super.onPageStarted(view, url, favicon);
             }
         });
-
-        binding.activityLoginRefresh.setOnTouchListener((v, event) -> ViewUtils.Zoom(event, binding.activityLoginRefresh));
-        binding.activityLoginBack.setOnTouchListener((v, event) -> ViewUtils.Zoom(event, binding.activityLoginBack));
-
-        binding.activityLoginBack.setOnClickListener(v -> backPressed());
-        binding.activityLoginRefresh.setOnClickListener(v -> binding.activityLoginWebView.reload());
-
-        // 参数gourl为登陆成功后跳转到的url地址
-        binding.activityLoginWebView.loadUrl(ORIGINAL_URL);
     }
 
     /**
-     * 登录成功后发送本地广播
+     * 登录成功后更新数据
      */
-    private void sendBroadcast() {
-        LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(context);
-
-//        Intent intent = new Intent(Actions.LOGIN_SUCCESS);
-//        intent.putExtra("loginStatus", true);
-
-//        localBroadcastManager.sendBroadcast(intent);
-    }
-
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-
-        if (id == R.id.activity_login_back) {
-
-        } else if (id == R.id.activity_login_refresh) {
-            binding.activityLoginWebView.reload();
-        }
+    private void updateViewModel(boolean loginStatus) {
+        MainActivity.model.getLoginStatus().setValue(loginStatus);
     }
 
     @Override

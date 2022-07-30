@@ -1,5 +1,6 @@
 package com.leon.biuvideo.http;
 
+import com.leon.biuvideo.beans.account.AccountNav;
 import com.leon.biuvideo.beans.account.Collect;
 import com.leon.biuvideo.beans.account.FavoriteFolder;
 import com.leon.biuvideo.beans.account.History;
@@ -439,6 +440,19 @@ public interface HttpApi {
      */
     @GET("x/polymer/web-dynamic/v1/detail")
     Observable<PictureInfo> getPictureInfo(@Query("id") String dynamicId);
+
+    /**
+     * 相簿详细数据
+     * <strong>只需要Cookie</strong>
+     * <p>
+     * https://www.bilibili.com/
+     * <p>
+     * https://api.bilibili.com/x/web-interface/nav
+     *
+     * @return {@link AccountNav}
+     */
+    @GET("x/web-interface/nav")
+    Observable<AccountNav> getAccountInfo();
 
     interface HttpRaw {
         /**

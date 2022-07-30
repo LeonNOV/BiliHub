@@ -1,21 +1,23 @@
 package com.leon.biuvideo.ui.activities;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.core.view.GravityCompat;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewbinding.ViewBinding;
 
-import com.google.gson.Gson;
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
-import com.leon.biuvideo.beans.home.drawerFunction.Series;
+import com.leon.biuvideo.beans.account.AccountNav;
+import com.leon.biuvideo.beans.home.AccountViewModel;
 import com.leon.biuvideo.databinding.ActivityMainBinding;
 import com.leon.biuvideo.http.ApiHelper;
 import com.leon.biuvideo.http.BaseUrl;
+import com.leon.biuvideo.http.DataStoreKey;
+import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.ui.activities.drawerFunction.channel.ChannelActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.FavoriteActivity;
@@ -26,35 +28,14 @@ import com.leon.biuvideo.ui.activities.drawerFunction.PopularActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.SettingActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.WatchLaterActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.partition.PartitionActivity;
-import com.leon.biuvideo.ui.activities.publicActivities.ArticleActivity;
 import com.leon.biuvideo.ui.activities.publicActivities.AudioActivity;
 import com.leon.biuvideo.ui.activities.publicActivities.DownloadActivity;
-import com.leon.biuvideo.ui.activities.publicActivities.PictureActivity;
-import com.leon.biuvideo.ui.activities.publicActivities.UserActivity;
-import com.leon.biuvideo.ui.activities.search.SearchActivity;
-import com.leon.biuvideo.ui.fragments.popularFragments.WeeklyFragment;
+import com.leon.biuvideo.utils.DataStoreUtils;
 import com.leon.biuvideo.utils.ViewUtils;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.nodes.Node;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-
-import okhttp3.Call;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttp;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 /**
  * @Author Leon
@@ -63,6 +44,7 @@ import okhttp3.Response;
  */
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
     private ScheduledThreadPoolExecutor scheduledThreadPoolExecutor;
+    public static AccountViewModel model;
 
     @Override
     public ActivityMainBinding getViewBinding() {
@@ -75,30 +57,33 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         binding.home.userFace.setOnClickListener(v -> binding.getRoot().openDrawer(GravityCompat.START));
         binding.home.search.setOnClickListener(v -> startActivity(AudioActivity.class, Map.of(AudioActivity.PARAM, "305581")));
 //        binding.home.search.setOnClickListener(v -> startActivity(SearchActivity.class));
-        binding.drawer.userLogout.setOnClickListener(v -> {
-            Toast.makeText(context, "Logout", Toast.LENGTH_SHORT).show();
-        });
         binding.drawer.userContainer.setOnTouchListener((v, event) -> ViewUtils.Zoom(event, binding.drawer.userContainer));
         binding.drawer.userContainer.setOnClickListener(v -> {
-            boolean isLogin = false;
-
-            if (isLogin) {
-                startActivity(UserActivity.class);
-            } else {
-                startActivity(LoginActivity.class);
-            }
+            startActivity(LoginActivity.class);
+//            startActivity(ProfileActivity.class);
         });
+        binding.drawer.userLogout.setOnClickListener(v -> localAccountStatus(null));
 
         setDrawerFunctionListener();
 
-        /*HttpApi httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.Cookie, HttpApi.DEFAULT_COOKIE)).getHttpApi();
+        // todo 开发中不启用
+        /*
+        Boolean loginStatus = DataStoreUtils.INSTANCE.getData(DataStoreKey.LOGIN_STATUS, false);
+        if (loginStatus) {
+            refreshData();
+        } else {
+            initObserver();
+        }
+
+        HttpApi httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.Cookie, HttpApi.DEFAULT_COOKIE)).getHttpApi();
         PaginationLoader<HomeRecommend, HomeRecommend.Data.Item> loader = new PaginationLoader<>(binding.home.data, new HomeRecommendAdapter(context));
 
         loader.setLayoutManager(new GridLayoutManager(context, 2));
         loader.closeRefresh();
         loader.setGuide(homeRecommend -> homeRecommend.getData().getItem());
         loader.setObservable(httpApi.getHomeRecommend());
-        loader.firstObtain();*/
+        loader.firstObtain();
+        */
     }
 
     /**
@@ -141,5 +126,67 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         scheduledThreadPoolExecutor.schedule(() -> {
             binding.getRoot().closeDrawer(GravityCompat.START);
         }, 800, TimeUnit.MILLISECONDS);
+    }
+
+    /**
+     * 初始化观察者对象
+     */
+    private void initObserver() {
+        model = new ViewModelProvider(this).get(AccountViewModel.class);
+        model.getLoginStatus().observeForever(new Observer<>() {
+            @Override
+            public void onChanged(Boolean loginStatus) {
+                if (loginStatus) {
+                    refreshData();
+
+                    model.getLoginStatus().removeObserver(this);
+                    model = null;
+                }
+
+            }
+        });
+    }
+
+    /**
+     * 获取已登录用户数据
+     */
+    private void refreshData() {
+        new ApiHelper<>(new RetrofitClient(BaseUrl.API,
+                Map.of(HttpApi.COOKIE, DataStoreUtils.INSTANCE.getData(DataStoreKey.COOKIE, ""))).getHttpApi().getAccountInfo())
+                .setOnResult(accountNav -> {
+                    // 0：获取成功，即登陆成功
+                    // -101：获取失败，即登录失败
+                    if (accountNav.getCode() == 0) {
+                        localAccountStatus(accountNav);
+                    } else {
+                        Toast.makeText(context, "登录失败", Toast.LENGTH_SHORT).show();
+                    }
+                }).doIt();
+    }
+
+    /**
+     * 登录/退出 操作
+     *
+     * @param accountNav accountNav
+     */
+    private void localAccountStatus(AccountNav accountNav) {
+
+        // 退出当前账户
+        if (accountNav == null) {
+            DataStoreUtils.INSTANCE.clearSync();
+            binding.drawer.userContainer.setEnabled(true);
+            binding.drawer.userFace.setImageResource(R.drawable.user_face_default);
+            binding.home.userFace.setImageResource(R.drawable.user_face_default);
+            binding.drawer.userName.setText("");
+            binding.drawer.userLogout.setVisibility(View.GONE);
+
+        // 登录成功
+        } else {
+            binding.drawer.userContainer.setEnabled(false);
+            ViewUtils.setImg(context, binding.drawer.userFace, accountNav.getData().getFace());
+            ViewUtils.setImg(context, binding.home.userFace, accountNav.getData().getFace());
+            binding.drawer.userName.setText(accountNav.getData().getUname());
+            binding.drawer.userLogout.setVisibility(View.VISIBLE);
+        }
     }
 }
