@@ -2,11 +2,8 @@ package com.leon.biuvideo.base.baseAdapter;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
@@ -14,7 +11,6 @@ import androidx.viewbinding.ViewBinding;
 import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
 
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -27,11 +23,9 @@ import java.util.Map;
  * @param <B>   展示数据
  * @param <V>   ItemViewBinding
  */
-public abstract class BaseViewBindingAdapter<B, V extends ViewBinding> extends RecyclerView.Adapter<BaseViewBindingAdapter.BaseViewHolder> {
+public abstract class BaseViewBindingAdapter<B, V extends ViewBinding> extends RecyclerView.Adapter<BaseViewBindingAdapter.BaseViewHolder<V>> {
     private final List<B> beans;
     public final Context context;
-
-    public View itemView;
 
     public BaseViewBindingAdapter(Context context) {
         this.context = context;
@@ -39,19 +33,12 @@ public abstract class BaseViewBindingAdapter<B, V extends ViewBinding> extends R
     }
 
     /**
-     * 用于RecyclerView绑定item使用
-     *
-     * @param viewType  itemID
-     * @return  返回itemID
-     */
-    public abstract @LayoutRes int getLayout(int viewType);
-
-    /**
      * 获取ViewBinding
      *
+     * @param context content
      * @return  ViewBinding
      */
-    protected abstract V getItemViewBinding();
+    protected abstract V getItemViewBinding(Context context, ViewGroup parent);
 
     /**
      * 创建ViewHolder
@@ -60,16 +47,13 @@ public abstract class BaseViewBindingAdapter<B, V extends ViewBinding> extends R
      */
     @NonNull
     @Override
-    public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(context);
-        this.itemView = layoutInflater.inflate(getLayout(viewType), parent, false);
-
-        return new BaseViewHolder(itemView);
+    public BaseViewHolder<V> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new BaseViewHolder<>(getItemViewBinding(context, parent));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
-        onBindViewHolder(beans.get(position), getItemViewBinding(), position);
+    public void onBindViewHolder(@NonNull BaseViewHolder<V> holder, int position) {
+        onBindViewHolder(beans.get(position), holder.getBinding(), position);
     }
 
     /**
@@ -149,7 +133,7 @@ public abstract class BaseViewBindingAdapter<B, V extends ViewBinding> extends R
     public void remove(B b) {
         int index = this.beans.indexOf(b);
 
-        this.beans.remove(index);
+        this.beans.remove(b);
         notifyItemRemoved(index);
     }
 
@@ -186,9 +170,17 @@ public abstract class BaseViewBindingAdapter<B, V extends ViewBinding> extends R
      * @Time 2020/11/16
      * @Desc 基本的ViewHolder
      */
-    protected static class BaseViewHolder extends RecyclerView.ViewHolder {
-        public BaseViewHolder(@NonNull View itemView) {
-            super(itemView);
+    protected static class BaseViewHolder<V extends ViewBinding> extends RecyclerView.ViewHolder {
+        private final V binding;
+
+        public BaseViewHolder(V binding) {
+            super(binding.getRoot());
+
+            this.binding = binding;
+        }
+
+        public V getBinding() {
+            return binding;
         }
     }
 }

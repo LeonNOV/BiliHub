@@ -1,10 +1,12 @@
 package com.leon.biuvideo.ui.adapters.drawer.relation;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.leon.biuvideo.R;
-import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.beans.account.RelationDetail;
 import com.leon.biuvideo.databinding.ItemUserBinding;
@@ -24,22 +26,23 @@ public class RelationDetailAdapter extends BaseViewBindingAdapter<RelationDetail
     }
 
     @Override
-    public int getLayout(int viewType) {
-        return R.layout.item_user;
-    }
-
-    @Override
-    protected ItemUserBinding getItemViewBinding() {
-        return ItemUserBinding.bind(itemView);
+    protected ItemUserBinding getItemViewBinding(Context context, ViewGroup parent) {
+        return ItemUserBinding.bind(LayoutInflater.from(context).inflate(R.layout.item_user, parent, false));
     }
 
     @Override
     protected void onBindViewHolder(RelationDetail.Data data, ItemUserBinding binding, int position) {
-        binding.getRoot().setOnClickListener(v -> ActivityManager.startActivity(context, UserActivity.class, Map.of(UserActivity.PARAM, String.valueOf(data.getMid()))));
+        binding.container.setOnClickListener(v -> startActivity(UserActivity.class, Map.of(UserActivity.PARAM, String.valueOf(data.getMid()))));
 
         ViewUtils.setImg(context, binding.face, data.getFace());
         binding.name.setText(data.getUname());
         binding.sign.setText(data.getSign());
+
+        int verifyType = data.getOfficialVerify().getType();
+        if (verifyType != -1) {
+            binding.mark.setVisibility(View.VISIBLE);
+            binding.mark.setImageResource(verifyType == 0 ? R.drawable.ic_person_verify : R.drawable.ic_official_verify);
+        }
         binding.action.setOnClickListener(v -> {
             Toast.makeText(context, "开发中…", Toast.LENGTH_SHORT).show();
         });

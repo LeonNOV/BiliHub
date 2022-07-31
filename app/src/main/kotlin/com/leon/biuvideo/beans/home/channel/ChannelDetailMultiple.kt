@@ -27,7 +27,7 @@ data class ChannelDetailMultiple(
         @Parcelize
         data class Archive(
             @SerializedName("author_id")
-            val authorId: Int?,
+            val authorId: String?,
             @SerializedName("author_name")
             val authorName: String?,
             @SerializedName("bvid")
@@ -64,7 +64,7 @@ data class ChannelDetailMultiple(
             @Parcelize
             data class Item(
                 @SerializedName("author_id")
-                val authorId: Int,
+                val authorId: String,
                 @SerializedName("author_name")
                 val authorName: String,
                 @SerializedName("bvid")

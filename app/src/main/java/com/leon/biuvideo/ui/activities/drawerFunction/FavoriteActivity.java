@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * @Author Leon
  * @Time 2022/7/12
- * @Desc
+ * @Desc 收藏夹界面
  */
 public class FavoriteActivity extends BaseActivity<ActivityFavoriteBinding> {
 

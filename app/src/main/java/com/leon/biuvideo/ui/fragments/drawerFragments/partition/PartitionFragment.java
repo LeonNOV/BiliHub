@@ -1,21 +1,19 @@
 package com.leon.biuvideo.ui.fragments.drawerFragments.partition;
 
-import android.widget.Toast;
-
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.leon.biuvideo.base.baseFragment.BaseLazyFragment;
 import com.leon.biuvideo.beans.partition.PartitionData;
 import com.leon.biuvideo.beans.partition.PartitionTag;
-import com.leon.biuvideo.databinding.FragmentPartitionBinding;
+import com.leon.biuvideo.databinding.PageFilterRefreshBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.ui.adapters.PartitionFilterAdapter;
 import com.leon.biuvideo.ui.adapters.partition.PartitionDataAdapter;
 import com.leon.biuvideo.utils.PaginationLoader;
 import com.leon.biuvideo.utils.ValueUtils;
+import com.leon.biuvideo.utils.filter.FilterAdapter;
 
 import java.util.List;
 
@@ -24,7 +22,7 @@ import java.util.List;
  * @Time 2022/07/13
  * @Desc
  */
-public class PartitionFragment extends BaseLazyFragment<FragmentPartitionBinding> {
+public class PartitionFragment extends BaseLazyFragment<PageFilterRefreshBinding> {
     private final List<PartitionTag> partitionTags;
     private final String id;
 
@@ -38,36 +36,32 @@ public class PartitionFragment extends BaseLazyFragment<FragmentPartitionBinding
     }
 
     @Override
-    public FragmentPartitionBinding getViewBinding() {
-        return FragmentPartitionBinding.inflate(getLayoutInflater());
+    public PageFilterRefreshBinding getViewBinding() {
+        return PageFilterRefreshBinding.inflate(getLayoutInflater());
     }
 
     @Override
     protected void initView() {
         partitionTags.add(0, new PartitionTag("首页", "0"));
+        FilterAdapter<PartitionTag> filterAdapter = new FilterAdapter<>(context);
+        filterAdapter.setOnFilterCallback(new FilterAdapter.OnFilterCallback<>() {
+            @Override
+            public void onReload(PartitionTag partitionTag) {
+                reload(partitionTag.getTitle());
+            }
 
-        PartitionFilterAdapter adapter = new PartitionFilterAdapter(context);
-        adapter.appendHead(partitionTags);
-        adapter.setOnRefreshData(data -> {
-            reload(data.getTitle());
+            @Override
+            public String onGuide(PartitionTag partitionTag) {
+                return partitionTag.getTitle();
+            }
         });
-
-        binding.filter.subTab.setAdapter(adapter);
-        binding.filter.subTab.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
-        binding.filter.subTab.setMotionEventSplittingEnabled(false);
-        binding.filter.subTab.setNestedScrollingEnabled(false);
-        binding.filter.subTab.setHasFixedSize(true);
-
-        binding.filter.more.setOnClickListener(v -> {
-            Toast.makeText(context, "More", Toast.LENGTH_SHORT).show();
-        });
+        filterAdapter.appendHead(partitionTags);
+        binding.filter.setAdapter(filterAdapter);
 
         httpApi = new RetrofitClient(BaseUrl.SEARCH).getHttpApi();
 
-        loader = new PaginationLoader<>(binding.content, new PartitionDataAdapter(context));
-        loader.closeRefresh();
+        loader = new PaginationLoader<>(binding.content, new PartitionDataAdapter(context), new GridLayoutManager(context, 2));
         loader.setGuide(PartitionData::getResult);
-        loader.setLayoutManager(new GridLayoutManager(context, 2));
     }
 
     @Override

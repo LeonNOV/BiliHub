@@ -2,11 +2,12 @@
 <com.mcxtzhang.swipemenulib.SwipeMenuLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/ItemStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/container"
+        style="@style/ItemStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical">
@@ -23,25 +24,24 @@
                 app:civ_border_color="@color/black"
                 app:civ_border_width="1dp" />
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/mark"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_gravity="bottom|end"
-                android:contentDescription="@string/description"
-                android:src="@drawable/ic_person_verify"
+                android:src="@drawable/ic_official_verify"
                 android:visibility="gone"
                 tools:visibility="visible" />
 
         </FrameLayout>
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:orientation="vertical">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
                 android:textStyle="bold"
                 tools:text="撒飞洒地方撒旦发射点发生飞洒发顺丰发撒" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/sign"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,16 +61,16 @@
                 android:textSize="@dimen/infoSize"
                 tools:text="descdescdescdescdescdesc" />
 
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center_vertical">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/action"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -80,7 +80,7 @@
             android:text="@string/cancel_follow"
             android:textColor="@color/white" />
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </com.mcxtzhang.swipemenulib.SwipeMenuLayout>
 

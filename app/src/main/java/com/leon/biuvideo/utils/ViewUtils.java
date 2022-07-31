@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleableRes;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -28,9 +30,14 @@ import com.leon.biuvideo.base.baseActivity.BaseActivity;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.ui.ViewPagerTouchMonitorListener;
 import com.leon.biuvideo.ui.adapters.ViewPager2Adapter;
-import com.leon.biuvideo.ui.widget.GridSpacingItemDecoration;
+import com.leon.biuvideo.ui.widget.GridItemDecoration;
+import com.leon.biuvideo.ui.widget.LinearItemDecoration;
 
 import java.util.List;
+
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.BaseItemAnimator;
+import jp.wasabeef.recyclerview.animators.ScaleInAnimator;
 
 /**
  * @Author Leon
@@ -42,6 +49,7 @@ public class ViewUtils {
     private static final int[] ATTRS = new int[android.R.attr.selectableItemBackground];
 
     private static final int SCROLLABLE_THRESHOLD = 5;
+    private static final int ITEM_ANIMATOR_DURATION = 100;
 
     public static void setRipple(View view) {
         TypedArray typedArray = view.getContext().obtainStyledAttributes(ATTRS);
@@ -174,7 +182,7 @@ public class ViewUtils {
      * @param event MotionEvent
      * @return 是否被消费
      */
-    public static boolean Zoom(MotionEvent event, View affectedView) {
+    public static boolean zoom(MotionEvent event, View affectedView) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             affectedView.setScaleX(0.9F);
             affectedView.setScaleY(0.9F);
@@ -192,38 +200,47 @@ public class ViewUtils {
                 .into(imageView);
     }
 
-    // 初始化器
-    public static void listInitializer(RecyclerView recyclerView, BaseViewBindingAdapter<?, ?> adapter, RecyclerView.LayoutManager layoutManager, int spanCount) {
-
-        recyclerView.setAdapter(adapter);
-        recyclerView.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
-        recyclerView.setMotionEventSplittingEnabled(false);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(layoutManager);
-
-        // todo 试用状态
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(adapter.context, spanCount, GridSpacingItemDecoration.INCLUDE_EDGE));
-
+    /**
+     * recyclerView initializer
+     *
+     * @param recyclerView {@link RecyclerView}
+     * @param adapter      {@link BaseViewBindingAdapter}
+     */
+    public static void listInitializer(RecyclerView recyclerView, BaseViewBindingAdapter<?, ?> adapter) {
+        recyclerViewInitializer(recyclerView, adapter);
     }
 
-    public static void listInitializer(RecyclerView recyclerView, BaseViewBindingAdapter<?, ?> adapter) {
-        recyclerView.setAdapter(adapter);
+    private static void recyclerViewInitializer(RecyclerView recyclerView, BaseViewBindingAdapter<?, ?> adapter) {
+        recyclerView.setAdapter(new AlphaInAnimationAdapter(adapter));
         recyclerView.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
         recyclerView.setMotionEventSplittingEnabled(false);
         recyclerView.setHasFixedSize(true);
 
-        int spanCount;
         RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
-        if (layoutManager instanceof LinearLayoutManager) {
-            spanCount = 1;
-        } else if (layoutManager instanceof StaggeredGridLayoutManager) {
-            spanCount = ((StaggeredGridLayoutManager) layoutManager).getSpanCount();
+        if (layoutManager instanceof GridLayoutManager) {
+            // todo 左右Item宽度不同待解决
+            GridItemDecoration itemDecoration = new GridItemDecoration(GridItemDecoration.GRID_OFFSETS_VERTICAL);
+            itemDecoration.setOffsetEdge(true);
+            itemDecoration.setOffsetLast(true);
+            itemDecoration.setVerticalItemOffsets(recyclerView.getContext().getResources().getDimensionPixelSize(R.dimen.GridItemVerticalOffset));
+            itemDecoration.setHorizontalItemOffsets(recyclerView.getContext().getResources().getDimensionPixelSize(R.dimen.GridItemHorizontalOffset));
+            recyclerView.addItemDecoration(itemDecoration);
+        } else if (layoutManager instanceof LinearLayoutManager) {
+            LinearItemDecoration itemDecoration = new LinearItemDecoration(LinearItemDecoration.LINEAR_OFFSETS_VERTICAL);
+            itemDecoration.setOffsetEdge(true);
+            itemDecoration.setOffsetLast(true);
+            itemDecoration.setItemOffsets(recyclerView.getContext().getResources().getDimensionPixelSize(R.dimen.LinearItemOffset));
+            recyclerView.addItemDecoration(itemDecoration);
         } else {
-            spanCount = 1;
+            throw new RuntimeException("fuck~~~");
         }
 
-        // todo 试用状态
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(adapter.context, spanCount, GridSpacingItemDecoration.INCLUDE_EDGE));
+        BaseItemAnimator itemAnimator = new ScaleInAnimator(new OvershootInterpolator());
+        itemAnimator.setAddDuration(ITEM_ANIMATOR_DURATION);
+        itemAnimator.setRemoveDuration(ITEM_ANIMATOR_DURATION);
+        itemAnimator.setChangeDuration(ITEM_ANIMATOR_DURATION);
+        itemAnimator.setMoveDuration(ITEM_ANIMATOR_DURATION);
 
+        recyclerView.setItemAnimator(itemAnimator);
     }
 }

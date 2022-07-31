@@ -12,14 +12,18 @@
         app:title="全站排行榜"
         app:withBottomLine="false" />
 
-    <include
+    <com.leon.biuvideo.ui.widget.HorizontalRecyclerView
         android:id="@+id/filter"
-        layout="@layout/compose_filter"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_filter" />
 
     <include
         android:id="@+id/content"
-        layout="@layout/refresh" />
+        layout="@layout/refresh_content" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

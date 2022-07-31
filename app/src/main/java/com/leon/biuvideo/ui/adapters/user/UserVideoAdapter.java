@@ -1,6 +1,8 @@
 package com.leon.biuvideo.ui.adapters.user;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.leon.biuvideo.R;
@@ -21,13 +23,8 @@ public class UserVideoAdapter extends BaseViewBindingAdapter<UserVideo.Data.Data
     }
 
     @Override
-    public int getLayout(int viewType) {
-        return R.layout.item_video;
-    }
-
-    @Override
-    protected ItemVideoBinding getItemViewBinding() {
-        return ItemVideoBinding.bind(itemView);
+    protected ItemVideoBinding getItemViewBinding(Context context, ViewGroup parent) {
+        return ItemVideoBinding.bind(LayoutInflater.from(context).inflate(R.layout.item_video, parent, false));
     }
 
     @Override

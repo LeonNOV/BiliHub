@@ -2,6 +2,8 @@ package com.leon.biuvideo.ui.adapters.user;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
@@ -27,13 +29,8 @@ public class UserPictureDetailAdapter extends BaseViewBindingAdapter<PictureInfo
     }
 
     @Override
-    public int getLayout(int viewType) {
-        return R.layout.item_picture;
-    }
-
-    @Override
-    protected ItemPictureBinding getItemViewBinding() {
-        return ItemPictureBinding.bind(itemView);
+    protected ItemPictureBinding getItemViewBinding(Context context, ViewGroup parent) {
+        return ItemPictureBinding.bind(LayoutInflater.from(context).inflate(R.layout.item_picture, parent, false));
     }
 
     @Override

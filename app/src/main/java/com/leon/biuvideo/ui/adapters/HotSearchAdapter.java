@@ -2,7 +2,9 @@ package com.leon.biuvideo.ui.adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseActivity.ActivityManager;
@@ -25,13 +27,8 @@ public class HotSearchAdapter extends BaseViewBindingAdapter<HotSearch.Data.Tren
     }
 
     @Override
-    public int getLayout(int viewType) {
-        return R.layout.item_hot_search;
-    }
-
-    @Override
-    protected ItemHotSearchBinding getItemViewBinding() {
-        return ItemHotSearchBinding.bind(itemView);
+    protected ItemHotSearchBinding getItemViewBinding(Context context, ViewGroup parent) {
+        return ItemHotSearchBinding.bind(LayoutInflater.from(context).inflate(R.layout.item_hot_search, parent, false));
     }
 
     @Override

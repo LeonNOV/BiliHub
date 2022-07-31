@@ -1,7 +1,9 @@
 package com.leon.biuvideo.ui.adapters.drawer;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
@@ -21,13 +23,8 @@ public class HistoryAdapter extends BaseViewBindingAdapter<History.Data.Data, It
     }
 
     @Override
-    public int getLayout(int viewType) {
-        return R.layout.item_history;
-    }
-
-    @Override
-    protected ItemHistoryBinding getItemViewBinding() {
-        return ItemHistoryBinding.bind(itemView);
+    protected ItemHistoryBinding getItemViewBinding(Context context, ViewGroup parent) {
+        return ItemHistoryBinding.bind(LayoutInflater.from(context).inflate(R.layout.item_history, parent, false));
     }
 
     @Override

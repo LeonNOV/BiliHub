@@ -2,34 +2,38 @@ package com.leon.biuvideo.ui.activities.publicActivities;
 
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
 import com.leon.biuvideo.beans.account.RelationDetail;
-import com.leon.biuvideo.databinding.RefreshContentBinding;
+import com.leon.biuvideo.databinding.PagePaginationBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
+import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.adapters.drawer.relation.RelationDetailAdapter;
 import com.leon.biuvideo.utils.PaginationLoader;
+
+import java.util.Map;
 
 /**
  * @Author Leon
  * @Time 2022/7/12
  * @Desc
  */
-public class RelationDetailActivity extends BaseActivity<RefreshContentBinding> {
-    public static final String PARAM = "tagId";
+public class RelationDetailActivity extends BaseActivity<PagePaginationBinding> {
+    public static final String PARAM_A = "tagId";
+    public static final String PARAM_B = "tagName";
     private int pageNum = 0;
 
     @Override
-    public RefreshContentBinding getViewBinding() {
-        return RefreshContentBinding.inflate(getLayoutInflater());
+    public PagePaginationBinding getViewBinding() {
+        return PagePaginationBinding.inflate(getLayoutInflater());
     }
 
     @Override
     protected void init() {
-        String tagId = params.getString(PARAM);
+        String tagId = params.getString(PARAM_A);
+        binding.topBar.setTopBarTitle(params.getString(PARAM_B));
 
-        HttpApi httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
-        PaginationLoader<RelationDetail, RelationDetail.Data> loader = new PaginationLoader<>(binding, new RelationDetailAdapter(context));
-        loader.closeRefresh();
+        HttpApi httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
+        PaginationLoader<RelationDetail, RelationDetail.Data> loader = new PaginationLoader<>(binding.content, new RelationDetailAdapter(context));
         loader.setGuide(RelationDetail::getData);
 
         loader

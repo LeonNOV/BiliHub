@@ -1,6 +1,8 @@
 package com.leon.biuvideo.ui.adapters.channel;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseActivity.ActivityManager;
@@ -24,13 +26,8 @@ public class ChannelMultipleContentAdapter extends BaseViewBindingAdapter<Channe
     }
 
     @Override
-    public int getLayout(int viewType) {
-        return R.layout.item_video_b;
-    }
-
-    @Override
-    protected ItemVideoBBinding getItemViewBinding() {
-        return ItemVideoBBinding.bind(itemView);
+    protected ItemVideoBBinding getItemViewBinding(Context context, ViewGroup parent) {
+        return ItemVideoBBinding.bind(LayoutInflater.from(context).inflate(R.layout.item_video_b, parent, false));
     }
 
     @Override

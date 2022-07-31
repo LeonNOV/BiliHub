@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.mcxtzhang.swipemenulib.SwipeMenuLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clickable="true"
     android:background="@drawable/round_bg"
-    android:orientation="vertical"
-    android:focusable="true">
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/container"

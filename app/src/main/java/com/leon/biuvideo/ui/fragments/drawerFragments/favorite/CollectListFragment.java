@@ -30,7 +30,6 @@ public class CollectListFragment extends BaseLazyFragment<RefreshContentBinding>
     protected void initView() {
         HttpApi httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
         loader = new PaginationLoader<>(binding, new CollectAdapter(context));
-        loader.closeRefresh();
         loader.setGuide(collect -> collect.getData().getList());
         loader.setUpdateInterface(loadType -> httpApi.getUserCollect(++pageNum, "49405324"));
     }

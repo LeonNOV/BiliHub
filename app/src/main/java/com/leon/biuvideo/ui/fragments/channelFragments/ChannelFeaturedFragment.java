@@ -10,7 +10,7 @@ import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.beans.home.channel.ChannelDetailFeatured;
 import com.leon.biuvideo.ui.adapters.channel.ChannelFeaturedAdapter;
-import com.leon.biuvideo.ui.adapters.channel.ChannelFeaturedFilterAdapter;
+import com.leon.biuvideo.utils.filter.FilterAdapter;
 import com.leon.biuvideo.utils.PaginationLoader;
 
 import java.util.List;
@@ -43,29 +43,38 @@ public class ChannelFeaturedFragment extends BaseLazyFragment<PageFilterRefreshB
 
     @Override
     protected void initView() {
-        ChannelFeaturedFilterAdapter filterAdapter = new ChannelFeaturedFilterAdapter(context).setOnFilterCallback(option -> {
-            ChannelFeaturedFragment.this.type = Integer.parseInt(option.getValue());
-            reload();
+        FilterAdapter<ChannelDetail.Data.Tab.Option> filterAdapter = new FilterAdapter<>(context);
+        filterAdapter.setOnFilterCallback(new FilterAdapter.OnFilterCallback<>() {
+            @Override
+            public void onReload(ChannelDetail.Data.Tab.Option option) {
+                ChannelFeaturedFragment.this.type = Integer.parseInt(option.getValue());
+                reload();
+            }
+
+            @Override
+            public String onGuide(ChannelDetail.Data.Tab.Option option) {
+                return option.getTitle();
+            }
         });
+
         filterAdapter.appendHead(options);
-        binding.filter.subTab.setAdapter(filterAdapter);
+        binding.filter.setAdapter(filterAdapter);
 
         httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
 
         adapter = new ChannelFeaturedAdapter(context);
-        loader = new PaginationLoader<>(binding.content, adapter);
-        loader.closeRefresh();
-        loader.setLayoutManager(new GridLayoutManager(context, 2));
-        loader.setGuide(channelDetailFeatured -> channelDetailFeatured.getData().getList());
+        loader = new PaginationLoader<>(binding.content, adapter, new GridLayoutManager(context, 2));
+        loader.setGuide(channelDetailFeatured -> {
+            offset = channelDetailFeatured.getData().getOffset();
+
+            return channelDetailFeatured.getData().getList();
+        });
         reload();
     }
 
     @Override
     protected void onLazyLoad() {}
 
-    /**
-     * todo 重载数据错误待修复
-     */
     private void reload() {
         offset = null;
         adapter.removeAll();

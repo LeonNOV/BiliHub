@@ -29,7 +29,7 @@ public class RelationActivity extends BaseActivity<PageRecyclerBinding> {
         RecyclerViewLoader<RelationTags, RelationTags.Data> loader = new RecyclerViewLoader<>(binding.content, new RelationTagsAdapter(context));
         loader
                 .setGuide(RelationTags::getData)
-                .setObservable(new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi().getUserRelationTags())
+                .setObservable(new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi().getUserRelationGroups())
                 .obtain(false);
     }
 }

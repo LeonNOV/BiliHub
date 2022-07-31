@@ -1,6 +1,8 @@
 package com.leon.biuvideo.ui.adapters.drawer;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.leon.biuvideo.R;
@@ -23,13 +25,8 @@ public class CollectAdapter extends BaseViewBindingAdapter<Collect.Data.CollectD
     }
 
     @Override
-    public int getLayout(int viewType) {
-        return R.layout.item_collect;
-    }
-
-    @Override
-    protected ItemCollectBinding getItemViewBinding() {
-        return ItemCollectBinding.bind(itemView);
+    protected ItemCollectBinding getItemViewBinding(Context context, ViewGroup parent) {
+        return ItemCollectBinding.bind(LayoutInflater.from(context).inflate(R.layout.item_collect, parent, false));
     }
 
     @Override

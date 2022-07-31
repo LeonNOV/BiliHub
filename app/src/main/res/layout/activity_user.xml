@@ -36,15 +36,30 @@
                         android:scaleType="centerCrop"
                         android:src="@drawable/user_default_banner" />
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/user_face"
+                    <FrameLayout
                         android:layout_width="@dimen/BiliUserFaceWH"
                         android:layout_height="@dimen/BiliUserFaceWH"
-                        android:layout_alignParentBottom="true"
                         android:layout_marginStart="20dp"
-                        android:src="@drawable/user_face_default"
-                        app:civ_border_color="@color/white"
-                        app:civ_border_width="@dimen/face_border_width" />
+                        android:layout_alignParentBottom="true">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/user_face"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/user_face_default"
+                            app:civ_border_color="@color/white"
+                            app:civ_border_width="@dimen/face_border_width" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/mark"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="bottom|end"
+                            android:src="@drawable/ic_official_verify"
+                            android:visibility="gone"
+                            tools:visibility="visible" />
+
+                    </FrameLayout>
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/follow"

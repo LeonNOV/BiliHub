@@ -78,7 +78,7 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding> {
             return false;
         });
 
-        binding.back.setOnTouchListener((v, event) -> ViewUtils.Zoom(event, binding.back));
+        binding.back.setOnTouchListener((v, event) -> ViewUtils.zoom(event, binding.back));
         binding.back.setOnClickListener(v -> backPressed());
 
         RecyclerViewLoader<HotSearch, HotSearch.Data.Trending.Data> loader = new RecyclerViewLoader<>(binding.hotSearch, new HotSearchAdapter(context));

@@ -37,7 +37,6 @@ public class UserPictureFragment extends BaseLazyFragment<RefreshContentBinding>
 
         httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
         loader = new PaginationLoader<>(binding, new UserPictureAdapter(context));
-        loader.closeRefresh();
         loader.setGuide(userPicture -> userPicture.getData().getItems());
         loader.setUpdateInterface(loadType -> httpApi.getUserPicture(mid, ++pageNum));
     }

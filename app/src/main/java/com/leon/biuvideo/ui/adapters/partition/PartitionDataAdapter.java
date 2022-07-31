@@ -1,6 +1,7 @@
 package com.leon.biuvideo.ui.adapters.partition;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.biuvideo.R;
@@ -25,13 +26,8 @@ public class PartitionDataAdapter extends BaseViewBindingAdapter<PartitionData.R
     }
 
     @Override
-    public int getLayout(int viewType) {
-        return R.layout.item_partition_video;
-    }
-
-    @Override
-    protected ItemPartitionVideoBinding getItemViewBinding() {
-        return ItemPartitionVideoBinding.bind(itemView);
+    protected ItemPartitionVideoBinding getItemViewBinding(Context context, ViewGroup parent) {
+        return ItemPartitionVideoBinding.bind(LayoutInflater.from(context).inflate(R.layout.item_partition_video, parent, false));
     }
 
     @Override

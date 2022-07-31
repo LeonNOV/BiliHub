@@ -57,7 +57,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         binding.home.userFace.setOnClickListener(v -> binding.getRoot().openDrawer(GravityCompat.START));
         binding.home.search.setOnClickListener(v -> startActivity(AudioActivity.class, Map.of(AudioActivity.PARAM, "305581")));
 //        binding.home.search.setOnClickListener(v -> startActivity(SearchActivity.class));
-        binding.drawer.userContainer.setOnTouchListener((v, event) -> ViewUtils.Zoom(event, binding.drawer.userContainer));
+        binding.drawer.userContainer.setOnTouchListener((v, event) -> ViewUtils.zoom(event, binding.drawer.userContainer));
         binding.drawer.userContainer.setOnClickListener(v -> {
             startActivity(LoginActivity.class);
 //            startActivity(ProfileActivity.class);

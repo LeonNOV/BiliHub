@@ -32,7 +32,6 @@ public class UserArticleFragment extends BaseLazyFragment<RefreshContentBinding>
     protected void initView() {
         HttpApi httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
         loader = new PaginationLoader<>(binding, new UserArticleAdapter(context));
-        loader.closeRefresh();
         loader.setGuide(userArticle -> userArticle.getData().getArticles());
         loader.setUpdateInterface(loadType -> httpApi.getUserArticle(mid, ++pageNum));
     }

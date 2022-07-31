@@ -71,8 +71,10 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <include
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/content"
-        layout="@layout/refresh_content" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

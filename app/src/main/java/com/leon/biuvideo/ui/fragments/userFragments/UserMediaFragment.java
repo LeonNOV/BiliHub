@@ -40,12 +40,11 @@ public class UserMediaFragment extends BaseLazyFragment<FragmentUserMediaBinding
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void initView() {
-        binding.audio.setOnTouchListener((v, event) -> ViewUtils.Zoom(event, binding.audio));
+        binding.audio.setOnTouchListener((v, event) -> ViewUtils.zoom(event, binding.audio));
         binding.audio.setOnClickListener(v -> startActivity(UserAudioActivity.class, Map.of(UserActivity.PARAM, mid)));
 
         httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
         loader = new PaginationLoader<>(RefreshContentBinding.bind(binding.content.getRoot()), new UserVideoAdapter(context));
-        loader.closeRefresh();
         loader.setGuide(userVideo -> userVideo.getData().getList().getVideoList());
         loader.setUpdateInterface(loadType -> httpApi.getUserVideo(mid, ++pageNum, "pubdate"));
     }

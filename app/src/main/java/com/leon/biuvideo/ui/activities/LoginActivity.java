@@ -39,10 +39,10 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void init() {
-        binding.activityLoginBack.setOnTouchListener((v, event) -> ViewUtils.Zoom(event, binding.activityLoginBack));
+        binding.activityLoginBack.setOnTouchListener((v, event) -> ViewUtils.zoom(event, binding.activityLoginBack));
         binding.activityLoginBack.setOnClickListener(v -> backPressed());
 
-        binding.activityLoginRefresh.setOnTouchListener((v, event) -> ViewUtils.Zoom(event, binding.activityLoginRefresh));
+        binding.activityLoginRefresh.setOnTouchListener((v, event) -> ViewUtils.zoom(event, binding.activityLoginRefresh));
         binding.activityLoginRefresh.setOnClickListener(v -> binding.activityLoginWebView.reload());
 
         binding.activityLoginWebView.loadUrl(ORIGINAL_URL);

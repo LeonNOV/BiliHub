@@ -1,6 +1,8 @@
 package com.leon.biuvideo.ui.adapters.user;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
@@ -23,13 +25,8 @@ public class UserArticleAdapter extends BaseViewBindingAdapter<UserArticle.Data.
     }
 
     @Override
-    public int getLayout(int viewType) {
-        return R.layout.item_user_article;
-    }
-
-    @Override
-    protected ItemUserArticleBinding getItemViewBinding() {
-        return ItemUserArticleBinding.bind(itemView);
+    protected ItemUserArticleBinding getItemViewBinding(Context context, ViewGroup parent) {
+        return ItemUserArticleBinding.bind(LayoutInflater.from(context).inflate(R.layout.item_user_article, parent, false));
     }
 
     @Override

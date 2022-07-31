@@ -43,6 +43,7 @@
             android:id="@+id/title"
             style="@style/VideoTitleStyle"
             tools:text="TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle" />
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,9 +64,9 @@
                 android:id="@+id/progress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTint="@color/infoColor"
                 android:drawableStart="@drawable/ic_history_progress"
                 android:drawablePadding="5dp"
+                android:drawableTint="@color/infoColor"
                 android:textColor="@color/infoColor"
                 android:textSize="@dimen/infoSize"
                 tools:text="纪录片|看到第1集 解放西新番  53:17|全10集" />

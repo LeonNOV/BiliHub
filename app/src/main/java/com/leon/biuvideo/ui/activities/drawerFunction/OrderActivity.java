@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @Author Leon
  * @Time 2022/7/12
- * @Desc 收藏夹界面
+ * @Desc 订阅界面
  */
 public class OrderActivity extends BaseActivity<ActivityOrderBinding> {
 

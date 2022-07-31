@@ -1,6 +1,8 @@
 package com.leon.biuvideo.ui.adapters.drawer;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
@@ -20,13 +22,8 @@ public class PopularRankPartitionAdapter extends BaseViewBindingAdapter<String, 
     }
 
     @Override
-    public int getLayout(int viewType) {
-        return R.layout.item_text;
-    }
-
-    @Override
-    protected ItemTextBinding getItemViewBinding() {
-        return ItemTextBinding.bind(itemView);
+    protected ItemTextBinding getItemViewBinding(Context context, ViewGroup parent) {
+        return ItemTextBinding.bind(LayoutInflater.from(context).inflate(R.layout.item_text, parent, false));
     }
 
     @Override

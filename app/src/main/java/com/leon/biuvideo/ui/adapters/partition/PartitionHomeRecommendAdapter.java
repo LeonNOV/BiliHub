@@ -1,6 +1,8 @@
 package com.leon.biuvideo.ui.adapters.partition;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
@@ -37,13 +39,8 @@ public class PartitionHomeRecommendAdapter extends BaseViewBindingAdapter<String
     }
 
     @Override
-    public int getLayout(int viewType) {
-        return R.layout.item_partition_home_recommend;
-    }
-
-    @Override
-    protected ItemPartitionHomeRecommendBinding getItemViewBinding() {
-        return ItemPartitionHomeRecommendBinding.bind(itemView);
+    protected ItemPartitionHomeRecommendBinding getItemViewBinding(Context context, ViewGroup parent) {
+        return ItemPartitionHomeRecommendBinding.bind(LayoutInflater.from(context).inflate(R.layout.item_partition_home_recommend, parent, false));
     }
 
     @Override

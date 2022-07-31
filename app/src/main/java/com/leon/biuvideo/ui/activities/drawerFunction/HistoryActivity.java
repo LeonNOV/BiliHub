@@ -28,15 +28,15 @@ public class HistoryActivity extends BaseActivity<ActivityHistoryBinding> {
 
     @Override
     protected void init() {
-        PaginationLoader<History, History.Data.Data> paginationLoader = new PaginationLoader<>(binding.content, new HistoryAdapter(context));
-        paginationLoader.closeRefresh();
-        paginationLoader.setGuide(history -> {
+        HttpApi httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
+        PaginationLoader<History, History.Data.Data> loader = new PaginationLoader<>(binding.content, new HistoryAdapter(context));
+        loader.setGuide(history -> {
             History.Data.Cursor cursor = history.getData().getCursor();
             max = cursor.getMax();
             viewAt = cursor.getViewAt();
 
             return history.getData().getList();
         });
-        paginationLoader.setUpdateInterface(loadType -> new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi().getUserHistory(max, viewAt)).obtain();
+        loader.setUpdateInterface(loadType -> httpApi.getUserHistory(max, viewAt)).obtain();
     }
 }

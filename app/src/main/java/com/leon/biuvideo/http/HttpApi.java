@@ -239,10 +239,10 @@ public interface HttpApi {
      * @return {@link RelationTags}
      */
     @GET("x/relation/tags")
-    Observable<RelationTags> getUserRelationTags();
+    Observable<RelationTags> getUserRelationGroups();
 
     /**
-     * 用户关注分组
+     * 用户关注分组详情
      * <strong>只需要Cookie</strong>
      * <p>
      * https://space.bilibili.com/49405324/fans/follow

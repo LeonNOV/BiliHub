@@ -58,41 +58,27 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
         init();
     }
 
+    public PaginationLoader(@NonNull RefreshContentBinding binding, BaseViewBindingAdapter<B, ? extends ViewBinding> adapter, RecyclerView.LayoutManager layoutManager) {
+        this.binding = binding;
+        this.adapter = adapter;
+        this.binding.container.content.setLayoutManager(layoutManager);
+
+        init();
+    }
+
     private void init() {
         initRecyclerView();
         initSmart();
+
+        // 默认关闭下拉刷新
+        enabledRefresh(false);
     }
 
     /**
      * 初始化RecyclerView
      */
     private void initRecyclerView() {
-        this.adapter.setHasStableIds(true);
-
-        RecyclerView recyclerView = binding.container.content;
-        recyclerView.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
-        recyclerView.setMotionEventSplittingEnabled(false);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapter);
-
-        LayoutAnimationController animationController = AnimationUtils.loadLayoutAnimation(binding.getRoot().getContext(), R.anim.recycler_view_fall_down);
-        recyclerView.setLayoutAnimation(animationController);
-
-        int spanCount;
-        RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
-        if (layoutManager instanceof LinearLayoutManager) {
-            spanCount = 1;
-        } else if (layoutManager instanceof StaggeredGridLayoutManager) {
-            spanCount = ((StaggeredGridLayoutManager) layoutManager).getSpanCount();
-        } else {
-            spanCount = 1;
-        }
-
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(adapter.context, spanCount, GridSpacingItemDecoration.INCLUDE_EDGE));
-    }
-
-    public void setLayoutManager(RecyclerView.LayoutManager layoutManager) {
-        binding.container.content.setLayoutManager(layoutManager);
+        ViewUtils.listInitializer(binding.container.content, adapter);
     }
 
     /**
@@ -221,8 +207,8 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
     /**
      * 关闭刷新控件
      */
-    public void closeRefresh() {
-        binding.container.container.setEnableRefresh(false);
+    public void enabledRefresh(boolean enabled) {
+        binding.container.container.setEnableRefresh(enabled);
     }
 
     public void setGuide(GuideInterface<T, B> guideInterface) {

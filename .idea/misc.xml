@@ -52,6 +52,7 @@
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/drawable/ic_favorite_status.xml" value="0.2195" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/drawable/ic_favorited.xml" value="0.2195" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/drawable/ic_lived.xml" value="0.2195" />
+        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/drawable/ic_official_verify.xml" value="0.273" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/drawable/ic_refresh.xml" value="0.316" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/drawable/ic_search.xml" value="0.374" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/drawable/ic_up_user.xml" value="0.2805" />
@@ -92,7 +93,7 @@
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/activity_article.xml" value="0.7985948477751756" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/activity_audio.xml" value="0.7985948477751756" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/activity_channel.xml" value="0.7985948477751756" />
-        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/activity_channel_detail.xml" value="0.23436426116838488" />
+        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/activity_channel_detail.xml" value="0.7985948477751756" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/activity_channel_list.xml" value="0.7985948477751756" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/activity_data_list.xml" value="0.35520833333333335" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/activity_download.xml" value="0.35520833333333335" />
@@ -111,7 +112,7 @@
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/activity_partition.xml" value="0.35520833333333335" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/activity_partition_data_list.xml" value="0.35520833333333335" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/activity_partition_detail.xml" value="0.7985948477751756" />
-        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/activity_partition_rank.xml" value="0.35520833333333335" />
+        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/activity_partition_rank.xml" value="0.4063231850117096" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/activity_picture.xml" value="0.7985948477751756" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/activity_picture_viewer.xml" value="0.7985948477751756" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/activity_popular.xml" value="0.3411458333333333" />
@@ -151,7 +152,7 @@
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/fragment_channel_multiple.xml" value="0.7985948477751756" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/fragment_comprehensive_result.xml" value="0.3541666666666667" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/fragment_data_list.xml" value="0.35520833333333335" />
-        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/fragment_drawer_order.xml" value="0.23436426116838488" />
+        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/fragment_drawer_order.xml" value="0.7985948477751756" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/fragment_first.xml" value="0.35520833333333335" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/fragment_first2.xml" value="0.35520833333333335" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/fragment_nav_composite.xml" value="0.3411458333333333" />
@@ -199,15 +200,15 @@
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/item_picture.xml" value="0.7985948477751756" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/item_relation_tag.xml" value="0.35520833333333335" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/item_text.xml" value="0.3541666666666667" />
-        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/item_user.xml" value="0.3333333333333333" />
+        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/item_user.xml" value="0.7985948477751756" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/item_video.xml" value="0.7985948477751756" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/item_video_b.xml" value="0.7985948477751756" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/item_watch_later.xml" value="0.23680555555555555" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/page_filter.xml" value="0.7985948477751756" />
-        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/page_filter_refresh.xml" value="0.7985948477751756" />
+        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/page_filter_refresh.xml" value="0.5924242424242424" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/page_multiple.xml" value="0.7985948477751756" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/page_recycler.xml" value="0.7985948477751756" />
-        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/page_single.xml" value="0.35520833333333335" />
+        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/page_single.xml" value="0.7985948477751756" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/point.xml" value="0.7985948477751756" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/popup_comprehensive_fiter.xml" value="0.35520833333333335" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/refresh.xml" value="0.35520833333333335" />

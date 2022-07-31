@@ -1,6 +1,8 @@
 package com.leon.biuvideo.ui.adapters;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.leon.biuvideo.R;
@@ -25,13 +27,8 @@ public class SeriesAdapter extends BaseViewBindingAdapter<Series.Data.Item, Item
     }
 
     @Override
-    public int getLayout(int viewType) {
-        return R.layout.item_text;
-    }
-
-    @Override
-    protected ItemTextBinding getItemViewBinding() {
-        return ItemTextBinding.bind(itemView);
+    protected ItemTextBinding getItemViewBinding(Context context, ViewGroup parent) {
+        return ItemTextBinding.bind(LayoutInflater.from(context).inflate(R.layout.item_text, parent, false));
     }
 
     @Override

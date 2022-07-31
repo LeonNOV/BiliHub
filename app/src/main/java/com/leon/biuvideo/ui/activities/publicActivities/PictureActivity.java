@@ -76,7 +76,7 @@ public class PictureActivity extends AsyncHttpActivity<ActivityPictureBinding, P
             UserPictureDetailAdapter adapter = new UserPictureDetailAdapter(context, pictureInfo.getData().getItem().getModules().getModuleDynamic().getMajor().getDraw().getItems());
 
             adapter.appendHead(pictureInfo.getData().getItem().getModules().getModuleDynamic().getMajor().getDraw().getItems());
-            ViewUtils.listInitializer(binding.content, adapter, new GridLayoutManager(context, spanCount), spanCount);
+            ViewUtils.listInitializer(binding.content, adapter);
         }).doIt();
     }
 }

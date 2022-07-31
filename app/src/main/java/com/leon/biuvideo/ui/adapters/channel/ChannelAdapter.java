@@ -1,6 +1,8 @@
 package com.leon.biuvideo.ui.adapters.channel;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
@@ -24,13 +26,8 @@ public class ChannelAdapter extends BaseViewBindingAdapter<ChannelData.Data.Arch
     }
 
     @Override
-    public int getLayout(int viewType) {
-        return R.layout.item_channel;
-    }
-
-    @Override
-    protected ItemChannelBinding getItemViewBinding() {
-        return ItemChannelBinding.bind(itemView);
+    protected ItemChannelBinding getItemViewBinding(Context context, ViewGroup parent) {
+        return ItemChannelBinding.bind(LayoutInflater.from(context).inflate(R.layout.item_channel, parent, false));
     }
 
     @Override

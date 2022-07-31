@@ -50,7 +50,7 @@ public class UserActivity extends AsyncHttpActivity<ActivityUserBinding, UserInf
             backPressed();
         }
 
-        binding.follow.setOnTouchListener((v, event) -> ViewUtils.Zoom(event, binding.follow));
+        binding.follow.setOnTouchListener((v, event) -> ViewUtils.zoom(event, binding.follow));
         binding.appBar.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
             if (Math.abs(verticalOffset) == appBarLayout.getTotalScrollRange()) {
                 crossFade(true);
@@ -82,6 +82,12 @@ public class UserActivity extends AsyncHttpActivity<ActivityUserBinding, UserInf
             ViewUtils.setImg(context, binding.userFace, userInfo.getData().getFace());
             binding.name.setText(userInfo.getData().getName());
             binding.toolBarName.setText(userInfo.getData().getName());
+
+            int roleVerify = userInfo.getData().getOfficial().getRole();
+            if (roleVerify != 0) {
+                binding.mark.setVisibility(View.VISIBLE);
+                binding.mark.setImageResource(roleVerify == 1 ? R.drawable.ic_person_verify : R.drawable.ic_official_verify);
+            }
 
             setLevel(userInfo.getData().getLevel());
             if (userInfo.getData().getVip().getStatus() == 1) {

@@ -10,7 +10,7 @@ import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.adapters.drawer.WatchLaterAdapter;
-import com.leon.biuvideo.utils.PaginationLoader;
+import com.leon.biuvideo.utils.RecyclerViewLoader;
 
 import java.util.Map;
 
@@ -30,11 +30,10 @@ public class WatchLaterActivity extends BaseActivity<ActivityWatchLaterBinding> 
         binding.clear.setOnClickListener(v -> Toast.makeText(context, "开发中", Toast.LENGTH_SHORT).show());
         binding.remove.setOnClickListener(v -> Toast.makeText(context, "开发中", Toast.LENGTH_SHORT).show());
 
-        HttpApi httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
-
-        PaginationLoader<WatchLater, WatchLater.Data.WatchLaterData> loader = new PaginationLoader<>(binding.content, new WatchLaterAdapter(context));
-        loader.setGuide(watchLater -> watchLater.getData().getList());
-        loader.closeRefresh();
-        loader.setUpdateInterface(loadType -> httpApi.getUserWatchLater()).obtain();
+        RecyclerViewLoader<WatchLater, WatchLater.Data.WatchLaterData> loader = new RecyclerViewLoader<>(binding.content, new WatchLaterAdapter(context));
+        loader
+                .setGuide(watchLater -> watchLater.getData().getList())
+                .setObservable(new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi().getUserWatchLater())
+                .obtain(false);
     }
 }

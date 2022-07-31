@@ -1,6 +1,8 @@
 package com.leon.biuvideo.ui.adapters.user;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseActivity.ActivityManager;
@@ -25,13 +27,8 @@ public class UserAudioAdapter extends BaseViewBindingAdapter<UserAudio.Data.Audi
     }
 
     @Override
-    public int getLayout(int viewType) {
-        return R.layout.item_user_audio;
-    }
-
-    @Override
-    protected ItemUserAudioBinding getItemViewBinding() {
-        return ItemUserAudioBinding.bind(itemView);
+    protected ItemUserAudioBinding getItemViewBinding(Context context, ViewGroup parent) {
+        return ItemUserAudioBinding.bind(LayoutInflater.from(context).inflate(R.layout.item_user_audio, parent, false));
     }
 
     @Override

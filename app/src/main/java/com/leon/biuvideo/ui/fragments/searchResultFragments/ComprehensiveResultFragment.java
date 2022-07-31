@@ -1,14 +1,14 @@
 package com.leon.biuvideo.ui.fragments.searchResultFragments;
 
 import com.leon.biuvideo.base.baseFragment.BaseLazyFragment;
-import com.leon.biuvideo.databinding.FragmentResultComprehensiveBinding;
+import com.leon.biuvideo.databinding.PageFilterRefreshBinding;
 
 /**
  * @Author Leon
  * @Time 2022/06/23
  * @Desc
  */
-public class ComprehensiveResultFragment extends BaseLazyFragment<FragmentResultComprehensiveBinding> {
+public class ComprehensiveResultFragment extends BaseLazyFragment<PageFilterRefreshBinding> {
     private final String keyword;
 
     public ComprehensiveResultFragment(String keyword) {
@@ -16,8 +16,8 @@ public class ComprehensiveResultFragment extends BaseLazyFragment<FragmentResult
     }
 
     @Override
-    public FragmentResultComprehensiveBinding getViewBinding() {
-        return FragmentResultComprehensiveBinding.inflate(getLayoutInflater());
+    public PageFilterRefreshBinding getViewBinding() {
+        return PageFilterRefreshBinding.inflate(getLayoutInflater());
     }
 
     @Override

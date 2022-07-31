@@ -62,10 +62,7 @@ public class ChannelMultipleFragment extends BaseLazyFragment<FragmentChannelMul
 
         contentAdapter = new ChannelMultipleContentAdapter(context);
         httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
-        loader = new PaginationLoader<>(binding.content, contentAdapter);
-
-        loader.closeRefresh();
-        loader.setLayoutManager(new GridLayoutManager(context, 2));
+        loader = new PaginationLoader<>(binding.content, contentAdapter, new GridLayoutManager(context, 2));
         loader.setGuide(channelDetailMultiple -> {
             offset = channelDetailMultiple.getData().getOffset();
 
@@ -93,7 +90,6 @@ public class ChannelMultipleFragment extends BaseLazyFragment<FragmentChannelMul
     @Override
     protected void onLazyLoad() {}
 
-    // todo 重载数据错误待修复
     private void reload() {
         offset = null;
         contentAdapter.removeAll();

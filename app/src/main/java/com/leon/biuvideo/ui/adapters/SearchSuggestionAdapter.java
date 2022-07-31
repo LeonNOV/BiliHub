@@ -1,6 +1,8 @@
 package com.leon.biuvideo.ui.adapters;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseActivity.ActivityManager;
@@ -22,13 +24,8 @@ public class SearchSuggestionAdapter extends BaseViewBindingAdapter<SearchSugges
     }
 
     @Override
-    public int getLayout(int viewType) {
-        return R.layout.item_search_suggestion;
-    }
-
-    @Override
-    protected ItemSearchSuggestionBinding getItemViewBinding() {
-        return ItemSearchSuggestionBinding.bind(itemView);
+    protected ItemSearchSuggestionBinding getItemViewBinding(Context context, ViewGroup parent) {
+        return ItemSearchSuggestionBinding.bind(LayoutInflater.from(context).inflate(R.layout.item_search_suggestion, parent, false));
     }
 
     @Override

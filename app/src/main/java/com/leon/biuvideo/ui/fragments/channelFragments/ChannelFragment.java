@@ -72,7 +72,6 @@ public class ChannelFragment extends BaseLazyFragment<FragmentChannelBinding> {
 
             HttpApi httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
             loader = new PaginationLoader<>(binding.content, new ChannelAdapter(context));
-            loader.closeRefresh();
             loader.setGuide(channelData -> {
                 offset = channelData.getData().getOffset();
                 return channelData.getData().getArchiveChannels();
