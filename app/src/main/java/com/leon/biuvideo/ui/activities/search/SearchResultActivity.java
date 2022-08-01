@@ -2,7 +2,6 @@ package com.leon.biuvideo.ui.activities.search;
 
 import androidx.fragment.app.Fragment;
 
-import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
 import com.leon.biuvideo.databinding.ActivitySearchResultBinding;
 import com.leon.biuvideo.ui.fragments.searchResultFragments.AnimeResultResultFragment;
@@ -19,7 +18,7 @@ import java.util.List;
 /**
  * @Author Leon
  * @Time 2022/6/23
- * @Desc
+ * @Desc 搜索结果页面
  */
 public class SearchResultActivity extends BaseActivity<ActivitySearchResultBinding> {
     public static final String PARAM = "keyword";
@@ -34,7 +33,7 @@ public class SearchResultActivity extends BaseActivity<ActivitySearchResultBindi
         String keyword = params.getString(PARAM, "");
 
         binding.searchResultKeyword.setText(keyword);
-        binding.searchResultCancel.setOnClickListener(v -> cancel());
+        binding.searchResultCancel.setOnClickListener(v -> backPressed());
         binding.searchResultClear.setOnClickListener(v -> startActivity(SearchActivity.class));
 
         /*
@@ -55,17 +54,5 @@ public class SearchResultActivity extends BaseActivity<ActivitySearchResultBindi
 
         ViewUtils.initTabLayout(this, binding.searchResultTabLayout, binding.searchResultViewPager,
                 fragments, "综合", "番剧", "直播", "用户", "影视", "专栏");
-    }
-
-    private void cancel() {
-        backPressed();
-        ActivityManager.popTo(SearchActivity.class);
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        cancel();
     }
 }

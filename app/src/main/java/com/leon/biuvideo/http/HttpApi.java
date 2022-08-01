@@ -9,6 +9,12 @@ import com.leon.biuvideo.beans.account.RelationTags;
 import com.leon.biuvideo.beans.account.WatchLater;
 import com.leon.biuvideo.beans.home.HomeRecommend;
 import com.leon.biuvideo.beans.home.HotSearch;
+import com.leon.biuvideo.beans.home.searchResult.SearchResultArticle;
+import com.leon.biuvideo.beans.home.searchResult.SearchResultBangumi;
+import com.leon.biuvideo.beans.home.searchResult.SearchResultFt;
+import com.leon.biuvideo.beans.home.searchResult.SearchResultLive;
+import com.leon.biuvideo.beans.home.searchResult.SearchResultUser;
+import com.leon.biuvideo.beans.home.searchResult.SearchResultVideo;
 import com.leon.biuvideo.beans.home.channel.ChannelCategory;
 import com.leon.biuvideo.beans.home.channel.ChannelData;
 import com.leon.biuvideo.beans.home.channel.ChannelDetail;
@@ -312,6 +318,70 @@ public interface HttpApi {
      */
     @GET("x/web-interface/search/square?limit=10")
     Observable<HotSearch> getHotSearch();
+
+    /**
+     * 搜索结果-视频
+     * <p>
+     * https://search.bilibili.com/video?keyword=123
+     *
+     * @return {@link HotSearch}
+     */
+    @GET("x/web-interface/search/type?page_size=30&platform=Android&search_type=video")
+    Observable<SearchResultVideo> getSearchResultVideo(@Query("page") int pageNum, @Query("keyword") String keyword,
+                                                       @Query("order") String order, @Query("duration") int duration, @Query("tids") int tids);
+
+    /**
+     * 搜索结果-番剧
+     * <p>
+     * https://search.bilibili.com/bangumi?keyword=123
+     *
+     * @return {@link HotSearch}
+     */
+    @GET("x/web-interface/search/type?page_size=30&platform=Android&search_type=media_bangumi")
+    Observable<SearchResultBangumi> getSearchResultBangumi(@Query("page") int pageNum, @Query("keyword") String keyword);
+
+    /**
+     * 搜索结果-影视
+     * <p>
+     * https://search.bilibili.com/pgc?keyword=123
+     *
+     * @return {@link HotSearch}
+     */
+    @GET("x/web-interface/search/type?page_size=30&platform=Android&search_type=media_ft")
+    Observable<SearchResultFt> getSearchResultFt(@Query("page") int pageNum, @Query("keyword") String keyword);
+
+    /**
+     * 搜索结果-直播
+     * <p>
+     * https://search.bilibili.com/live?keyword=123
+     *
+     * @return {@link HotSearch}
+     */
+    @GET("x/web-interface/search/type?page_size=30&platform=Android&search_type=live")
+    Observable<SearchResultLive> getSearchResultLive(@Query("page") int pageNum, @Query("keyword") String keyword,
+                                                     @Query("order") String order, @Query("search_type") String searchType);
+
+    /**
+     * 搜索结果-专栏
+     * <p>
+     * https://search.bilibili.com/article?keyword=123
+     *
+     * @return {@link HotSearch}
+     */
+    @GET("x/web-interface/search/type?page_size=30&platform=Android&search_type=article")
+    Observable<SearchResultArticle> getSearchResultArticle(@Query("page") int pageNum, @Query("keyword") String keyword,
+                                                           @Query("order") String order, @Query("category_id") int categoryId);
+
+    /**
+     * 搜索结果-用户
+     * <p>
+     * https://search.bilibili.com/upuser?keyword=123
+     *
+     * @return {@link HotSearch}
+     */
+    @GET("x/web-interface/search/type?page_size=30&platform=Android&search_type=bili_user")
+    Observable<SearchResultUser> getSearchResultUser(@Query("page") int pageNum, @Query("keyword") String keyword,
+                                                     @Query("order") String order, @Query("order_sort") int orderSort, @Query("user_type") int userType);
 
     /**
      * 频道列表分组

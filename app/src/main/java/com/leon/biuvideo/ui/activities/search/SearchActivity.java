@@ -1,7 +1,6 @@
 package com.leon.biuvideo.ui.activities.search;
 
 import android.annotation.SuppressLint;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -9,7 +8,6 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 
 import com.leon.biuvideo.R;
-import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
 import com.leon.biuvideo.beans.home.HotSearch;
 import com.leon.biuvideo.beans.search.SearchSuggestion;
@@ -22,6 +20,7 @@ import com.leon.biuvideo.ui.adapters.SearchSuggestionAdapter;
 import com.leon.biuvideo.ui.widget.loader.RecyclerViewLoader;
 import com.leon.biuvideo.utils.ViewUtils;
 
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -109,9 +108,7 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding> {
      * @param keyWord keyword
      */
     private void goSearch(String keyWord) {
-        Bundle bundle = new Bundle();
-        bundle.putString("keyword", keyWord);
-        ActivityManager.startActivity(context, SearchResultActivity.class, bundle);
+        startActivity(SearchResultActivity.class, Map.of(SearchResultActivity.PARAM, keyWord));
     }
 
     /**
