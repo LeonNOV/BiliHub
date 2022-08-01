@@ -112,9 +112,9 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
                         backPressed();
                     }
 
-                    DataStoreUtils.INSTANCE.putData(DataStoreKey.COOKIE, cookieStr);
-                    DataStoreUtils.INSTANCE.putData(DataStoreKey.UID, cookieMap.get("DedeUserID"));
-                    DataStoreUtils.INSTANCE.putData(DataStoreKey.LOGIN_STATUS, true);
+                    DataStoreUtils.INSTANCE.putData(context, DataStoreKey.COOKIE, cookieStr);
+                    DataStoreUtils.INSTANCE.putData(context, DataStoreKey.UID, cookieMap.get("DedeUserID"));
+                    DataStoreUtils.INSTANCE.putData(context, DataStoreKey.LOGIN_STATUS, true);
 
                     updateViewModel(true);
 

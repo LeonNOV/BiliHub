@@ -8,7 +8,7 @@ import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.adapters.user.UserOrderAdapter;
-import com.leon.biuvideo.utils.PaginationLoader;
+import com.leon.biuvideo.ui.widget.loader.PaginationLoader;
 import com.leon.biuvideo.utils.filter.FilterAdapter;
 
 import java.util.List;

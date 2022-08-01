@@ -122,6 +122,10 @@ public abstract class BaseActivity<T extends ViewBinding> extends AppCompatActiv
         ActivityManager.startActivity(context, targetClass, params);
     }
 
+    protected void startActivity(Class<? extends BaseActivity<? extends ViewBinding>> targetClass, Bundle bundle) {
+        ActivityManager.startActivity(context, targetClass, bundle);
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

@@ -8,7 +8,7 @@ import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.adapters.drawer.CollectAdapter;
-import com.leon.biuvideo.utils.PaginationLoader;
+import com.leon.biuvideo.ui.widget.loader.PaginationLoader;
 
 import java.util.Map;
 

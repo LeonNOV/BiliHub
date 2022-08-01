@@ -17,7 +17,7 @@ import java.lang.annotation.RetentionPolicy;
  * @Time 2022/07/31
  * @Desc
  */
-public class GridItemDecoration extends RecyclerView.ItemDecoration{
+public class GridItemDecoration extends RecyclerView.ItemDecoration {
     public static final int GRID_OFFSETS_HORIZONTAL = GridLayoutManager.HORIZONTAL;
     public static final int GRID_OFFSETS_VERTICAL = GridLayoutManager.VERTICAL;
 
@@ -85,9 +85,17 @@ public class GridItemDecoration extends RecyclerView.ItemDecoration{
 
         if (mIsOffsetEdge) {
             outRect.top = isFirstRow ? verticalOffsets : 0;
-            outRect.left = isFirstColumn ? horizontalOffsets : 0;
-            outRect.right = horizontalOffsets;
             outRect.bottom = verticalOffsets;
+//            outRect.left = isFirstColumn ? horizontalOffsets : 0;
+//            outRect.right = horizontalOffsets;
+
+            if (isFirstColumn) {
+                outRect.left = horizontalOffsets;
+                outRect.right = horizontalOffsets / 2;
+            } else if (isLastColumn) {
+                outRect.left = horizontalOffsets / 2;
+                outRect.right = horizontalOffsets;
+            }
         }
 
         if (!mIsOffsetLast) {

@@ -3,14 +3,12 @@ package com.leon.biuvideo.ui.fragments.drawerFragments.favorite;
 import com.leon.biuvideo.base.baseFragment.BaseLazyFragment;
 import com.leon.biuvideo.beans.account.FavoriteFolder;
 import com.leon.biuvideo.databinding.ComposeListBinding;
-import com.leon.biuvideo.databinding.PageRecyclerBinding;
-import com.leon.biuvideo.databinding.RefreshContentBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.adapters.drawer.FolderAdapter;
-import com.leon.biuvideo.utils.RecyclerViewLoader;
+import com.leon.biuvideo.ui.widget.loader.RecyclerViewLoader;
 
 import java.util.Map;
 

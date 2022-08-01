@@ -8,7 +8,7 @@ import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.adapters.drawer.relation.RelationTagsAdapter;
-import com.leon.biuvideo.utils.RecyclerViewLoader;
+import com.leon.biuvideo.ui.widget.loader.RecyclerViewLoader;
 
 import java.util.Map;
 

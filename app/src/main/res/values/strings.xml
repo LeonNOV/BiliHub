@@ -138,7 +138,9 @@
 
 
     <string name="partition_game">游戏</string>
-    <string name="partition_technology">知识</string>
+    <string name="partition_knowledge">知识</string>
+    <string name="partition_information">资讯</string>
+    <string name="partition_tech">科技</string>
     <string name="partition_digital">数码</string>
     <string name="partition_life">生活</string>
 
@@ -149,7 +151,9 @@
 
     <string name="partition_cinephile">影视</string>
     <string name="partition_movie">电影</string>
+    <string name="partition_car">汽车</string>
     <string name="partition_teleplay">电视剧</string>
+    <string name="partition_sports">运动</string>
     <string name="partition_channel">排行榜</string>
 
     <string name="popular_comprehensive">综合热门</string>

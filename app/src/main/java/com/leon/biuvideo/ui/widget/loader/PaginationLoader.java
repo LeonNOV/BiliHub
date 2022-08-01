@@ -1,21 +1,16 @@
-package com.leon.biuvideo.utils;
+package com.leon.biuvideo.ui.widget.loader;
 
 import android.os.Parcelable;
 import android.view.View;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
 import android.widget.Toast;
 
 import androidx.annotation.IntDef;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewbinding.ViewBinding;
 
-import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.databinding.RefreshContentBinding;
-import com.leon.biuvideo.ui.widget.GridSpacingItemDecoration;
+import com.leon.biuvideo.utils.ViewUtils;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import java.lang.annotation.ElementType;
@@ -192,6 +187,8 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
      * 适合在页面数据清空后调用
      */
     public void obtain() {
+        binding.empty.getRoot().setVisibility(View.GONE);
+
         // 获取第一页数据
         insertData(LoadType.LOAD_TYPE_HEAD, binding.container.container);
     }
@@ -244,6 +241,10 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
          * @return Observable<T>
          */
         Observable<T> update(@LoadType int loadType);
+    }
+
+    public interface OnInit<B>{
+        void onInit(RecyclerView content, BaseViewBindingAdapter<B, ? extends ViewBinding> adapter);
     }
 }
 

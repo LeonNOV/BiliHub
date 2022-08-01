@@ -13,8 +13,8 @@ import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.adapters.channel.ChannelAdapter;
 import com.leon.biuvideo.ui.adapters.channel.UserChannelAdapter;
-import com.leon.biuvideo.utils.PaginationLoader;
-import com.leon.biuvideo.utils.RecyclerViewLoader;
+import com.leon.biuvideo.ui.widget.loader.PaginationLoader;
+import com.leon.biuvideo.ui.widget.loader.RecyclerViewLoader;
 
 import java.util.ArrayList;
 import java.util.List;

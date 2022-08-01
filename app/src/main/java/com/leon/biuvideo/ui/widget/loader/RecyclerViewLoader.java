@@ -1,4 +1,4 @@
-package com.leon.biuvideo.utils;
+package com.leon.biuvideo.ui.widget.loader;
 
 import android.os.Parcelable;
 import android.widget.Toast;
@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.biuvideo.utils.ViewUtils;
 
 import java.util.List;
 
@@ -37,6 +38,17 @@ public class RecyclerViewLoader<T extends Parcelable, B extends Parcelable>{
         this.adapter = adapter;
 
         init();
+    }
+
+    public RecyclerViewLoader(RecyclerView recyclerView, BaseViewBindingAdapter<B, ? extends ViewBinding> adapter, PaginationLoader.OnInit<B> onInit) {
+        this.recyclerView = recyclerView;
+        this.adapter = adapter;
+
+        if (onInit != null) {
+            onInit.onInit(recyclerView, adapter);
+        } else {
+            init();
+        }
     }
 
     private void init() {

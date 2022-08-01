@@ -11,13 +11,10 @@ import com.leon.biuvideo.parser.PartitionParser;
  * @Desc
  */
 public class App extends Application {
-    public static Context context;
-
     @Override
     public void onCreate() {
         super.onCreate();
 
-        context = getApplicationContext();
         new PartitionParser().initMemData(getApplicationContext());
     }
 }

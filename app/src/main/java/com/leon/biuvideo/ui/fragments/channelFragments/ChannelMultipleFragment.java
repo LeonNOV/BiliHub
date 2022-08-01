@@ -11,7 +11,7 @@ import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.beans.home.channel.ChannelDetailMultiple;
 import com.leon.biuvideo.ui.adapters.channel.ChannelMultipleContentAdapter;
-import com.leon.biuvideo.utils.PaginationLoader;
+import com.leon.biuvideo.ui.widget.loader.PaginationLoader;
 
 import java.util.ArrayList;
 import java.util.List;

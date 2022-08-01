@@ -32,11 +32,7 @@ public class PartitionDataAdapter extends BaseViewBindingAdapter<PartitionData.R
 
     @Override
     protected void onBindViewHolder(PartitionData.Result data, ItemPartitionVideoBinding binding, int position) {
-        ViewGroup.LayoutParams layoutParams = binding.getRoot().getLayoutParams();
-        layoutParams.width = context.getResources().getDimensionPixelSize(R.dimen.ItemPartitionRecommendWidth);
-        binding.getRoot().setLayoutParams(layoutParams);
-
-        binding.getRoot().setOnClickListener(v -> ActivityManager.startActivity(context, VideoActivity.class, Map.of(VideoActivity.PARAM, data.getBvid())));
+        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM, data.getBvid())));
 
         ViewUtils.setImg(context, binding.cover, "https:" + data.getPic());
         binding.play.setText(ValueUtils.generateCN(Integer.parseInt(data.getPlay())));

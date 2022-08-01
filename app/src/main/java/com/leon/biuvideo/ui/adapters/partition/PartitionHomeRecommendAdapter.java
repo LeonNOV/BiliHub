@@ -11,7 +11,9 @@ import com.leon.biuvideo.databinding.ItemPartitionHomeRecommendBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.utils.RecyclerViewLoader;
+import com.leon.biuvideo.ui.widget.LinearItemDecoration;
+import com.leon.biuvideo.ui.widget.loader.RecyclerViewLoader;
+import com.leon.biuvideo.utils.ViewUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -23,7 +25,7 @@ import java.util.Random;
  * @Desc
  */
 public class PartitionHomeRecommendAdapter extends BaseViewBindingAdapter<String, ItemPartitionHomeRecommendBinding> {
-    private final List<String> ridList;
+    private final List<Integer> ridList;
     private final HttpApi httpApi;
     private OnMoveToPage onMoveToPage;
 
@@ -32,7 +34,7 @@ public class PartitionHomeRecommendAdapter extends BaseViewBindingAdapter<String
      */
     Random pageNum = new Random();
 
-    public PartitionHomeRecommendAdapter(Context context, List<String> ridList) {
+    public PartitionHomeRecommendAdapter(Context context, List<Integer> ridList) {
         super(context);
         this.ridList = ridList;
         this.httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, HttpApi.DEFAULT_COOKIE)).getHttpApi();
@@ -46,8 +48,23 @@ public class PartitionHomeRecommendAdapter extends BaseViewBindingAdapter<String
     @Override
     protected void onBindViewHolder(String data, ItemPartitionHomeRecommendBinding binding, int position) {
         RecyclerViewLoader<PartitionRecommend, PartitionRecommend.Data.Archive> loader = new RecyclerViewLoader<>(binding.content,
-                new PartitionHomeRecommendChildAdapter(context));
-        loader.setGuide(partitionRecommend -> partitionRecommend.getData().getArchives());
+                new PartitionHomeRecommendChildAdapter(context),
+                (content, adapter) -> {
+                    ViewUtils.linkAdapter(content, adapter);
+
+                    LinearItemDecoration itemDecoration = new LinearItemDecoration(LinearItemDecoration.LINEAR_OFFSETS_HORIZONTAL);
+                    itemDecoration.setOffsetEdge(true);
+                    itemDecoration.setOffsetLast(true);
+                    itemDecoration.setItemOffsets(context.getResources().getDimensionPixelSize(R.dimen.LinearItemOffset));
+                    content.addItemDecoration(itemDecoration);
+                });
+        loader.setGuide(partitionRecommend -> {
+            if (partitionRecommend.getCode() == -404) {
+                return null;
+            } else {
+                return partitionRecommend.getData().getArchives();
+            }
+        });
 
         binding.refresh.setOnClickListener(v -> reload(loader, ridList.get(position)));
         binding.more.setOnClickListener(v -> {
@@ -57,11 +74,10 @@ public class PartitionHomeRecommendAdapter extends BaseViewBindingAdapter<String
         });
         binding.name.setText(data);
 
-//        reload(loader, ridList.get(position));
+        reload(loader, ridList.get(position));
     }
 
-    private void reload(RecyclerViewLoader<PartitionRecommend, PartitionRecommend.Data.Archive> loader, String rid) {
-        // todo 获取数据相同问题，待修复
+    private void reload(RecyclerViewLoader<PartitionRecommend, PartitionRecommend.Data.Archive> loader, int rid) {
         loader.setObservable(httpApi.getPartitionRecommend(pageNum.nextInt(5) + 1, rid)).obtain(true);
     }
 
@@ -70,6 +86,6 @@ public class PartitionHomeRecommendAdapter extends BaseViewBindingAdapter<String
     }
 
     public interface OnMoveToPage {
-        void onMove(String rid);
+        void onMove(Integer rid);
     }
 }

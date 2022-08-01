@@ -210,25 +210,30 @@ public class ViewUtils {
         recyclerViewInitializer(recyclerView, adapter);
     }
 
-    private static void recyclerViewInitializer(RecyclerView recyclerView, BaseViewBindingAdapter<?, ?> adapter) {
+    /**
+     * connecting adapter
+     *
+     * @param recyclerView {@link RecyclerView}
+     * @param adapter      {@link BaseViewBindingAdapter}
+     */
+    public static void linkAdapter(RecyclerView recyclerView, BaseViewBindingAdapter<?, ?> adapter) {
         recyclerView.setAdapter(new AlphaInAnimationAdapter(adapter));
         recyclerView.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
         recyclerView.setMotionEventSplittingEnabled(false);
         recyclerView.setHasFixedSize(true);
+    }
+
+    private static void recyclerViewInitializer(RecyclerView recyclerView, BaseViewBindingAdapter<?, ?> adapter) {
+        linkAdapter(recyclerView, adapter);
 
         RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
         if (layoutManager instanceof GridLayoutManager) {
-            // todo 左右Item宽度不同待解决
             GridItemDecoration itemDecoration = new GridItemDecoration(GridItemDecoration.GRID_OFFSETS_VERTICAL);
-            itemDecoration.setOffsetEdge(true);
-            itemDecoration.setOffsetLast(true);
             itemDecoration.setVerticalItemOffsets(recyclerView.getContext().getResources().getDimensionPixelSize(R.dimen.GridItemVerticalOffset));
             itemDecoration.setHorizontalItemOffsets(recyclerView.getContext().getResources().getDimensionPixelSize(R.dimen.GridItemHorizontalOffset));
             recyclerView.addItemDecoration(itemDecoration);
         } else if (layoutManager instanceof LinearLayoutManager) {
             LinearItemDecoration itemDecoration = new LinearItemDecoration(LinearItemDecoration.LINEAR_OFFSETS_VERTICAL);
-            itemDecoration.setOffsetEdge(true);
-            itemDecoration.setOffsetLast(true);
             itemDecoration.setItemOffsets(recyclerView.getContext().getResources().getDimensionPixelSize(R.dimen.LinearItemOffset));
             recyclerView.addItemDecoration(itemDecoration);
         } else {

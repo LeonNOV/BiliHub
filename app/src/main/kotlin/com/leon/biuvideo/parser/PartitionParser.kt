@@ -10,7 +10,7 @@ import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
 
-lateinit var partitionMap: Map<String, ArrayList<Partition>>
+private val partitionMap: HashMap<Int, Partition> = HashMap()
 
 /**
  * @Author Leon
@@ -21,8 +21,8 @@ class PartitionParser {
     private val TAG: String = "WwwW"
 
     companion object {
-        fun getPartitionData(partitionName: String): ArrayList<Partition>? {
-            return partitionMap[partitionName]
+        fun getPartitionData(partitionId: Int): Partition? {
+            return partitionMap[partitionId]
         }
     }
 
@@ -32,9 +32,16 @@ class PartitionParser {
             val gson =
                 Gson().newBuilder().enableComplexMapKeySerialization().serializeNulls().create()
             val json: String? = readLocalFileContent(context, "partition.json")
-            val type = object : TypeToken<Map<String, ArrayList<Partition>>>() {}.type
 
-            partitionMap = gson.fromJson(json, type)
+            val type = object : TypeToken<ArrayList<Partition>>() {}.type
+            val partitions: ArrayList<Partition> = ArrayList()
+
+            partitions.addAll(gson.fromJson(json, type))
+
+            for (partition in partitions) {
+                partitionMap[partition.tid] = partition
+            }
+
             Log.d(TAG, "initMemData: DONE")
         }
     }

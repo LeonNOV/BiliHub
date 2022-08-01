@@ -1,7 +1,5 @@
 package com.leon.biuvideo.ui.activities.drawerFunction.partition;
 
-import android.widget.Toast;
-
 import androidx.fragment.app.Fragment;
 
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
@@ -21,8 +19,8 @@ import java.util.List;
  * @Desc
  */
 public class PartitionDetailActivity extends BaseActivity<ActivityPartitionDetailBinding> {
-    public static final String PARAM_NAME = "name";
-    public static final String PARAM_TITLE = "title";
+    public static final String PARAM_A = "tid";
+    public static final String PARAM_B = "title";
 
     @Override
     public ActivityPartitionDetailBinding getViewBinding() {
@@ -31,30 +29,26 @@ public class PartitionDetailActivity extends BaseActivity<ActivityPartitionDetai
 
     @Override
     protected void init() {
-        String partitionName = params.getString(PARAM_NAME);
-        binding.topBar.setTopBarTitle(params.getString(PARAM_TITLE));
+        Partition partition = PartitionParser.Companion.getPartitionData(params.getInt(PARAM_A));
+        binding.topBar.setTopBarTitle(params.getString(PARAM_B));
 
-        ArrayList<Partition> partitionData = PartitionParser.Companion.getPartitionData(partitionName);
-        if (partitionData != null) {
-            int pageCount = partitionData.size();
+        int pageCount = partition.getSubs().size();
 
-            List<String> ridList = new ArrayList<>(pageCount);
-            String[] titles = new String[pageCount + 1];
-            titles[0] = "推荐";
+        List<Integer> ridList = new ArrayList<>(pageCount);
+        String[] titles = new String[pageCount + 1];
+        titles[0] = "推荐";
 
-            List<Fragment> fragments = new ArrayList<>(pageCount);
-            for (int i = 0; i < pageCount; i++) {
-                Partition partition = partitionData.get(i);
-                fragments.add(new PartitionFragment(partition.getTags(), partition.getId()));
-                titles[i + 1] = partition.getTitle();
-                ridList.add(partition.getId());
-            }
-            fragments.add(0, new PartitionHomeFragment(ridList, titles, binding.content.viewPager));
+        List<Fragment> fragments = new ArrayList<>(pageCount);
+        for (int i = 0; i < pageCount; i++) {
+            Partition.Sub sub = partition.getSubs().get(i);
 
-            ViewUtils.initTabLayout(this, binding.content.tabLayout, binding.content.viewPager, fragments, titles);
-        } else {
-            backPressed();
-            Toast.makeText(context, "无子页面", Toast.LENGTH_SHORT).show();
+            fragments.add(new PartitionFragment(sub.getTid()));
+
+            titles[i + 1] = sub.getName();
+            ridList.add(sub.getTid());
         }
+        fragments.add(0, new PartitionHomeFragment(ridList, titles, binding.content.viewPager));
+
+        ViewUtils.initTabLayout(this, binding.content.tabLayout, binding.content.viewPager, fragments, titles);
     }
 }

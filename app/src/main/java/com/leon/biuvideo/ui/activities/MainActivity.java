@@ -152,7 +152,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
      */
     private void refreshData() {
         new ApiHelper<>(new RetrofitClient(BaseUrl.API,
-                Map.of(HttpApi.COOKIE, DataStoreUtils.INSTANCE.getData(DataStoreKey.COOKIE, ""))).getHttpApi().getAccountInfo())
+                Map.of(HttpApi.COOKIE, DataStoreUtils.INSTANCE.getData(context, DataStoreKey.COOKIE, ""))).getHttpApi().getAccountInfo())
                 .setOnResult(accountNav -> {
                     // 0：获取成功，即登陆成功
                     // -101：获取失败，即登录失败
@@ -173,7 +173,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
         // 退出当前账户
         if (accountNav == null) {
-            DataStoreUtils.INSTANCE.clearSync();
+            DataStoreUtils.INSTANCE.clearSync(context);
             binding.drawer.userContainer.setEnabled(true);
             binding.drawer.userFace.setImageResource(R.drawable.user_face_default);
             binding.home.userFace.setImageResource(R.drawable.user_face_default);

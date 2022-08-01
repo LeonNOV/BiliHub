@@ -25,7 +25,7 @@ data class PartitionRecommend(
         @Parcelize
         data class Archive(
             @SerializedName("aid")
-            val aid: Int,
+            val aid: String,
             @SerializedName("bvid")
             val bvid: String,
             @SerializedName("cid")
@@ -100,7 +100,7 @@ data class PartitionRecommend(
                 @SerializedName("face")
                 val face: String,
                 @SerializedName("mid")
-                val mid: Int,
+                val mid: String,
                 @SerializedName("name")
                 val name: String
             ) : Parcelable

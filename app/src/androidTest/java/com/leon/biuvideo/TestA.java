@@ -1,6 +1,9 @@
 package com.leon.biuvideo;
 
+import android.content.Context;
+
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +19,6 @@ public class TestA {
 
     @Test
     public void aaa() {
-//        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
     }
 }

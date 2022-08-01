@@ -1,12 +1,9 @@
 package com.leon.biuvideo.ui.activities.drawerFunction.partition;
 
-import android.widget.Toast;
+import android.os.Bundle;
 
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
 import com.leon.biuvideo.databinding.ActivityPartitionBinding;
-import com.leon.biuvideo.ui.activities.drawerFunction.PopularActivity;
-
-import java.util.Map;
 
 /**
  * @Author Leon
@@ -22,35 +19,29 @@ public class PartitionActivity extends BaseActivity<ActivityPartitionBinding> {
 
     @Override
     protected void init() {
-        binding.partitionAnime.setOnClickListener(v -> startPage("anime", "番剧"));
-        binding.partitionGuochuang.setOnClickListener(v -> startPage("guochuang", "国创"));
-        binding.partitionDouga.setOnClickListener(v -> startPage("douga", "动画"));
-        binding.partitionEnt.setOnClickListener(v -> startPage("ent", "娱乐"));
-        binding.partitionArticle.setOnClickListener(v -> Toast.makeText(context, "开发中…", Toast.LENGTH_SHORT).show());
-        binding.partitionMusic.setOnClickListener(v -> startPage("music", "音乐"));
-        binding.partitionDance.setOnClickListener(v -> startPage("dance", "舞蹈"));
-        binding.partitionDocumentary.setOnClickListener(v -> startPage("documentary", "纪录片"));
-        binding.partitionGame.setOnClickListener(v -> startPage("game", "游戏"));
-        binding.partitionTechnology.setOnClickListener(v -> startPage("technology", "科技"));
-        binding.partitionDigital.setOnClickListener(v -> startPage("digital", "数码"));
-        binding.partitionLife.setOnClickListener(v -> startPage("life", "生活"));
-        binding.partitionFood.setOnClickListener(v -> startPage("food", "美食"));
-        binding.partitionAnimal.setOnClickListener(v -> startPage("animal", "动物圈"));
-        binding.partitionKichiku.setOnClickListener(v -> startPage("kichiku", "鬼畜"));
-        binding.partitionFashion.setOnClickListener(v -> startPage("fashion", "时尚"));
-        binding.partitionCinephile.setOnClickListener(v -> startPage("cinephile", "影视"));
-        binding.partitionMovie.setOnClickListener(v -> Toast.makeText(context, "开发中…", Toast.LENGTH_SHORT).show());
-        binding.partitionTeleplay.setOnClickListener(v -> Toast.makeText(context, "开发中…", Toast.LENGTH_SHORT).show());
-
-        // todo(由于格式问题，后期更新加入)
-//        binding.partitionArticle.setOnClickListener(v -> startPage("article", "专栏"));
-//        binding.partitionMovie.setOnClickListener(v -> startPage("movie", "电影"));
-//        binding.partitionTeleplay.setOnClickListener(v -> startPage("tv", "电视剧"));
-        binding.partitionRank.setOnClickListener(v -> startActivity(PopularActivity.class));
+        binding.douga.setOnClickListener(v -> startPage(1, "动画"));
+        binding.game.setOnClickListener(v -> startPage(4, "游戏"));
+        binding.kichiku.setOnClickListener(v -> startPage(119, "鬼畜"));
+        binding.music.setOnClickListener(v -> startPage(3, "音乐"));
+        binding.dance.setOnClickListener(v -> startPage(129, "舞蹈"));
+        binding.cinephile.setOnClickListener(v -> startPage(181, "影视"));
+        binding.ent.setOnClickListener(v -> startPage(5, "娱乐"));
+        binding.knowledge.setOnClickListener(v -> startPage(36, "知识"));
+        binding.tech.setOnClickListener(v -> startPage(188, "科技"));
+        binding.information.setOnClickListener(v -> startPage(202, "资讯"));
+        binding.food.setOnClickListener(v -> startPage(211, "美食"));
+        binding.life.setOnClickListener(v -> startPage(160, "生活"));
+        binding.car.setOnClickListener(v -> startPage(223, "汽车"));
+        binding.fashion.setOnClickListener(v -> startPage(155, "时尚"));
+        binding.sports.setOnClickListener(v -> startPage(234, "运动"));
+        binding.animal.setOnClickListener(v -> startPage(217, "动物圈"));
     }
 
-    private void startPage(String partitionName, String partitionTitle) {
-        startActivity(PartitionDetailActivity.class, Map.of(PartitionDetailActivity.PARAM_NAME, partitionName,
-                PartitionDetailActivity.PARAM_TITLE, partitionTitle));
+    private void startPage(int tid, String partitionTitle) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(PartitionDetailActivity.PARAM_A, tid);
+        bundle.putString(PartitionDetailActivity.PARAM_B, partitionTitle);
+
+        startActivity(PartitionDetailActivity.class, bundle);
     }
 }

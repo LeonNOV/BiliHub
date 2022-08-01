@@ -7,7 +7,7 @@ import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.ui.adapters.user.UserArticleAdapter;
-import com.leon.biuvideo.utils.PaginationLoader;
+import com.leon.biuvideo.ui.widget.loader.PaginationLoader;
 
 /**
  * @Author Leon

@@ -2,14 +2,9 @@ package com.leon.biuvideo.ui.adapters.partition;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.core.content.ContextCompat;
-
 import com.leon.biuvideo.R;
-import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.beans.partition.PartitionRecommend;
 import com.leon.biuvideo.databinding.ItemVideoBBinding;
@@ -37,10 +32,10 @@ public class PartitionHomeRecommendChildAdapter extends BaseViewBindingAdapter<P
     @Override
     protected void onBindViewHolder(PartitionRecommend.Data.Archive data, ItemVideoBBinding binding, int position) {
         ViewGroup.LayoutParams layoutParams = binding.getRoot().getLayoutParams();
-        layoutParams.width = context.getResources().getDimensionPixelSize(R.dimen.ItemPartitionRecommendWidth);
+        layoutParams.width = context.getResources().getDimensionPixelSize(R.dimen.ItemVideoW);
         binding.getRoot().setLayoutParams(layoutParams);
 
-        binding.getRoot().setOnClickListener(v -> ActivityManager.startActivity(context, VideoActivity.class, Map.of(VideoActivity.PARAM, data.getBvid())));
+        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM, data.getBvid())));
 
         ViewUtils.setImg(context, binding.cover, data.getPic());
         binding.play.setText(ValueUtils.generateCN(data.getStat().getView()));

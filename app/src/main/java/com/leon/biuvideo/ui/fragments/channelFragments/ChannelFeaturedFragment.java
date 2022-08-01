@@ -11,7 +11,7 @@ import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.beans.home.channel.ChannelDetailFeatured;
 import com.leon.biuvideo.ui.adapters.channel.ChannelFeaturedAdapter;
 import com.leon.biuvideo.utils.filter.FilterAdapter;
-import com.leon.biuvideo.utils.PaginationLoader;
+import com.leon.biuvideo.ui.widget.loader.PaginationLoader;
 
 import java.util.List;
 
@@ -61,7 +61,6 @@ public class ChannelFeaturedFragment extends BaseLazyFragment<PageFilterRefreshB
         binding.filter.setAdapter(filterAdapter);
 
         httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
-
         adapter = new ChannelFeaturedAdapter(context);
         loader = new PaginationLoader<>(binding.content, adapter, new GridLayoutManager(context, 2));
         loader.setGuide(channelDetailFeatured -> {

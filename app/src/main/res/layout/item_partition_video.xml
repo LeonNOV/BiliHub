@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="280dp"
+    android:layout_height="@dimen/ItemVideoH"
     android:background="@drawable/ripple_bg"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="@dimen/ItemVideoCoverH">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/cover"

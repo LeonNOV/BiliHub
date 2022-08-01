@@ -23,91 +23,91 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/partition_anime"
-                style="@style/PartitionStyle"
-                android:text="@string/partition_anime"
-                app:drawableTopCompat="@drawable/partition_anime" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/partition_guochuang"
-                style="@style/PartitionStyle"
-                android:text="@string/partition_guochuang"
-                app:drawableTopCompat="@drawable/partition_guochuang" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/partition_douga"
+                android:id="@+id/douga"
                 style="@style/PartitionStyle"
                 android:text="@string/partition_douga"
                 app:drawableTopCompat="@drawable/partition_douga" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/partition_ent"
-                style="@style/PartitionStyle"
-                android:text="@string/partition_ent"
-                app:drawableTopCompat="@drawable/partition_ent" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/partition_article"
-                style="@style/PartitionStyle"
-                android:text="@string/partition_article"
-                app:drawableTopCompat="@drawable/partition_article" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/partition_music"
-                style="@style/PartitionStyle"
-                android:text="@string/partition_music"
-                app:drawableTopCompat="@drawable/partition_music" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/partition_dance"
-                style="@style/PartitionStyle"
-                android:text="@string/partition_dance"
-                app:drawableTopCompat="@drawable/partition_dance" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/partition_documentary"
-                style="@style/PartitionStyle"
-                android:text="@string/partition_documentary"
-                app:drawableTopCompat="@drawable/partition_documentary" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/partition_game"
+                android:id="@+id/game"
                 style="@style/PartitionStyle"
                 android:text="@string/partition_game"
                 app:drawableTopCompat="@drawable/partition_game" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/partition_technology"
+                android:id="@+id/kichiku"
                 style="@style/PartitionStyle"
-                android:text="@string/partition_technology"
-                app:drawableTopCompat="@drawable/partition_technology" />
+                android:text="@string/partition_kichiku"
+                app:drawableTopCompat="@drawable/partition_kichiku" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/partition_digital"
+                android:id="@+id/music"
                 style="@style/PartitionStyle"
-                android:text="@string/partition_digital"
-                app:drawableTopCompat="@drawable/partition_digital" />
+                android:text="@string/partition_music"
+                app:drawableTopCompat="@drawable/partition_music" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/partition_life"
+                android:id="@+id/dance"
+                style="@style/PartitionStyle"
+                android:text="@string/partition_dance"
+                app:drawableTopCompat="@drawable/partition_dance" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/cinephile"
+                style="@style/PartitionStyle"
+                android:text="@string/partition_cinephile"
+                app:drawableTopCompat="@drawable/partition_cinephile" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ent"
+                style="@style/PartitionStyle"
+                android:text="@string/partition_ent"
+                app:drawableTopCompat="@drawable/partition_ent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/knowledge"
+                style="@style/PartitionStyle"
+                android:text="@string/partition_knowledge"
+                app:drawableTopCompat="@drawable/partition_knowledge" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tech"
+                style="@style/PartitionStyle"
+                android:text="@string/partition_tech"
+                app:drawableTopCompat="@drawable/partition_tech" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/information"
+                style="@style/PartitionStyle"
+                android:text="@string/partition_information"
+                app:drawableTopCompat="@drawable/partition_information" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/food"
+                style="@style/PartitionStyle"
+                android:text="@string/partition_food"
+                app:drawableTopCompat="@drawable/partition_food" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/life"
                 style="@style/PartitionStyle"
                 android:text="@string/partition_life"
                 app:drawableTopCompat="@drawable/partition_life" />
@@ -122,61 +122,28 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/partition_food"
+                android:id="@+id/car"
                 style="@style/PartitionStyle"
-                android:text="@string/partition_food"
-                app:drawableTopCompat="@drawable/partition_food" />
+                android:text="@string/partition_car"
+                app:drawableTopCompat="@drawable/partition_car" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/partition_animal"
-                style="@style/PartitionStyle"
-                android:text="@string/partition_animal"
-                app:drawableTopCompat="@drawable/partition_animal" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/partition_kichiku"
-                style="@style/PartitionStyle"
-                android:text="@string/partition_kichiku"
-                app:drawableTopCompat="@drawable/partition_kichiku" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/partition_fashion"
+                android:id="@+id/fashion"
                 style="@style/PartitionStyle"
                 android:text="@string/partition_fashion"
                 app:drawableTopCompat="@drawable/partition_fashion" />
 
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/sports"
+                style="@style/PartitionStyle"
+                android:text="@string/partition_sports"
+                app:drawableTopCompat="@drawable/partition_sports" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/partition_cinephile"
+                android:id="@+id/animal"
                 style="@style/PartitionStyle"
-                android:text="@string/partition_cinephile"
-                app:drawableTopCompat="@drawable/partition_cinephile" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/partition_movie"
-                style="@style/PartitionStyle"
-                android:text="@string/partition_movie"
-                app:drawableTopCompat="@drawable/partition_movie" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/partition_teleplay"
-                style="@style/PartitionStyle"
-                android:text="@string/partition_teleplay"
-                app:drawableTopCompat="@drawable/partition_teleplay" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/partition_rank"
-                style="@style/PartitionStyle"
-                android:text="@string/partition_channel"
-                app:drawableTopCompat="@drawable/partition_rank" />
+                android:text="@string/partition_animal"
+                app:drawableTopCompat="@drawable/partition_animal" />
 
         </TableRow>
 

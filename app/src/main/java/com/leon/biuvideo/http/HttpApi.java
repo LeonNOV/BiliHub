@@ -16,6 +16,7 @@ import com.leon.biuvideo.beans.home.channel.UserChannelCategory;
 import com.leon.biuvideo.beans.home.drawerFunction.Series;
 import com.leon.biuvideo.beans.partition.PartitionData;
 import com.leon.biuvideo.beans.partition.PartitionRecommend;
+import com.leon.biuvideo.beans.partition.PartitionTag;
 import com.leon.biuvideo.beans.publicBeans.resources.article.ArticleInfo;
 import com.leon.biuvideo.beans.publicBeans.resources.audio.AudioInfo;
 import com.leon.biuvideo.beans.publicBeans.resources.audio.AudioResources;
@@ -257,6 +258,19 @@ public interface HttpApi {
     Observable<RelationDetail> getUserRelationDetail(@Query("tagid") String tagId, @Query("pn") int pn);
 
     /**
+     * 子分区Tag
+     * <p>
+     * https://www.bilibili.com/v/game/stand_alone
+     * <p>
+     * https://api.bilibili.com/x/tag/hots?rid=17&type=0
+     *
+     * @param rid 子分区Tag
+     * @return {@link PartitionTag}
+     */
+    @GET("x/tag/hots?type=0")
+    Observable<PartitionTag> getPartitionTags(@Query("rid") int rid);
+
+    /**
      * 分区子Tag推荐
      * <p>
      * https://www.bilibili.com/v/kichiku
@@ -268,7 +282,7 @@ public interface HttpApi {
      * @return {@link PartitionRecommend}
      */
     @GET("x/web-interface/dynamic/region?ps=20")
-    Observable<PartitionRecommend> getPartitionRecommend(@Query("pn") int pageNum, @Query("rid") String rid);
+    Observable<PartitionRecommend> getPartitionRecommend(@Query("pn") int pageNum, @Query("rid") int rid);
 
     /**
      * 分区数据
@@ -285,7 +299,7 @@ public interface HttpApi {
      * @return {@link PartitionData}
      */
     @GET("cate/search?main_ver=v3&search_type=video&view_type=hot_rank&copy_right=-1&new_web_tag=1&order=click&pagesize=30")
-    Observable<PartitionData> getPartitionData(@Query("cate_id") String tagId, @Query("keyword") String keyword, @Query("page") int pageNum, @Query("time_from") String startTime, @Query("time_to") String endTime);
+    Observable<PartitionData> getPartitionData(@Query("cate_id") int tagId, @Query("keyword") String keyword, @Query("page") int pageNum, @Query("time_from") String startTime, @Query("time_to") String endTime);
 
     /**
      * 热搜排行榜

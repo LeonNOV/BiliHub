@@ -19,7 +19,7 @@ import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.ui.adapters.HotSearchAdapter;
 import com.leon.biuvideo.ui.adapters.SearchSuggestionAdapter;
-import com.leon.biuvideo.utils.RecyclerViewLoader;
+import com.leon.biuvideo.ui.widget.loader.RecyclerViewLoader;
 import com.leon.biuvideo.utils.ViewUtils;
 
 import java.util.Objects;

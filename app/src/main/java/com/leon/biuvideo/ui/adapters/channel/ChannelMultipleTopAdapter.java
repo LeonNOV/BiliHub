@@ -33,7 +33,7 @@ public class ChannelMultipleTopAdapter extends BaseViewBindingAdapter<ChannelDet
     @Override
     protected void onBindViewHolder(ChannelDetailMultiple.Data.Archive.Item data, ItemVideoBBinding binding, int position) {
         ViewGroup.LayoutParams layoutParams = binding.getRoot().getLayoutParams();
-        layoutParams.width = context.getResources().getDimensionPixelSize(R.dimen.ItemPartitionRecommendWidth);
+        layoutParams.width = context.getResources().getDimensionPixelSize(R.dimen.ItemVideoW);
         binding.getRoot().setLayoutParams(layoutParams);
 
         binding.getRoot().setOnClickListener(v -> ActivityManager.startActivity(context, VideoActivity.class, Map.of(VideoActivity.PARAM, data.getBvid())));
