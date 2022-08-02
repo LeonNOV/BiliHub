@@ -55,13 +55,13 @@ public class HistoryAdapter extends BaseViewBindingAdapter<History.Data.Data, It
 
             if (!"".equals(data.getShowTitle())) {
                 builder.append("看到").append(data.getShowTitle())
-                        .append(data.getProgress() == -1 ? "已看完" : ValueUtils.lengthGenerate(data.getProgress()))
+                        .append(data.getProgress() == -1 ? "已看完" : ValueUtils.toMediaDuration(data.getProgress()))
                         .append("|").append(data.getNewDesc());
             } else {
-                builder.append(data.getProgress() == -1 ? "已看完" : "看到" + ValueUtils.lengthGenerate(data.getProgress()));
+                builder.append(data.getProgress() == -1 ? "已看完" : "看到" + ValueUtils.toMediaDuration(data.getProgress()));
             }
 
-            binding.duration.setText(ValueUtils.lengthGenerate(data.getDuration()));
+            binding.duration.setText(ValueUtils.toMediaDuration(data.getDuration()));
             binding.progress.setText(builder.toString());
         }
     }

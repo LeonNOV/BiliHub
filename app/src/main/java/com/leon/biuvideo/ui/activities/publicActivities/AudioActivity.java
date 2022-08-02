@@ -2,8 +2,6 @@ package com.leon.biuvideo.ui.activities.publicActivities;
 
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.leon.biuvideo.base.baseActivity.AsyncHttpActivity;
 import com.leon.biuvideo.beans.publicBeans.resources.audio.AudioInfo;
 import com.leon.biuvideo.databinding.ActivityAudioBinding;
@@ -12,13 +10,10 @@ import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.RequestData;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.utils.AudioController;
-import com.leon.biuvideo.utils.ValueUtils;
-import com.leon.biuvideo.utils.ViewUtils;
 
 import java.util.Map;
 
 import io.reactivex.rxjava3.core.Observable;
-import jp.wasabeef.glide.transformations.BlurTransformation;
 
 /**
  * @Author Leon
@@ -62,7 +57,7 @@ public class AudioActivity extends AsyncHttpActivity<ActivityAudioBinding, Audio
                 if ("".equals(audioInfo.getData().getBvid())) {
                     Toast.makeText(context, "无对应视频", Toast.LENGTH_SHORT).show();
                 } else {
-                    startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM, audioInfo.getData().getBvid()));
+                    startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_BVID, audioInfo.getData().getBvid()));
                 }
             });
 

@@ -31,7 +31,7 @@ public class ChannelFeaturedAdapter extends BaseViewBindingAdapter<ChannelDetail
 
     @Override
     protected void onBindViewHolder(ChannelDetailFeatured.Data.Archive data, ItemVideoBBinding binding, int position) {
-        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM, data.getBvid())));
+        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_BVID, data.getBvid())));
 
         ViewUtils.setImg(context, binding.cover, data.getCover());
         binding.play.setText(data.getViewCount());

@@ -42,7 +42,7 @@ public class ValueUtils {
      * @param length    需要格式化的长度
      * @return  返回结果
      */
-    public static String lengthGenerate(int length) {
+    public static String toMediaDuration(int length) {
         int minute = length / 60;
         int second = length % 60;
 

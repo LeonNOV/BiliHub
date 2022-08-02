@@ -9,7 +9,9 @@ import com.leon.biuvideo.databinding.ActivityVideoBinding;
  * @Desc
  */
 public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
-    public static final String PARAM = "bvid";
+    public static final String PARAM_BVID = "bvid";
+    public static final String PARAM_SEASON_ID = "seId";
+    public static final String PARAM_TYPE = "type";
 
     @Override
     public ActivityVideoBinding getViewBinding() {

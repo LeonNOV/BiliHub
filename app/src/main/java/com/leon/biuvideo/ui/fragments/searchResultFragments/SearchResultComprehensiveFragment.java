@@ -1,23 +1,23 @@
 package com.leon.biuvideo.ui.fragments.searchResultFragments;
 
 import com.leon.biuvideo.base.baseFragment.BaseLazyFragment;
-import com.leon.biuvideo.databinding.FragmentResultCinephileBinding;
+import com.leon.biuvideo.databinding.PageFilterRefreshBinding;
 
 /**
  * @Author Leon
  * @Time 2022/06/23
  * @Desc
  */
-public class CinephileResultFragment extends BaseLazyFragment<FragmentResultCinephileBinding> {
+public class SearchResultComprehensiveFragment extends BaseLazyFragment<PageFilterRefreshBinding> {
     private final String keyword;
 
-    public CinephileResultFragment(String keyword) {
+    public SearchResultComprehensiveFragment(String keyword) {
         this.keyword = keyword;
     }
 
     @Override
-    public FragmentResultCinephileBinding getViewBinding() {
-        return FragmentResultCinephileBinding.inflate(getLayoutInflater());
+    public PageFilterRefreshBinding getViewBinding() {
+        return PageFilterRefreshBinding.inflate(getLayoutInflater());
     }
 
     @Override

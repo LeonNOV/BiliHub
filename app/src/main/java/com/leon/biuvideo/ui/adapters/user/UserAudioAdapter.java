@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.biuvideo.R;
-import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.beans.publicBeans.user.UserAudio;
 import com.leon.biuvideo.databinding.ItemUserAudioBinding;
@@ -35,7 +34,7 @@ public class UserAudioAdapter extends BaseViewBindingAdapter<UserAudio.Data.Audi
     protected void onBindViewHolder(UserAudio.Data.Audio audio, ItemUserAudioBinding binding, int position) {
         binding.getRoot().setOnClickListener(v -> startActivity(AudioActivity.class, Map.of(AudioActivity.PARAM, String.valueOf(audio.getStatistic().getSid()))));
 
-        binding.extra.setText(ValueUtils.lengthGenerate(audio.getDuration()));
+        binding.extra.setText(ValueUtils.toMediaDuration(audio.getDuration()));
         ViewUtils.setImg(context, binding.cover, audio.getCover());
         binding.view.setText(ValueUtils.generateCN(audio.getStatistic().getPlay()));
         binding.comment.setText(ValueUtils.generateCN(audio.getStatistic().getComment()));

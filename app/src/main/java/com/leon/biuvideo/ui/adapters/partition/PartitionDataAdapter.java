@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.biuvideo.R;
-import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.beans.partition.PartitionData;
 import com.leon.biuvideo.databinding.ItemPartitionVideoBinding;
@@ -32,11 +31,11 @@ public class PartitionDataAdapter extends BaseViewBindingAdapter<PartitionData.R
 
     @Override
     protected void onBindViewHolder(PartitionData.Result data, ItemPartitionVideoBinding binding, int position) {
-        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM, data.getBvid())));
+        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_BVID, data.getBvid())));
 
         ViewUtils.setImg(context, binding.cover, "https:" + data.getPic());
         binding.play.setText(ValueUtils.generateCN(Integer.parseInt(data.getPlay())));
-        binding.extra.setText(ValueUtils.lengthGenerate(data.getDuration()));
+        binding.extra.setText(ValueUtils.toMediaDuration(data.getDuration()));
         binding.title.setText(data.getTitle());
         binding.author.setText(data.getAuthor());
     }

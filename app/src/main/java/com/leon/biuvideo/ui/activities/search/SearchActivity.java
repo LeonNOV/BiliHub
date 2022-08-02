@@ -7,8 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewbinding.ViewBinding;
+
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
+import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.beans.home.HotSearch;
 import com.leon.biuvideo.beans.search.SearchSuggestion;
 import com.leon.biuvideo.databinding.ActivitySearchBinding;
@@ -17,11 +21,14 @@ import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.ui.adapters.HotSearchAdapter;
 import com.leon.biuvideo.ui.adapters.SearchSuggestionAdapter;
+import com.leon.biuvideo.ui.widget.loader.PaginationLoader;
 import com.leon.biuvideo.ui.widget.loader.RecyclerViewLoader;
 import com.leon.biuvideo.utils.ViewUtils;
 
 import java.util.Map;
 import java.util.Objects;
+
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 
 /**
  * @Author Leon
@@ -80,7 +87,12 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding> {
         binding.back.setOnTouchListener((v, event) -> ViewUtils.zoom(event, binding.back));
         binding.back.setOnClickListener(v -> backPressed());
 
-        RecyclerViewLoader<HotSearch, HotSearch.Data.Trending.Data> loader = new RecyclerViewLoader<>(binding.hotSearch, new HotSearchAdapter(context));
+        RecyclerViewLoader<HotSearch, HotSearch.Data.Trending.Data> loader = new RecyclerViewLoader<>(binding.hotSearch, new HotSearchAdapter(context), (content, adapter) -> {
+            content.setAdapter(new AlphaInAnimationAdapter(adapter));
+            content.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+            content.setMotionEventSplittingEnabled(false);
+            content.setHasFixedSize(true);
+        });
         loader
                 .setGuide(hotSearch -> hotSearch.getData().getTrending().getList())
                 .setObservable(new RetrofitClient(BaseUrl.API).getHttpApi().getHotSearch())

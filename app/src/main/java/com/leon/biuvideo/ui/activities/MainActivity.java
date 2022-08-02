@@ -1,6 +1,7 @@
 package com.leon.biuvideo.ui.activities;
 
 import android.annotation.SuppressLint;
+import android.text.Html;
 import android.view.View;
 import android.widget.Toast;
 

@@ -1,23 +1,23 @@
 package com.leon.biuvideo.ui.fragments.searchResultFragments;
 
 import com.leon.biuvideo.base.baseFragment.BaseLazyFragment;
-import com.leon.biuvideo.databinding.FragmentResultArticleBinding;
+import com.leon.biuvideo.databinding.FragmentResultUserBinding;
 
 /**
  * @Author Leon
  * @Time 2022/06/23
  * @Desc
  */
-public class ArticleResultFragment extends BaseLazyFragment<FragmentResultArticleBinding> {
+public class SearchResultUserFragment extends BaseLazyFragment<FragmentResultUserBinding> {
     private final String keyword;
 
-    public ArticleResultFragment(String keyword) {
+    public SearchResultUserFragment(String keyword) {
         this.keyword = keyword;
     }
 
     @Override
-    public FragmentResultArticleBinding getViewBinding() {
-        return FragmentResultArticleBinding.inflate(getLayoutInflater());
+    public FragmentResultUserBinding getViewBinding() {
+        return FragmentResultUserBinding.inflate(getLayoutInflater());
     }
 
     @Override

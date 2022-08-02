@@ -5,7 +5,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class SearchResultFt(
+data class SearchResultMedia(
     @SerializedName("code")
     val code: Int,
     @SerializedName("data")
@@ -137,22 +137,22 @@ data class SearchResultFt(
         ) : Parcelable {
             @Parcelize
             data class Badge(
-                @SerializedName("bg_color")
-                val bgColor: String,
-                @SerializedName("bg_color_night")
-                val bgColorNight: String,
-                @SerializedName("bg_style")
-                val bgStyle: Int,
-                @SerializedName("border_color")
-                val borderColor: String,
-                @SerializedName("border_color_night")
-                val borderColorNight: String,
+//                @SerializedName("bg_color")
+//                val bgColor: String,
+//                @SerializedName("bg_color_night")
+//                val bgColorNight: String,
+//                @SerializedName("bg_style")
+//                val bgStyle: Int,
+//                @SerializedName("border_color")
+//                val borderColor: String,
+//                @SerializedName("border_color_night")
+//                val borderColorNight: String,
                 @SerializedName("text")
-                val text: String,
-                @SerializedName("text_color")
-                val textColor: String,
-                @SerializedName("text_color_night")
-                val textColorNight: String
+                val text: String
+//                @SerializedName("text_color")
+//                val textColor: String,
+//                @SerializedName("text_color_night")
+//                val textColorNight: String
             ) : Parcelable
 
             @Parcelize

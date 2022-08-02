@@ -41,10 +41,10 @@ public class WatchLaterAdapter extends BaseViewBindingAdapter<WatchLater.Data.Wa
         } else {
             StringBuilder duration = new StringBuilder();
             if (data.getProgress() > 0) {
-                duration.append(ValueUtils.lengthGenerate(data.getProgress())).append("/");
+                duration.append(ValueUtils.toMediaDuration(data.getProgress())).append("/");
             }
 
-            binding.extra.setText(duration.append(ValueUtils.lengthGenerate(data.getDuration())).toString());
+            binding.extra.setText(duration.append(ValueUtils.toMediaDuration(data.getDuration())).toString());
         }
         binding.title.setText(data.getTitle());
         binding.author.setText(data.getOwner().getName());

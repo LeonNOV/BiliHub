@@ -35,12 +35,12 @@ public class PartitionHomeRecommendChildAdapter extends BaseViewBindingAdapter<P
         layoutParams.width = context.getResources().getDimensionPixelSize(R.dimen.ItemVideoW);
         binding.getRoot().setLayoutParams(layoutParams);
 
-        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM, data.getBvid())));
+        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_BVID, data.getBvid())));
 
         ViewUtils.setImg(context, binding.cover, data.getPic());
         binding.play.setText(ValueUtils.generateCN(data.getStat().getView()));
         binding.danmaku.setText(ValueUtils.generateCN(data.getStat().getDanmaku()));
-        binding.extra.setText(ValueUtils.lengthGenerate(data.getDuration()));
+        binding.extra.setText(ValueUtils.toMediaDuration(data.getDuration()));
         binding.title.setText(data.getTitle());
         binding.author.setText(data.getOwner().getName());
     }

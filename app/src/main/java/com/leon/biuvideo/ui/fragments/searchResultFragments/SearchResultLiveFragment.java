@@ -8,10 +8,10 @@ import com.leon.biuvideo.databinding.FragmentResultLiveBinding;
  * @Time 2022/06/23
  * @Desc
  */
-public class LiveResultFragment extends BaseLazyFragment<FragmentResultLiveBinding> {
+public class SearchResultLiveFragment extends BaseLazyFragment<FragmentResultLiveBinding> {
     private final String keyword;
 
-    public LiveResultFragment(String keyword) {
+    public SearchResultLiveFragment(String keyword) {
         this.keyword = keyword;
     }
 
