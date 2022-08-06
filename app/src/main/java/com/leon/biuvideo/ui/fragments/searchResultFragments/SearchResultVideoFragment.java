@@ -21,9 +21,9 @@ import com.leon.biuvideo.ui.widget.loader.PaginationLoader;
 public class SearchResultVideoFragment extends BaseLazyFragment<FragmentVideoResultBinding> {
     private final String keyword;
     private int pageNum = 0;
-    private Condition.VideoOrder videoOrder = null;
-    private Condition.VideoDuration videoDuration = null;
-    private Condition.VideoTids videoTids = null;
+    private final Condition.VideoOrder videoOrder = null;
+    private final Condition.VideoDuration videoDuration = null;
+    private final Condition.VideoTids videoTids = null;
 
     private SearchResultVideoAdapter adapter;
     private HttpApi httpApi;

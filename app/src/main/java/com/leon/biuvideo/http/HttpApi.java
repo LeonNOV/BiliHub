@@ -1,14 +1,22 @@
 package com.leon.biuvideo.http;
 
 import com.leon.biuvideo.beans.account.AccountNav;
-import com.leon.biuvideo.beans.account.Collect;
+import com.leon.biuvideo.beans.account.CollectFolder;
+import com.leon.biuvideo.beans.account.CollectFolderDetail;
 import com.leon.biuvideo.beans.account.FavoriteFolder;
+import com.leon.biuvideo.beans.account.FavoriteFolderDetail;
 import com.leon.biuvideo.beans.account.History;
 import com.leon.biuvideo.beans.account.RelationDetail;
 import com.leon.biuvideo.beans.account.RelationTags;
 import com.leon.biuvideo.beans.account.WatchLater;
 import com.leon.biuvideo.beans.home.HomeRecommend;
 import com.leon.biuvideo.beans.home.HotSearch;
+import com.leon.biuvideo.beans.home.drawerFunction.popular.PopularHot;
+import com.leon.biuvideo.beans.home.drawerFunction.popular.PopularPrecious;
+import com.leon.biuvideo.beans.home.drawerFunction.popular.PopularRank;
+import com.leon.biuvideo.beans.home.drawerFunction.popular.PopularRankBangumi;
+import com.leon.biuvideo.beans.home.drawerFunction.popular.PopularRankPgc;
+import com.leon.biuvideo.beans.home.drawerFunction.popular.PopularWeekly;
 import com.leon.biuvideo.beans.home.searchResult.SearchResultArticle;
 import com.leon.biuvideo.beans.home.searchResult.SearchResultLive;
 import com.leon.biuvideo.beans.home.searchResult.SearchResultMedia;
@@ -81,6 +89,91 @@ public interface HttpApi {
      */
     @GET("x/web-interface/popular/series/list")
     Observable<Series> getSeries();
+
+    /**
+     * 综合热门
+     * <p>
+     * https://www.bilibili.com/v/popular/all
+     * <p>
+     * https://api.bilibili.com/x/web-interface/popular?ps=20&pn=1
+     *
+     * @return {@link PopularHot}
+     */
+    @GET("x/web-interface/popular?ps=20")
+    Observable<PopularHot> getPopularHot(@Query("pn") int pageNum);
+
+    /**
+     * 每周必看
+     * <p>
+     * https://www.bilibili.com/v/popular/weekly?num=175
+     * <p>
+     * https://api.bilibili.com/x/web-interface/popular/series/one?number=175
+     *
+     * @return {@link PopularWeekly}
+     */
+    @GET("x/web-interface/popular/series/one")
+    Observable<PopularWeekly> getPopularWeekly(@Query("number") int number);
+
+    /**
+     * 入站必刷（可不携带参数进行请求）
+     * <p>
+     * https://www.bilibili.com/v/popular/history
+     * <p>
+     * https://api.bilibili.com/x/web-interface/popular/precious?page_size=100&page=1
+     *
+     * @return {@link PopularPrecious}
+     */
+    @GET("x/web-interface/popular/precious")
+    Observable<PopularPrecious> getPopularPrecious();
+
+    /**
+     * 全站排行榜-全站、国创相关、动画、音乐、舞蹈、游戏、知识、科技、运动、汽车、生活、美食、动物圈、鬼畜、时尚、娱乐、影视、原创、新人
+     * <p>
+     * https://www.bilibili.com/v/popular/rank/all
+     * <p>
+     * https://api.bilibili.com/x/web-interface/ranking/v2?rid=0&type=all
+     *
+     * @return {@link PopularRank}
+     */
+    @GET("x/web-interface/ranking/v2?type=all")
+    Observable<PopularRank> getPopularRank(@Query("rid") String rid);
+
+    /**
+     * 全站排行榜-全站、国创相关、动画、音乐、舞蹈、游戏、知识、科技、运动、汽车、生活、美食、动物圈、鬼畜、时尚、娱乐、影视、原创、新人
+     * <p>
+     * https://www.bilibili.com/v/popular/rank/all
+     * <p>
+     * https://api.bilibili.com/x/web-interface/ranking/v2?rid=0&type=all
+     *
+     * @return {@link PopularRank}
+     */
+    @GET("x/web-interface/ranking/v2")
+    Observable<PopularRank> getPopularRank(@Query("rid") String rid, @Query("type") String type);
+
+    /**
+     * 全站排行榜-国产动画、纪录片、电影、电视剧、综艺
+     * <p>
+     * https://www.bilibili.com/v/popular/rank/all
+     * <p>
+     * https://api.bilibili.com/pgc/season/rank/web/list?day=3&season_type=4
+     *
+     * @return {@link PopularRankPgc}
+     */
+    @GET("pgc/season/rank/web/list?day=3&")
+    Observable<PopularRankPgc> getPopularRankPgc(@Query("season_type") Condition.SeasonType seasonType);
+
+    /**
+     * 全站排行榜-番剧
+     * <p>
+     * https://www.bilibili.com/v/popular/rank/all
+     * <p>
+     * https://api.bilibili.com/pgc/web/rank/list?day=3&season_type=1
+     *
+     * @return {@link PopularRankBangumi}
+     */
+    @GET("pgc/web/rank/list?day=3&season_type=1")
+    Observable<PopularRankBangumi> getPopularRankBangumi();
+
 
     /**
      * 用户详细数据-包含大部分信息
@@ -190,10 +283,24 @@ public interface HttpApi {
      * @return {@link FavoriteFolder}
      */
     @GET("x/v3/fav/folder/created/list-all?jsonp=jsonp")
-    Observable<FavoriteFolder> getUserFolder(@Query("up_mid") String mid);
+    Observable<FavoriteFolder> getFavoriteFolder(@Query("up_mid") String mid);
 
     /**
-     * 用户收藏和订阅文件夹
+     * 用户收藏夹详情
+     * <p>
+     * https://space.bilibili.com/29120845/favlist?fid=1467796745&ftype=create
+     * <p>
+     * https://api.bilibili.com/x/v3/fav/resource/list?media_id=1570364745&pn=1&ps=20&order=mtime&platform=web
+     *
+     * @param folderId 收藏夹id
+     * @param pageNum  页码，从1开始
+     * @return {@link FavoriteFolderDetail}
+     */
+    @GET("x/v3/fav/resource/list?ps=20&order=mtime&platform=web")
+    Observable<FavoriteFolderDetail> getFavoriteFolderDetail(@Query("media_id") String folderId, @Query("pn") int pageNum);
+
+    /**
+     * 用户订阅的 收藏和合集 文件夹
      * <p>
      * https://space.bilibili.com/37090048/favlist
      * <p>
@@ -201,10 +308,24 @@ public interface HttpApi {
      *
      * @param pageNum 页码，从1开始
      * @param mid     UID
-     * @return {@link Collect}
+     * @return {@link CollectFolder}
      */
     @GET("x/v3/fav/folder/collected/list?ps=20&platform=web&jsonp=jsonp")
-    Observable<Collect> getUserCollect(@Query("pn") int pageNum, @Query("up_mid") String mid);
+    Observable<CollectFolder> getCollectFolder(@Query("pn") int pageNum, @Query("up_mid") String mid);
+
+    /**
+     * 用户合集文件夹详情
+     * <p>
+     * https://space.bilibili.com/37090048/favlist?fid=523&ftype=collect&ctype=21
+     * <p>
+     * https://api.bilibili.com/x/space/fav/season/list?season_id=523&pn=1&ps=20&jsonp=jsonp
+     *
+     * @param folderId 文件夹id
+     * @param pageNum  页码，从1开始
+     * @return {@link CollectFolderDetail}
+     */
+    @GET("x/space/fav/season/list?ps=20&jsonp=jsonp")
+    Observable<CollectFolderDetail> getCollectFolderDetail(@Query("season_id") String folderId, @Query("pn") int pageNum);
 
     /**
      * 用户历史记录

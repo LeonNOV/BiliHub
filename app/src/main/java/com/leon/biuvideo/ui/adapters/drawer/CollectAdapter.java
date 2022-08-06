@@ -3,23 +3,24 @@ package com.leon.biuvideo.ui.adapters.drawer;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
-import com.leon.biuvideo.beans.account.Collect;
+import com.leon.biuvideo.beans.account.CollectFolder;
 import com.leon.biuvideo.databinding.ItemCollectBinding;
+import com.leon.biuvideo.ui.activities.publicActivities.FolderDetailActivity;
 import com.leon.biuvideo.utils.ValueUtils;
 import com.leon.biuvideo.utils.ViewUtils;
 
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * @Author Leon
  * @Time 2022/07/12
  * @Desc
  */
-public class CollectAdapter extends BaseViewBindingAdapter<Collect.Data.CollectData, ItemCollectBinding> {
+public class CollectAdapter extends BaseViewBindingAdapter<CollectFolder.Data.CollectData, ItemCollectBinding> {
     public CollectAdapter(Context context) {
         super(context);
     }
@@ -30,12 +31,16 @@ public class CollectAdapter extends BaseViewBindingAdapter<Collect.Data.CollectD
     }
 
     @Override
-    protected void onBindViewHolder(Collect.Data.CollectData data, ItemCollectBinding binding, int position) {
-        binding.getRoot().setOnClickListener(v -> Toast.makeText(context, "Collect", Toast.LENGTH_SHORT).show());
-
+    protected void onBindViewHolder(CollectFolder.Data.CollectData data, ItemCollectBinding binding, int position) {
         ViewUtils.setImg(context, binding.cover, data.getCover());
-        if (data.getCoverType() == 2) {
+        // 11：收藏文件夹
+        // 21：合集文件夹
+        if (data.getType() == 11) {
+            binding.getRoot().setOnClickListener(v -> startActivity(FolderDetailActivity.class, Map.of(FolderDetailActivity.PARAM_B, String.valueOf(data.getId()))));
             binding.icon.setImageResource(R.drawable.collect_a);
+        } else {
+            binding.icon.setImageResource(R.drawable.collect_b);
+            binding.getRoot().setOnClickListener(v -> startActivity(FolderDetailActivity.class, Map.of(FolderDetailActivity.PARAM_A, String.valueOf(data.getId()))));
         }
 
         binding.title.setText(data.getTitle());

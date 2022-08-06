@@ -1,7 +1,7 @@
 package com.leon.biuvideo.ui.fragments.drawerFragments.favorite;
 
 import com.leon.biuvideo.base.baseFragment.BaseLazyFragment;
-import com.leon.biuvideo.beans.account.Collect;
+import com.leon.biuvideo.beans.account.CollectFolder;
 import com.leon.biuvideo.databinding.RefreshContentBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
@@ -18,7 +18,7 @@ import java.util.Map;
  * @Desc
  */
 public class CollectListFragment extends BaseLazyFragment<RefreshContentBinding> {
-    private PaginationLoader<Collect, Collect.Data.CollectData> loader;
+    private PaginationLoader<CollectFolder, CollectFolder.Data.CollectData> loader;
     private int pageNum = 0;
 
     @Override
@@ -30,8 +30,8 @@ public class CollectListFragment extends BaseLazyFragment<RefreshContentBinding>
     protected void initView() {
         HttpApi httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
         loader = new PaginationLoader<>(binding, new CollectAdapter(context));
-        loader.setGuide(collect -> collect.getData().getList());
-        loader.setUpdateInterface(loadType -> httpApi.getUserCollect(++pageNum, "49405324"));
+        loader.setGuide(collectFolder -> collectFolder.getData().getList());
+        loader.setUpdateInterface(loadType -> httpApi.getCollectFolder(++pageNum, TestValue.MID));
     }
 
     @Override

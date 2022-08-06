@@ -2,6 +2,11 @@ package com.leon.biuvideo.ui.activities.publicActivities;
 
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
 import com.leon.biuvideo.databinding.ActivityVideoBinding;
+import com.leon.biuvideo.ui.fragments.videoFragments.MediaCommentsFragment;
+import com.leon.biuvideo.ui.fragments.videoFragments.MediaInfoFragment;
+import com.leon.biuvideo.utils.ViewUtils;
+
+import java.util.List;
 
 /**
  * @Author Leon
@@ -20,6 +25,9 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
 
     @Override
     protected void init() {
-
+        if (params.containsKey(PARAM_BVID)) {
+            ViewUtils.initTabLayout(this, binding.extra.tabLayout, binding.extra.viewPager,
+                    List.of(new MediaInfoFragment(params.getString(PARAM_BVID)), new MediaCommentsFragment(params.getString(PARAM_BVID))), "简介", "评论");
+        }
     }
 }

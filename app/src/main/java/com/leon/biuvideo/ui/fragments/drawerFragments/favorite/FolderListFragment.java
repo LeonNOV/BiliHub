@@ -31,7 +31,7 @@ public class FolderListFragment extends BaseLazyFragment<ComposeListBinding> {
         HttpApi httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
         loader = new RecyclerViewLoader<FavoriteFolder, FavoriteFolder.Data.Folder>(binding.getRoot(), new FolderAdapter(context))
                 .setGuide(favoriteFolder -> favoriteFolder.getData().getList())
-                .setObservable(httpApi.getUserFolder("29120845"));
+                .setObservable(httpApi.getFavoriteFolder(TestValue.MID));
     }
 
     @Override

@@ -26,11 +26,11 @@ import java.util.Stack;
 public abstract class BaseActivity<T extends ViewBinding> extends AppCompatActivity implements BindingInterface<T> {
     public static final String TAG = "WwwW";
 
-    private int enterIn = R.anim.translate_enter_in;
-    private int enterOut = R.anim.translate_enter_out;
+    private final int enterIn = R.anim.translate_enter_in;
+    private final int enterOut = R.anim.translate_enter_out;
 
-    private int exitIn = R.anim.translate_exit_in;
-    private int exitOut = R.anim.translate_exit_out;
+    private final int exitIn = R.anim.translate_exit_in;
+    private final int exitOut = R.anim.translate_exit_out;
 
     protected T binding;
     protected Context context;

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".ui.activities.publicActivities.UserActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
@@ -39,8 +40,8 @@
                     <FrameLayout
                         android:layout_width="@dimen/BiliUserFaceWH"
                         android:layout_height="@dimen/BiliUserFaceWH"
-                        android:layout_marginStart="20dp"
-                        android:layout_alignParentBottom="true">
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="20dp">
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/user_face"
@@ -67,13 +68,13 @@
                         android:layout_height="33dp"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:paddingStart="30dp"
-                        android:paddingEnd="30dp"
                         android:layout_marginEnd="20dp"
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/follow_bg"
                         android:elevation="5dp"
                         android:gravity="center"
+                        android:paddingStart="30dp"
+                        android:paddingEnd="30dp"
                         android:text="@string/follow"
                         android:textColor="@color/follow_color"
                         android:textSize="14sp"

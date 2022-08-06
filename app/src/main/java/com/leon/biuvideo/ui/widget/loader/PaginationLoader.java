@@ -42,7 +42,6 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
     private final RefreshContentBinding binding;
     private final BaseViewBindingAdapter<B, ? extends ViewBinding> adapter;
 
-    private Observable<T> observable;
     private UpdateInterface<T> updateInterface;
     private GuideInterface<T, B> guideInterface;
 
@@ -91,7 +90,7 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
      */
     private void insertData(@LoadType int loadType, RefreshLayout refreshLayout) {
         if (updateInterface != null) {
-            this.observable = updateInterface.update(loadType);
+            Observable<T> observable = updateInterface.update(loadType);
 
             observable
                     .subscribeOn(Schedulers.newThread())

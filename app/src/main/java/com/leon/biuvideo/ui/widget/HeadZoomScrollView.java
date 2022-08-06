@@ -42,13 +42,13 @@ public class HeadZoomScrollView extends ScrollView {
     private View secondView;
 
     // 滑动放大系数，系数越大，滑动时放大程度越大
-    private float mScaleRatio = 0.4f;
+    private final float mScaleRatio = 0.4f;
 
     // 最大的放大倍数
-    private float mScaleTimes = 2f;
+    private final float mScaleTimes = 2f;
 
     // 回弹时间系数，系数越小，回弹越快
-    private float mReplyRatio = 0.4f;
+    private final float mReplyRatio = 0.4f;
 
     @Override
     protected void onFinishInflate() {

@@ -1,4 +1,4 @@
-package com.leon.biuvideo.ui.fragments.drawerFragments.order;
+package com.leon.biuvideo.ui.fragments.drawerFragments;
 
 import com.leon.biuvideo.base.baseFragment.BaseLazyFragment;
 import com.leon.biuvideo.beans.publicBeans.user.UserOrder;

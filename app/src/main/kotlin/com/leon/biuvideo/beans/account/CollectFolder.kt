@@ -5,7 +5,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Collect(
+data class CollectFolder(
     @SerializedName("code")
     val code: Int,
     @SerializedName("data")

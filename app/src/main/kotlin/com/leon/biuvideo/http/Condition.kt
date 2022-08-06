@@ -447,4 +447,51 @@ class Condition {
             }
         }
     }
+
+    enum class SeasonType {
+        /**
+         * 国创动画
+         */
+        GcAnime {
+            override fun toString(): String {
+                return "4"
+            }
+        },
+
+        /**
+         * 纪录片
+         */
+        Document {
+            override fun toString(): String {
+                return "3"
+            }
+        },
+
+        /**
+         * 电影
+         */
+        Movie {
+            override fun toString(): String {
+                return "2"
+            }
+        },
+
+        /**
+         * 电视剧
+         */
+        TelePlay {
+            override fun toString(): String {
+                return "5"
+            }
+        },
+
+        /**
+         * 综艺
+         */
+        Variety {
+            override fun toString(): String {
+                return "7"
+            }
+        }
+    }
 }

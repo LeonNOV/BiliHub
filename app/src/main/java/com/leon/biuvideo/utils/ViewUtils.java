@@ -206,7 +206,7 @@ public class ViewUtils {
      * @param recyclerView {@link RecyclerView}
      * @param adapter      {@link BaseViewBindingAdapter}
      */
-    public static void listInitializer(RecyclerView recyclerView, BaseViewBindingAdapter<?, ?> adapter) {
+    public static void listInitializer(RecyclerView recyclerView, RecyclerView.Adapter<?> adapter) {
         recyclerViewInitializer(recyclerView, adapter);
     }
 
@@ -216,14 +216,14 @@ public class ViewUtils {
      * @param recyclerView {@link RecyclerView}
      * @param adapter      {@link BaseViewBindingAdapter}
      */
-    public static void linkAdapter(RecyclerView recyclerView, BaseViewBindingAdapter<?, ?> adapter) {
+    public static void linkAdapter(RecyclerView recyclerView, RecyclerView.Adapter<?> adapter) {
         recyclerView.setAdapter(new AlphaInAnimationAdapter(adapter));
         recyclerView.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
         recyclerView.setMotionEventSplittingEnabled(false);
         recyclerView.setHasFixedSize(true);
     }
 
-    private static void recyclerViewInitializer(RecyclerView recyclerView, BaseViewBindingAdapter<?, ?> adapter) {
+    private static void recyclerViewInitializer(RecyclerView recyclerView, RecyclerView.Adapter<?> adapter) {
         linkAdapter(recyclerView, adapter);
 
         RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();

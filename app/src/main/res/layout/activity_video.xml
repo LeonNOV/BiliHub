@@ -33,14 +33,6 @@
 
     </RelativeLayout>
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/video_tab"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/video_viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <include layout="@layout/compose_tab_vp" android:id="@+id/extra"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

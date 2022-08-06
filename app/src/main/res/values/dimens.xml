@@ -8,6 +8,8 @@
     <dimen name="topBar_height">56dp</dimen>
     <dimen name="topBar_padding">5dp</dimen>
 
+    <dimen name="margin_top_for_topBar">56.5dp</dimen>
+
     <dimen name="tagView_valueMarginEnd">5dp</dimen>
 
     <!-- 重写BottomNavigationView的文字与图片的间距，值越小间距越大 -->

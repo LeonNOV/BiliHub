@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:layout_margin="10dp"
-            android:src="@drawable/collect_b" />
+            tools:src="@drawable/collect_b" />
 
     </FrameLayout>
 
