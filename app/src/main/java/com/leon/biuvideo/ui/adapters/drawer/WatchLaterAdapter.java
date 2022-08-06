@@ -14,6 +14,7 @@ import com.leon.biuvideo.utils.ValueUtils;
 import com.leon.biuvideo.utils.ViewUtils;
 
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * @Author Leon
@@ -33,7 +34,7 @@ public class WatchLaterAdapter extends BaseViewBindingAdapter<WatchLater.Data.Wa
 
     @Override
     protected void onBindViewHolder(WatchLater.Data.WatchLaterData data, ItemVideoBinding binding, int position) {
-        binding.getRoot().setOnClickListener(v -> ActivityManager.startActivity(context, VideoActivity.class));
+        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_BVID, data.getBvid())));
 
         ViewUtils.setImg(context, binding.cover, data.getPic());
         if (data.getVideos() > 1) {

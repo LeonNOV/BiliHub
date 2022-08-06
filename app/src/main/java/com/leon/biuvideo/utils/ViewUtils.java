@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,6 +24,9 @@ import androidx.viewbinding.ViewBinding;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DecodeFormat;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.leon.biuvideo.R;
@@ -197,6 +201,7 @@ public class ViewUtils {
         Glide
                 .with(context)
                 .load(imgUrl)
+                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                 .into(imageView);
     }
 

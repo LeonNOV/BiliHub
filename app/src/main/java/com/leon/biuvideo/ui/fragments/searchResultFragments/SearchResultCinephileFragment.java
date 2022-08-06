@@ -14,7 +14,7 @@ import com.leon.biuvideo.ui.widget.loader.PaginationLoader;
 /**
  * @Author Leon
  * @Time 2022/06/23
- * @Desc
+ * @Desc 搜索结果-影视
  */
 public class SearchResultCinephileFragment extends BaseLazyFragment<FragmentResultCinephileBinding> {
     private final String keyword;

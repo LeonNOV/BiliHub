@@ -5,6 +5,6 @@
 
     <include
         android:id="@+id/content"
-        layout="@layout/refresh_container" />
+        layout="@layout/refresh_content" />
 
 </FrameLayout>

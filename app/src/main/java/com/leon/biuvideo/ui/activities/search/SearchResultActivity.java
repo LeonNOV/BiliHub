@@ -50,12 +50,12 @@ public class SearchResultActivity extends BaseActivity<ActivitySearchResultBindi
 //        fragments.add(new SearchResultComprehensiveFragment(keyword));
         fragments.add(new SearchResultVideoFragment(keyword));
         fragments.add(new SearchResultBangumiFragment(keyword));
-        fragments.add(new SearchResultCinephileFragment(keyword));
         fragments.add(new SearchResultLiveFragment(keyword));
-        fragments.add(new SearchResultArticleFragment(keyword));
         fragments.add(new SearchResultUserFragment(keyword));
+        fragments.add(new SearchResultCinephileFragment(keyword));
+        fragments.add(new SearchResultArticleFragment(keyword));
 
         ViewUtils.initTabLayout(this, binding.searchResultTabLayout, binding.searchResultViewPager,
-                fragments, "视频", "番剧", "影视", "直播", "专栏", "用户");
+                fragments, "视频", "番剧", "直播", "用户", "影视", "专栏");
     }
 }

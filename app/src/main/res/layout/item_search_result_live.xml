@@ -25,26 +25,43 @@
             android:layout_alignParentBottom="true"
             android:src="@drawable/video_item_bottom_bg" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/item_search_result_live_status_bg"
+            android:paddingStart="5dp"
+            android:paddingTop="1dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="1dp"
+            android:textColor="@color/BiliBili_pink"
+            android:textSize="11sp"
+            tools:text="直播中" />
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="3dp"
-            android:layout_marginEnd="3dp"
-            android:layout_marginBottom="3dp"
-            android:gravity="center_vertical">
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="3dp">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/playContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:gravity="center_vertical">
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/playIcon"
                     android:layout_width="16dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="16dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_video_play"
+                    android:src="@drawable/as_person"
                     android:tint="@color/white" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -58,42 +75,17 @@
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/danmakuContainer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_toEndOf="@id/playContainer"
-                android:gravity="center_vertical">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="16dp"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_danmaku"
-                    android:tint="@color/white" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/danmaku"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:textColor="@color/white"
-                    android:textSize="11sp"
-                    tools:text="245" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/extra"
+                android:id="@+id/tag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="11sp"
                 tools:ignore="RelativeOverlap"
-                tools:text="02:49" />
+                tools:text="游戏赛事" />
 
         </RelativeLayout>
 

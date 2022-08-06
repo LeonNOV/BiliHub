@@ -9,6 +9,7 @@ import com.leon.biuvideo.databinding.ActivityLiveStreamBinding;
  * @Desc
  */
 public class LiveStreamActivity extends BaseActivity<ActivityLiveStreamBinding> {
+    public static final String PARAM = "roomId";
 
     @Override
     public ActivityLiveStreamBinding getViewBinding() {
