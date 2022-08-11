@@ -158,4 +158,10 @@ dependencies {
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.9.0'
 
     implementation 'jp.wasabeef:recyclerview-animators:4.0.2'
+
+    // https://github.com/Doikki/DKVideoPlayer
+//    implementation 'com.github.Doikki:DKVideoPlayer:3.3.7'
+
+    // https://github.com/CarGuo/GSYVideoPlayer
+//    implementation 'com.github.CarGuo.GSYVideoPlayer:GSYVideoPlayer:v8.3.3'
 }

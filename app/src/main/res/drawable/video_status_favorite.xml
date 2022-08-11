@@ -1,0 +1,4 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/video_status_favorite_true" android:state_selected="true" />
+    <item android:drawable="@drawable/video_status_favorite_false" android:state_selected="false" />
+</selector>

@@ -6,8 +6,8 @@ import android.view.ViewGroup;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
-import com.leon.biuvideo.beans.home.HomeRecommend;
-import com.leon.biuvideo.databinding.ItemVideoBBinding;
+import com.leon.biuvideo.beans.publicBeans.resources.video.VideoDetail;
+import com.leon.biuvideo.databinding.ItemVideoBinding;
 import com.leon.biuvideo.ui.activities.publicActivities.VideoActivity;
 import com.leon.biuvideo.utils.ValueUtils;
 import com.leon.biuvideo.utils.ViewUtils;
@@ -16,28 +16,28 @@ import java.util.Map;
 
 /**
  * @Author Leon
- * @Time 2022/06/24
+ * @Time 2022/08/11
  * @Desc
  */
-public class HomeRecommendAdapter extends BaseViewBindingAdapter<HomeRecommend.Data.Item, ItemVideoBBinding> {
-    public HomeRecommendAdapter(Context context) {
+public class MediaInfoRecommendAdapter extends BaseViewBindingAdapter<VideoDetail.Data.Related, ItemVideoBinding> {
+    public MediaInfoRecommendAdapter(Context context) {
         super(context);
     }
 
     @Override
-    protected ItemVideoBBinding getItemViewBinding(Context context, ViewGroup parent) {
-        return ItemVideoBBinding.bind(LayoutInflater.from(context).inflate(R.layout.item_video_b, parent, false));
+    protected ItemVideoBinding getItemViewBinding(Context context, ViewGroup parent) {
+        return ItemVideoBinding.bind(LayoutInflater.from(context).inflate(R.layout.item_video, parent, false));
     }
 
     @Override
-    protected void onBindViewHolder(HomeRecommend.Data.Item data, ItemVideoBBinding binding, int position) {
+    protected void onBindViewHolder(VideoDetail.Data.Related data, ItemVideoBinding binding, int position) {
         binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_BVID, data.getBvid())));
 
         ViewUtils.setImg(context, binding.cover, data.getPic());
-        binding.play.setText(ValueUtils.generateCN(data.getStat().getView()));
-        binding.danmaku.setText(ValueUtils.generateCN(data.getStat().getDanmaku()));
         binding.extra.setText(ValueUtils.toMediaDuration(data.getDuration()));
         binding.title.setText(data.getTitle());
         binding.author.setText(data.getOwner().getName());
+        binding.view.setText(ValueUtils.generateCN(data.getStat().getView()));
+        binding.danmaku.setText(ValueUtils.generateCN(data.getStat().getDanmaku()));
     }
 }

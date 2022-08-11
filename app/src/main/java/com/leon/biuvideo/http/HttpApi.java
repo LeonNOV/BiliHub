@@ -34,6 +34,8 @@ import com.leon.biuvideo.beans.publicBeans.resources.article.ArticleInfo;
 import com.leon.biuvideo.beans.publicBeans.resources.audio.AudioInfo;
 import com.leon.biuvideo.beans.publicBeans.resources.audio.AudioResources;
 import com.leon.biuvideo.beans.publicBeans.resources.picture.PictureInfo;
+import com.leon.biuvideo.beans.publicBeans.resources.video.VideoDetail;
+import com.leon.biuvideo.beans.publicBeans.resources.video.VideoRelation;
 import com.leon.biuvideo.beans.publicBeans.user.UserArticle;
 import com.leon.biuvideo.beans.publicBeans.user.UserAudio;
 import com.leon.biuvideo.beans.publicBeans.user.UserInfo;
@@ -663,6 +665,32 @@ public interface HttpApi {
      */
     @GET("x/web-interface/nav")
     Observable<AccountNav> getAccountInfo();
+
+    /**
+     * 视频详细数据
+     * <p>
+     * https://www.bilibili.com/video/BV1iW4y1y7jq
+     * <p>
+     * https://api.bilibili.com/x/web-interface/view/detail?bvid=BV1iW4y1y7jq
+     *
+     * @param bvid bvid
+     * @return {@link VideoDetail}
+     */
+    @GET("x/web-interface/view/detail")
+    Observable<VideoDetail> getVideoDetail(@Query("bvid") String bvid);
+
+    /**
+     * 当前视频与已登录用户的关系数据
+     * <p>
+     * https://www.bilibili.com/video/BV1iW4y1y7jq
+     * <p>
+     * https://api.bilibili.com/x/web-interface/archive/relation?aid=941426915&bvid=BV1iW4y1y7jq
+     *
+     * @param bvid bvid
+     * @return {@link VideoRelation}
+     */
+    @GET("x/web-interface/archive/relation")
+    Observable<VideoRelation> getVideoRelation(@Query("bvid") String bvid);
 
     interface HttpRaw {
         /**

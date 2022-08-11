@@ -64,19 +64,17 @@ public class ArticleActivity extends AsyncHttpActivity<ActivityArticleBinding, A
     }
 
     @Override
-    protected void async(ApiHelper<ArticleInfo> apiHelper) {
-        apiHelper.setOnResult(articleInfo -> {
-            if ("".equals(articleInfo.getData().getBannerUrl())) {
-                ViewUtils.setImg(context, binding.banner, articleInfo.getData().getImageUrls().get(0));
-            } else {
-                ViewUtils.setImg(context, binding.banner, articleInfo.getData().getBannerUrl());
-            }
-            binding.title.setText(articleInfo.getData().getTitle());
-            binding.face.setOnClickListener(v -> startActivity(UserActivity.class, Map.of(UserActivity.PARAM, articleInfo.getData().getMid())));
+    protected void onAsyncResult(ArticleInfo articleInfo) {
+        if ("".equals(articleInfo.getData().getBannerUrl())) {
+            ViewUtils.setImg(context, binding.banner, articleInfo.getData().getImageUrls().get(0));
+        } else {
+            ViewUtils.setImg(context, binding.banner, articleInfo.getData().getBannerUrl());
+        }
+        binding.title.setText(articleInfo.getData().getTitle());
+        binding.face.setOnClickListener(v -> startActivity(UserActivity.class, Map.of(UserActivity.PARAM, articleInfo.getData().getMid())));
 
-            getAuthorInfo(articleInfo.getData().getMid());
-            getArticleContent();
-        }).doIt();
+        getAuthorInfo(articleInfo.getData().getMid());
+        getArticleContent();
     }
 
     /**

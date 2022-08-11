@@ -47,36 +47,34 @@ public class PictureActivity extends AsyncHttpActivity<ActivityPictureBinding, P
     }
 
     @Override
-    protected void async(ApiHelper<PictureInfo> apiHelper) {
-        apiHelper.setOnResult(pictureInfo -> {
-            PictureInfo.Data.Item.Modules.ModuleAuthor moduleAuthor = pictureInfo.getData().getItem().getModules().getModuleAuthor();
+    protected void onAsyncResult(PictureInfo pictureInfo) {
+        PictureInfo.Data.Item.Modules.ModuleAuthor moduleAuthor = pictureInfo.getData().getItem().getModules().getModuleAuthor();
 
-            ViewUtils.setImg(context, binding.face, moduleAuthor.getFace());
-            binding.face.setOnClickListener(v -> startActivity(UserActivity.class, Map.of(UserActivity.PARAM, String.valueOf(moduleAuthor.getMid()))));
-            binding.name.setText(moduleAuthor.getName());
-            binding.time.setText(moduleAuthor.getPubTime());
-            binding.describe.setText(pictureInfo.getData().getItem().getModules().getModuleDynamic().getDesc().getText());
+        ViewUtils.setImg(context, binding.face, moduleAuthor.getFace());
+        binding.face.setOnClickListener(v -> startActivity(UserActivity.class, Map.of(UserActivity.PARAM, String.valueOf(moduleAuthor.getMid()))));
+        binding.name.setText(moduleAuthor.getName());
+        binding.time.setText(moduleAuthor.getPubTime());
+        binding.describe.setText(pictureInfo.getData().getItem().getModules().getModuleDynamic().getDesc().getText());
 
-            PictureInfo.Data.Item.Modules.ModuleStat moduleStat = pictureInfo.getData().getItem().getModules().getModuleStat();
-            binding.share.setText(ValueUtils.generateCN(moduleStat.getForward().getCount()));
-            binding.comment.setText(ValueUtils.generateCN(moduleStat.getComment().getCount()));
-            binding.like.setText(ValueUtils.generateCN(moduleStat.getLike().getCount()));
+        PictureInfo.Data.Item.Modules.ModuleStat moduleStat = pictureInfo.getData().getItem().getModules().getModuleStat();
+        binding.share.setText(ValueUtils.generateCN(moduleStat.getForward().getCount()));
+        binding.comment.setText(ValueUtils.generateCN(moduleStat.getComment().getCount()));
+        binding.like.setText(ValueUtils.generateCN(moduleStat.getLike().getCount()));
 
-            int imgSize = pictureInfo.getData().getItem().getModules().getModuleDynamic().getMajor().getDraw().getItems().size();
-            int spanCount;
-            //判断要显示的列数
-            if (imgSize % 3 == 0) {
-                spanCount = 3;
-            } else if (imgSize % 2 == 0) {
-                spanCount = 2;
-            } else {
-                spanCount = 1;
-            }
+        int imgSize = pictureInfo.getData().getItem().getModules().getModuleDynamic().getMajor().getDraw().getItems().size();
+        int spanCount;
+        //判断要显示的列数
+        if (imgSize % 3 == 0) {
+            spanCount = 3;
+        } else if (imgSize % 2 == 0) {
+            spanCount = 2;
+        } else {
+            spanCount = 1;
+        }
 
-            UserPictureDetailAdapter adapter = new UserPictureDetailAdapter(context, pictureInfo.getData().getItem().getModules().getModuleDynamic().getMajor().getDraw().getItems());
+        UserPictureDetailAdapter adapter = new UserPictureDetailAdapter(context, pictureInfo.getData().getItem().getModules().getModuleDynamic().getMajor().getDraw().getItems());
 
-            adapter.appendHead(pictureInfo.getData().getItem().getModules().getModuleDynamic().getMajor().getDraw().getItems());
-            ViewUtils.listInitializer(binding.content, adapter);
-        }).doIt();
+        adapter.appendHead(pictureInfo.getData().getItem().getModules().getModuleDynamic().getMajor().getDraw().getItems());
+        ViewUtils.listInitializer(binding.content, adapter);
     }
 }

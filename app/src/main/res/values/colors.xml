@@ -7,6 +7,7 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+    <color name="black_overlay">#66000000</color>
 
     <color name="blue">#2196f3</color>
     <color name="BiliBili_pink">#FB7299</color>
@@ -25,31 +26,19 @@
 
     <color name="video_length_bg">#99000000</color>
     <color name="invalid_foreground">#80000000</color>
+
     <color name="cancel_color">#F13939</color>
     <color name="operation_color">#0288D1</color>
     <color name="tabLayoutIndicatorColor">#FFA200</color>
 
-    <color name="popular_top_list_first_img_color">#fed442</color>
-    <color name="popular_top_list_second_img_color">#c0cfe2</color>
-    <color name="popular_top_list_third_img_color">#d3b59d</color>
-    <color name="popular_top_list_other_img_color">#e7e7e7</color>
-
-    <color name="popular_top_list_first_text_color">#d6a80d</color>
-    <color name="popular_top_list_second_text_color">#99a4b6</color>
-    <color name="popular_top_list_third_text_color">#a28671</color>
-    <color name="popular_top_list_other_text_color">#c0c0c0</color>
     <color name="infoColor">#686868</color>
 
     <color name="qualityBg">#80000000</color>
     <color name="drawer_bg">#B5B5B5</color>
-    <color name="light_blue_600">#FF039BE5</color>
-    <color name="light_blue_900">#FF01579B</color>
-    <color name="light_blue_A200">#FF40C4FF</color>
-    <color name="light_blue_A400">#FF00B0FF</color>
-    <color name="black_overlay">#66000000</color>
     <color name="topBar">#ffffff</color>
     <color name="follow_color">#757575</color>
     <color name="picture_viewer_theme">#878787</color>
+
     <color name="ItemPopularPrecious">#d67716</color>
     <color name="ItemPopularWeekly">#fccb24</color>
     <color name="ItemPopularHot">#fc6738</color>

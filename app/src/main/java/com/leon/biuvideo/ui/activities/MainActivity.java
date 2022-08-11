@@ -31,6 +31,7 @@ import com.leon.biuvideo.ui.activities.drawerFunction.WatchLaterActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.partition.PartitionActivity;
 import com.leon.biuvideo.ui.activities.publicActivities.AudioActivity;
 import com.leon.biuvideo.ui.activities.publicActivities.DownloadActivity;
+import com.leon.biuvideo.ui.activities.publicActivities.VideoActivity;
 import com.leon.biuvideo.ui.activities.search.SearchActivity;
 import com.leon.biuvideo.utils.DataStoreUtils;
 import com.leon.biuvideo.utils.ViewUtils;
@@ -57,8 +58,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     @Override
     protected void init() {
         binding.home.userFace.setOnClickListener(v -> binding.getRoot().openDrawer(GravityCompat.START));
-//        binding.home.search.setOnClickListener(v -> startActivity(AudioActivity.class, Map.of(AudioActivity.PARAM, "305581")));
-        binding.home.search.setOnClickListener(v -> startActivity(SearchActivity.class));
+        binding.home.search.setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_BVID, "BV1iW4y1y7jq")));
+//        binding.home.search.setOnClickListener(v -> startActivity(SearchActivity.class));
         binding.drawer.userContainer.setOnTouchListener((v, event) -> ViewUtils.zoom(event, binding.drawer.userContainer));
         binding.drawer.userContainer.setOnClickListener(v -> {
             startActivity(LoginActivity.class);

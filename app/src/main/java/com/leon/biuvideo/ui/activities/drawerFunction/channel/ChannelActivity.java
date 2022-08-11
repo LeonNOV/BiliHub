@@ -43,22 +43,20 @@ public class ChannelActivity extends AsyncHttpActivity<ActivityChannelBinding, C
     }
 
     @Override
-    protected void async(ApiHelper<ChannelCategory> apiHelper) {
-        apiHelper.setOnResult(channelCategory -> {
-            channelCategory.getData().getCategories().add(0, new ChannelCategory.Data.Category("0", -1, "我的订阅"));
+    protected void onAsyncResult(ChannelCategory channelCategory) {
+        channelCategory.getData().getCategories().add(0, new ChannelCategory.Data.Category("0", -1, "我的订阅"));
 
-            int count = channelCategory.getData().getCategories().size();
-            List<Fragment> fragments = new ArrayList<>(count);
-            String[] titles = new String[count];
+        int count = channelCategory.getData().getCategories().size();
+        List<Fragment> fragments = new ArrayList<>(count);
+        String[] titles = new String[count];
 
-            for (int i = 0; i < channelCategory.getData().getCategories().size(); i++) {
-                ChannelCategory.Data.Category category = channelCategory.getData().getCategories().get(i);
+        for (int i = 0; i < channelCategory.getData().getCategories().size(); i++) {
+            ChannelCategory.Data.Category category = channelCategory.getData().getCategories().get(i);
 
-                fragments.add(new ChannelFragment(category));
-                titles[i] = category.getName();
-            }
+            fragments.add(new ChannelFragment(category));
+            titles[i] = category.getName();
+        }
 
-            ViewUtils.initTabLayout(ChannelActivity.this, binding.content.tabLayout, binding.content.viewPager, fragments, titles);
-        }).doIt();
+        ViewUtils.initTabLayout(ChannelActivity.this, binding.content.tabLayout, binding.content.viewPager, fragments, titles);
     }
 }

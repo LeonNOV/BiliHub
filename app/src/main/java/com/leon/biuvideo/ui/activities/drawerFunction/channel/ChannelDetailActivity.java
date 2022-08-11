@@ -55,32 +55,30 @@ public class ChannelDetailActivity extends AsyncHttpActivity<ActivityChannelDeta
     }
 
     @Override
-    protected void async(ApiHelper<ChannelDetail> apiHelper) {
-        apiHelper.setOnResult(channelDetail -> {
-            ViewUtils.setImg(context, binding.bg, channelDetail.getData().getBackground());
-            ViewUtils.setImg(context, binding.cover, channelDetail.getData().getCover());
+    protected void onAsyncResult(ChannelDetail channelDetail) {
+        ViewUtils.setImg(context, binding.bg, channelDetail.getData().getBackground());
+        ViewUtils.setImg(context, binding.cover, channelDetail.getData().getCover());
 
-            ColorDrawable drawable = new ColorDrawable(ColorKt.toColorInt(channelDetail.getData().getThemeColor()));
-            drawable.setAlpha(channelDetail.getData().getAlpha());
-            binding.bg.setForeground(drawable);
+        ColorDrawable drawable = new ColorDrawable(ColorKt.toColorInt(channelDetail.getData().getThemeColor()));
+        drawable.setAlpha(channelDetail.getData().getAlpha());
+        binding.bg.setForeground(drawable);
 
-            binding.subscribe.setOnClickListener(v -> Toast.makeText(context, "开发中…", Toast.LENGTH_SHORT).show());
-            binding.subscribe.setTextColor(ColorKt.toColorInt(channelDetail.getData().getThemeColor()));
-            binding.name.setText(channelDetail.getData().getName());
-            binding.count.setText(String.format(Locale.CHINESE, "%s视频", channelDetail.getData().getArchiveCount()));
-            binding.play.setText(String.format(Locale.CHINESE, "%s播放", channelDetail.getData().getViewCount()));
-            binding.featured.setText(String.format(Locale.CHINESE, "%s个精选视频", ValueUtils.generateCN(channelDetail.getData().getFeaturedCount())));
+        binding.subscribe.setOnClickListener(v -> Toast.makeText(context, "开发中…", Toast.LENGTH_SHORT).show());
+        binding.subscribe.setTextColor(ColorKt.toColorInt(channelDetail.getData().getThemeColor()));
+        binding.name.setText(channelDetail.getData().getName());
+        binding.count.setText(String.format(Locale.CHINESE, "%s视频", channelDetail.getData().getArchiveCount()));
+        binding.play.setText(String.format(Locale.CHINESE, "%s播放", channelDetail.getData().getViewCount()));
+        binding.featured.setText(String.format(Locale.CHINESE, "%s个精选视频", ValueUtils.generateCN(channelDetail.getData().getFeaturedCount())));
 
-            List<Fragment> fragments = new ArrayList<>(2);
-            for (ChannelDetail.Data.Tab tab : channelDetail.getData().getTabs()) {
-                if ("featured".equals(tab.getType())) {
-                    fragments.add(new ChannelFeaturedFragment(channelId, tab.getOptions()));
-                } else {
-                    fragments.add(new ChannelMultipleFragment(channelId));
-                }
+        List<Fragment> fragments = new ArrayList<>(2);
+        for (ChannelDetail.Data.Tab tab : channelDetail.getData().getTabs()) {
+            if ("featured".equals(tab.getType())) {
+                fragments.add(new ChannelFeaturedFragment(channelId, tab.getOptions()));
+            } else {
+                fragments.add(new ChannelMultipleFragment(channelId));
             }
+        }
 
-            ViewUtils.initTabLayout(this, binding.content.tabLayout, binding.content.viewPager, fragments, "精选", "综合");
-        }).doIt();
+        ViewUtils.initTabLayout(this, binding.content.tabLayout, binding.content.viewPager, fragments, "精选", "综合");
     }
 }

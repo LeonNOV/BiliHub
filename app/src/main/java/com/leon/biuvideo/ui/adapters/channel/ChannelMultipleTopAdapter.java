@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.biuvideo.R;
-import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.databinding.ItemVideoBBinding;
 import com.leon.biuvideo.beans.home.channel.ChannelDetailMultiple;
@@ -36,7 +35,7 @@ public class ChannelMultipleTopAdapter extends BaseViewBindingAdapter<ChannelDet
         layoutParams.width = context.getResources().getDimensionPixelSize(R.dimen.ItemVideoW);
         binding.getRoot().setLayoutParams(layoutParams);
 
-        binding.getRoot().setOnClickListener(v -> ActivityManager.startActivity(context, VideoActivity.class, Map.of(VideoActivity.PARAM_BVID, data.getBvid())));
+        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_BVID, data.getBvid())));
 
         ViewUtils.setImg(context, binding.cover, data.getCover());
         binding.play.setText(data.getViewCount());

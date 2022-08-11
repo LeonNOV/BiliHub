@@ -18,14 +18,14 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            app:elevation="0dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:elevation="0dp">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
-                app:layout_scrollFlags="scroll"
-                android:layout_margin="10dp">
+                android:layout_margin="10dp"
+                app:layout_scrollFlags="scroll">
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/cover"

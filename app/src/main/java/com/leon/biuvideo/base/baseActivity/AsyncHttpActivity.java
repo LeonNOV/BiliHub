@@ -7,11 +7,8 @@ import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 
 import com.leon.biuvideo.http.ApiHelper;
-import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.RequestData;
 import com.leon.biuvideo.http.RetrofitClient;
-
-import java.util.Map;
 
 import io.reactivex.rxjava3.core.Observable;
 
@@ -21,6 +18,11 @@ import io.reactivex.rxjava3.core.Observable;
  * @Desc
  */
 public abstract class AsyncHttpActivity<V extends ViewBinding, P extends Parcelable> extends BaseActivity<V> {
+    /**
+     * 设置请求数据
+     *
+     * @return RequestData
+     */
     protected abstract RequestData setRequestData();
 
     @Override
@@ -37,22 +39,21 @@ public abstract class AsyncHttpActivity<V extends ViewBinding, P extends Parcela
             retrofitClient = new RetrofitClient(requestData.getBaseUrl());
         }
 
-        Observable<P> observable = createObservable(retrofitClient);
-
-        async(new ApiHelper<>(observable));
+        new ApiHelper<>(createObservable(retrofitClient)).setOnResult(this::onAsyncResult).doIt();
     }
 
     /**
      * 创建{@link Observable<P>}实例
      *
-     * @return  observable
+     * @param retrofitClient retrofit
+     * @return observable
      */
     protected abstract Observable<P> createObservable(RetrofitClient retrofitClient);
 
     /**
-     * 异步
+     * 响应数据
      *
-     * @param apiHelper    apiHelper
+     * @param p 响应数据
      */
-    protected abstract void async(ApiHelper<P> apiHelper);
+    protected abstract void onAsyncResult(P p);
 }

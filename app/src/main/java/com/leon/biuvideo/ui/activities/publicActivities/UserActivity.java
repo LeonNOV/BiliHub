@@ -76,80 +76,78 @@ public class UserActivity extends AsyncHttpActivity<ActivityUserBinding, UserInf
     }
 
     @Override
-    protected void async(ApiHelper<UserInfo> apiHelper) {
-        apiHelper.setOnResult(userInfo -> {
-            ViewUtils.setImg(context, binding.userBanner, userInfo.getData().getTopPhoto());
-            ViewUtils.setImg(context, binding.userFace, userInfo.getData().getFace());
-            binding.name.setText(userInfo.getData().getName());
-            binding.toolBarName.setText(userInfo.getData().getName());
+    protected void onAsyncResult(UserInfo userInfo) {
+        ViewUtils.setImg(context, binding.userBanner, userInfo.getData().getTopPhoto());
+        ViewUtils.setImg(context, binding.userFace, userInfo.getData().getFace());
+        binding.name.setText(userInfo.getData().getName());
+        binding.toolBarName.setText(userInfo.getData().getName());
 
-            int roleVerify = userInfo.getData().getOfficial().getRole();
-            if (roleVerify != 0) {
-                binding.mark.setVisibility(View.VISIBLE);
-                binding.mark.setImageResource(roleVerify == 1 ? R.drawable.ic_person_verify : R.drawable.ic_official_verify);
+        int roleVerify = userInfo.getData().getOfficial().getRole();
+        if (roleVerify != 0) {
+            binding.mark.setVisibility(View.VISIBLE);
+            binding.mark.setImageResource(roleVerify == 1 ? R.drawable.ic_person_verify : R.drawable.ic_official_verify);
+        }
+
+        setLevel(userInfo.getData().getLevel());
+        if (userInfo.getData().getVip().getStatus() == 1) {
+            binding.vip.setVisibility(View.VISIBLE);
+            binding.vip.setText(userInfo.getData().getVip().getLabel().getText());
+        }
+
+        switch (userInfo.getData().getSex()) {
+            case "男":
+                binding.gender.setImageResource(R.drawable.gender_man);
+                break;
+            case "女":
+                binding.gender.setImageResource(R.drawable.gender_woman);
+                break;
+            default:
+                binding.gender.setVisibility(View.GONE);
+                break;
+        }
+
+        binding.follow.setText(userInfo.getData().isFollowed() ? "已关注" : "关注");
+        binding.follow.setOnClickListener(v -> {
+            if (userInfo.getData().isFollowed()) {
+                binding.follow.setText("关注");
+                userInfo.getData().setFollowed(false);
+            } else {
+                binding.follow.setText("已关注");
+                userInfo.getData().setFollowed(true);
             }
+        });
 
-            setLevel(userInfo.getData().getLevel());
-            if (userInfo.getData().getVip().getStatus() == 1) {
-                binding.vip.setVisibility(View.VISIBLE);
-                binding.vip.setText(userInfo.getData().getVip().getLabel().getText());
-            }
+        binding.uid.setText(String.format(Locale.CHINESE, "UID: %d", userInfo.getData().getMid()));
+        binding.desc.setText(userInfo.getData().getSign());
 
-            switch (userInfo.getData().getSex()) {
-                case "男":
-                    binding.gender.setImageResource(R.drawable.gender_man);
+        if (userInfo.getData().getSysNotice().getId() != 0) {
+            String sysNotice = "";
+            switch (userInfo.getData().getSysNotice().getId()) {
+                case 8:
+                    sysNotice = "争议账户";
                     break;
-                case "女":
-                    binding.gender.setImageResource(R.drawable.gender_woman);
+                case 11:
+                case 24:
+                    sysNotice = "合约争议";
+                    break;
+                case 20:
+                    sysNotice = "纪念账号";
+                    break;
+                case 22:
+                    sysNotice = "合约诉讼";
+                    break;
+                case 25:
+                    sysNotice = "严重指控";
                     break;
                 default:
-                    binding.gender.setVisibility(View.GONE);
                     break;
             }
 
-            binding.follow.setText(userInfo.getData().isFollowed() ? "已关注" : "关注");
-            binding.follow.setOnClickListener(v -> {
-                if (userInfo.getData().isFollowed()) {
-                    binding.follow.setText("关注");
-                    userInfo.getData().setFollowed(false);
-                } else {
-                    binding.follow.setText("已关注");
-                    userInfo.getData().setFollowed(true);
-                }
-            });
+            binding.accountType.setText(sysNotice);
+            binding.accountType.setTextColor(Color.parseColor(userInfo.getData().getSysNotice().getTextColor()));
+        }
 
-            binding.uid.setText(String.format(Locale.CHINESE, "UID: %d", userInfo.getData().getMid()));
-            binding.desc.setText(userInfo.getData().getSign());
-
-            if (userInfo.getData().getSysNotice().getId() != 0) {
-                String sysNotice = "";
-                switch (userInfo.getData().getSysNotice().getId()) {
-                    case 8:
-                        sysNotice = "争议账户";
-                        break;
-                    case 11:
-                    case 24:
-                        sysNotice = "合约争议";
-                        break;
-                    case 20:
-                        sysNotice = "纪念账号";
-                        break;
-                    case 22:
-                        sysNotice = "合约诉讼";
-                        break;
-                    case 25:
-                        sysNotice = "严重指控";
-                        break;
-                    default:
-                        break;
-                }
-
-                binding.accountType.setText(sysNotice);
-                binding.accountType.setTextColor(Color.parseColor(userInfo.getData().getSysNotice().getTextColor()));
-            }
-
-            getStat();
-        }).doIt();
+        getStat();
     }
 
     private void getStat() {

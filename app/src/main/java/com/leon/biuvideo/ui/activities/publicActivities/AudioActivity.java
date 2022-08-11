@@ -51,37 +51,35 @@ public class AudioActivity extends AsyncHttpActivity<ActivityAudioBinding, Audio
     }
 
     @Override
-    protected void async(ApiHelper<AudioInfo> apiHelper) {
-        apiHelper.setOnResult(audioInfo -> {
-            binding.mv.setOnClickListener(v -> {
-                if ("".equals(audioInfo.getData().getBvid())) {
-                    Toast.makeText(context, "无对应视频", Toast.LENGTH_SHORT).show();
-                } else {
-                    startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_BVID, audioInfo.getData().getBvid()));
-                }
-            });
+    protected void onAsyncResult(AudioInfo audioInfo) {
+        binding.mv.setOnClickListener(v -> {
+            if ("".equals(audioInfo.getData().getBvid())) {
+                Toast.makeText(context, "无对应视频", Toast.LENGTH_SHORT).show();
+            } else {
+                startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_BVID, audioInfo.getData().getBvid()));
+            }
+        });
 
 //            Glide
 //                    .with(context).load(audioInfo.getData().getCover())
 //                    .apply(RequestOptions.bitmapTransform(new BlurTransformation(25, 3))).into(binding.audioBg);
 //            ViewUtils.setImg(context, binding.cover, audioInfo.getData().getCover());
 
-            binding.title.setText(audioInfo.getData().getTitle());
-            binding.author.setText(audioInfo.getData().getAuthor());
-            binding.length.setText(toLengthStr(audioInfo.getData().getDuration()));
+        binding.title.setText(audioInfo.getData().getTitle());
+        binding.author.setText(audioInfo.getData().getAuthor());
+        binding.length.setText(toLengthStr(audioInfo.getData().getDuration()));
 
-            binding.seekBar.setOnSeekBarChangeListener((AudioController.SimpleOnSeekBarChangeListener) (seekBar, progress, fromUser) -> {
-                if (!fromUser) {
-                    return;
-                }
+        binding.seekBar.setOnSeekBarChangeListener((AudioController.SimpleOnSeekBarChangeListener) (seekBar, progress, fromUser) -> {
+            if (!fromUser) {
+                return;
+            }
 
-                long duration = audioController.audioDuration;
-                long newPosition = (duration * progress) / binding.seekBar.getMax();
-                audioController.seekTo(newPosition);
-            });
+            long duration = audioController.audioDuration;
+            long newPosition = (duration * progress) / binding.seekBar.getMax();
+            audioController.seekTo(newPosition);
+        });
 
-            getAudioResourcesUrl();
-        }).doIt();
+        getAudioResourcesUrl();
     }
 
     /**
