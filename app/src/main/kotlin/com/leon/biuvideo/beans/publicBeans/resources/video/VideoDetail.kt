@@ -233,7 +233,7 @@ data class VideoDetail(
             @SerializedName("bvid")
             val bvid: String,
             @SerializedName("cid")
-            val cid: Int,
+            val cid: String,
             @SerializedName("copyright")
             val copyright: Int,
             @SerializedName("ctime")
@@ -513,7 +513,7 @@ data class VideoDetail(
             @SerializedName("bvid")
             val bvid: String,
             @SerializedName("cid")
-            val cid: Int,
+            val cid: String,
             @SerializedName("copyright")
             val copyright: Int,
             @SerializedName("ctime")
@@ -610,7 +610,7 @@ data class VideoDetail(
             @Parcelize
             data class Page(
                 @SerializedName("cid")
-                val cid: Int,
+                val cid: String,
                 @SerializedName("dimension")
                 val dimension: Dimension,
                 @SerializedName("duration")
@@ -848,7 +848,7 @@ data class VideoDetail(
                         @SerializedName("bvid")
                         val bvid: String,
                         @SerializedName("cid")
-                        val cid: Int,
+                        val cid: String,
                         @SerializedName("id")
                         val id: Int,
                         @SerializedName("page")
@@ -983,7 +983,7 @@ data class VideoDetail(
                         @Parcelize
                         data class Page(
                             @SerializedName("cid")
-                            val cid: Int,
+                            val cid: String,
                             @SerializedName("dimension")
                             val dimension: Dimension,
                             @SerializedName("duration")

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/videoPlayerHeight">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/lsp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/back"
+        style="@style/BackStyle"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/play"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/video_play_false"
+        app:tint="#80FFFFFF" />
+
+</RelativeLayout>

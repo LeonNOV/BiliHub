@@ -179,7 +179,7 @@
 
     <string name="videoPlayerCompleteReplay">重新播放</string>
 
-    <string name="videoPlayerErrorMsg">出了点小问题，请稍后重试</string>
+    <string name="videoPlayerErrorMsg">出了点小问题，请点击重试</string>
     <string name="videoPlayerErrorRetry">重试</string>
 
     <string name="videoPlayerBottomSpeed">倍速</string>

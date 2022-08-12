@@ -1,42 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.activities.publicActivities.VideoActivity">
 
-    <RelativeLayout
-        android:id="@+id/video_content"
+    <xyz.doikki.videoplayer.player.VideoView
+        android:id="@+id/player"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/videoPlayerHeight"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <!--        <com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer-->
-        <!--            android:id="@+id/player"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"/>-->
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/ic_launcher_background" />
-
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/topBar_height">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/article_back"
-                style="@style/BackStyle" />
-
-        </androidx.appcompat.widget.Toolbar>
-
-    </RelativeLayout>
+        android:layout_height="@dimen/videoPlayerHeight"/>
 
     <include
         android:id="@+id/extra"

@@ -36,6 +36,7 @@ import com.leon.biuvideo.beans.publicBeans.resources.audio.AudioResources;
 import com.leon.biuvideo.beans.publicBeans.resources.picture.PictureInfo;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoDetail;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoRelation;
+import com.leon.biuvideo.beans.publicBeans.resources.video.VideoStream;
 import com.leon.biuvideo.beans.publicBeans.user.UserArticle;
 import com.leon.biuvideo.beans.publicBeans.user.UserAudio;
 import com.leon.biuvideo.beans.publicBeans.user.UserInfo;
@@ -691,6 +692,21 @@ public interface HttpApi {
      */
     @GET("x/web-interface/archive/relation")
     Observable<VideoRelation> getVideoRelation(@Query("bvid") String bvid);
+
+    /**
+     * 视频流获取
+     * <p>
+     * https://www.bilibili.com/video/BV1rp4y1e745
+     * <p>
+     * https://api.bilibili.com/x/player/playurl?bvid=BV1rp4y1e745&cid=244954665&qn=120&fnver=0&fnval=64&fourk=1&platform=pc
+     *
+     * @param bvid    bvid
+     * @param cid     cid
+     * @param quality 清晰度数值
+     * @return {@link VideoStream}
+     */
+    @GET("x/player/playurl?fnver=0&fnval=64&fourk=1&platform=pc")
+    Observable<VideoStream> getVideoStream(@Query("bvid") String bvid, @Query("cid") String cid, @Query("qn") Quality quality);
 
     interface HttpRaw {
         /**

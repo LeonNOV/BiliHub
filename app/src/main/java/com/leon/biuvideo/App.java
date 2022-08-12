@@ -5,6 +5,10 @@ import android.content.Context;
 
 import com.leon.biuvideo.parser.PartitionParser;
 
+import xyz.doikki.videoplayer.ijk.IjkPlayerFactory;
+import xyz.doikki.videoplayer.player.VideoViewConfig;
+import xyz.doikki.videoplayer.player.VideoViewManager;
+
 /**
  * @Author Leon
  * @Time 2022/06/23
@@ -16,5 +20,8 @@ public class App extends Application {
         super.onCreate();
 
         new PartitionParser().initMemData(getApplicationContext());
+
+        // 默认使用IjkPlayer解码
+        VideoViewManager.setConfig(VideoViewConfig.newBuilder().setPlayerFactory(IjkPlayerFactory.create()).build());
     }
 }
