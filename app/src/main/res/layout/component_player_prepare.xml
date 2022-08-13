@@ -3,20 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/videoPlayerHeight">
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/cover"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        tools:src="@drawable/lsp" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/back"
-        style="@style/BackStyle"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp" />
+    android:layout_height="@dimen/videoPlayerHeight"
+    tools:background="@color/gray">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/play"
@@ -25,5 +13,42 @@
         android:layout_centerInParent="true"
         android:src="@drawable/video_play_false"
         app:tint="#80FFFFFF" />
+
+    <LinearLayout
+        android:id="@+id/netWarningContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/videoPlayerPrepareNetWarning"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/continuePlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/round_bg"
+            android:backgroundTint="@color/blue"
+            android:gravity="center"
+            android:padding="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="@string/videoPlayerPrepareContinuePlay"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+    </LinearLayout>
 
 </RelativeLayout>

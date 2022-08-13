@@ -8,18 +8,21 @@ import android.widget.Toast;
 import androidx.core.view.GravityCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.viewbinding.ViewBinding;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
 import com.leon.biuvideo.beans.account.AccountNav;
 import com.leon.biuvideo.beans.home.AccountViewModel;
+import com.leon.biuvideo.beans.home.HomeRecommend;
 import com.leon.biuvideo.databinding.ActivityMainBinding;
 import com.leon.biuvideo.http.ApiHelper;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.DataStoreKey;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
+import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.activities.drawerFunction.channel.ChannelActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.FavoriteActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.HistoryActivity;
@@ -33,6 +36,8 @@ import com.leon.biuvideo.ui.activities.publicActivities.AudioActivity;
 import com.leon.biuvideo.ui.activities.publicActivities.DownloadActivity;
 import com.leon.biuvideo.ui.activities.publicActivities.VideoActivity;
 import com.leon.biuvideo.ui.activities.search.SearchActivity;
+import com.leon.biuvideo.ui.adapters.HomeRecommendAdapter;
+import com.leon.biuvideo.ui.widget.loader.PaginationLoader;
 import com.leon.biuvideo.utils.DataStoreUtils;
 import com.leon.biuvideo.utils.ViewUtils;
 
@@ -70,23 +75,18 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         setDrawerFunctionListener();
 
         // todo 开发中不启用
-        /*
-        Boolean loginStatus = DataStoreUtils.INSTANCE.getData(DataStoreKey.LOGIN_STATUS, false);
-        if (loginStatus) {
-            refreshData();
-        } else {
-            initObserver();
-        }
+//        Boolean loginStatus = DataStoreUtils.INSTANCE.getData(DataStoreKey.LOGIN_STATUS, false);
+//        if (loginStatus) {
+//            refreshData();
+//        } else {
+//            initObserver();
+//        }
 
-        HttpApi httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.Cookie, HttpApi.DEFAULT_COOKIE)).getHttpApi();
-        PaginationLoader<HomeRecommend, HomeRecommend.Data.Item> loader = new PaginationLoader<>(binding.home.data, new HomeRecommendAdapter(context));
-
-        loader.setLayoutManager(new GridLayoutManager(context, 2));
-        loader.closeRefresh();
+        HttpApi httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
+        PaginationLoader<HomeRecommend, HomeRecommend.Data.Item> loader = new PaginationLoader<>(binding.home.data, new HomeRecommendAdapter(context), new GridLayoutManager(context, 2));
         loader.setGuide(homeRecommend -> homeRecommend.getData().getItem());
-        loader.setObservable(httpApi.getHomeRecommend());
+        loader.setUpdateInterface(loadType -> httpApi.getHomeRecommend());
         loader.firstObtain();
-        */
     }
 
     /**

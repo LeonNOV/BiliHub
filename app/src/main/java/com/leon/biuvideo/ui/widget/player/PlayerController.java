@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.widget.FrameLayout;
 
@@ -47,14 +48,14 @@ public class PlayerController extends GestureVideoController {
     @Override
     protected void initView() {
         super.initView();
-        binding = ComponentPlayerControllerBinding.bind(LayoutInflater.from(getContext()).inflate(R.layout.component_player_controller, this, true));
+        binding = ComponentPlayerControllerBinding.bind(LayoutInflater.from(getContext()).inflate(R.layout.component_player_controller, this, false));
         binding.lock.setOnClickListener(v -> mControlWrapper.toggleLockState());
     }
 
     public PlayerController addDefaultControlComponent (String title, String cid) {
-        addControlComponent(new TopBarView(getContext()).setTitle(title), new PrepareView(getContext()),
-                new CompleteView(getContext()), new BottomControlView(getContext()),
-                new ErrorView(getContext()), new GestureView(getContext()));
+        addControlComponent(new CompleteView(getContext()), new ErrorView(getContext()),
+                new PrepareView(getContext()), new TopBarView(getContext()).setTitle(title),
+                new BottomControlView(getContext()), new GestureView(getContext()));
 
         return this;
     }
@@ -103,7 +104,9 @@ public class PlayerController extends GestureVideoController {
                 binding.lock.setVisibility(GONE);
 
                 // 退出全屏后，隐藏状态栏
-//                binding.getRoot()..setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                if (mActivity != null) {
+                    mActivity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                }
                 break;
             case VideoView.PLAYER_FULL_SCREEN:
                 binding.lock.setVisibility(isShowing() ? VISIBLE : GONE);

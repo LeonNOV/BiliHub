@@ -1,11 +1,11 @@
 package com.leon.biuvideo.ui.activities.publicActivities;
 
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.leon.biuvideo.base.baseActivity.AsyncHttpActivity;
 import com.leon.biuvideo.beans.publicBeans.resources.picture.PictureInfo;
 import com.leon.biuvideo.databinding.ActivityPictureBinding;
-import com.leon.biuvideo.http.ApiHelper;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.RequestData;
 import com.leon.biuvideo.http.RetrofitClient;
@@ -72,9 +72,15 @@ public class PictureActivity extends AsyncHttpActivity<ActivityPictureBinding, P
             spanCount = 1;
         }
 
-        UserPictureDetailAdapter adapter = new UserPictureDetailAdapter(context, pictureInfo.getData().getItem().getModules().getModuleDynamic().getMajor().getDraw().getItems());
+        if (spanCount == 1) {
+            binding.content.setLayoutManager(new LinearLayoutManager(context));
+        } else {
+            binding.content.setLayoutManager(new GridLayoutManager(context, spanCount));
+        }
 
+        UserPictureDetailAdapter adapter = new UserPictureDetailAdapter(context, pictureInfo.getData().getItem().getModules().getModuleDynamic().getMajor().getDraw().getItems());
         adapter.appendHead(pictureInfo.getData().getItem().getModules().getModuleDynamic().getMajor().getDraw().getItems());
+
         ViewUtils.listInitializer(binding.content, adapter);
     }
 }

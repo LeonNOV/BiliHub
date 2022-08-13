@@ -1,7 +1,15 @@
 package com.leon.biuvideo.ui.fragments.videoFragments;
 
+import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseFragment.BaseLazyFragment;
+import com.leon.biuvideo.beans.publicBeans.resources.Reply;
 import com.leon.biuvideo.databinding.FragmentMediaCommentsBinding;
+import com.leon.biuvideo.http.BaseUrl;
+import com.leon.biuvideo.http.HttpApi;
+import com.leon.biuvideo.http.ReplyType;
+import com.leon.biuvideo.http.RetrofitClient;
+import com.leon.biuvideo.ui.adapters.ReplyAdapter;
+import com.leon.biuvideo.ui.widget.loader.PaginationLoader;
 
 /**
  * @Author Leon
@@ -9,10 +17,16 @@ import com.leon.biuvideo.databinding.FragmentMediaCommentsBinding;
  * @Desc
  */
 public class MediaCommentsFragment extends BaseLazyFragment<FragmentMediaCommentsBinding> {
-    private final String bvid;
+    private final String aid;
+    private HttpApi httpApi;
+    private ReplyAdapter adapter;
+    private PaginationLoader<Reply, Reply.Data.Reply> loader;
 
-    public MediaCommentsFragment(String bvid) {
-        this.bvid = bvid;
+    private int next = 0;
+    private int mode = 3;
+
+    public MediaCommentsFragment(String aid) {
+        this.aid = aid;
     }
 
     @Override
@@ -22,11 +36,40 @@ public class MediaCommentsFragment extends BaseLazyFragment<FragmentMediaComment
 
     @Override
     protected void initView() {
+        binding.refresh.setOnClickListener(v -> {
+            if (mode == 3) {
+                binding.mode.setText(R.string.ReplyModeNew);
+                binding.refresh.setText(R.string.ReplyNew);
 
+                mode = 2;
+            } else {
+                binding.mode.setText(R.string.ReplyModeHot);
+                binding.refresh.setText(R.string.ReplyHot);
+
+                mode = 3;
+            }
+
+            reload();
+        });
+
+        httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
+        adapter = new ReplyAdapter(context);
+        loader = new PaginationLoader<>(binding.content, adapter);
+        loader.setGuide(reply -> {
+            next = reply.getData().getCursor().getNext();
+            return reply.getData().getReplies();
+        });
+        loader.setUpdateInterface(loadType -> httpApi.getReply(aid, mode, next, ReplyType.Video));
     }
 
     @Override
     protected void onLazyLoad() {
+        loader.firstObtain();
+    }
 
+    private void reload () {
+        next = 0;
+        adapter.removeAll();
+        loader.setUpdateInterface(loadType -> httpApi.getReply(aid, mode, next, ReplyType.Video)).obtain();
     }
 }

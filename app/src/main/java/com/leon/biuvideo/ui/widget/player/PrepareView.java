@@ -17,6 +17,7 @@ import com.leon.biuvideo.databinding.ComponentPlayerPrepareBinding;
 import xyz.doikki.videoplayer.controller.ControlWrapper;
 import xyz.doikki.videoplayer.controller.IControlComponent;
 import xyz.doikki.videoplayer.player.VideoView;
+import xyz.doikki.videoplayer.player.VideoViewManager;
 
 /**
  * @Author Leon
@@ -25,6 +26,7 @@ import xyz.doikki.videoplayer.player.VideoView;
  */
 public class PrepareView extends FrameLayout implements IControlComponent {
     private ControlWrapper controlWrapper;
+    private ComponentPlayerPrepareBinding binding;
 
     public PrepareView(@NonNull Context context) {
         super(context);
@@ -45,14 +47,15 @@ public class PrepareView extends FrameLayout implements IControlComponent {
     }
 
     private void init() {
-        ComponentPlayerPrepareBinding binding = ComponentPlayerPrepareBinding.bind(LayoutInflater.from(getContext()).inflate(R.layout.component_player_prepare, this, false));
+        binding = ComponentPlayerPrepareBinding.bind(LayoutInflater.from(getContext()).inflate(R.layout.component_player_prepare, this, false));
 
-        binding.back.setOnClickListener(v -> ActivityManager.BackPressed());
-        binding.cover.setOnClickListener(v -> {
+        binding.play.setOnClickListener(v -> controlWrapper.start());
+        binding.continuePlay.setOnClickListener(v -> {
+            binding.netWarningContainer.setVisibility(GONE);
+            VideoViewManager.instance().setPlayOnMobileNetwork(true);
+            controlWrapper.start();
         });
-        binding.play.setOnClickListener(v -> {
-        });
-        setOnClickListener(v -> controlWrapper.start());
+//        setOnClickListener(v -> controlWrapper.start());
     }
 
     @Override
@@ -78,9 +81,8 @@ public class PrepareView extends FrameLayout implements IControlComponent {
                 bringToFront();
                 setVisibility(VISIBLE);
 
-//                mStartPlay.setVisibility(View.GONE);
-//                mNetWarning.setVisibility(GONE);
-//                mLoading.setVisibility(View.VISIBLE);
+                binding.play.setVisibility(GONE);
+                binding.netWarningContainer.setVisibility(GONE);
                 break;
             case VideoView.STATE_PLAYING:
             case VideoView.STATE_PAUSED:
@@ -93,15 +95,14 @@ public class PrepareView extends FrameLayout implements IControlComponent {
             case VideoView.STATE_IDLE:
                 setVisibility(VISIBLE);
                 bringToFront();
-//                mLoading.setVisibility(View.GONE);
-//                mNetWarning.setVisibility(GONE);
-//                mStartPlay.setVisibility(View.VISIBLE);
-//                mThumb.setVisibility(View.VISIBLE);
+
+                binding.play.setVisibility(VISIBLE);
+                binding.netWarningContainer.setVisibility(GONE);
                 break;
             case VideoView.STATE_START_ABORT:
                 setVisibility(VISIBLE);
-//                mNetWarning.setVisibility(VISIBLE);
-//                mNetWarning.bringToFront();
+                binding.netWarningContainer.setVisibility(VISIBLE);
+                binding.netWarningContainer.bringToFront();
                 break;
             default:
                 break;

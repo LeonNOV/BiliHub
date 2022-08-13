@@ -229,7 +229,7 @@ data class VideoDetail(
         @Parcelize
         data class Related(
             @SerializedName("aid")
-            val aid: Int,
+            val aid: String,
             @SerializedName("bvid")
             val bvid: String,
             @SerializedName("cid")
@@ -342,7 +342,7 @@ data class VideoDetail(
             @Parcelize
             data class Stat(
                 @SerializedName("aid")
-                val aid: Int,
+                val aid: String,
                 @SerializedName("coin")
                 val coin: Int,
                 @SerializedName("danmaku")
@@ -509,7 +509,7 @@ data class VideoDetail(
         @Parcelize
         data class View(
             @SerializedName("aid")
-            val aid: Int,
+            val aid: String,
             @SerializedName("bvid")
             val bvid: String,
             @SerializedName("cid")
@@ -587,7 +587,7 @@ data class VideoDetail(
                 @Parcelize
                 data class Honor(
                     @SerializedName("aid")
-                    val aid: Int,
+                    val aid: String,
                     @SerializedName("desc")
                     val desc: String,
                     @SerializedName("type")
@@ -770,7 +770,7 @@ data class VideoDetail(
             @Parcelize
             data class Stat(
                 @SerializedName("aid")
-                val aid: Int,
+                val aid: String,
                 @SerializedName("argue_msg")
                 val argueMsg: String,
                 @SerializedName("coin")
@@ -840,7 +840,7 @@ data class VideoDetail(
                     @Parcelize
                     data class Episode(
                         @SerializedName("aid")
-                        val aid: Int,
+                        val aid: String,
                         @SerializedName("arc")
                         val arc: Arc,
                         @SerializedName("attribute")
@@ -863,7 +863,7 @@ data class VideoDetail(
                         @Parcelize
                         data class Arc(
                             @SerializedName("aid")
-                            val aid: Int,
+                            val aid: String,
                             @SerializedName("author")
                             val author: Author,
                             @SerializedName("copyright")
@@ -952,7 +952,7 @@ data class VideoDetail(
                             @Parcelize
                             data class Stat(
                                 @SerializedName("aid")
-                                val aid: Int,
+                                val aid: String,
                                 @SerializedName("argue_msg")
                                 val argueMsg: String,
                                 @SerializedName("coin")

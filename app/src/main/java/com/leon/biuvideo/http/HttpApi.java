@@ -30,6 +30,7 @@ import com.leon.biuvideo.beans.home.drawerFunction.Series;
 import com.leon.biuvideo.beans.partition.PartitionData;
 import com.leon.biuvideo.beans.partition.PartitionRecommend;
 import com.leon.biuvideo.beans.partition.PartitionTag;
+import com.leon.biuvideo.beans.publicBeans.resources.Reply;
 import com.leon.biuvideo.beans.publicBeans.resources.article.ArticleInfo;
 import com.leon.biuvideo.beans.publicBeans.resources.audio.AudioInfo;
 import com.leon.biuvideo.beans.publicBeans.resources.audio.AudioResources;
@@ -707,6 +708,24 @@ public interface HttpApi {
      */
     @GET("x/player/playurl?fnver=0&fnval=64&fourk=1&platform=pc")
     Observable<VideoStream> getVideoStream(@Query("bvid") String bvid, @Query("cid") String cid, @Query("qn") Quality quality);
+
+    /**
+     * 评论内容获取
+     * <p>
+     * 部分数据需要携带Cookie才能获取，如：IP属地等
+     * <p>
+     * https://www.bilibili.com/video/BV1tY4y1w7GQ
+     * <p>
+     * https://api.bilibili.com/x/v2/reply/main?mode=3&next=0&oid=644125629&plat=1&type=1
+     *
+     * @param oid  评论区ID
+     * @param mode 0/3: 仅按热度、2: 仅按时间
+     * @param next 下一页ID
+     * @param type 评论类型
+     * @return {@link Reply}
+     */
+    @GET("x/v2/reply/main")
+    Observable<Reply> getReply(@Query("oid") String oid, @Query("mode") int mode, @Query("next") int next, @Query("type") ReplyType type);
 
     interface HttpRaw {
         /**

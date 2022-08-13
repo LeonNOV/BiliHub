@@ -54,6 +54,7 @@ public class BottomControlView extends FrameLayout implements IControlComponent,
     }
 
     private void init() {
+        setVisibility(GONE);
         binding = ComponentPlayerBottomControlBinding.bind(LayoutInflater.from(getContext()).inflate(R.layout.component_player_bottom_control, this, false));
 
         binding.seekBar.setOnSeekBarChangeListener(this);
@@ -77,10 +78,10 @@ public class BottomControlView extends FrameLayout implements IControlComponent,
 
     @Override
     public void onVisibilityChanged(boolean isVisible, Animation anim) {
-        binding.container.setVisibility(isVisible ? VISIBLE : GONE);
+        binding.getRoot().setVisibility(isVisible ? VISIBLE : GONE);
 
         if (anim != null) {
-            binding.container.startAnimation(anim);
+            binding.getRoot().startAnimation(anim);
         }
     }
 
@@ -102,7 +103,7 @@ public class BottomControlView extends FrameLayout implements IControlComponent,
                 break;
             case VideoView.STATE_PLAYING:
                 binding.play.setSelected(true);
-                binding.container.setVisibility(controlWrapper.isShowing() ? VISIBLE : GONE);
+                binding.getRoot().setVisibility(controlWrapper.isShowing() ? VISIBLE : GONE);
                 setVisibility(VISIBLE);
 
                 controlWrapper.startProgress();
@@ -135,11 +136,11 @@ public class BottomControlView extends FrameLayout implements IControlComponent,
             int orientation = activity.getRequestedOrientation();
             int cutoutHeight = controlWrapper.getCutoutHeight();
             if (orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
-                binding.container.setPadding(0, 0, 0, 0);
+                binding.getRoot().setPadding(0, 0, 0, 0);
             } else if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
-                binding.container.setPadding(cutoutHeight, 0, 0, 0);
+                binding.getRoot().setPadding(cutoutHeight, 0, 0, 0);
             } else if (orientation == ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE) {
-                binding.container.setPadding(0, 0, cutoutHeight, 0);
+                binding.getRoot().setPadding(0, 0, cutoutHeight, 0);
             }
         }
     }
@@ -149,6 +150,7 @@ public class BottomControlView extends FrameLayout implements IControlComponent,
         if (isDragging) {
             return;
         }
+
         if (duration > 0) {
             binding.seekBar.setEnabled(true);
 
@@ -176,8 +178,15 @@ public class BottomControlView extends FrameLayout implements IControlComponent,
     }
 
     @Override
-    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        if (!fromUser) {
+            return;
+        }
 
+        long duration = controlWrapper.getDuration();
+        long newPosition = (duration * progress) / binding.seekBar.getMax();
+
+        binding.progress.setText(PlayerUtils.stringForTime((int) newPosition));
     }
 
     @Override
@@ -198,9 +207,5 @@ public class BottomControlView extends FrameLayout implements IControlComponent,
         isDragging = false;
         controlWrapper.startProgress();
         controlWrapper.startFadeOut();
-
-//        if (onDanmakuListener != null) {
-//            onDanmakuListener.onSeekTo(videoNewPosition);
-//        }
     }
 }

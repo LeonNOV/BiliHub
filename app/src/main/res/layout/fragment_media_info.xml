@@ -8,16 +8,16 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/bg"
         app:elevation="0dp">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
             android:orientation="vertical"
             app:layout_scrollFlags="scroll">
 
-            <RelativeLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginStart="10dp"
@@ -27,7 +27,9 @@
                     android:id="@+id/faceContainer"
                     android:layout_width="52dp"
                     android:layout_height="52dp"
-                    android:layout_centerVertical="true">
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/face"
@@ -47,14 +49,14 @@
                 </FrameLayout>
 
                 <RelativeLayout
+                    android:id="@+id/authorContainer"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_centerVertical="true"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:layout_toEndOf="@+id/faceContainer"
-                    android:orientation="vertical">
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/faceContainer">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/author"
@@ -93,7 +95,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/follow"
-                    android:layout_width="90dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
@@ -101,11 +103,16 @@
                     android:background="@drawable/follow_bg"
                     android:elevation="5dp"
                     android:gravity="center"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
                     android:textColor="@color/follow_color"
                     android:textSize="@dimen/infoSize"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:text="已关注" />
 
-            </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/infoTitle"
@@ -187,8 +194,8 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/like_img"
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/video_status_like" />
 
@@ -215,8 +222,8 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/coin_img"
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/video_status_coin" />
 
@@ -243,8 +250,8 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/favorite_img"
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/video_status_favorite" />
 
@@ -271,8 +278,8 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/share_img"
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/video_status_share" />
 
@@ -303,6 +310,7 @@
         android:id="@+id/recommend"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/bg"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 

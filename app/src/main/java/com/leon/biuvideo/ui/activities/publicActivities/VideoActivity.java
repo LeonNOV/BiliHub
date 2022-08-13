@@ -56,17 +56,16 @@ public class VideoActivity extends AsyncHttpActivity<ActivityVideoBinding, Video
     protected void onAsyncResult(VideoDetail videoDetail) {
         initPlayer(videoDetail.getData().getView().getBvid(), videoDetail.getData().getView().getCid());
         ViewUtils.initTabLayout(this, binding.extra.tabLayout, binding.extra.viewPager,
-                List.of(new MediaInfoFragment(videoDetail.getData()), new MediaCommentsFragment(bvid)), "简介", "评论");
+                List.of(new MediaInfoFragment(videoDetail.getData()), new MediaCommentsFragment(videoDetail.getData().getView().getAid())), "简介", "评论" + videoDetail.getData().getView().getStat().getReply());
     }
 
     private void initPlayer(String bvid, String cid) {
-        binding.player.setUrl("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
+        binding.player.setUrl("https://cdn.cnbj1.fds.api.mi-img.com/product-images/cyberone/v1.mp4");
 
         PlayerController playerController = new PlayerController(context);
         playerController.addDefaultControlComponent("Test title", cid);
         binding.player.setVideoController(playerController);
         binding.player.start();
-
 
         /*new ApiHelper<>(new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE))
                 .getHttpApi()
@@ -77,5 +76,24 @@ public class VideoActivity extends AsyncHttpActivity<ActivityVideoBinding, Video
                     Log.d(TAG, "initPlayer: " + videoStream.getData().getAcceptDescription());
                     Log.d(TAG, "initPlayer-quality: " + videoStream.getData().getQuality());
                 }).doIt();*/
+    }
+
+    @Override
+    protected void onResume() {
+        if (binding.player.isPlaying()) {
+            binding.player.pause();
+        } else {
+            binding.player.resume();
+        }
+
+        super.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        binding.player.pause();
+        binding.player.release();
+
+        super.onDestroy();
     }
 }

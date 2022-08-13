@@ -263,4 +263,9 @@
     <string name="channelRank">排行榜</string>
     <string name="dialog_pic_viewer_save_current">保存当前原图</string>
     <string name="dialog_pic_viewer_save_all">保存所有图片为原图</string>
+    
+    <string name="ReplyNew">按时间</string>
+    <string name="ReplyHot">按热门</string>
+    <string name="ReplyModeNew">最新评论</string>
+    <string name="ReplyModeHot">热门评论</string>
 </resources>
