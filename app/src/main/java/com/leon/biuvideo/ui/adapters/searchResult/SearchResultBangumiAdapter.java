@@ -11,10 +11,12 @@ import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.beans.home.searchResult.SearchResultMedia;
 import com.leon.biuvideo.databinding.ItemSearchResultBangumiBinding;
+import com.leon.biuvideo.ui.activities.publicActivities.VideoActivity;
 import com.leon.biuvideo.utils.ValueUtils;
 import com.leon.biuvideo.utils.ViewUtils;
 
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * @Author Leon
@@ -33,9 +35,8 @@ public class SearchResultBangumiAdapter extends BaseViewBindingAdapter<SearchRes
 
     @Override
     protected void onBindViewHolder(SearchResultMedia.Data.Result data, ItemSearchResultBangumiBinding binding, int position) {
-        binding.getRoot().setOnClickListener(v -> {
-            Toast.makeText(context, "" + data.getSeasonId(), Toast.LENGTH_SHORT).show();
-        });
+        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, String.valueOf(VideoActivity.TYPE_BANGUMI),
+                VideoActivity.PARAM_ID, String.valueOf(data.getMediaId()))));
 
         ViewUtils.setImg(context, binding.cover, data.getCover());
         if (data.getBadges() != null && !data.getBadges().isEmpty()) {

@@ -13,11 +13,12 @@ import com.leon.biuvideo.ui.activities.publicActivities.VideoActivity;
 import com.leon.biuvideo.utils.ViewUtils;
 
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * @Author Leon
  * @Time 2022/07/11
- * @Desc
+ * @Desc todo 打开方式待定
  */
 public class UserOrderAdapter extends BaseViewBindingAdapter<UserOrder.Data.Order, ItemUserOrderBinding> {
     public UserOrderAdapter(Context context) {
@@ -31,7 +32,7 @@ public class UserOrderAdapter extends BaseViewBindingAdapter<UserOrder.Data.Orde
 
     @Override
     protected void onBindViewHolder(UserOrder.Data.Order data, ItemUserOrderBinding binding, int position) {
-        binding.getRoot().setOnClickListener(v -> ActivityManager.startActivity(context, VideoActivity.class));
+        binding.getRoot().setOnClickListener(v -> {});
 
         ViewUtils.setImg(context, binding.cover, data.getCover());
         ViewUtils.setImg(context, binding.badge, data.getBadgeInfo().getImg());

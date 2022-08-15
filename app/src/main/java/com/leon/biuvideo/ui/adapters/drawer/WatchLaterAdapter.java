@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.biuvideo.R;
-import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.beans.account.WatchLater;
 import com.leon.biuvideo.databinding.ItemVideoBinding;
@@ -34,7 +33,8 @@ public class WatchLaterAdapter extends BaseViewBindingAdapter<WatchLater.Data.Wa
 
     @Override
     protected void onBindViewHolder(WatchLater.Data.WatchLaterData data, ItemVideoBinding binding, int position) {
-        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_BVID, data.getBvid())));
+        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, VideoActivity.TYPE_VIDEO,
+                VideoActivity.PARAM_ID, data.getBvid())));
 
         ViewUtils.setImg(context, binding.cover, data.getPic());
         if (data.getVideos() > 1) {

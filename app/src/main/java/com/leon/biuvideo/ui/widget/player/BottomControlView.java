@@ -1,12 +1,10 @@
 package com.leon.biuvideo.ui.widget.player;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.FrameLayout;
 import android.widget.SeekBar;
@@ -17,7 +15,6 @@ import androidx.annotation.Nullable;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.databinding.ComponentPlayerBottomControlBinding;
-import com.leon.biuvideo.utils.AudioController;
 
 import xyz.doikki.videoplayer.controller.ControlWrapper;
 import xyz.doikki.videoplayer.controller.IControlComponent;
@@ -55,7 +52,7 @@ public class BottomControlView extends FrameLayout implements IControlComponent,
 
     private void init() {
         setVisibility(GONE);
-        binding = ComponentPlayerBottomControlBinding.bind(LayoutInflater.from(getContext()).inflate(R.layout.component_player_bottom_control, this, false));
+        binding = ComponentPlayerBottomControlBinding.bind(LayoutInflater.from(getContext()).inflate(R.layout.component_player_bottom_control, this, true));
 
         binding.seekBar.setOnSeekBarChangeListener(this);
         binding.fullScreen.setOnClickListener(v -> controlWrapper.toggleFullScreen(PlayerUtils.scanForActivity(getContext())));
@@ -78,10 +75,22 @@ public class BottomControlView extends FrameLayout implements IControlComponent,
 
     @Override
     public void onVisibilityChanged(boolean isVisible, Animation anim) {
-        binding.getRoot().setVisibility(isVisible ? VISIBLE : GONE);
+        if (isVisible) {
+            if (getVisibility() == GONE) {
 
-        if (anim != null) {
-            binding.getRoot().startAnimation(anim);
+                setVisibility(VISIBLE);
+                if (anim != null) {
+                    startAnimation(anim);
+                }
+            }
+        } else {
+            if (getVisibility() == VISIBLE) {
+
+                setVisibility(GONE);
+                if (anim != null) {
+                    startAnimation(anim);
+                }
+            }
         }
     }
 
@@ -103,8 +112,7 @@ public class BottomControlView extends FrameLayout implements IControlComponent,
                 break;
             case VideoView.STATE_PLAYING:
                 binding.play.setSelected(true);
-                binding.getRoot().setVisibility(controlWrapper.isShowing() ? VISIBLE : GONE);
-                setVisibility(VISIBLE);
+                setVisibility(GONE);
 
                 controlWrapper.startProgress();
                 break;
@@ -131,16 +139,16 @@ public class BottomControlView extends FrameLayout implements IControlComponent,
             binding.fullScreen.setVisibility(GONE);
         }
 
-        Activity activity = PlayerUtils.scanForActivity(getContext());
-        if (activity != null && controlWrapper.hasCutout()) {
-            int orientation = activity.getRequestedOrientation();
+        if (controlWrapper.hasCutout()) {
+            int orientation = PlayerUtils.scanForActivity(getContext()).getRequestedOrientation();
             int cutoutHeight = controlWrapper.getCutoutHeight();
+
             if (orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
-                binding.getRoot().setPadding(0, 0, 0, 0);
+                binding.container.setPadding(0, 0, 0, 0);
             } else if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
-                binding.getRoot().setPadding(cutoutHeight, 0, 0, 0);
+                binding.container.setPadding(cutoutHeight, 0, 0, 0);
             } else if (orientation == ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE) {
-                binding.getRoot().setPadding(0, 0, cutoutHeight, 0);
+                binding.container.setPadding(0, 0, cutoutHeight, 0);
             }
         }
     }

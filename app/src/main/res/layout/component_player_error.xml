@@ -1,32 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/black"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="@string/videoPlayerErrorMsg"
-        android:textColor="@color/white"
-        android:textSize="15sp" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/retry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/round_bg"
-        android:backgroundTint="@color/blue"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
         android:gravity="center"
-        android:padding="10dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:text="@string/videoPlayerErrorRetry"
-        android:textColor="@color/white"
-        android:textSize="15sp" />
+        android:orientation="vertical">
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/videoPlayerErrorMsg"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/round_bg"
+            android:backgroundTint="@color/blue"
+            android:gravity="center"
+            android:padding="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="@string/videoPlayerErrorRetry"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</FrameLayout>

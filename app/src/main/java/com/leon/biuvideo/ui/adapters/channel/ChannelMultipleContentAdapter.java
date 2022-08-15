@@ -31,7 +31,8 @@ public class ChannelMultipleContentAdapter extends BaseViewBindingAdapter<Channe
 
     @Override
     protected void onBindViewHolder(ChannelDetailMultiple.Data.Archive data, ItemVideoBBinding binding, int position) {
-        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_BVID, data.getBvid())));
+        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, VideoActivity.TYPE_VIDEO,
+                VideoActivity.PARAM_ID, data.getBvid())));
 
         ViewUtils.setImg(context, binding.cover, data.getCover());
         binding.play.setText(data.getViewCount());

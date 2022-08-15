@@ -1,28 +1,24 @@
 package com.leon.biuvideo.ui.activities;
 
 import android.annotation.SuppressLint;
-import android.text.Html;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.core.view.GravityCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.viewbinding.ViewBinding;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
 import com.leon.biuvideo.beans.account.AccountNav;
 import com.leon.biuvideo.beans.home.AccountViewModel;
-import com.leon.biuvideo.beans.home.HomeRecommend;
 import com.leon.biuvideo.databinding.ActivityMainBinding;
 import com.leon.biuvideo.http.ApiHelper;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.DataStoreKey;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.activities.drawerFunction.channel.ChannelActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.FavoriteActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.HistoryActivity;
@@ -32,12 +28,8 @@ import com.leon.biuvideo.ui.activities.drawerFunction.PopularActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.SettingActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.WatchLaterActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.partition.PartitionActivity;
-import com.leon.biuvideo.ui.activities.publicActivities.AudioActivity;
 import com.leon.biuvideo.ui.activities.publicActivities.DownloadActivity;
 import com.leon.biuvideo.ui.activities.publicActivities.VideoActivity;
-import com.leon.biuvideo.ui.activities.search.SearchActivity;
-import com.leon.biuvideo.ui.adapters.HomeRecommendAdapter;
-import com.leon.biuvideo.ui.widget.loader.PaginationLoader;
 import com.leon.biuvideo.utils.DataStoreUtils;
 import com.leon.biuvideo.utils.ViewUtils;
 
@@ -63,7 +55,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     @Override
     protected void init() {
         binding.home.userFace.setOnClickListener(v -> binding.getRoot().openDrawer(GravityCompat.START));
-        binding.home.search.setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_BVID, "BV1iW4y1y7jq")));
+        binding.home.search.setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_ID, "BV1iW4y1y7jq")));
 //        binding.home.search.setOnClickListener(v -> startActivity(SearchActivity.class));
         binding.drawer.userContainer.setOnTouchListener((v, event) -> ViewUtils.zoom(event, binding.drawer.userContainer));
         binding.drawer.userContainer.setOnClickListener(v -> {
@@ -82,11 +74,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 //            initObserver();
 //        }
 
-        HttpApi httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
-        PaginationLoader<HomeRecommend, HomeRecommend.Data.Item> loader = new PaginationLoader<>(binding.home.data, new HomeRecommendAdapter(context), new GridLayoutManager(context, 2));
-        loader.setGuide(homeRecommend -> homeRecommend.getData().getItem());
-        loader.setUpdateInterface(loadType -> httpApi.getHomeRecommend());
-        loader.firstObtain();
+//        HttpApi httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
+//        PaginationLoader<HomeRecommend, HomeRecommend.Data.Item> loader = new PaginationLoader<>(binding.home.data, new HomeRecommendAdapter(context), new GridLayoutManager(context, 2));
+//        loader.setGuide(homeRecommend -> homeRecommend.getData().getItem());
+//        loader.setUpdateInterface(loadType -> httpApi.getHomeRecommend());
+//        loader.firstObtain();
     }
 
     /**

@@ -15,7 +15,7 @@ import com.leon.biuvideo.utils.ViewUtils;
 /**
  * @Author Leon
  * @Time 2022/07/26
- * @Desc
+ * @Desc todo 类型待定
  */
 public class HistoryAdapter extends BaseViewBindingAdapter<History.Data.Data, ItemHistoryBinding> {
     public HistoryAdapter(Context context) {
@@ -30,6 +30,20 @@ public class HistoryAdapter extends BaseViewBindingAdapter<History.Data.Data, It
     @Override
     protected void onBindViewHolder(History.Data.Data data, ItemHistoryBinding binding, int position) {
         binding.getRoot().setOnClickListener(v -> {
+            switch (data.getHistory().getBusiness()) {
+                case "archive":
+
+                    break;
+                case "pgc":
+                    break;
+                case "live":
+                    break;
+                case "article-list":
+                case "article":
+                    break;
+                default:
+                    break;
+            }
         });
 
         binding.title.setText(data.getTitle());

@@ -47,7 +47,7 @@ public class PrepareView extends FrameLayout implements IControlComponent {
     }
 
     private void init() {
-        binding = ComponentPlayerPrepareBinding.bind(LayoutInflater.from(getContext()).inflate(R.layout.component_player_prepare, this, false));
+        binding = ComponentPlayerPrepareBinding.bind(LayoutInflater.from(getContext()).inflate(R.layout.component_player_prepare, this, true));
 
         binding.play.setOnClickListener(v -> controlWrapper.start());
         binding.continuePlay.setOnClickListener(v -> {

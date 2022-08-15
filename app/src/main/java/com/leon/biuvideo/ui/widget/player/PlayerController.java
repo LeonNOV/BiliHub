@@ -3,7 +3,6 @@ package com.leon.biuvideo.ui.widget.player;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -16,7 +15,6 @@ import com.leon.biuvideo.R;
 import com.leon.biuvideo.databinding.ComponentPlayerControllerBinding;
 
 import xyz.doikki.videoplayer.controller.GestureVideoController;
-import xyz.doikki.videoplayer.controller.OrientationHelper;
 import xyz.doikki.videoplayer.player.VideoView;
 import xyz.doikki.videoplayer.util.PlayerUtils;
 
@@ -48,16 +46,38 @@ public class PlayerController extends GestureVideoController {
     @Override
     protected void initView() {
         super.initView();
-        binding = ComponentPlayerControllerBinding.bind(LayoutInflater.from(getContext()).inflate(R.layout.component_player_controller, this, false));
+
+        binding = ComponentPlayerControllerBinding.bind(this);
         binding.lock.setOnClickListener(v -> mControlWrapper.toggleLockState());
     }
 
-    public PlayerController addDefaultControlComponent (String title, String cid) {
-        addControlComponent(new CompleteView(getContext()), new ErrorView(getContext()),
-                new PrepareView(getContext()), new TopBarView(getContext()).setTitle(title),
-                new BottomControlView(getContext()), new GestureView(getContext()));
+    public void addDefaultControlComponent (String title, String cid) {
+        addControlComponent(new TopBarView(getContext()).setTitle(title), new BottomControlView(getContext()), new PrepareView(getContext()));
+        addControlComponent(new CompleteView(getContext()), new ErrorView(getContext()), new GestureView(getContext()));
+    }
 
-        return this;
+    @Override
+    protected void onLockStateChanged(boolean isLocked) {
+        binding.lock.setSelected(isLocked);
+    }
+
+    @Override
+    protected void onVisibilityChanged(boolean isVisible, Animation anim) {
+        if (mControlWrapper.isFullScreen()) {
+            if (isVisible) {
+                if (binding.lock.getVisibility() == GONE) {
+                    binding.lock.setVisibility(VISIBLE);
+                    if (anim != null) {
+                        binding.lock.startAnimation(anim);
+                    }
+                }
+            } else {
+                binding.lock.setVisibility(GONE);
+                if (anim != null) {
+                    binding.lock.startAnimation(anim);
+                }
+            }
+        }
     }
 
     @Override
@@ -109,7 +129,7 @@ public class PlayerController extends GestureVideoController {
                 }
                 break;
             case VideoView.PLAYER_FULL_SCREEN:
-                binding.lock.setVisibility(isShowing() ? VISIBLE : GONE);
+                binding.lock.setVisibility(VISIBLE);
                 break;
             default:
                 break;
@@ -130,30 +150,6 @@ public class PlayerController extends GestureVideoController {
                 layoutParams.setMargins(dp24, 0, dp24, 0);
             }
         }
-    }
-
-    @Override
-    protected void onVisibilityChanged(boolean isVisible, Animation anim) {
-        if (mControlWrapper.isFullScreen()) {
-            if (isVisible) {
-                if (binding.lock.getVisibility() == GONE) {
-                    binding.lock.setVisibility(VISIBLE);
-                    if (anim != null) {
-                        binding.lock.startAnimation(anim);
-                    }
-                }
-            } else {
-                binding.lock.setVisibility(GONE);
-                if (anim != null) {
-                    binding.lock.startAnimation(anim);
-                }
-            }
-        }
-    }
-
-    @Override
-    protected void onLockStateChanged(boolean isLocked) {
-        binding.lock.setSelected(isLocked);
     }
 
     @Override

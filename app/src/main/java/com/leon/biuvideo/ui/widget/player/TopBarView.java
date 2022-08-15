@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
@@ -23,6 +24,7 @@ import com.leon.biuvideo.databinding.ComponentPlayerTopBarBinding;
 
 import xyz.doikki.videoplayer.controller.ControlWrapper;
 import xyz.doikki.videoplayer.controller.IControlComponent;
+import xyz.doikki.videoplayer.player.BaseVideoView;
 import xyz.doikki.videoplayer.player.VideoView;
 import xyz.doikki.videoplayer.util.PlayerUtils;
 
@@ -61,7 +63,7 @@ public class TopBarView extends FrameLayout implements IControlComponent {
 
     protected void init() {
         setVisibility(GONE);
-        binding = ComponentPlayerTopBarBinding.bind(LayoutInflater.from(getContext()).inflate(R.layout.component_player_top_bar, this, false));
+        binding = ComponentPlayerTopBarBinding.bind(LayoutInflater.from(getContext()).inflate(R.layout.component_player_top_bar, this, true));
 
         binding.back.setOnClickListener(v -> {
             if (controlWrapper.isFullScreen()) {
@@ -145,6 +147,7 @@ public class TopBarView extends FrameLayout implements IControlComponent {
             case VideoView.STATE_PREPARING:
             case VideoView.STATE_PREPARED:
             case VideoView.STATE_ERROR:
+            case BaseVideoView.STATE_PLAYING:
             case VideoView.STATE_PLAYBACK_COMPLETED:
                 setVisibility(GONE);
                 break;
@@ -155,12 +158,8 @@ public class TopBarView extends FrameLayout implements IControlComponent {
 
     @Override
     public void onPlayerStateChanged(int playerState) {
-        if (playerState == VideoView.PLAYER_FULL_SCREEN) {
-            if (controlWrapper.isShowing() && !controlWrapper.isLocked()) {
-                setVisibility(VISIBLE);
-                binding.top.setVisibility(VISIBLE);
-                binding.time.setText(PlayerUtils.getCurrentSystemTime());
-            }
+        if (playerState == VideoView.PLAYER_FULL_SCREEN && !controlWrapper.isLocked()) {
+            binding.top.setVisibility(VISIBLE);
         } else {
             binding.top.setVisibility(GONE);
         }
@@ -170,11 +169,11 @@ public class TopBarView extends FrameLayout implements IControlComponent {
             int cutoutHeight = controlWrapper.getCutoutHeight();
 
             if (orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
-                this.setPadding(0, 0, 0, 0);
+                binding.container.setPadding(0, 0, 0, 0);
             } else if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
-                this.setPadding(cutoutHeight, 0, 0, 0);
+                binding.container.setPadding(cutoutHeight, 0, 0, 0);
             } else if (orientation == ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE) {
-                this.setPadding(0, 0, cutoutHeight, 0);
+                binding.container.setPadding(0, 0, cutoutHeight, 0);
             }
         }
     }
@@ -209,16 +208,9 @@ public class TopBarView extends FrameLayout implements IControlComponent {
                 return;
             }
 
-            // 当前电量
             int current = extras.getInt("level");
-
-            // 总电量
             int total = extras.getInt("scale");
-
-            // 获取电量比例
             int percent = current * 100 / total;
-
-            // 根据电量百分比设置Drawable资源
             batteryImageView.getDrawable().setLevel(percent);
         }
     }

@@ -31,7 +31,8 @@ public class UserVideoAdapter extends BaseViewBindingAdapter<UserVideo.Data.Data
 
     @Override
     protected void onBindViewHolder(UserVideo.Data.DataList.Video data, ItemVideoBinding binding, int position) {
-        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_BVID, data.getBvid())));
+        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, VideoActivity.TYPE_VIDEO,
+                VideoActivity.PARAM_ID, data.getBvid())));
 
         binding.danmaku.setText(ValueUtils.generateCN(data.getVideoReview()));
         binding.extra.setText(data.getLength());

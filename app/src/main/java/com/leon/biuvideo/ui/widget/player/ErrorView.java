@@ -52,7 +52,7 @@ public class ErrorView extends FrameLayout implements IControlComponent {
         setVisibility(GONE);
         setClickable(true);
 
-        ComponentPlayerErrorBinding binding = ComponentPlayerErrorBinding.bind(LayoutInflater.from(getContext()).inflate(R.layout.component_player_error, this, false));
+        ComponentPlayerErrorBinding binding = ComponentPlayerErrorBinding.bind(LayoutInflater.from(getContext()).inflate(R.layout.component_player_error, this, true));
         binding.retry.setOnClickListener(v -> {
             setVisibility(GONE);
             controlWrapper.replay(false);

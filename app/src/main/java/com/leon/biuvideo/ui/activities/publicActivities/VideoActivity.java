@@ -21,14 +21,30 @@ import io.reactivex.rxjava3.core.Observable;
 /**
  * @Author Leon
  * @Time 2022/6/19
- * @Desc todo 部分视图功能待完善
+ * @Desc 视频播放界面
  */
 public class VideoActivity extends AsyncHttpActivity<ActivityVideoBinding, VideoDetail> {
-    public static final String PARAM_BVID = "bvid";
+    /**
+     * 普通视频
+     */
+    public static final String TYPE_VIDEO = "1";
+
+    /**
+     * 番剧
+     */
+    public static final String TYPE_BANGUMI = "2";
+
+    /**
+     * 电影/电视剧
+     */
+    public static final String TYPE_FT = "3";
+
+    public static final String PARAM_ID = "id";
     public static final String PARAM_SEASON_ID = "seId";
     public static final String PARAM_TYPE = "type";
 
     private String bvid;
+    private PlayerController playerController;
 
     @Override
     public ActivityVideoBinding getViewBinding() {
@@ -37,8 +53,8 @@ public class VideoActivity extends AsyncHttpActivity<ActivityVideoBinding, Video
 
     @Override
     protected void init() {
-        if (params.containsKey(PARAM_BVID)) {
-            this.bvid = params.getString(PARAM_BVID);
+        if (params.containsKey(PARAM_ID)) {
+            this.bvid = params.getString(PARAM_ID);
         }
     }
 
@@ -62,7 +78,7 @@ public class VideoActivity extends AsyncHttpActivity<ActivityVideoBinding, Video
     private void initPlayer(String bvid, String cid) {
         binding.player.setUrl("https://cdn.cnbj1.fds.api.mi-img.com/product-images/cyberone/v1.mp4");
 
-        PlayerController playerController = new PlayerController(context);
+        playerController = new PlayerController(context);
         playerController.addDefaultControlComponent("Test title", cid);
         binding.player.setVideoController(playerController);
         binding.player.start();
@@ -79,14 +95,28 @@ public class VideoActivity extends AsyncHttpActivity<ActivityVideoBinding, Video
     }
 
     @Override
+    public void onBackPressed() {
+        if (!playerController.onBackPressed()) {
+            backPressed();
+        }
+    }
+
+    @Override
     protected void onResume() {
-        if (binding.player.isPlaying()) {
-            binding.player.pause();
-        } else {
+        if (!binding.player.isPlaying()) {
             binding.player.resume();
         }
 
         super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        if (binding.player.isPlaying()) {
+            binding.player.pause();
+        }
+
+        super.onPause();
     }
 
     @Override
@@ -96,4 +126,6 @@ public class VideoActivity extends AsyncHttpActivity<ActivityVideoBinding, Video
 
         super.onDestroy();
     }
+
+
 }

@@ -5,9 +5,6 @@ import android.content.Context;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
-import com.leon.biuvideo.parser.PartitionParser;
-import com.leon.biuvideo.parser.PartitionParserKt;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

@@ -31,7 +31,8 @@ public class PartitionDataAdapter extends BaseViewBindingAdapter<PartitionData.R
 
     @Override
     protected void onBindViewHolder(PartitionData.Result data, ItemPartitionVideoBinding binding, int position) {
-        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_BVID, data.getBvid())));
+        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, VideoActivity.TYPE_VIDEO,
+                VideoActivity.PARAM_ID, data.getBvid())));
 
         ViewUtils.setImg(context, binding.cover, "https:" + data.getPic());
         binding.play.setText(ValueUtils.generateCN(Integer.parseInt(data.getPlay())));

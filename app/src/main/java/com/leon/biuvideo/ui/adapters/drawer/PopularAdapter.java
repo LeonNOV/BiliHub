@@ -32,7 +32,8 @@ public class PopularAdapter extends BaseViewBindingAdapter<PopularData, ItemPopu
 
     @Override
     protected void onBindViewHolder(PopularData data, ItemPopularBinding binding, int position) {
-        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_BVID, data.getBvid())));
+        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, VideoActivity.TYPE_VIDEO,
+                VideoActivity.PARAM_ID, data.getBvid())));
 
         ViewUtils.setImg(context, binding.cover, data.getCover());
         binding.extra.setText(ValueUtils.toMediaDuration(data.getDuration()));

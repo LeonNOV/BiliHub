@@ -48,7 +48,7 @@ public class CompleteView extends FrameLayout implements IControlComponent {
         setVisibility(GONE);
         setClickable(true);
 
-        ComponentPlayerCompleteBinding binding = ComponentPlayerCompleteBinding.bind(LayoutInflater.from(getContext()).inflate(R.layout.component_player_complete, this, false));
+        ComponentPlayerCompleteBinding binding = ComponentPlayerCompleteBinding.bind(LayoutInflater.from(getContext()).inflate(R.layout.component_player_complete, this, true));
         binding.replay.setOnClickListener(v -> controlWrapper.replay(true));
     }
 

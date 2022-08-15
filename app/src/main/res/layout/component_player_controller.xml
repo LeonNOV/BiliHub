@@ -11,7 +11,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|end"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/description"
         android:padding="6dp"
         android:src="@drawable/video_lock" />
 

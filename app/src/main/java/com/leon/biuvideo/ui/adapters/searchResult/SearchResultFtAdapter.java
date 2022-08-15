@@ -16,6 +16,7 @@ import com.leon.biuvideo.utils.ValueUtils;
 import com.leon.biuvideo.utils.ViewUtils;
 
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * @Author Leon
@@ -35,13 +36,8 @@ public class SearchResultFtAdapter extends BaseViewBindingAdapter<SearchResultMe
 
     @Override
     protected void onBindViewHolder(SearchResultMedia.Data.Result data, ItemSearchResultFtBinding binding, int position) {
-        binding.getRoot().setOnClickListener(v -> {
-            Bundle bundle = new Bundle();
-            bundle.putString(VideoActivity.PARAM_SEASON_ID, String.valueOf(data.getSeasonId()));
-            bundle.putInt(VideoActivity.PARAM_TYPE, data.getSeasonType());
-
-            startActivity(VideoActivity.class, bundle);
-        });
+        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, String.valueOf(VideoActivity.TYPE_VIDEO),
+                VideoActivity.PARAM_ID, String.valueOf(data.getMediaId()))));
 
         ViewUtils.setImg(context, binding.cover, data.getCover());
         if (data.getBadges() != null && !data.getBadges().isEmpty()) {

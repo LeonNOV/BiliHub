@@ -56,7 +56,7 @@ public class GestureView extends FrameLayout implements IGestureComponent {
 
     private void init() {
         setVisibility(GONE);
-        binding = ComponentPlayerGestureBinding.bind(LayoutInflater.from(getContext()).inflate(R.layout.component_player_gesture, this, false));
+        binding = ComponentPlayerGestureBinding.bind(LayoutInflater.from(getContext()).inflate(R.layout.component_player_gesture, this, true));
     }
 
     @Override
@@ -152,10 +152,6 @@ public class GestureView extends FrameLayout implements IGestureComponent {
         if (onDraggingListener != null) {
             onDraggingListener.onDragging(duration, slidePosition);
         }
-
-//        if (onDanmakuListener != null) {
-//            onDanmakuListener.onSeekTo(controlWrapper.getCurrentPosition());
-//        }
     }
 
     @Override
