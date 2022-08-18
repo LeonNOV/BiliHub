@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ItemStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/ripple_bg"
-    android:orientation="horizontal"
-    android:padding="10dp">
+    android:orientation="horizontal">
 
     <RelativeLayout
         android:layout_width="126dp"
@@ -46,23 +45,23 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:layout_gravity="top"
             android:ellipsize="end"
             android:maxLines="3"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:layout_alignParentTop="true"
             tools:text="TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/pubTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            tools:text="2022-07-08"
             android:layout_above="@id/statContainer"
             android:layout_marginBottom="10dp"
-            android:textColor="@color/infoColor"/>
+            android:textColor="@color/infoColor"
+            android:textSize="15sp"
+            tools:text="2022-07-08" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/statContainer"
@@ -96,4 +95,4 @@
 
     </RelativeLayout>
 
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

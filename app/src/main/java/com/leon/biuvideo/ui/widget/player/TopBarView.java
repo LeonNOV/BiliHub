@@ -34,6 +34,8 @@ import xyz.doikki.videoplayer.util.PlayerUtils;
  * @Desc 顶部栏
  */
 public class TopBarView extends FrameLayout implements IControlComponent {
+    private boolean isLive;
+
     private ControlWrapper controlWrapper;
     private ComponentPlayerTopBarBinding binding;
 
@@ -43,8 +45,9 @@ public class TopBarView extends FrameLayout implements IControlComponent {
     private boolean isRegister;
     private BatteryReceiver batteryReceiver;
 
-    public TopBarView(@NonNull Context context) {
+    public TopBarView(@NonNull Context context, boolean isLive) {
         super(context);
+        this.isLive = isLive;
 
         init();
     }
@@ -117,6 +120,10 @@ public class TopBarView extends FrameLayout implements IControlComponent {
 
     @Override
     public void onVisibilityChanged(boolean isVisible, Animation anim) {
+        if (isLive && !controlWrapper.isFullScreen()) {
+            return;
+        }
+
         if (isVisible) {
             if (getVisibility() == GONE) {
                 binding.time.setText(PlayerUtils.getCurrentSystemTime());
@@ -158,6 +165,11 @@ public class TopBarView extends FrameLayout implements IControlComponent {
 
     @Override
     public void onPlayerStateChanged(int playerState) {
+        if (isLive && playerState != VideoView.PLAYER_FULL_SCREEN) {
+            setVisibility(GONE);
+            return;
+        }
+
         if (playerState == VideoView.PLAYER_FULL_SCREEN && !controlWrapper.isLocked()) {
             binding.top.setVisibility(VISIBLE);
         } else {

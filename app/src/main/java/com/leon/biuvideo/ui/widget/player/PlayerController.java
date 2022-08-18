@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.leon.biuvideo.R;
+import com.leon.biuvideo.beans.publicBeans.resources.live.LiveInfo;
 import com.leon.biuvideo.databinding.ComponentPlayerControllerBinding;
 
 import xyz.doikki.videoplayer.controller.GestureVideoController;
@@ -51,8 +52,14 @@ public class PlayerController extends GestureVideoController {
         binding.lock.setOnClickListener(v -> mControlWrapper.toggleLockState());
     }
 
-    public void addDefaultControlComponent (String title, String cid) {
-        addControlComponent(new TopBarView(getContext()).setTitle(title), new BottomControlView(getContext()), new PrepareView(getContext()));
+    public void addDefaultControlComponent (LiveInfo liveInfo) {
+        addControlComponent(new LiveView(getContext(), liveInfo));
+        addControlComponent(new TopBarView(getContext(), true).setTitle(liveInfo.getData().getRoomInfo().getTitle()), new BottomControlView(getContext(), true), new PrepareView(getContext()));
+        addControlComponent(new CompleteView(getContext()), new ErrorView(getContext()), new GestureView(getContext()));
+    }
+
+    public void addDefaultControlComponent (String title) {
+        addControlComponent(new TopBarView(getContext(), false).setTitle(title), new BottomControlView(getContext(), false), new PrepareView(getContext()));
         addControlComponent(new CompleteView(getContext()), new ErrorView(getContext()), new GestureView(getContext()));
     }
 

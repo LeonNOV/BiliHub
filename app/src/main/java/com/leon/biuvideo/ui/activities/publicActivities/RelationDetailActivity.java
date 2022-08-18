@@ -35,9 +35,6 @@ public class RelationDetailActivity extends BaseActivity<PagePaginationBinding> 
         HttpApi httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
         PaginationLoader<RelationDetail, RelationDetail.Data> loader = new PaginationLoader<>(binding.content, new RelationDetailAdapter(context));
         loader.setGuide(RelationDetail::getData);
-
-        loader
-                .setUpdateInterface(loadType -> httpApi.getUserRelationDetail(tagId, ++pageNum))
-                .obtain();
+        loader.setUpdateInterface(loadType -> httpApi.getUserRelationDetail(tagId, ++pageNum)).obtain();
     }
 }

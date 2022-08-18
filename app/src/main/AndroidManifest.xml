@@ -57,7 +57,9 @@
             android:exported="false" />
         <activity
             android:name=".ui.activities.publicActivities.LiveStreamActivity"
-            android:exported="false" />
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="fullSensor" />
         <activity
             android:name=".ui.activities.publicActivities.UserActivity"
             android:exported="false" />

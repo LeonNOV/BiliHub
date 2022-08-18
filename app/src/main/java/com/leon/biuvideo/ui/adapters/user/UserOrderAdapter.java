@@ -5,15 +5,12 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.biuvideo.R;
-import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.beans.publicBeans.user.UserOrder;
 import com.leon.biuvideo.databinding.ItemUserOrderBinding;
-import com.leon.biuvideo.ui.activities.publicActivities.VideoActivity;
 import com.leon.biuvideo.utils.ViewUtils;
 
 import java.util.Locale;
-import java.util.Map;
 
 /**
  * @Author Leon
@@ -35,7 +32,9 @@ public class UserOrderAdapter extends BaseViewBindingAdapter<UserOrder.Data.Orde
         binding.getRoot().setOnClickListener(v -> {});
 
         ViewUtils.setImg(context, binding.cover, data.getCover());
-        ViewUtils.setImg(context, binding.badge, data.getBadgeInfo().getImg());
+        if (!"".equals(data.getBadgeInfo().getImg())) {
+            ViewUtils.setImg(context, binding.badge, data.getBadgeInfo().getImg());
+        }
         binding.title.setText(data.getTitle());
 
         StringBuilder areaStr = new StringBuilder();

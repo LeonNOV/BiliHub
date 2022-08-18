@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ItemStyle"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:gravity="center_vertical">
+    android:layout_height="60dp">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/name"

@@ -13,6 +13,7 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/controlContainer"
             android:layout_width="match_parent"
             android:layout_height="46dp"
             android:layout_marginStart="10dp"
@@ -90,6 +91,17 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/playLive"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_marginEnd="20dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="10dp"
+                android:src="@drawable/video_play"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/danmakuControl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -127,13 +139,25 @@
                 android:textSize="17sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/road"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:text="线路一"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/quality"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackgroundBorderless"
+                android:text="1080P"
                 android:textColor="@color/white"
-                android:textSize="17sp"
-                tools:text="1080P" />
+                android:textSize="17sp" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

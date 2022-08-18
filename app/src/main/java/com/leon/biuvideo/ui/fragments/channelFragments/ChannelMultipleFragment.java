@@ -73,8 +73,7 @@ public class ChannelMultipleFragment extends BaseLazyFragment<FragmentChannelMul
             }
             return channelDetailMultiple.getData().getList();
         });
-
-        reload();
+        loader.setUpdateInterface(loadType -> httpApi.getChannelDetailMultiple(channelId, sort, offset));
     }
 
     private void changeSelectedColor(int index) {
@@ -88,7 +87,9 @@ public class ChannelMultipleFragment extends BaseLazyFragment<FragmentChannelMul
     }
 
     @Override
-    protected void onLazyLoad() {}
+    protected void onLazyLoad() {
+        loader.firstObtain();
+    }
 
     private void reload() {
         offset = null;

@@ -27,14 +27,17 @@ import xyz.doikki.videoplayer.util.PlayerUtils;
  * @Desc 底部控制栏
  */
 public class BottomControlView extends FrameLayout implements IControlComponent, SeekBar.OnSeekBarChangeListener {
+    private boolean isLive;
+
     private ControlWrapper controlWrapper;
     private ComponentPlayerBottomControlBinding binding;
 
     private boolean isDragging;
 
-    public BottomControlView(@NonNull Context context) {
+    public BottomControlView(@NonNull Context context, boolean isLive) {
         super(context);
 
+        this.isLive = isLive;
         init();
     }
 
@@ -58,8 +61,17 @@ public class BottomControlView extends FrameLayout implements IControlComponent,
         binding.fullScreen.setOnClickListener(v -> controlWrapper.toggleFullScreen(PlayerUtils.scanForActivity(getContext())));
         binding.play.setOnClickListener(v -> controlWrapper.togglePlay());
         binding.danmakuControl.setOnClickListener(v -> Toast.makeText(getContext(), "开发中…", Toast.LENGTH_SHORT).show());
-        binding.speed.setOnClickListener(v -> {});
         binding.quality.setOnClickListener(v -> {});
+
+        if (isLive) {
+            binding.road.setVisibility(VISIBLE);
+            binding.speed.setVisibility(GONE);
+            binding.controlContainer.setVisibility(GONE);
+            binding.playLive.setVisibility(VISIBLE);
+        } else {
+            binding.speed.setOnClickListener(v -> {
+            });
+        }
     }
 
     @Override
@@ -75,6 +87,10 @@ public class BottomControlView extends FrameLayout implements IControlComponent,
 
     @Override
     public void onVisibilityChanged(boolean isVisible, Animation anim) {
+        if (isLive && !controlWrapper.isFullScreen()) {
+            return;
+        }
+
         if (isVisible) {
             if (getVisibility() == GONE) {
 
@@ -112,16 +128,19 @@ public class BottomControlView extends FrameLayout implements IControlComponent,
                 break;
             case VideoView.STATE_PLAYING:
                 binding.play.setSelected(true);
+                binding.playLive.setSelected(true);
                 setVisibility(GONE);
 
                 controlWrapper.startProgress();
                 break;
             case VideoView.STATE_PAUSED:
                 binding.play.setSelected(false);
+                binding.playLive.setSelected(false);
                 break;
             case VideoView.STATE_BUFFERING:
             case VideoView.STATE_BUFFERED:
                 binding.play.setSelected(controlWrapper.isPlaying());
+                binding.playLive.setSelected(controlWrapper.isPlaying());
                 break;
             default:
                 break;
@@ -130,6 +149,11 @@ public class BottomControlView extends FrameLayout implements IControlComponent,
 
     @Override
     public void onPlayerStateChanged(int playerState) {
+        if (isLive && playerState != VideoView.PLAYER_FULL_SCREEN) {
+            setVisibility(GONE);
+            return;
+        }
+
         // 如果处于未全屏状态下则隐藏setting部分,并显示窗口放大按钮
         if (playerState == VideoView.PLAYER_NORMAL) {
             binding.settingContainer.setVisibility(GONE);

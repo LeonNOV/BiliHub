@@ -3,14 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:background="@color/gray">
 
-    <xyz.doikki.videoplayer.player.VideoView
-        android:id="@+id/player"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <!--<androidx.appcompat.widget.LinearLayoutCompat
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="46dp"
         android:layout_margin="20dp">
@@ -23,32 +19,17 @@
             app:civ_border_color="@color/white"
             app:civ_border_width="@dimen/face_border_width" />
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/name"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:orientation="vertical"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                tools:text="Name Name" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/fans"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/infoColor"
-                android:textSize="13sp"
-                tools:text="1234粉丝" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            tools:text="Name Name" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/follow"
@@ -89,7 +70,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/about_app_github"
+                android:src="@drawable/live_icon_popular"
                 android:tint="@color/white" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -153,6 +134,6 @@
             android:src="@drawable/video_full_screen"
             android:tint="@color/white" />
 
-    </RelativeLayout>-->
+    </RelativeLayout>
 
 </FrameLayout>

@@ -68,11 +68,13 @@ public class ChannelFeaturedFragment extends BaseLazyFragment<PageFilterRefreshB
 
             return channelDetailFeatured.getData().getList();
         });
-        reload();
+        loader.setUpdateInterface(loadType -> httpApi.getChannelDetailFeatured(channelId, type, offset));
     }
 
     @Override
-    protected void onLazyLoad() {}
+    protected void onLazyLoad() {
+        loader.firstObtain();
+    }
 
     private void reload() {
         offset = null;

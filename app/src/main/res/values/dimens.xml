@@ -84,8 +84,8 @@
 
     <dimen name="dialog_width">270dp</dimen>
 
-    <dimen name="LinearItemOffset">15dp</dimen>
-    <dimen name="GridItemVerticalOffset">15dp</dimen>
-    <dimen name="GridItemHorizontalOffset">15dp</dimen>
+    <dimen name="LinearItemOffset">0dp</dimen>
+    <dimen name="GridItemVerticalOffset">10dp</dimen>
+    <dimen name="GridItemHorizontalOffset">10dp</dimen>
     <dimen name="ItemVideoCoverH">123dp</dimen>
 </resources>

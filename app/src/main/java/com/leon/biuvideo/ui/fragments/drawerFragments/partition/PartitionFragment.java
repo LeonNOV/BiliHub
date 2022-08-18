@@ -45,12 +45,12 @@ public class PartitionFragment extends BaseLazyFragment<PageFilterRefreshBinding
         adapter = new PartitionDataAdapter(context);
         loader = new PaginationLoader<>(binding.content, adapter, new GridLayoutManager(context, 2));
         loader.setGuide(PartitionData::getResult);
-
-        reload(-1, null);
     }
 
     @Override
-    protected void onLazyLoad() {}
+    protected void onLazyLoad() {
+        reload(-1, null);
+    }
 
     private void initFilter() {
         new ApiHelper<>(new RetrofitClient(BaseUrl.API).getHttpApi().getPartitionTags(tid))

@@ -34,6 +34,8 @@ import com.leon.biuvideo.beans.publicBeans.resources.Reply;
 import com.leon.biuvideo.beans.publicBeans.resources.article.ArticleInfo;
 import com.leon.biuvideo.beans.publicBeans.resources.audio.AudioInfo;
 import com.leon.biuvideo.beans.publicBeans.resources.audio.AudioResources;
+import com.leon.biuvideo.beans.publicBeans.resources.live.LiveInfo;
+import com.leon.biuvideo.beans.publicBeans.resources.live.LiveStream;
 import com.leon.biuvideo.beans.publicBeans.resources.picture.PictureInfo;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoDetail;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoRelation;
@@ -726,6 +728,33 @@ public interface HttpApi {
      */
     @GET("x/v2/reply/main")
     Observable<Reply> getReply(@Query("oid") String oid, @Query("mode") int mode, @Query("next") int next, @Query("type") ReplyType type);
+
+    /**
+     * 直播间详情
+     * <p>
+     * https://live.bilibili.com/25138603
+     * <p>
+     * https://api.live.bilibili.com/xlive/web-room/v1/index/getInfoByRoom?room_id=25138603
+     *
+     * @param roomId 直播间ID
+     * @return {@link LiveInfo}
+     */
+    @GET("xlive/web-room/v1/index/getInfoByRoom")
+    Observable<LiveInfo> getLiveInfo(@Query("room_id") String roomId);
+
+    /**
+     * 直播流获取
+     * <p>
+     * https://live.bilibili.com/47917
+     * <p>
+     * http://api.live.bilibili.com/room/v1/Room/playUrl?cid=47917&qn=0&platform=h5
+     *
+     * @param roomId 直播间ID
+     * @param qn     清晰度
+     * @return {@link LiveStream}
+     */
+    @GET("room/v1/Room/playUrl?platform=h5")
+    Observable<LiveStream> getLiveStream(@Query("cid") String roomId, @Query("qn") int qn);
 
     interface HttpRaw {
         /**

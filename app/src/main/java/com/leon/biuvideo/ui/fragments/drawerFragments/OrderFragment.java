@@ -63,7 +63,7 @@ public class OrderFragment extends BaseLazyFragment<PageFilterRefreshBinding> {
         httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
         loader = new PaginationLoader<>(binding.content, adapter);
         loader.setGuide(userOrder -> userOrder.getData().getList());
-        reload();
+        loader.setUpdateInterface(loadType -> httpApi.getUserOrder(type, followStatus, ++pageNum, mid));
     }
 
     @Override

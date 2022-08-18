@@ -15,7 +15,7 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.SOURCE)
 @Target({ElementType.PARAMETER, ElementType.FIELD})
-@StringDef(value = {BaseUrl.API, BaseUrl.SEARCH, BaseUrl.MAIN})
+@StringDef(value = {BaseUrl.API, BaseUrl.SEARCH, BaseUrl.MAIN, BaseUrl.LIVE})
 public @interface BaseUrl {
 
     /**
@@ -24,4 +24,5 @@ public @interface BaseUrl {
     String API = "https://api.bilibili.com/";
     String SEARCH = "https://s.search.bilibili.com/";
     String MAIN = "https://www.bilibili.com/";
+    String LIVE = "http://api.live.bilibili.com/";
 }

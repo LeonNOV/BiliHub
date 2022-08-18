@@ -33,10 +33,8 @@ public class UserPictureFragment extends BaseLazyFragment<RefreshContentBinding>
 
     @Override
     protected void initView() {
-        binding.container.content.setLayoutManager(new GridLayoutManager(context, 2));
-
         httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
-        loader = new PaginationLoader<>(binding, new UserPictureAdapter(context));
+        loader = new PaginationLoader<>(binding, new UserPictureAdapter(context), new GridLayoutManager(context, 2));
         loader.setGuide(userPicture -> userPicture.getData().getItems());
         loader.setUpdateInterface(loadType -> httpApi.getUserPicture(mid, ++pageNum));
     }
