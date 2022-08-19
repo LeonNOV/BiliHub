@@ -1,10 +1,10 @@
 package com.leon.biuvideo;
 
 import android.app.Application;
-import android.content.Context;
 
 import com.leon.biuvideo.parser.PartitionParser;
 
+import xyz.doikki.videoplayer.exo.ExoMediaPlayerFactory;
 import xyz.doikki.videoplayer.ijk.IjkPlayerFactory;
 import xyz.doikki.videoplayer.player.VideoViewConfig;
 import xyz.doikki.videoplayer.player.VideoViewManager;

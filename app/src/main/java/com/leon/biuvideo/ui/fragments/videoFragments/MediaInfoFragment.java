@@ -13,7 +13,8 @@ import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.activities.publicActivities.UserActivity;
-import com.leon.biuvideo.ui.adapters.MediaInfoRecommendAdapter;
+import com.leon.biuvideo.ui.adapters.video.MediaInfoRecommendAdapter;
+import com.leon.biuvideo.ui.adapters.video.VideoEpisodeAdapter;
 import com.leon.biuvideo.utils.ValueUtils;
 import com.leon.biuvideo.utils.ViewUtils;
 
@@ -92,6 +93,14 @@ public class MediaInfoFragment extends BaseFragment<FragmentMediaInfoBinding> {
         MediaInfoRecommendAdapter recommendAdapter = new MediaInfoRecommendAdapter(context);
         recommendAdapter.appendHead(data.getRelated());
         ViewUtils.linkAdapter(binding.recommend, recommendAdapter);
+
+        if (!data.getView().getPages().isEmpty()) {
+            binding.episode.setVisibility(View.VISIBLE);
+            VideoEpisodeAdapter adapter = new VideoEpisodeAdapter(context);
+            adapter.appendHead(data.getView().getPages());
+
+            ViewUtils.linkAdapter(binding.episode, adapter);
+        }
     }
 
     private void share() {

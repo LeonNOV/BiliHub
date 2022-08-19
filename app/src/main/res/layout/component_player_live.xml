@@ -6,102 +6,78 @@
     android:layout_height="match_parent"
     tools:background="@color/gray">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
-        android:layout_height="46dp"
-        android:layout_margin="20dp">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/face"
-            android:layout_width="46dp"
-            android:layout_height="46dp"
-            android:src="@drawable/lsp"
-            app:civ_border_color="@color/white"
-            app:civ_border_width="@dimen/face_border_width" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_gravity="center_vertical"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            tools:text="Name Name" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/follow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="10dp"
-            android:background="@drawable/round_bg"
-            android:backgroundTint="#B3FFFFFF"
-            android:paddingStart="15dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="15dp"
-            android:paddingBottom="5dp"
-            android:text="@string/follow"
-            android:textColor="#B3FB7299"
-            android:textSize="13sp" />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
-        android:layout_height="46dp"
-        android:layout_gravity="end"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/round_bg"
-        android:backgroundTint="#80818181"
-        android:paddingStart="10dp"
-        android:paddingEnd="0dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical">
+            android:layout_centerVertical="true">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/icon"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/face"
+                android:layout_width="@dimen/user_face_WH"
+                android:layout_height="@dimen/user_face_WH"
+                android:src="@drawable/lsp"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="@dimen/face_border_width" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/live_icon_popular"
-                android:tint="@color/white" />
+                android:layout_margin="5dp"
+                android:maxLength="16"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                tools:text="Name NameName NameName NameName NameName NameName Name" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/round_bg"
+            android:backgroundTint="#80818181"
+            android:paddingStart="10dp"
+            android:paddingEnd="5dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/power"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="10dp"
+                android:drawableStart="@drawable/live_icon_popular"
+                android:drawablePadding="10dp"
+                android:drawableTint="@color/white"
                 android:textColor="@color/white"
-                android:textSize="14sp"
+                android:textSize="11sp"
                 tools:text="1234.1万人看过" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/close"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center_vertical"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="10dp"
+                android:src="@drawable/ic_close"
+                android:tint="@color/white" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/close"
-            android:layout_width="46dp"
-            android:layout_height="46dp"
-            android:layout_gravity="center_vertical"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:padding="15dp"
-            android:src="@drawable/ic_close"
-            android:tint="@color/white" />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:background="@drawable/round_bg"
         android:backgroundTint="#80818181"
         android:paddingStart="10dp"
@@ -109,16 +85,16 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/play"
-            android:layout_width="46dp"
-            android:layout_height="46dp"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
             android:padding="10dp"
             android:src="@drawable/video_play"
             android:tint="@color/white" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/refresh"
-            android:layout_width="46dp"
-            android:layout_height="46dp"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
             android:layout_marginStart="20dp"
             android:layout_toEndOf="@id/play"
             android:padding="10dp"
@@ -127,8 +103,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/fullScreen"
-            android:layout_width="46dp"
-            android:layout_height="46dp"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
             android:layout_alignParentEnd="true"
             android:padding="10dp"
             android:src="@drawable/video_full_screen"

@@ -9,7 +9,7 @@ enum class Quality {
     /**
      * 240p 极速
      */
-    Q240 {
+    Q6 {
         override fun toString(): String {
             return "6"
         }
@@ -18,7 +18,7 @@ enum class Quality {
     /**
      * 360p 流畅
      */
-    Q360 {
+    Q16 {
         override fun toString(): String {
             return "16"
         }
@@ -27,7 +27,7 @@ enum class Quality {
     /**
      * 480p 清晰
      */
-    Q480 {
+    Q32 {
         override fun toString(): String {
             return "32"
         }
@@ -36,7 +36,7 @@ enum class Quality {
     /**
      * 720p 高清
      */
-    Q720 {
+    Q64 {
         override fun toString(): String {
             return "64"
         }
@@ -45,7 +45,7 @@ enum class Quality {
     /**
      * 720P60 高帧率
      */
-    Q720P60 {
+    Q74 {
         override fun toString(): String {
             return "74"
         }
@@ -54,7 +54,7 @@ enum class Quality {
     /**
      * 1080p 高清
      */
-    Q1080 {
+    Q80 {
         override fun toString(): String {
             return "80"
         }
@@ -63,7 +63,7 @@ enum class Quality {
     /**
      * 1080p+高码率
      */
-    Q1080P {
+    Q112 {
         override fun toString(): String {
             return "112"
         }
@@ -72,7 +72,7 @@ enum class Quality {
     /**
      * 1080P60 高帧率
      */
-    Q1080P60 {
+    Q116 {
         override fun toString(): String {
             return "116"
         }
@@ -81,9 +81,36 @@ enum class Quality {
     /**
      * 4K 超清
      */
-    Q4K {
+    Q120 {
         override fun toString(): String {
             return "120"
+        }
+    },
+
+    /**
+     * HDR 真彩色
+     */
+    Q125 {
+        override fun toString(): String {
+            return "125"
+        }
+    },
+
+    /**
+     * 杜比视界
+     */
+    Q126 {
+        override fun toString(): String {
+            return "126"
+        }
+    },
+
+    /**
+     * 8K 超高清
+     */
+    Q127 {
+        override fun toString(): String {
+            return "127"
         }
     }
 }

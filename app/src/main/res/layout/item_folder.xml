@@ -36,7 +36,7 @@
         android:layout_height="20dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_enter"
+        android:src="@drawable/ic_arrow"
         android:tint="@color/infoColor" />
 
 </RelativeLayout>

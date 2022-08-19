@@ -1,6 +1,8 @@
 package com.leon.biuvideo.utils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleableRes;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -252,5 +255,19 @@ public class ViewUtils {
         itemAnimator.setMoveDuration(ITEM_ANIMATOR_DURATION);
 
         recyclerView.setItemAnimator(itemAnimator);
+    }
+
+    public static AppCompatActivity scanForActivity(Context context) {
+        if (context == null) {
+            return null;
+        }
+
+        if (context instanceof Activity) {
+            return (AppCompatActivity) context;
+        } else if (context instanceof ContextWrapper) {
+            return scanForActivity(((ContextWrapper) context).getBaseContext());
+        }
+
+        return null;
     }
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="13dp"
+    android:paddingStart="30dp"
+    android:paddingEnd="0dp"
+    android:background="?attr/selectableItemBackground"
+    android:paddingBottom="13dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/quality"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        tools:text="1080p 高清" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/extra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@id/quality"
+        android:background="@drawable/item_quality_vip_bg"
+        android:paddingStart="10dp"
+        android:paddingTop="3dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="3dp"
+        android:textColor="@color/BiliBili_pink"
+        android:textSize="11sp"
+        android:visibility="gone"
+        tools:text="会员"
+        tools:visibility="visible" />
+
+</RelativeLayout>

@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.zip.Inflater;
 
 /**
@@ -20,8 +21,8 @@ public class ValueUtils {
     /**
      * 生成以万结尾的字符串，小于1万则直接返回
      *
-     * @param number    需要格式化的数
-     * @return  返回结果
+     * @param number 需要格式化的数
+     * @return 返回结果
      */
     public static String generateCN(long number) {
         DecimalFormat decimalFormat = new DecimalFormat("#.0");
@@ -39,8 +40,8 @@ public class ValueUtils {
     /**
      * 秒转换为一定格式的长度
      *
-     * @param length    需要格式化的长度
-     * @return  返回结果
+     * @param length 需要格式化的长度
+     * @return 返回结果
      */
     public static String toMediaDuration(int length) {
         int minute = length / 60;
@@ -58,8 +59,8 @@ public class ValueUtils {
     /**
      * 字节大小转换
      *
-     * @param size  需要转换的大小(单位：byte)
-     * @return  返回转换后的数据
+     * @param size 需要转换的大小(单位：byte)
+     * @return 返回转换后的数据
      */
     public static String sizeFormat(long size, boolean withSuffix) {
         DecimalFormat decimalFormat = new DecimalFormat("#.00");
@@ -111,11 +112,11 @@ public class ValueUtils {
     /**
      * 格式化时间
      *
-     * @param time  毫秒值/秒值
+     * @param time      毫秒值/秒值
      * @param isSecond  是否为秒值
      * @param isMonth   是否只取月份（年/月/日）
-     * @param delimiter     分隔符号
-     * @return  返回格式化后的时间
+     * @param delimiter 分隔符号
+     * @return 返回格式化后的时间
      */
     public static String generateTime(long time, boolean isSecond, boolean isMonth, String delimiter) {
         String format = "yyyy" + delimiter + "MM" + delimiter + "dd HH:mm";
@@ -131,10 +132,10 @@ public class ValueUtils {
     /**
      * 格式化时间
      *
-     * @param time  毫秒值/秒值
-     * @param pattern 时间格式
-     * @param isSecond  是否为秒值
-     * @return  返回格式化后的时间
+     * @param time     毫秒值/秒值
+     * @param pattern  时间格式
+     * @param isSecond 是否为秒值
+     * @return 返回格式化后的时间
      */
     public static String generateTime(long time, String pattern, boolean isSecond) {
         Date date = new Date(isSecond ? time * 1000 : time);
@@ -145,8 +146,8 @@ public class ValueUtils {
     /**
      * 解析字符串时间
      *
-     * @param strTime   字符串时间
-     * @return  毫秒值时间
+     * @param strTime 字符串时间
+     * @return 毫秒值时间
      */
     public static long formatStrTime(String strTime) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
@@ -192,7 +193,7 @@ public class ValueUtils {
      * 将编码格式为deflate的响应体进行解码
      *
      * @param bytes 未解码数据
-     * @return  解码后的数据
+     * @return 解码后的数据
      */
     public static byte[] unZipXML(byte[] bytes) {
         byte[] byteArrayTemp = new byte[bytes.length + 2];
@@ -232,10 +233,10 @@ public class ValueUtils {
     /**
      * BVID转AVID
      *
-     * @param bvid  bvid
-     * @return  avid
+     * @param bvid bvid
+     * @return avid
      */
-    public static String bv2av (String bvid) {
+    public static String bv2av(String bvid) {
         HashMap<String, Integer> mp = new HashMap<>();
         String table = "fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF";
         int[] ints = {11, 10, 3, 8, 4, 6, 2, 9, 5, 7};
@@ -256,5 +257,31 @@ public class ValueUtils {
         }
 
         return String.valueOf((r - add) ^ xor);
+    }
+
+    public static Map<String, String> createPlayerVideoHeader(String id) {
+        HashMap<String, String> header = new HashMap<>(3);
+        header.put("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36 Edg/104.0.1293.54");
+        header.put("Connection", "keep-alive");
+        header.put("Referer", id.startsWith("BV") ? ("https://www.bilibili.com/video/" + id) : ("https://www.bilibili.com/bangumi/play/ep" + id));
+
+        return header;
+    }
+
+    /**
+     *
+     * @param qn    清晰度代码
+     * @return 1：需VIP，2：需登录，3：不需登录
+     */
+    public static int videoIdentify(int qn) {
+        if (qn > 64) {
+            if (qn == 74 || qn == 80) {
+                return 2;
+            } else {
+                return 1;
+            }
+        }
+
+        return 3;
     }
 }

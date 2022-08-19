@@ -83,10 +83,8 @@ public class TopBarView extends FrameLayout implements IControlComponent {
         batteryReceiver = new BatteryReceiver(binding.battery);
     }
 
-    public TopBarView setTitle(String title) {
+    public void setTitle(String title) {
         binding.title.setText(title);
-
-        return this;
     }
 
     @Override

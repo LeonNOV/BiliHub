@@ -13,7 +13,10 @@ import androidx.annotation.Nullable;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.beans.publicBeans.resources.live.LiveInfo;
+import com.leon.biuvideo.beans.publicBeans.resources.video.VideoQuality;
 import com.leon.biuvideo.databinding.ComponentPlayerControllerBinding;
+
+import java.util.List;
 
 import xyz.doikki.videoplayer.controller.GestureVideoController;
 import xyz.doikki.videoplayer.player.VideoView;
@@ -26,6 +29,8 @@ import xyz.doikki.videoplayer.util.PlayerUtils;
  */
 public class PlayerController extends GestureVideoController {
     private ComponentPlayerControllerBinding binding;
+    private TopBarView topBarView;
+    private BottomControlView bottomControlView;
 
     public PlayerController(@NonNull Context context) {
         super(context);
@@ -54,13 +59,36 @@ public class PlayerController extends GestureVideoController {
 
     public void addDefaultControlComponent (LiveInfo liveInfo) {
         addControlComponent(new LiveView(getContext(), liveInfo));
-        addControlComponent(new TopBarView(getContext(), true).setTitle(liveInfo.getData().getRoomInfo().getTitle()), new BottomControlView(getContext(), true), new PrepareView(getContext()));
+
+        topBarView = new TopBarView(getContext(), true);
+        bottomControlView = new BottomControlView(getContext(), false);
+
+        addControlComponent(new TopBarView(getContext(), true), bottomControlView, new PrepareView(getContext()));
         addControlComponent(new CompleteView(getContext()), new ErrorView(getContext()), new GestureView(getContext()));
     }
 
-    public void addDefaultControlComponent (String title) {
-        addControlComponent(new TopBarView(getContext(), false).setTitle(title), new BottomControlView(getContext(), false), new PrepareView(getContext()));
+    public void addDefaultControlComponent () {
+        topBarView = new TopBarView(getContext(), false);
+        bottomControlView = new BottomControlView(getContext(), false);
+
+        addControlComponent(topBarView, bottomControlView, new PrepareView(getContext()));
         addControlComponent(new CompleteView(getContext()), new ErrorView(getContext()), new GestureView(getContext()));
+    }
+
+    public void setTitle(String title) {
+        topBarView.setTitle(title);
+    }
+
+    public void setVideoQuality (List<VideoQuality> videoQualityList) {
+        bottomControlView.setVideoQualityList(videoQualityList);
+    }
+
+    public void setDisplayQn (String displayQn) {
+        bottomControlView.setDisplayQn(displayQn);
+    }
+
+    public void setSpeed(String speedStr) {
+        bottomControlView.setSpeedStr(speedStr);
     }
 
     @Override

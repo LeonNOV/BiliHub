@@ -6,10 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.content.res.AppCompatResources;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseActivity.ActivityManager;
@@ -62,11 +62,10 @@ public class LiveView extends FrameLayout implements IControlComponent {
         binding.refresh.setOnClickListener(view -> controlWrapper.replay(true));
         binding.fullScreen.setOnClickListener(view -> controlWrapper.toggleFullScreen(PlayerUtils.scanForActivity(getContext())));
         binding.face.setOnClickListener(view -> ActivityManager.startActivity(getContext(), UserActivity.class, Map.of(UserActivity.PARAM, liveInfo.getData().getRoomInfo().getUid())));
-        binding.follow.setOnClickListener(view -> Toast.makeText(getContext(), "开发中…", Toast.LENGTH_SHORT).show());
 
         ViewUtils.setImg(getContext(), binding.face, liveInfo.getData().getAnchorInfo().getBaseInfo().getFace());
         binding.name.setText(liveInfo.getData().getAnchorInfo().getBaseInfo().getUname());
-        binding.icon.setImageResource(liveInfo.getData().getWatchedShow().getSwitch() ? R.drawable.live_icon_view : R.drawable.live_icon_popular);
+        binding.name.setCompoundDrawablesRelative(AppCompatResources.getDrawable(getContext(), liveInfo.getData().getWatchedShow().getSwitch() ? R.drawable.live_icon_view : R.drawable.live_icon_popular), null, null, null);
         binding.power.setText(liveInfo.getData().getWatchedShow().getTextLarge());
     }
 

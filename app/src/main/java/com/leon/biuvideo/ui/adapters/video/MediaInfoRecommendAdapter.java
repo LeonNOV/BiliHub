@@ -1,4 +1,4 @@
-package com.leon.biuvideo.ui.adapters;
+package com.leon.biuvideo.ui.adapters.video;
 
 import android.content.Context;
 import android.view.LayoutInflater;

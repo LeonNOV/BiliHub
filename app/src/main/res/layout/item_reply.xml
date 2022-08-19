@@ -151,7 +151,7 @@
                 android:layout_width="17dp"
                 android:layout_height="17dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_enter"
+                android:src="@drawable/ic_arrow"
                 android:tint="@color/blue"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/countStr"

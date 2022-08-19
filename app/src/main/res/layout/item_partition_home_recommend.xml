@@ -92,7 +92,7 @@
                 android:layout_width="15dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:src="@drawable/ic_enter"
+                android:src="@drawable/ic_arrow"
                 android:tint="@color/black" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>

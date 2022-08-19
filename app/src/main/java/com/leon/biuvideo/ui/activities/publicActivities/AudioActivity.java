@@ -56,7 +56,8 @@ public class AudioActivity extends AsyncHttpActivity<ActivityAudioBinding, Audio
             if ("".equals(audioInfo.getData().getBvid())) {
                 Toast.makeText(context, "无对应视频", Toast.LENGTH_SHORT).show();
             } else {
-                startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_ID, audioInfo.getData().getBvid()));
+                startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, VideoActivity.TYPE_VIDEO,
+                        VideoActivity.PARAM_ID, audioInfo.getData().getBvid()));
             }
         });
 
