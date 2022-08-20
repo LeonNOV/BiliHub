@@ -38,7 +38,7 @@
     <color name="topBar">#ffffff</color>
     <color name="follow_color">#757575</color>
     <color name="picture_viewer_theme">#878787</color>
-    <color name="dialog_bg">#80424242</color>
+    <color name="dialog_bg">#B3424242</color>
 
     <color name="ItemPopularPrecious">#d67716</color>
     <color name="ItemPopularWeekly">#fccb24</color>

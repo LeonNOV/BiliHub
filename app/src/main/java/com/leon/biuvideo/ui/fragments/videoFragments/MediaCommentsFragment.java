@@ -19,7 +19,7 @@ import com.leon.biuvideo.ui.widget.loader.PaginationLoader;
 public class MediaCommentsFragment extends BaseLazyFragment<FragmentMediaCommentsBinding> {
     private final String aid;
     private HttpApi httpApi;
-    private ReplyAdapter adapter;
+    private ReplyAdapter<Reply.Data.Reply> adapter;
     private PaginationLoader<Reply, Reply.Data.Reply> loader;
 
     private int next = 0;
@@ -53,7 +53,7 @@ public class MediaCommentsFragment extends BaseLazyFragment<FragmentMediaComment
         });
 
         httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
-        adapter = new ReplyAdapter(context);
+        adapter = new ReplyAdapter<>(context, false);
         loader = new PaginationLoader<>(binding.content, adapter);
         loader.setGuide(reply -> {
             next = reply.getData().getCursor().getNext();

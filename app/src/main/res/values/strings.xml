@@ -183,6 +183,9 @@
     <string name="videoPlayerErrorRetry">重试</string>
 
     <string name="videoPlayerBottomSpeed">倍速</string>
+    <string name="videoPlayerBottomRoad">线路</string>
+    <string name="videoPlayerBottomQuality">清晰度</string>
+
     <string name="videoPlayerBottomHint">快来分享一下自己的想法吧~</string>
     <string name="upLiked">UP主已点赞</string>
     <string name="videoCommentDetail">回复详情</string>

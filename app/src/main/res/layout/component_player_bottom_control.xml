@@ -144,7 +144,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:text="线路一"
+                android:text="@string/videoPlayerBottomRoad"
                 android:textColor="@color/white"
                 android:textSize="17sp"
                 android:visibility="gone"
@@ -155,7 +155,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:text="1080P"
+                android:text="@string/videoPlayerBottomQuality"
                 android:textColor="@color/white"
                 android:textSize="17sp" />
 

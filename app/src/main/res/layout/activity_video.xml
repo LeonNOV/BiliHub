@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.activities.publicActivities.VideoActivity">
 
-    <xyz.doikki.videoplayer.player.VideoView
-        android:id="@+id/player"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/videoPlayerHeight"/>
+        android:layout_height="@dimen/videoPlayerHeight"
+        app:elevation="0dp">
+
+        <xyz.doikki.videoplayer.player.VideoView
+            android:id="@+id/player"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/videoPlayerHeight" />
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <include
         android:id="@+id/extra"
-        layout="@layout/compose_tab_vp" />
+        layout="@layout/compose_tab_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

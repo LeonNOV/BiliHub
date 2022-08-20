@@ -5,14 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoQuality;
 import com.leon.biuvideo.databinding.ItemVideoQualityBinding;
-import com.leon.biuvideo.utils.ViewUtils;
-import com.leon.biuvideo.wraps.VideoEpisodeWrap;
+import com.leon.biuvideo.ui.widget.player.PlayerController;
+import com.leon.biuvideo.wraps.VideoQualityWrap;
 
 /**
  * @Author Leon
@@ -20,11 +18,12 @@ import com.leon.biuvideo.wraps.VideoEpisodeWrap;
  * @Desc
  */
 public class VideoQualityAdapter extends BaseViewBindingAdapter<VideoQuality, ItemVideoQualityBinding> {
-    private final VideoEpisodeWrap episodeWrap;
+    private PlayerController.OnSelectedListener<VideoQualityWrap> onSelectedListener;
+    private int selectedPosition;
 
-    public VideoQualityAdapter(Context context) {
+    public VideoQualityAdapter(Context context, int selectedPosition) {
         super(context);
-        episodeWrap = new ViewModelProvider(ViewUtils.scanForActivity(context)).get(VideoEpisodeWrap.class);
+        this.selectedPosition = selectedPosition;
     }
 
     @Override
@@ -35,17 +34,29 @@ public class VideoQualityAdapter extends BaseViewBindingAdapter<VideoQuality, It
     @Override
     protected void onBindViewHolder(VideoQuality data, ItemVideoQualityBinding binding, int position) {
         binding.getRoot().setOnClickListener(view -> {
-            if (data.isOrdinary()) {
-                episodeWrap.getQuality().setValue(data);
-            } else {
-                // do something
+            if (onSelectedListener != null && selectedPosition != position) {
+                if (data.isOrdinary()) {
+                    binding.quality.setTextColor(context.getColor(R.color.BiliBili_pink));
+                    onSelectedListener.onSelected(new VideoQualityWrap(data.getQuality(), selectedPosition));
+                    selectedPosition = position;
+                } else {
+                    // do something
+                }
             }
         });
+
+        if (selectedPosition == position) {
+            binding.quality.setTextColor(context.getColor(R.color.BiliBili_pink));
+        }
 
         binding.quality.setText(data.getQualityStr());
         if (data.getExtra() != null) {
             binding.extra.setVisibility(View.VISIBLE);
             binding.extra.setText(data.getExtra());
         }
+    }
+
+    public void setOnSelectedListener(PlayerController.OnSelectedListener<VideoQualityWrap> onSelectedListener) {
+        this.onSelectedListener = onSelectedListener;
     }
 }

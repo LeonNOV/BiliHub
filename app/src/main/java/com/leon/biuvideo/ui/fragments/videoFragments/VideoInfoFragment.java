@@ -1,12 +1,16 @@
 package com.leon.biuvideo.ui.fragments.videoFragments;
 
+import android.graphics.Color;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseFragment.BaseFragment;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoDetail;
-import com.leon.biuvideo.databinding.FragmentMediaInfoBinding;
+import com.leon.biuvideo.databinding.FragmentMediaVideoInfoBinding;
+import com.leon.biuvideo.databinding.ItemVideoEpisodeBinding;
 import com.leon.biuvideo.http.ApiHelper;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
@@ -25,16 +29,16 @@ import java.util.Map;
  * @Time 2022/08/04
  * @Desc
  */
-public class MediaInfoFragment extends BaseFragment<FragmentMediaInfoBinding> {
+public class VideoInfoFragment extends BaseFragment<FragmentMediaVideoInfoBinding> {
     private final VideoDetail.Data data;
 
-    public MediaInfoFragment(VideoDetail.Data data) {
+    public VideoInfoFragment(VideoDetail.Data data) {
         this.data = data;
     }
 
     @Override
-    public FragmentMediaInfoBinding getViewBinding() {
-        return FragmentMediaInfoBinding.inflate(getLayoutInflater());
+    public FragmentMediaVideoInfoBinding getViewBinding() {
+        return FragmentMediaVideoInfoBinding.inflate(getLayoutInflater());
     }
 
     @Override
@@ -61,14 +65,14 @@ public class MediaInfoFragment extends BaseFragment<FragmentMediaInfoBinding> {
         }
         binding.follow.setOnClickListener(v -> follow());
 
-        binding.infoTitle.setText(data.getView().getTitle());
+        binding.infoTitle.setContent(data.getView().getTitle());
         binding.view.setText(ValueUtils.generateCN(data.getView().getStat().getView()));
         binding.danmaku.setText(ValueUtils.generateCN(data.getView().getStat().getDanmaku()));
         binding.time.setText(ValueUtils.generateTime(data.getView().getPubdate(), "yyyy-MM-dd HH:mm", true));
 
         if (!"".equals(data.getView().getDesc())) {
             binding.desc.setVisibility(View.VISIBLE);
-            binding.desc.setText(data.getView().getDesc());
+            binding.desc.setContent(data.getView().getDesc());
         }
 
         binding.like.setOnClickListener(v -> like());
@@ -94,12 +98,19 @@ public class MediaInfoFragment extends BaseFragment<FragmentMediaInfoBinding> {
         recommendAdapter.appendHead(data.getRelated());
         ViewUtils.linkAdapter(binding.recommend, recommendAdapter);
 
-        if (!data.getView().getPages().isEmpty()) {
+        if (!data.getView().getPages().isEmpty() && data.getView().getPages().size() > 1) {
             binding.episode.setVisibility(View.VISIBLE);
+            LinearLayoutManager layoutManager = (LinearLayoutManager) binding.episode.getLayoutManager();
             VideoEpisodeAdapter adapter = new VideoEpisodeAdapter(context);
+            adapter.setOnSelectedListener(selectedPosition -> {
+                ItemVideoEpisodeBinding binding = ItemVideoEpisodeBinding.bind(layoutManager.getChildAt(selectedPosition));
+                binding.getRoot().setSelected(false);
+                binding.title.setTextColor(Color.BLACK);
+                binding.duration.setTextColor(context.getColor(R.color.infoColor));
+            });
             adapter.appendHead(data.getView().getPages());
 
-            ViewUtils.linkAdapter(binding.episode, adapter);
+            ViewUtils.listInitializer(binding.episode, adapter);
         }
     }
 

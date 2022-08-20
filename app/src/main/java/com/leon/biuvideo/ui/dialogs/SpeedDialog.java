@@ -9,19 +9,21 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialog;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.leon.biuvideo.R;
-import com.leon.biuvideo.beans.publicBeans.resources.video.VideoQuality;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoSpeed;
 import com.leon.biuvideo.databinding.DialogVideoParameterBinding;
-import com.leon.biuvideo.ui.adapters.video.VideoQualityAdapter;
+import com.leon.biuvideo.databinding.ItemVideoSpeedBinding;
 import com.leon.biuvideo.ui.adapters.video.VideoSpeedAdapter;
 import com.leon.biuvideo.utils.ViewUtils;
+import com.leon.biuvideo.model.VideoEpisodeModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @Author Leon
@@ -33,6 +35,8 @@ public class SpeedDialog extends AppCompatDialog {
     private final static float MIN_SPEED = 0.5F;
     private final static float STEP_SPEED = 0.25F;
 
+    private VideoEpisodeModel videoEpisodeModel;
+
     /**
      * bvid/seasonId or whatever
      */
@@ -42,29 +46,12 @@ public class SpeedDialog extends AppCompatDialog {
         super(context);
     }
 
-    public SpeedDialog(@NonNull Context context, int themeResId) {
-        super(context, themeResId);
-    }
-
-    public SpeedDialog(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
-        super(context, cancelable, cancelListener);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         DialogVideoParameterBinding binding = DialogVideoParameterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        for (float speed = MAX_SPEED; speed >= MIN_SPEED; speed -= STEP_SPEED) {
-            videoSpeedList.add(new VideoSpeed(speed, speed + "x"));
-        }
-
-        VideoSpeedAdapter adapter = new VideoSpeedAdapter(getContext());
-        adapter.appendHead(videoSpeedList);
-
-        ViewUtils.linkAdapter(binding.content, adapter);
 
         Window window = this.getWindow();
         if (window != null) {
@@ -75,5 +62,35 @@ public class SpeedDialog extends AppCompatDialog {
         }
 
         setCancelable(true);
+
+        videoEpisodeModel = new ViewModelProvider(ViewUtils.scanForActivity(getContext())).get(VideoEpisodeModel.class);
+
+        init(binding);
+    }
+
+    private void init(DialogVideoParameterBinding binding) {
+        for (float speed = MAX_SPEED; speed >= MIN_SPEED; speed -= STEP_SPEED) {
+            videoSpeedList.add(new VideoSpeed(speed, speed + "x"));
+        }
+
+        int initialIndex = 0;
+        Float selectedSpeed = videoEpisodeModel.getSpeed().getValue();
+        for (int i = 0; i < videoSpeedList.size(); i++) {
+            if (selectedSpeed == videoSpeedList.get(i).getSpeed()) {
+                initialIndex = i;
+                break;
+            }
+        }
+
+        RecyclerView.LayoutManager layoutManager = binding.content.getLayoutManager();
+        VideoSpeedAdapter adapter = new VideoSpeedAdapter(getContext(), initialIndex);
+        adapter.setOnSelectedListener(videoSpeedWrap -> {
+            videoEpisodeModel.getSpeed().setValue(videoSpeedWrap.getSpeed());
+            ItemVideoSpeedBinding.bind(Objects.requireNonNull(layoutManager.getChildAt(videoSpeedWrap.getPrePosition())))
+                    .speed.setTextColor(getContext().getColor(R.color.white));
+        });
+        adapter.appendHead(videoSpeedList);
+
+        ViewUtils.linkAdapter(binding.content, adapter);
     }
 }

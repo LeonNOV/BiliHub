@@ -220,6 +220,8 @@ public class ViewUtils {
 
     /**
      * connecting adapter
+     * <br/>
+     * Item之间无间隔
      *
      * @param recyclerView {@link RecyclerView}
      * @param adapter      {@link BaseViewBindingAdapter}
@@ -231,6 +233,12 @@ public class ViewUtils {
         recyclerView.setHasFixedSize(true);
     }
 
+    /**
+     * Item之间有间隔
+     *
+     * @param recyclerView recyclerView
+     * @param adapter      adapter
+     */
     private static void recyclerViewInitializer(RecyclerView recyclerView, RecyclerView.Adapter<?> adapter) {
         linkAdapter(recyclerView, adapter);
 
@@ -241,7 +249,12 @@ public class ViewUtils {
             itemDecoration.setHorizontalItemOffsets(recyclerView.getContext().getResources().getDimensionPixelSize(R.dimen.GridItemHorizontalOffset));
             recyclerView.addItemDecoration(itemDecoration);
         } else if (layoutManager instanceof LinearLayoutManager) {
-            LinearItemDecoration itemDecoration = new LinearItemDecoration(LinearItemDecoration.LINEAR_OFFSETS_VERTICAL);
+            LinearItemDecoration itemDecoration;
+            if (((LinearLayoutManager) layoutManager).getOrientation() == LinearLayoutManager.HORIZONTAL) {
+                itemDecoration = new LinearItemDecoration(LinearItemDecoration.LINEAR_OFFSETS_HORIZONTAL);
+            } else {
+                itemDecoration = new LinearItemDecoration(LinearItemDecoration.LINEAR_OFFSETS_VERTICAL);
+            }
             itemDecoration.setItemOffsets(recyclerView.getContext().getResources().getDimensionPixelSize(R.dimen.LinearItemOffset));
             recyclerView.addItemDecoration(itemDecoration);
         } else {

@@ -3,10 +3,11 @@ package com.leon.biuvideo.ui.activities.publicActivities;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.leon.biuvideo.base.baseActivity.AsyncHttpActivity;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoDetail;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoQuality;
-import com.leon.biuvideo.beans.publicBeans.resources.video.VideoSpeed;
+import com.leon.biuvideo.beans.publicBeans.resources.video.VideoStream;
 import com.leon.biuvideo.databinding.ActivityVideoBinding;
 import com.leon.biuvideo.http.ApiHelper;
 import com.leon.biuvideo.http.BaseUrl;
@@ -16,17 +17,19 @@ import com.leon.biuvideo.http.RequestData;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.fragments.videoFragments.MediaCommentsFragment;
-import com.leon.biuvideo.ui.fragments.videoFragments.MediaInfoFragment;
+import com.leon.biuvideo.ui.fragments.videoFragments.VideoInfoFragment;
+import com.leon.biuvideo.ui.widget.player.OnDestroy;
 import com.leon.biuvideo.ui.widget.player.PlayerController;
 import com.leon.biuvideo.utils.ValueUtils;
 import com.leon.biuvideo.utils.ViewUtils;
-import com.leon.biuvideo.wraps.VideoEpisodeWrap;
+import com.leon.biuvideo.model.VideoEpisodeModel;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import io.reactivex.rxjava3.core.Observable;
+import xyz.doikki.videoplayer.player.VideoView;
 
 /**
  * @Author Leon
@@ -57,13 +60,10 @@ public class VideoActivity extends AsyncHttpActivity<ActivityVideoBinding, Video
     private String type;
 
     private PlayerController playerController;
-    private VideoEpisodeWrap videoEpisodeWrap;
-    private Observer<String> titleObserver;
+    private VideoEpisodeModel videoEpisodeModel;
     private Observer<String> resourceObserver;
-    private Observer<VideoQuality> qualityObserver;
-    private Observer<VideoSpeed> speedObserver;
-
-    private final List<VideoQuality> videoQualityList = new ArrayList<>();
+    private Observer<Quality> qualityObserver;
+    private Observer<Float> speedObserver;
 
     @Override
     public ActivityVideoBinding getViewBinding() {
@@ -76,27 +76,18 @@ public class VideoActivity extends AsyncHttpActivity<ActivityVideoBinding, Video
             this.bvid = params.getString(PARAM_ID);
             this.type = params.getString(PARAM_TYPE);
 
-            videoEpisodeWrap = new ViewModelProvider(this).get(VideoEpisodeWrap.class);
+            videoEpisodeModel = new ViewModelProvider(this).get(VideoEpisodeModel.class);
             setVideoController();
 
             // todo 待修改为用户自定义清晰度，开发期间默认{Quality.Q1080}
             resourceObserver = cid -> setVideo(cid, Quality.Q80);
-            videoEpisodeWrap.getResource().observeForever(resourceObserver);
+            videoEpisodeModel.getResource().observeForever(resourceObserver);
 
-            titleObserver = title -> playerController.setTitle(title);
-            videoEpisodeWrap.getTitle().observeForever(titleObserver);
+            qualityObserver = quality -> setVideo(videoEpisodeModel.getResource().getValue(), quality);
+            videoEpisodeModel.getQuality().observeForever(qualityObserver);
 
-            qualityObserver = videoQuality -> {
-                setVideo(videoEpisodeWrap.getResource().getValue(), videoQuality.getQuality());
-                playerController.setDisplayQn(videoQuality.getDisplayQn());
-            };
-            videoEpisodeWrap.getQuality().observeForever(qualityObserver);
-
-            speedObserver = videoSpeed -> {
-                playerController.setSpeed(videoSpeed.getSpeedStr());
-                binding.player.setSpeed(videoSpeed.getSpeed());
-            };
-            videoEpisodeWrap.getSpeed().observeForever(speedObserver);
+            speedObserver = speed -> binding.player.setSpeed(speed);
+            videoEpisodeModel.getSpeed().observeForever(speedObserver);
         } else {
             backPressed();
         }
@@ -116,11 +107,11 @@ public class VideoActivity extends AsyncHttpActivity<ActivityVideoBinding, Video
     protected void onAsyncResult(VideoDetail videoDetail) {
         VideoDetail.Data.View view = videoDetail.getData().getView();
 
-        videoEpisodeWrap.getResource().setValue(view.getCid());
-        videoEpisodeWrap.getTitle().setValue(view.getTitle());
+        videoEpisodeModel.getResource().setValue(view.getCid());
+        videoEpisodeModel.getTitle().setValue(view.getTitle());
 
         ViewUtils.initTabLayout(this, binding.extra.tabLayout, binding.extra.viewPager,
-                List.of(new MediaInfoFragment(videoDetail.getData()), new MediaCommentsFragment(view.getAid())),
+                List.of(new VideoInfoFragment(videoDetail.getData()), new MediaCommentsFragment(view.getAid())),
                 "简介", "评论" + ValueUtils.generateCN(view.getStat().getReply()));
     }
 
@@ -135,34 +126,10 @@ public class VideoActivity extends AsyncHttpActivity<ActivityVideoBinding, Video
                 .getHttpApi()
                 .getVideoStream(bvid, cid, quality))
                 .setOnResult(videoStream -> {
-                    if (videoQualityList.isEmpty()) {
-                        videoStream.getData().getSupportFormats().forEach(supportFormat -> {
-                            String extra = null;
-                            boolean isOrdinary = false;
-
-                            int i = ValueUtils.videoIdentify(supportFormat.getQuality());
-                            if (i == 3) {
-                                isOrdinary = true;
-                            } else if (i == 2) {
-                                extra = "需登录";
-                            } else {
-                                extra = "大会员";
-                            }
-
-                            videoQualityList.add(new VideoQuality(extra, isOrdinary, Quality.valueOf("Q" + supportFormat.getQuality()),
-                                    supportFormat.getDisplayDesc(), supportFormat.getNewDescription()));
-                        });
-                        playerController.setVideoQuality(videoQualityList);
-                    }
-
+                    updateQualityList(videoStream);
                     if (binding.player.isPlaying()) {
                         binding.player.pause();
                         binding.player.release();
-                    }
-
-                    if (binding.player.getSpeed() != 1.0f) {
-                        // 每次设置视频都需将视频速度设置为1.0x
-                        videoEpisodeWrap.getSpeed().setValue(new VideoSpeed(1.0f, "1.0x"));
                     }
 
                     binding.player.setUrl(videoStream.getData().getDurl().get(0).getUrl(), ValueUtils.createPlayerVideoHeader(bvid));
@@ -171,10 +138,50 @@ public class VideoActivity extends AsyncHttpActivity<ActivityVideoBinding, Video
     }
 
     /**
+     * 更新对应视频的清晰度列表
+     *
+     * @param videoStream VideoStream
+     */
+    private void updateQualityList(VideoStream videoStream) {
+        List<VideoQuality> videoQualityList = new ArrayList<>();
+        videoStream.getData().getSupportFormats().forEach(supportFormat -> {
+            String extra = null;
+            boolean isOrdinary = false;
+
+            int i = ValueUtils.videoIdentify(supportFormat.getQuality());
+            if (i == 3) {
+                isOrdinary = true;
+            } else if (i == 2) {
+                extra = "需登录";
+            } else {
+                extra = "大会员";
+            }
+
+            videoQualityList.add(new VideoQuality(extra, isOrdinary, Quality.valueOf("Q" + supportFormat.getQuality()),
+                    supportFormat.getDisplayDesc(), supportFormat.getNewDescription()));
+        });
+
+        videoEpisodeModel.getQualityList().setValue(videoQualityList);
+        videoEpisodeModel.getQualityDisplay().setValue(Quality.valueOf("Q" + videoStream.getData().getQuality()));
+        videoEpisodeModel.getSpeed().setValue(1.0F);
+    }
+
+    /**
      * 设置视频控制器
      */
     private void setVideoController() {
         playerController = new PlayerController(context);
+        playerController.setOnPlayStateChangedListener(playState -> {
+            if (playState == VideoView.STATE_PLAYING) {
+                AppBarLayout.LayoutParams layoutParams = (AppBarLayout.LayoutParams) binding.player.getLayoutParams();
+                layoutParams.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_NO_SCROLL);
+                binding.player.setLayoutParams(layoutParams);
+            } else if (playState == VideoView.STATE_PAUSED) {
+                AppBarLayout.LayoutParams layoutParams = (AppBarLayout.LayoutParams) binding.player.getLayoutParams();
+                layoutParams.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL|AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
+                binding.player.setLayoutParams(layoutParams);
+            }
+        });
         playerController.addDefaultControlComponent();
         binding.player.setVideoController(playerController);
     }
@@ -206,13 +213,16 @@ public class VideoActivity extends AsyncHttpActivity<ActivityVideoBinding, Video
 
     @Override
     protected void onDestroy() {
+        for (OnDestroy onDestroy : playerController.getOnDestroys()) {
+            onDestroy.onDestroy();
+        }
+
         binding.player.pause();
         binding.player.release();
 
-        videoEpisodeWrap.getTitle().removeObserver(titleObserver);
-        videoEpisodeWrap.getResource().removeObserver(resourceObserver);
-        videoEpisodeWrap.getQuality().removeObserver(qualityObserver);
-        videoEpisodeWrap.getSpeed().removeObserver(speedObserver);
+        videoEpisodeModel.getResource().removeObserver(resourceObserver);
+        videoEpisodeModel.getQuality().removeObserver(qualityObserver);
+        videoEpisodeModel.getSpeed().removeObserver(speedObserver);
 
         super.onDestroy();
     }

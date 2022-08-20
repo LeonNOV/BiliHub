@@ -16,9 +16,13 @@ import com.leon.biuvideo.beans.publicBeans.resources.live.LiveInfo;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoQuality;
 import com.leon.biuvideo.databinding.ComponentPlayerControllerBinding;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import xyz.doikki.videoplayer.controller.GestureVideoController;
+import xyz.doikki.videoplayer.controller.IControlComponent;
 import xyz.doikki.videoplayer.player.VideoView;
 import xyz.doikki.videoplayer.util.PlayerUtils;
 
@@ -28,9 +32,13 @@ import xyz.doikki.videoplayer.util.PlayerUtils;
  * @Desc 播放视图控制器
  */
 public class PlayerController extends GestureVideoController {
+    private final ArrayList<OnDestroy> onDestroys = new ArrayList<>();
+
     private ComponentPlayerControllerBinding binding;
     private TopBarView topBarView;
     private BottomControlView bottomControlView;
+
+    private OnPlayStateChangedListener onPlayStateChangedListener;
 
     public PlayerController(@NonNull Context context) {
         super(context);
@@ -63,7 +71,7 @@ public class PlayerController extends GestureVideoController {
         topBarView = new TopBarView(getContext(), true);
         bottomControlView = new BottomControlView(getContext(), false);
 
-        addControlComponent(new TopBarView(getContext(), true), bottomControlView, new PrepareView(getContext()));
+        addControlComponent(topBarView, bottomControlView, new PrepareView(getContext()));
         addControlComponent(new CompleteView(getContext()), new ErrorView(getContext()), new GestureView(getContext()));
     }
 
@@ -75,20 +83,8 @@ public class PlayerController extends GestureVideoController {
         addControlComponent(new CompleteView(getContext()), new ErrorView(getContext()), new GestureView(getContext()));
     }
 
-    public void setTitle(String title) {
-        topBarView.setTitle(title);
-    }
-
-    public void setVideoQuality (List<VideoQuality> videoQualityList) {
-        bottomControlView.setVideoQualityList(videoQualityList);
-    }
-
-    public void setDisplayQn (String displayQn) {
-        bottomControlView.setDisplayQn(displayQn);
-    }
-
-    public void setSpeed(String speedStr) {
-        bottomControlView.setSpeedStr(speedStr);
+    public ArrayList<OnDestroy> getOnDestroys() {
+        return onDestroys;
     }
 
     @Override
@@ -118,6 +114,9 @@ public class PlayerController extends GestureVideoController {
     @Override
     protected void onPlayStateChanged(int playState) {
         super.onPlayStateChanged(playState);
+        if (onPlayStateChangedListener != null) {
+            onPlayStateChangedListener.onPlayStateChanged(playState);
+        }
         switch (playState) {
             //调用release方法会回到此状态
             case VideoView.STATE_IDLE:
@@ -199,5 +198,17 @@ public class PlayerController extends GestureVideoController {
         }
 
         return super.onBackPressed();
+    }
+
+    public void setOnPlayStateChangedListener(OnPlayStateChangedListener onPlayStateChangedListener) {
+        this.onPlayStateChangedListener = onPlayStateChangedListener;
+    }
+
+    public interface OnPlayStateChangedListener {
+        void onPlayStateChanged(int playState);
+    }
+
+    public static interface OnSelectedListener<T> {
+        void onSelected(T t);
     }
 }

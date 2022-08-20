@@ -4,14 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoSpeed;
 import com.leon.biuvideo.databinding.ItemVideoSpeedBinding;
-import com.leon.biuvideo.utils.ViewUtils;
-import com.leon.biuvideo.wraps.VideoEpisodeWrap;
+import com.leon.biuvideo.ui.widget.player.PlayerController;
+import com.leon.biuvideo.wraps.VideoSpeedWrap;
 
 /**
  * @Author Leon
@@ -19,11 +17,13 @@ import com.leon.biuvideo.wraps.VideoEpisodeWrap;
  * @Desc
  */
 public class VideoSpeedAdapter extends BaseViewBindingAdapter<VideoSpeed, ItemVideoSpeedBinding> {
-    private final VideoEpisodeWrap episodeWrap;
 
-    public VideoSpeedAdapter(Context context) {
+    private PlayerController.OnSelectedListener<VideoSpeedWrap> onSelectedListener;
+    private int selectedPosition;
+
+    public VideoSpeedAdapter(Context context, int selectedPosition) {
         super(context);
-        episodeWrap = new ViewModelProvider(ViewUtils.scanForActivity(context)).get(VideoEpisodeWrap.class);
+        this.selectedPosition = selectedPosition;
     }
 
     @Override
@@ -33,8 +33,23 @@ public class VideoSpeedAdapter extends BaseViewBindingAdapter<VideoSpeed, ItemVi
 
     @Override
     protected void onBindViewHolder(VideoSpeed data, ItemVideoSpeedBinding binding, int position) {
-        binding.getRoot().setOnClickListener(view -> episodeWrap.getSpeed().setValue(data));
+        binding.getRoot().setOnClickListener(view -> {
+            if (onSelectedListener != null && selectedPosition != position) {
+                onSelectedListener.onSelected(new VideoSpeedWrap(data.getSpeed(), selectedPosition));
+
+                selectedPosition = position;
+                binding.speed.setTextColor(context.getColor(R.color.BiliBili_pink));
+            }
+        });
+
+        if (selectedPosition == position) {
+            binding.speed.setTextColor(context.getColor(R.color.BiliBili_pink));
+        }
 
         binding.speed.setText(data.getSpeedStr());
+    }
+
+    public void setOnSelectedListener(PlayerController.OnSelectedListener<VideoSpeedWrap> onSelectedListener) {
+        this.onSelectedListener = onSelectedListener;
     }
 }

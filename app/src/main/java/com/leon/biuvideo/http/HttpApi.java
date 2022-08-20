@@ -31,6 +31,7 @@ import com.leon.biuvideo.beans.partition.PartitionData;
 import com.leon.biuvideo.beans.partition.PartitionRecommend;
 import com.leon.biuvideo.beans.partition.PartitionTag;
 import com.leon.biuvideo.beans.publicBeans.resources.Reply;
+import com.leon.biuvideo.beans.publicBeans.resources.SubReply;
 import com.leon.biuvideo.beans.publicBeans.resources.article.ArticleInfo;
 import com.leon.biuvideo.beans.publicBeans.resources.audio.AudioInfo;
 import com.leon.biuvideo.beans.publicBeans.resources.audio.AudioResources;
@@ -728,6 +729,23 @@ public interface HttpApi {
      */
     @GET("x/v2/reply/main")
     Observable<Reply> getReply(@Query("oid") String oid, @Query("mode") int mode, @Query("next") int next, @Query("type") ReplyType type);
+
+    /**
+     * 评论回复内容获取
+     * <p>
+     * 部分数据需要携带Cookie才能获取，如：IP属地等
+     * <p>
+     * https://www.bilibili.com/video/BV1tY4y1w7GQ
+     * <p>
+     * https://api.bilibili.com/x/v2/reply/reply?oid=856991530&pn=1&ps=10&root=125659569200&type=1
+     *
+     * @param oid     评论区ID
+     * @param root    主评论ID
+     * @param pageNum 页码
+     * @return {@link SubReply}
+     */
+    @GET("x/v2/reply/reply?ps=10&type=1")
+    Observable<SubReply> getSubReply(@Query("oid") String oid, @Query("root") String root, @Query("pn") int pageNum);
 
     /**
      * 直播间详情

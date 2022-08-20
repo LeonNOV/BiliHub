@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="120dp"
-    android:layout_height="70dp"
-    android:padding="5dp"
-    android:background="@drawable/item_selection">
+    android:layout_width="100dp"
+    android:layout_height="60dp"
+    android:background="@drawable/item_selection"
+    android:padding="5dp">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/title"
@@ -23,7 +23,7 @@
         android:layout_gravity="bottom|start"
         android:gravity="center"
         android:textColor="@color/infoColor"
-        android:textSize="13sp"
+        android:textSize="11sp"
         tools:text="02:49" />
 
 </FrameLayout>

@@ -48,16 +48,7 @@ public class PartitionHomeRecommendAdapter extends BaseViewBindingAdapter<String
     @Override
     protected void onBindViewHolder(String data, ItemPartitionHomeRecommendBinding binding, int position) {
         RecyclerViewLoader<PartitionRecommend, PartitionRecommend.Data.Archive> loader = new RecyclerViewLoader<>(binding.content,
-                new PartitionHomeRecommendChildAdapter(context),
-                (content, adapter) -> {
-                    ViewUtils.linkAdapter(content, adapter);
-
-                    LinearItemDecoration itemDecoration = new LinearItemDecoration(LinearItemDecoration.LINEAR_OFFSETS_HORIZONTAL);
-                    itemDecoration.setOffsetEdge(true);
-                    itemDecoration.setOffsetLast(true);
-                    itemDecoration.setItemOffsets(context.getResources().getDimensionPixelSize(R.dimen.LinearItemOffset));
-                    content.addItemDecoration(itemDecoration);
-                });
+                new PartitionHomeRecommendChildAdapter(context), ViewUtils::listInitializer);
         loader.setGuide(partitionRecommend -> {
             if (partitionRecommend.getCode() == -404) {
                 return null;

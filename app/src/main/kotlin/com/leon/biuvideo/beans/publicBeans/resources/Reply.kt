@@ -411,8 +411,6 @@ data class Reply(
                     val nicknameColor: String,
                     @SerializedName("themeType")
                     val themeType: Int,
-                    @SerializedName("vipDueDate")
-                    val vipDueDate: Long,
                     @SerializedName("vipStatus")
                     val vipStatus: Int,
                     @SerializedName("vipStatusWarn")
@@ -616,8 +614,6 @@ data class Reply(
                             val nicknameColor: String,
                             @SerializedName("themeType")
                             val themeType: Int,
-                            @SerializedName("vipDueDate")
-                            val vipDueDate: Long,
                             @SerializedName("vipStatus")
                             val vipStatus: Int,
                             @SerializedName("vipStatusWarn")
@@ -867,8 +863,6 @@ data class Reply(
                         val nicknameColor: String,
                         @SerializedName("themeType")
                         val themeType: Int,
-                        @SerializedName("vipDueDate")
-                        val vipDueDate: Long,
                         @SerializedName("vipStatus")
                         val vipStatus: Int,
                         @SerializedName("vipStatusWarn")

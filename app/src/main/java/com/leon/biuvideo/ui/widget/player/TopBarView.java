@@ -17,10 +17,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.databinding.ComponentPlayerTopBarBinding;
+import com.leon.biuvideo.model.VideoEpisodeModel;
+import com.leon.biuvideo.utils.ValueUtils;
+import com.leon.biuvideo.utils.ViewUtils;
 
 import xyz.doikki.videoplayer.controller.ControlWrapper;
 import xyz.doikki.videoplayer.controller.IControlComponent;
@@ -45,6 +50,9 @@ public class TopBarView extends FrameLayout implements IControlComponent {
     private boolean isRegister;
     private BatteryReceiver batteryReceiver;
 
+    private VideoEpisodeModel videoEpisodeModel;
+    private Observer<String> titleObserver;
+
     public TopBarView(@NonNull Context context, boolean isLive) {
         super(context);
         this.isLive = isLive;
@@ -65,6 +73,11 @@ public class TopBarView extends FrameLayout implements IControlComponent {
     }
 
     protected void init() {
+        videoEpisodeModel = new ViewModelProvider(ViewUtils.scanForActivity(getContext())).get(VideoEpisodeModel.class);
+
+        titleObserver = title -> binding.title.setText(title);
+        videoEpisodeModel.getTitle().observeForever(titleObserver);
+
         setVisibility(GONE);
         binding = ComponentPlayerTopBarBinding.bind(LayoutInflater.from(getContext()).inflate(R.layout.component_player_top_bar, this, true));
 
@@ -94,6 +107,8 @@ public class TopBarView extends FrameLayout implements IControlComponent {
             getContext().unregisterReceiver(batteryReceiver);
             isRegister = false;
         }
+
+        videoEpisodeModel.getTitle().removeObserver(titleObserver);
     }
 
     @Override

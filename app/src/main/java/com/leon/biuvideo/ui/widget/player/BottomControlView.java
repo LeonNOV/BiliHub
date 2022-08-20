@@ -14,12 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.leon.biuvideo.R;
-import com.leon.biuvideo.beans.publicBeans.resources.video.VideoQuality;
 import com.leon.biuvideo.databinding.ComponentPlayerBottomControlBinding;
 import com.leon.biuvideo.ui.dialogs.QualityDialog;
 import com.leon.biuvideo.ui.dialogs.SpeedDialog;
-
-import java.util.List;
 
 import xyz.doikki.videoplayer.controller.ControlWrapper;
 import xyz.doikki.videoplayer.controller.IControlComponent;
@@ -36,11 +33,8 @@ public class BottomControlView extends FrameLayout implements IControlComponent,
 
     private ControlWrapper controlWrapper;
     private ComponentPlayerBottomControlBinding binding;
-    private QualityDialog qualityDialog;
-    private List<VideoQuality> videoQualityList;
 
     private boolean isDragging;
-    private SpeedDialog speedDialog;
 
     public BottomControlView(@NonNull Context context, boolean isLive) {
         super(context);
@@ -69,41 +63,18 @@ public class BottomControlView extends FrameLayout implements IControlComponent,
         binding.fullScreen.setOnClickListener(v -> controlWrapper.toggleFullScreen(PlayerUtils.scanForActivity(getContext())));
         binding.play.setOnClickListener(v -> controlWrapper.togglePlay());
         binding.danmakuControl.setOnClickListener(v -> Toast.makeText(getContext(), "开发中…", Toast.LENGTH_SHORT).show());
-        binding.quality.setOnClickListener(v -> {
-            if (qualityDialog == null) {
-                qualityDialog = new QualityDialog(getContext());
-                qualityDialog.setQualityList(videoQualityList);
-            }
-
-            qualityDialog.show();
-        });
+        binding.quality.setOnClickListener(v -> new QualityDialog(getContext()).show());
 
         if (isLive) {
-            binding.road.setVisibility(VISIBLE);
             binding.speed.setVisibility(GONE);
             binding.controlContainer.setVisibility(GONE);
+            binding.road.setVisibility(VISIBLE);
+            binding.road.setOnClickListener(view -> {
+            });
             binding.playLive.setVisibility(VISIBLE);
         } else {
-            binding.speed.setOnClickListener(v -> {
-                if (speedDialog == null) {
-                    speedDialog = new SpeedDialog(getContext());
-                }
-
-                speedDialog.show();
-            });
+            binding.speed.setOnClickListener(v -> new SpeedDialog(getContext()).show());
         }
-    }
-
-    public void setVideoQualityList (List<VideoQuality> qualityList) {
-        this.videoQualityList = qualityList;
-    }
-
-    public void setDisplayQn(String displayQn) {
-        binding.quality.setText(displayQn);
-    }
-
-    public void setSpeedStr(String speedStr) {
-        binding.speed.setText(speedStr);
     }
 
     @Override

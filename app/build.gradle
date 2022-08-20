@@ -168,6 +168,6 @@ dependencies {
     // 使用ijkplayer进行解码
     implementation 'xyz.doikki.android.dkplayer:player-ijk:3.3.7'
 
-    // https://github.com/CarGuo/GSYVideoPlayer
-//    implementation 'com.github.CarGuo.GSYVideoPlayer:GSYVideoPlayer:v8.3.3'
+    // https://github.com/MZCretin/ExpandableTextView
+    implementation 'com.github.MZCretin:ExpandableTextView:v1.6.1-x'
 }
