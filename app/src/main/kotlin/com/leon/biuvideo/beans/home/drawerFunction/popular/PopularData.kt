@@ -19,5 +19,5 @@ data class PopularData(
     val play: Int,
     val danmaku: Int,
     val reason: String,
-    val bvid: String
+    val id: String
 ) : Parcelable

@@ -38,6 +38,8 @@ import com.leon.biuvideo.beans.publicBeans.resources.audio.AudioResources;
 import com.leon.biuvideo.beans.publicBeans.resources.live.LiveInfo;
 import com.leon.biuvideo.beans.publicBeans.resources.live.LiveStream;
 import com.leon.biuvideo.beans.publicBeans.resources.picture.PictureInfo;
+import com.leon.biuvideo.beans.publicBeans.resources.video.PgcDetail;
+import com.leon.biuvideo.beans.publicBeans.resources.video.PgcRelation;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoDetail;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoRelation;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoStream;
@@ -683,6 +685,32 @@ public interface HttpApi {
      */
     @GET("x/web-interface/view/detail")
     Observable<VideoDetail> getVideoDetail(@Query("bvid") String bvid);
+
+    /**
+     * 番剧/电影/电视剧/纪录片 详细数据
+     * <p>
+     * https://www.bilibili.com/bangumi/play/ss33981
+     * <p>
+     * http://api.bilibili.com/pgc/view/web/season?season_id=33981
+     *
+     * @param id seasonId
+     * @return {@link PgcDetail}
+     */
+    @GET("pgc/view/web/season")
+    Observable<PgcDetail> getPgcDetail(@Query("season_id") String id);
+
+    /**
+     * 当前选集与已登录用户的关系数据
+     * <p>
+     * https://www.bilibili.com/bangumi/play/ss41832
+     * <p>
+     * https://api.bilibili.com/pgc/season/episode/web/info?ep_id=640113
+     *
+     * @param epId epId: 选集ID
+     * @return {@link PgcRelation}
+     */
+    @GET("pgc/season/episode/web/info")
+    Observable<PgcRelation> getPgcRelation(@Query("ep_id") String epId);
 
     /**
      * 当前视频与已登录用户的关系数据

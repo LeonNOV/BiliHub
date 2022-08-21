@@ -60,7 +60,7 @@ public class PopularRankAdapter extends BaseViewBindingMultipleAdapter<PopularDa
 
     private void initItemVideo(ItemVideoBinding binding, PopularData data) {
         binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, String.valueOf(VideoActivity.TYPE_VIDEO),
-                VideoActivity.PARAM_ID, data.getBvid())));
+                VideoActivity.PARAM_ID, data.getId())));
 
         ViewUtils.setImg(context, binding.cover, data.getCover());
         binding.extra.setText(ValueUtils.toMediaDuration(data.getDuration()));
@@ -71,8 +71,8 @@ public class PopularRankAdapter extends BaseViewBindingMultipleAdapter<PopularDa
     }
 
     private void initItemRankPgc(ItemRankPgcBinding binding, PopularData data) {
-        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, String.valueOf(VideoActivity.TYPE_FT),
-                VideoActivity.PARAM_SEASON_ID, data.getBvid())));
+        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, VideoActivity.TYPE_PGC,
+                VideoActivity.PARAM_ID, data.getId())));
 
         ViewUtils.setImg(context, binding.cover, data.getCover());
         binding.title.setText(data.getTitle());

@@ -88,4 +88,5 @@
     <dimen name="GridItemVerticalOffset">10dp</dimen>
     <dimen name="GridItemHorizontalOffset">10dp</dimen>
     <dimen name="ItemVideoCoverH">123dp</dimen>
+    <dimen name="resBorderRadius">7dp</dimen>
 </resources>

@@ -28,11 +28,8 @@ import com.leon.biuvideo.ui.activities.drawerFunction.PopularActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.SettingActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.WatchLaterActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.partition.PartitionActivity;
-import com.leon.biuvideo.ui.activities.publicActivities.ArticleActivity;
 import com.leon.biuvideo.ui.activities.publicActivities.DownloadActivity;
-import com.leon.biuvideo.ui.activities.publicActivities.LiveStreamActivity;
 import com.leon.biuvideo.ui.activities.publicActivities.VideoActivity;
-import com.leon.biuvideo.ui.activities.search.SearchActivity;
 import com.leon.biuvideo.utils.DataStoreUtils;
 import com.leon.biuvideo.utils.ViewUtils;
 
@@ -60,7 +57,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         binding.home.userFace.setOnClickListener(v -> binding.getRoot().openDrawer(GravityCompat.START));
 //        binding.home.search.setOnClickListener(v -> startActivity(LiveStreamActivity.class, Map.of(LiveStreamActivity.PARAM, "47917")));
 //        binding.home.search.setOnClickListener(v -> startActivity(LiveStreamActivity.class, Map.of(LiveStreamActivity.PARAM, "25198225")));
-        binding.home.search.setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_ID, "BV1FV411y7oZ")));
+//        binding.home.search.setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_ID, "BV1FV411y7oZ")));
+        binding.home.search.setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, VideoActivity.TYPE_PGC,
+                VideoActivity.PARAM_ID, "33626")));
 //        binding.home.search.setOnClickListener(view -> startActivity(ArticleActivity.class, Map.of(ArticleActivity.PARAM, "18146926")));
 //        binding.home.search.setOnClickListener(v -> startActivity(SearchActivity.class));
         binding.drawer.userContainer.setOnTouchListener((v, event) -> ViewUtils.zoom(event, binding.drawer.userContainer));

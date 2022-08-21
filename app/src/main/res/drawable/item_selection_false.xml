@@ -3,9 +3,9 @@
     android:color="@color/rippleColor">
     <item>
         <shape android:shape="rectangle">
-            <corners android:radius="7dp" />
+            <corners android:radius="@dimen/resBorderRadius" />
             <stroke
-                android:width="2dp"
+                android:width="1dp"
                 android:color="@color/infoColor" />
         </shape>
     </item>

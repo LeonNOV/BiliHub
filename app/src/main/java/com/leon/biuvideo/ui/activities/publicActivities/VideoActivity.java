@@ -4,7 +4,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.appbar.AppBarLayout;
-import com.leon.biuvideo.base.baseActivity.AsyncHttpActivity;
+import com.leon.biuvideo.base.baseActivity.BaseActivity;
+import com.leon.biuvideo.beans.publicBeans.resources.video.PgcDetail;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoDetail;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoQuality;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoStream;
@@ -13,11 +14,11 @@ import com.leon.biuvideo.http.ApiHelper;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.Quality;
-import com.leon.biuvideo.http.RequestData;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.fragments.videoFragments.MediaCommentsFragment;
-import com.leon.biuvideo.ui.fragments.videoFragments.VideoInfoFragment;
+import com.leon.biuvideo.ui.fragments.videoFragments.MediaPgcInfoFragment;
+import com.leon.biuvideo.ui.fragments.videoFragments.MediaVideoInfoFragment;
 import com.leon.biuvideo.ui.widget.player.OnDestroy;
 import com.leon.biuvideo.ui.widget.player.PlayerController;
 import com.leon.biuvideo.utils.ValueUtils;
@@ -28,36 +29,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import io.reactivex.rxjava3.core.Observable;
 import xyz.doikki.videoplayer.player.VideoView;
 
 /**
  * @Author Leon
  * @Time 2022/6/19
- * @Desc 视频播放界面
+ * @Desc 普通视频播放界面
  */
-public class VideoActivity extends AsyncHttpActivity<ActivityVideoBinding, VideoDetail> {
-    /**
-     * 普通视频
-     */
-    public static final String TYPE_VIDEO = "1";
-
-    /**
-     * 番剧
-     */
-    public static final String TYPE_BANGUMI = "2";
-
-    /**
-     * 电影/电视剧
-     */
-    public static final String TYPE_FT = "3";
-
+public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
     public static final String PARAM_ID = "id";
-    public static final String PARAM_SEASON_ID = "seId";
     public static final String PARAM_TYPE = "type";
 
-    private String bvid;
-    private String type;
+    public static final String TYPE_VIDEO = "video";
+    public static final String TYPE_PGC = "pgc";
+
+    private String id;
 
     private PlayerController playerController;
     private VideoEpisodeModel videoEpisodeModel;
@@ -73,8 +59,8 @@ public class VideoActivity extends AsyncHttpActivity<ActivityVideoBinding, Video
     @Override
     protected void init() {
         if (params.containsKey(PARAM_ID)) {
-            this.bvid = params.getString(PARAM_ID);
-            this.type = params.getString(PARAM_TYPE);
+            this.id = params.getString(PARAM_ID);
+            String type = params.getString(PARAM_TYPE);
 
             videoEpisodeModel = new ViewModelProvider(this).get(VideoEpisodeModel.class);
             setVideoController();
@@ -88,31 +74,33 @@ public class VideoActivity extends AsyncHttpActivity<ActivityVideoBinding, Video
 
             speedObserver = speed -> binding.player.setSpeed(speed);
             videoEpisodeModel.getSpeed().observeForever(speedObserver);
+
+            HttpApi httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
+            if (TYPE_VIDEO.equals(type)) {
+                new ApiHelper<>(httpApi.getVideoDetail(id)).setOnResult(this::setVideo).doIt();
+            } else {
+                new ApiHelper<>(httpApi.getPgcDetail(id)).setOnResult(this::setPgc).doIt();
+            }
         } else {
             backPressed();
         }
     }
 
-    @Override
-    protected RequestData setRequestData() {
-        return new RequestData(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE));
-    }
-
-    @Override
-    protected Observable<VideoDetail> createObservable(RetrofitClient retrofitClient) {
-        return retrofitClient.getHttpApi().getVideoDetail(bvid);
-    }
-
-    @Override
-    protected void onAsyncResult(VideoDetail videoDetail) {
+    private void setVideo(VideoDetail videoDetail) {
         VideoDetail.Data.View view = videoDetail.getData().getView();
 
         videoEpisodeModel.getResource().setValue(view.getCid());
         videoEpisodeModel.getTitle().setValue(view.getTitle());
 
         ViewUtils.initTabLayout(this, binding.extra.tabLayout, binding.extra.viewPager,
-                List.of(new VideoInfoFragment(videoDetail.getData()), new MediaCommentsFragment(view.getAid())),
+                List.of(new MediaVideoInfoFragment(videoDetail.getData()), new MediaCommentsFragment(view.getAid())),
                 "简介", "评论" + ValueUtils.generateCN(view.getStat().getReply()));
+    }
+
+    private void setPgc(PgcDetail pgcDetail) {
+        ViewUtils.initTabLayout(this, binding.extra.tabLayout, binding.extra.viewPager,
+                List.of(new MediaPgcInfoFragment(pgcDetail.getResult()), new MediaCommentsFragment(String.valueOf(pgcDetail.getResult().getEpisodes().get(0).getAid()))),
+                "简介", "评论");
     }
 
     /**
@@ -124,7 +112,7 @@ public class VideoActivity extends AsyncHttpActivity<ActivityVideoBinding, Video
     private void setVideo(String cid, Quality quality) {
         new ApiHelper<>(new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE))
                 .getHttpApi()
-                .getVideoStream(bvid, cid, quality))
+                .getVideoStream(id, cid, quality))
                 .setOnResult(videoStream -> {
                     updateQualityList(videoStream);
                     if (binding.player.isPlaying()) {
@@ -132,7 +120,7 @@ public class VideoActivity extends AsyncHttpActivity<ActivityVideoBinding, Video
                         binding.player.release();
                     }
 
-                    binding.player.setUrl(videoStream.getData().getDurl().get(0).getUrl(), ValueUtils.createPlayerVideoHeader(bvid));
+                    binding.player.setUrl(videoStream.getData().getDurl().get(0).getUrl(), ValueUtils.createPlayerVideoHeader(id));
                     binding.player.start();
                 }).doIt();
     }
@@ -178,7 +166,7 @@ public class VideoActivity extends AsyncHttpActivity<ActivityVideoBinding, Video
                 binding.player.setLayoutParams(layoutParams);
             } else if (playState == VideoView.STATE_PAUSED) {
                 AppBarLayout.LayoutParams layoutParams = (AppBarLayout.LayoutParams) binding.player.getLayoutParams();
-                layoutParams.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL|AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
+                layoutParams.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
                 binding.player.setLayoutParams(layoutParams);
             }
         });

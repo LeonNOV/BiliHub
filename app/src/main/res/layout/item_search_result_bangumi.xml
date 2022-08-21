@@ -106,7 +106,7 @@
                 android:id="@+id/ratingScore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#ffa058"
+                android:textColor="@color/score"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 tools:text="8.8" />
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="@string/bangumi_score"
-                android:textColor="#ffa058"
+                android:textColor="@color/score"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 

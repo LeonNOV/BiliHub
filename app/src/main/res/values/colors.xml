@@ -43,4 +43,5 @@
     <color name="ItemPopularPrecious">#d67716</color>
     <color name="ItemPopularWeekly">#fccb24</color>
     <color name="ItemPopularHot">#fc6738</color>
+    <color name="score">#ffa058</color>
 </resources>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BiuVideo</string>
+    <string name="app_name">BiliHub</string>
 
     <string name="search">搜索</string>
     <string name="favorite">收藏</string>
@@ -271,4 +271,5 @@
     <string name="ReplyHot">按热门</string>
     <string name="ReplyModeNew">最新评论</string>
     <string name="ReplyModeHot">热门评论</string>
+    <string name="episode">选集</string>
 </resources>

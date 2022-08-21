@@ -29,10 +29,10 @@ import java.util.Map;
  * @Time 2022/08/04
  * @Desc
  */
-public class VideoInfoFragment extends BaseFragment<FragmentMediaVideoInfoBinding> {
+public class MediaVideoInfoFragment extends BaseFragment<FragmentMediaVideoInfoBinding> {
     private final VideoDetail.Data data;
 
-    public VideoInfoFragment(VideoDetail.Data data) {
+    public MediaVideoInfoFragment(VideoDetail.Data data) {
         this.data = data;
     }
 
