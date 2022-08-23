@@ -32,8 +32,6 @@ import xyz.doikki.videoplayer.util.PlayerUtils;
  * @Desc 播放视图控制器
  */
 public class PlayerController extends GestureVideoController {
-    private final ArrayList<OnDestroy> onDestroys = new ArrayList<>();
-
     private ComponentPlayerControllerBinding binding;
     private TopBarView topBarView;
     private BottomControlView bottomControlView;
@@ -81,10 +79,6 @@ public class PlayerController extends GestureVideoController {
 
         addControlComponent(topBarView, bottomControlView, new PrepareView(getContext()));
         addControlComponent(new CompleteView(getContext()), new ErrorView(getContext()), new GestureView(getContext()));
-    }
-
-    public ArrayList<OnDestroy> getOnDestroys() {
-        return onDestroys;
     }
 
     @Override

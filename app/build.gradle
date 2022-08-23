@@ -26,7 +26,7 @@ android {
              * 如果需要支持平板，则需要加上x86或x86_64
              * x86_64支持新上市的平板，向下兼容x86
              */
-            abiFilters "armeabi-v7a", "x86"
+            abiFilters "arm64-v8a", "x86_64"
         }
     }
 

@@ -21,9 +21,10 @@ public class VideoSpeedAdapter extends BaseViewBindingAdapter<VideoSpeed, ItemVi
     private PlayerController.OnSelectedListener<VideoSpeedWrap> onSelectedListener;
     private int selectedPosition;
 
-    public VideoSpeedAdapter(Context context, int selectedPosition) {
+    public VideoSpeedAdapter(Context context, int initSelectedPosition) {
         super(context);
-        this.selectedPosition = selectedPosition;
+
+        this.selectedPosition = initSelectedPosition;
     }
 
     @Override
@@ -35,18 +36,17 @@ public class VideoSpeedAdapter extends BaseViewBindingAdapter<VideoSpeed, ItemVi
     protected void onBindViewHolder(VideoSpeed data, ItemVideoSpeedBinding binding, int position) {
         binding.getRoot().setOnClickListener(view -> {
             if (onSelectedListener != null && selectedPosition != position) {
-                onSelectedListener.onSelected(new VideoSpeedWrap(data.getSpeed(), selectedPosition));
+                data.setSelected(true);
 
+                onSelectedListener.onSelected(new VideoSpeedWrap(data.getSpeed(), selectedPosition));
                 selectedPosition = position;
-                binding.speed.setTextColor(context.getColor(R.color.BiliBili_pink));
+
+                notifyItemChanged(position);
             }
         });
 
-        if (selectedPosition == position) {
-            binding.speed.setTextColor(context.getColor(R.color.BiliBili_pink));
-        }
-
         binding.speed.setText(data.getSpeedStr());
+        binding.speed.setTextColor(data.getSelected() ? context.getColor(R.color.BiliBili_pink) : context.getColor(R.color.white));
     }
 
     public void setOnSelectedListener(PlayerController.OnSelectedListener<VideoSpeedWrap> onSelectedListener) {

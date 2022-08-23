@@ -16,14 +16,14 @@ import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.Quality;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.http.TestValue;
+import com.leon.biuvideo.model.VideoPlayerModel;
 import com.leon.biuvideo.ui.fragments.videoFragments.MediaCommentsFragment;
 import com.leon.biuvideo.ui.fragments.videoFragments.MediaPgcInfoFragment;
 import com.leon.biuvideo.ui.fragments.videoFragments.MediaVideoInfoFragment;
-import com.leon.biuvideo.ui.widget.player.OnDestroy;
 import com.leon.biuvideo.ui.widget.player.PlayerController;
 import com.leon.biuvideo.utils.ValueUtils;
 import com.leon.biuvideo.utils.ViewUtils;
-import com.leon.biuvideo.model.VideoEpisodeModel;
+import com.leon.biuvideo.wraps.VideoResourceWrap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,12 +44,12 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
     public static final String TYPE_PGC = "pgc";
 
     private String id;
-
     private PlayerController playerController;
-    private VideoEpisodeModel videoEpisodeModel;
-    private Observer<String> resourceObserver;
-    private Observer<Quality> qualityObserver;
-    private Observer<Float> speedObserver;
+
+    private VideoPlayerModel videoPlayerModel;
+    private Observer<VideoResourceWrap> videoResourceObserver;
+    private Observer<Float> videoSpeedObserver;
+    private Observer<Quality> videoQualityObserver;
 
     @Override
     public ActivityVideoBinding getViewBinding() {
@@ -60,44 +60,49 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
     protected void init() {
         if (params.containsKey(PARAM_ID)) {
             this.id = params.getString(PARAM_ID);
-            String type = params.getString(PARAM_TYPE);
 
-            videoEpisodeModel = new ViewModelProvider(this).get(VideoEpisodeModel.class);
             setVideoController();
-
-            // todo 待修改为用户自定义清晰度，开发期间默认{Quality.Q1080}
-            resourceObserver = cid -> setVideo(cid, Quality.Q80);
-            videoEpisodeModel.getResource().observeForever(resourceObserver);
-
-            qualityObserver = quality -> setVideo(videoEpisodeModel.getResource().getValue(), quality);
-            videoEpisodeModel.getQuality().observeForever(qualityObserver);
-
-            speedObserver = speed -> binding.player.setSpeed(speed);
-            videoEpisodeModel.getSpeed().observeForever(speedObserver);
+            initObserver();
 
             HttpApi httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
-            if (TYPE_VIDEO.equals(type)) {
-                new ApiHelper<>(httpApi.getVideoDetail(id)).setOnResult(this::setVideo).doIt();
+            if (TYPE_VIDEO.equals(params.getString(PARAM_TYPE))) {
+                new ApiHelper<>(httpApi.getVideoDetail(id)).setOnResult(this::setVideoInfo).doIt();
             } else {
-                new ApiHelper<>(httpApi.getPgcDetail(id)).setOnResult(this::setPgc).doIt();
+                new ApiHelper<>(httpApi.getPgcDetail(id)).setOnResult(this::setPgcInfo).doIt();
             }
         } else {
             backPressed();
         }
     }
 
-    private void setVideo(VideoDetail videoDetail) {
-        VideoDetail.Data.View view = videoDetail.getData().getView();
+    private void initObserver() {
+        videoPlayerModel = new ViewModelProvider(this).get(VideoPlayerModel.class);
 
-        videoEpisodeModel.getResource().setValue(view.getCid());
-        videoEpisodeModel.getTitle().setValue(view.getTitle());
+        videoResourceObserver = this::setVideoResource;
+        videoPlayerModel.getVideoResource().observeForever(videoResourceObserver);
+
+        videoSpeedObserver = speed -> binding.player.setSpeed(speed);
+        videoPlayerModel.getVideoSpeed().observeForever(videoSpeedObserver);
+
+        videoQualityObserver = quality -> {
+        };
+        videoPlayerModel.getVideoQuality().observeForever(videoQualityObserver);
+    }
+
+    private void setVideoInfo(VideoDetail videoDetail) {
+        //todo 此处清晰度需为用户默认指定清晰度
+        videoPlayerModel.getVideoResource().setValue(new VideoResourceWrap(videoDetail.getData().getView().getCid(), Quality.Q80));
+
+        VideoDetail.Data.View view = videoDetail.getData().getView();
 
         ViewUtils.initTabLayout(this, binding.extra.tabLayout, binding.extra.viewPager,
                 List.of(new MediaVideoInfoFragment(videoDetail.getData()), new MediaCommentsFragment(view.getAid())),
                 "简介", "评论" + ValueUtils.generateCN(view.getStat().getReply()));
     }
 
-    private void setPgc(PgcDetail pgcDetail) {
+    private void setPgcInfo(PgcDetail pgcDetail) {
+        videoPlayerModel.getVideoResource().setValue(new VideoResourceWrap(pgcDetail.getResult().getEpisodes().get(0).getCid(), Quality.Q80));
+
         ViewUtils.initTabLayout(this, binding.extra.tabLayout, binding.extra.viewPager,
                 List.of(new MediaPgcInfoFragment(pgcDetail.getResult()), new MediaCommentsFragment(String.valueOf(pgcDetail.getResult().getEpisodes().get(0).getAid()))),
                 "简介", "评论");
@@ -106,15 +111,17 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
     /**
      * 设置视频
      *
-     * @param cid     cid
-     * @param quality quality
+     * todo 普通视频和PGC内容的视频流URL链接不同，待更改
+     *
+     * @param videoResourceWrap VideoResourceWrap
      */
-    private void setVideo(String cid, Quality quality) {
+    private void setVideoResource(VideoResourceWrap videoResourceWrap) {
         new ApiHelper<>(new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE))
                 .getHttpApi()
-                .getVideoStream(id, cid, quality))
+                .getVideoStream(id, videoResourceWrap.getCid(), videoResourceWrap.getQuality()))
                 .setOnResult(videoStream -> {
                     updateQualityList(videoStream);
+
                     if (binding.player.isPlaying()) {
                         binding.player.pause();
                         binding.player.release();
@@ -126,7 +133,7 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
     }
 
     /**
-     * 更新对应视频的清晰度列表
+     * 更新对应视频的清晰度列表或更新已选画质
      *
      * @param videoStream VideoStream
      */
@@ -145,13 +152,13 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
                 extra = "大会员";
             }
 
-            videoQualityList.add(new VideoQuality(extra, isOrdinary, Quality.valueOf("Q" + supportFormat.getQuality()),
-                    supportFormat.getDisplayDesc(), supportFormat.getNewDescription()));
+            Quality quality = Quality.valueOf("Q" + supportFormat.getQuality());
+            videoQualityList.add(new VideoQuality(extra, isOrdinary, videoStream.getData().getQuality() == supportFormat.getQuality(),
+                    quality, supportFormat.getQuality(), supportFormat.getDisplayDesc()));
         });
 
-        videoEpisodeModel.getQualityList().setValue(videoQualityList);
-        videoEpisodeModel.getQualityDisplay().setValue(Quality.valueOf("Q" + videoStream.getData().getQuality()));
-        videoEpisodeModel.getSpeed().setValue(1.0F);
+        videoPlayerModel.getVideoSpeed().setValue(1.0F);
+        videoPlayerModel.getVideoQualityListDisplay().setValue(videoQualityList);
     }
 
     /**
@@ -201,16 +208,12 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
 
     @Override
     protected void onDestroy() {
-        for (OnDestroy onDestroy : playerController.getOnDestroys()) {
-            onDestroy.onDestroy();
-        }
-
         binding.player.pause();
         binding.player.release();
 
-        videoEpisodeModel.getResource().removeObserver(resourceObserver);
-        videoEpisodeModel.getQuality().removeObserver(qualityObserver);
-        videoEpisodeModel.getSpeed().removeObserver(speedObserver);
+        videoPlayerModel.getVideoResource().removeObserver(videoResourceObserver);
+        videoPlayerModel.getVideoSpeed().removeObserver(videoSpeedObserver);
+        videoPlayerModel.getVideoQuality().removeObserver(videoQualityObserver);
 
         super.onDestroy();
     }

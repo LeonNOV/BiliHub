@@ -8,8 +8,11 @@ import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.beans.publicBeans.resources.video.PgcDetail;
 import com.leon.biuvideo.databinding.ItemPgcSectionContentBinding;
+import com.leon.biuvideo.ui.activities.publicActivities.VideoActivity;
 import com.leon.biuvideo.utils.ValueUtils;
 import com.leon.biuvideo.utils.ViewUtils;
+
+import java.util.Map;
 
 /**
  * @Author Leon
@@ -28,6 +31,9 @@ public class PgcSectionContentAdapter extends BaseViewBindingAdapter<PgcDetail.R
 
     @Override
     protected void onBindViewHolder(PgcDetail.Result.Section.Episode data, ItemPgcSectionContentBinding binding, int position) {
+        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, VideoActivity.TYPE_VIDEO,
+                VideoActivity.PARAM_ID, data.getBvid())));
+
         ViewUtils.setImg(context, binding.cover, data.getCover());
         binding.title.setText(data.getTitle());
         binding.longTitle.setText(data.getLongTitle());

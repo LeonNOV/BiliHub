@@ -290,7 +290,6 @@
             android:id="@+id/episodeContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:orientation="vertical"
             android:visibility="gone"
             tools:visibility="visible">
@@ -298,7 +297,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_margin="10dp"
                 android:text="@string/episode"
                 android:textColor="@color/black"
                 android:textSize="17sp" />
@@ -316,7 +315,6 @@
             android:id="@+id/section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:visibility="visible" />

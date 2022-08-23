@@ -626,7 +626,8 @@ data class VideoDetail(
                 @SerializedName("vid")
                 val vid: String,
                 @SerializedName("weblink")
-                val weblink: String
+                val weblink: String,
+                var itemState: ItemState
             ) : Parcelable {
                 @Parcelize
                 data class Dimension(
@@ -637,6 +638,9 @@ data class VideoDetail(
                     @SerializedName("width")
                     val width: Int
                 ) : Parcelable
+
+                @Parcelize
+                data class ItemState(var itemColor: Int, var selected: Boolean) : Parcelable
             }
 
             @Parcelize

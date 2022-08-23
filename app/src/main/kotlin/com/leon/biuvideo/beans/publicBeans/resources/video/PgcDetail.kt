@@ -54,13 +54,13 @@ data class PgcDetail(
         @SerializedName("rights")
         val rights: Rights,
         @SerializedName("season_id")
-        val seasonId: Int,
+        val seasonId: String,
         @SerializedName("season_title")
         val seasonTitle: String,
         @SerializedName("seasons")
         val seasons: List<Season>,
         @SerializedName("section")
-        val section: List<Section>,
+        val section: List<Section>?,
         @SerializedName("series")
         val series: Series,
         @SerializedName("share_copy")
@@ -123,7 +123,7 @@ data class PgcDetail(
             @SerializedName("bvid")
             val bvid: String,
             @SerializedName("cid")
-            val cid: Int,
+            val cid: String,
             @SerializedName("cover")
             val cover: String,
             @SerializedName("dimension")
@@ -161,7 +161,8 @@ data class PgcDetail(
             @SerializedName("title")
             val title: String,
             @SerializedName("vid")
-            val vid: String
+            val vid: String,
+            var itemState: ItemState
         ) : Parcelable {
             @Parcelize
             data class BadgeInfo(
@@ -193,6 +194,12 @@ data class PgcDetail(
                 val allowDownload: Int,
                 @SerializedName("area_limit")
                 val areaLimit: Int
+            ) : Parcelable
+
+            @Parcelize
+            data class ItemState(
+                var epColor: Int,
+                var epSelected: Boolean
             ) : Parcelable
         }
 
@@ -341,13 +348,14 @@ data class PgcDetail(
             @SerializedName("new_ep")
             val newEp: NewEp,
             @SerializedName("season_id")
-            val seasonId: Int,
+            val seasonId: String,
             @SerializedName("season_title")
             val seasonTitle: String,
             @SerializedName("season_type")
             val seasonType: Int,
             @SerializedName("stat")
-            val stat: Stat
+            val stat: Stat,
+            var itemState: ItemState
         ) : Parcelable {
             @Parcelize
             data class BadgeInfo(
@@ -377,6 +385,12 @@ data class PgcDetail(
                 val seriesFollow: Int,
                 @SerializedName("views")
                 val views: Int
+            ) : Parcelable
+
+            @Parcelize
+            data class ItemState(
+                var titleColor: Int,
+                var selected: Boolean
             ) : Parcelable
         }
 

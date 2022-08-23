@@ -1,9 +1,12 @@
 package com.leon.biuvideo.ui.fragments.videoFragments;
 
-import android.util.ArraySet;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseFragment.BaseFragment;
 import com.leon.biuvideo.beans.publicBeans.resources.video.PgcDetail;
 import com.leon.biuvideo.beans.publicBeans.resources.video.PgcRelation;
@@ -13,6 +16,7 @@ import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.http.TestValue;
+import com.leon.biuvideo.model.VideoPlayerModel;
 import com.leon.biuvideo.ui.adapters.video.pgc.PgcEpisodeAdapter;
 import com.leon.biuvideo.ui.adapters.video.pgc.PgcSeasonAdapter;
 import com.leon.biuvideo.ui.adapters.video.pgc.PgcSectionAdapter;
@@ -24,19 +28,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * @Author Leon
  * @Time 2022/08/21
- * @Desc
+ * @Desc 1：番剧<br/>2：电影<br/>3：纪录片<br/>4：国创<br/>5：电视剧<br/>7：综艺
  */
 public class MediaPgcInfoFragment extends BaseFragment<FragmentMediaPgcInfoBinding> {
     private final PgcDetail.Result data;
 
-    private int episodeId;
-    private Map<Integer, List<Integer>> sectionMap;
-    private Set<Integer> publicSectionList;
+    private final Map<Integer, List<PgcDetail.Result.Section>> seasonSectionMap = new HashMap<>();
+    private final List<PgcDetail.Result.Section> publicSectionList = new ArrayList<>();
+    private HttpApi httpApi;
+
+    private VideoPlayerModel videoPlayerModel;
+    private Observer<String> videoPgcSeasonObserver;
+    private Observer<Integer> videoPgcEpisodeObserver;
 
     public MediaPgcInfoFragment(PgcDetail.Result data) {
         this.data = data;
@@ -49,15 +56,39 @@ public class MediaPgcInfoFragment extends BaseFragment<FragmentMediaPgcInfoBindi
 
     @Override
     protected void initView() {
-        binding.title.setText(data.getTitle());
-        data.getRights();
+        videoPlayerModel = new ViewModelProvider(ViewUtils.scanForActivity(context)).get(VideoPlayerModel.class);
 
-        // 1：番剧
-        // 2：电影
-        // 3：纪录片
-        // 4：国创
-        // 5：电视剧
-        // 7：综艺
+        videoPgcSeasonObserver = this::updateInfoContent;
+        videoPlayerModel.getVideoPgcSeason().observeForever(videoPgcSeasonObserver);
+
+        videoPgcEpisodeObserver = episodeId -> {
+            updateRelation(episodeId);
+            setSection(episodeId);
+        };
+        videoPlayerModel.getVideoPgcEpisode().observeForever(videoPgcEpisodeObserver);
+
+        httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
+        setInfoContent(data);
+        setSeason(data.getSeasons(), data.getSeasonId());
+        setEpisode(data.getEpisodes(), data.getType());
+    }
+
+    /**
+     * 根据seasonId 获取 简介界面数据
+     *
+     * @param seasonId seasonId
+     */
+    private void updateInfoContent(String seasonId) {
+        new ApiHelper<>(httpApi.getPgcDetail(seasonId)).setOnResult(pgcDetail -> setInfoContent(pgcDetail.getResult())).doIt();
+    }
+
+    /**
+     * 设置简介界面数据
+     *
+     * @param data {@link PgcDetail.Result}
+     */
+    public void setInfoContent(PgcDetail.Result data) {
+        binding.title.setText(data.getTitle());
         binding.newEp.setText(data.getNewEp().getDesc());
         binding.play.setText(String.format(Locale.CHINESE, "%s播放", ValueUtils.generateCN(data.getStat().getViews())));
         binding.following.setText(String.format(Locale.CHINESE, "%s追剧", ValueUtils.generateCN(data.getStat().getFavorites())));
@@ -70,93 +101,144 @@ public class MediaPgcInfoFragment extends BaseFragment<FragmentMediaPgcInfoBindi
         }
 
         binding.detail.setOnClickListener(v -> Toast.makeText(context, "detail", Toast.LENGTH_SHORT).show());
-
-        binding.likeStr.setText(ValueUtils.generateCN(data.getStat().getLikes()));
-        binding.coinStr.setText(ValueUtils.generateCN(data.getStat().getCoins()));
-        binding.favoriteStr.setText(ValueUtils.generateCN(data.getStat().getFavorite()));
         binding.shareStr.setText(ValueUtils.generateCN(data.getStat().getShare()));
+        binding.favoriteStr.setText(ValueUtils.generateCN(data.getStat().getFavorite()));
 
-        processSection();
-
-        setSeason(data.getSeasons());
-        setEpisode(data.getEpisodes());
-        setSection(data.getSection());
+        processSection(data.getSection());
     }
 
     /**
      * 更新选集与当前用户的关系
      *
-     * @param epId  选集ID
+     * @param epId 选集ID
      */
-    private void updateRelation(String epId) {
-        new ApiHelper<>(new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi().getPgcRelation(epId)).setOnResult(pgcRelation -> {
+    private void updateRelation(int epId) {
+        new ApiHelper<>(httpApi.getPgcRelation(epId)).setOnResult(pgcRelation -> {
             PgcRelation.Data.UserCommunity community = pgcRelation.getData().getUserCommunity();
-            binding.shareImg.setSelected(community.getLike() == 1);
-            binding.coinImg.setSelected(community.getCoinNumber() >= 1);
+            PgcRelation.Data.Stat stat = pgcRelation.getData().getStat();
+
+            binding.likeImg.setSelected(community.getLike() == 1);
+            binding.likeStr.setText(ValueUtils.generateCN(stat.getLike()));
+
+            binding.coinImg.setSelected(community.getCoinNumber() > 0);
+            binding.coinStr.setText(ValueUtils.generateCN(stat.getCoin()));
+
             binding.favoriteImg.setSelected(community.getFavorite() == 1);
         }).doIt();
     }
 
-    private void setSeason(List<PgcDetail.Result.Season> seasonList) {
-        if (seasonList.size() > 1) {
+    private void setSeason(List<PgcDetail.Result.Season> seasonList, String seasonId) {
+        if (seasonList != null && seasonList.size() > 1) {
             binding.seasons.setVisibility(View.VISIBLE);
 
-            PgcSeasonAdapter adapter = new PgcSeasonAdapter(context);
+            int selectedColor = context.getColor(R.color.blue);
+            int unselectedColor = context.getColor(R.color.infoColor);
+
+            seasonList.forEach(season -> {
+                PgcDetail.Result.Season.ItemState itemState;
+                if (seasonId.equals(season.getSeasonId())) {
+                    itemState = new PgcDetail.Result.Season.ItemState(selectedColor, true);
+                } else {
+                    itemState = new PgcDetail.Result.Season.ItemState(unselectedColor, false);
+                }
+                season.setItemState(itemState);
+            });
+
+            PgcSeasonAdapter adapter = new PgcSeasonAdapter(context, 0);
+            adapter.setOnSelectedListener(integer -> {
+                PgcDetail.Result.Season.ItemState itemState = seasonList.get(integer).getItemState();
+                itemState.setTitleColor(unselectedColor);
+                itemState.setSelected(false);
+
+                adapter.notifyItemChanged(integer);
+            });
             adapter.appendHead(seasonList);
 
             ViewUtils.listInitializer(binding.seasons, adapter);
         }
     }
 
-    private void setEpisode(List<PgcDetail.Result.Episode> episodeList) {
-        if (episodeList.size() > 1) {
+    private void setEpisode(List<PgcDetail.Result.Episode> episodeList, int type) {
+        if (episodeList != null && episodeList.size() > 1) {
             binding.episodeContainer.setVisibility(View.VISIBLE);
 
-            PgcEpisodeAdapter adapter = new PgcEpisodeAdapter(context, data.getType());
+            int selectedColor = context.getColor(R.color.blue);
+            int unselectedColor = context.getColor(R.color.infoColor);
+
+            episodeList.forEach(episode -> episode.setItemState(new PgcDetail.Result.Episode.ItemState(unselectedColor, false)));
+            PgcDetail.Result.Episode.ItemState state = episodeList.get(0).getItemState();
+            state.setEpColor(selectedColor);
+            state.setEpSelected(true);
+
+            PgcEpisodeAdapter adapter = new PgcEpisodeAdapter(context, type, 0);
+            adapter.setOnSelectedListener(integer -> {
+                PgcDetail.Result.Episode.ItemState itemState = episodeList.get(integer).getItemState();
+                itemState.setEpColor(unselectedColor);
+                itemState.setEpSelected(false);
+
+                adapter.notifyItemChanged(integer);
+            });
             adapter.appendHead(episodeList);
 
             ViewUtils.listInitializer(binding.episode, adapter);
+
+            updateRelation(episodeList.get(0).getId());
+            setSection(episodeList.get(0).getId());
         }
     }
 
-    private void setSection(List<PgcDetail.Result.Section> sectionList) {
-        if (!sectionList.isEmpty()) {
+    private void setSection(int episodeId) {
+        if (!seasonSectionMap.isEmpty() || !publicSectionList.isEmpty()) {
             binding.section.setVisibility(View.VISIBLE);
-            List<PgcDetail.Result.Section> resultSection = new ArrayList<>();
 
-            List<Integer> list = sectionMap.get(episodeId);
-            if (list != null) {
-                list.forEach(id -> resultSection.add(sectionList.get(id)));
+            List<PgcDetail.Result.Section> resultSectionList = new ArrayList<>();
+            List<PgcDetail.Result.Section> epSectionList = seasonSectionMap.get(episodeId);
+
+            if (epSectionList != null) {
+                resultSectionList.addAll(epSectionList);
             }
-            publicSectionList.forEach(id -> resultSection.add(sectionList.get(id)));
+            resultSectionList.addAll(publicSectionList);
 
             PgcSectionAdapter adapter = new PgcSectionAdapter(context);
-            adapter.appendHead(resultSection);
+            adapter.appendHead(resultSectionList);
 
-            ViewUtils.listInitializer(binding.section, adapter);
+            ViewUtils.linkAdapter(binding.section, adapter);
         }
     }
 
     /**
      * 处理section
      */
-    private void processSection() {
-        sectionMap = new HashMap<>();
-        publicSectionList = new ArraySet<>();
+    private void processSection(List<PgcDetail.Result.Section> sectionList) {
+        if (sectionList != null) {
+            if (!seasonSectionMap.isEmpty()) {
+                seasonSectionMap.clear();
+            }
 
-        for (int i = 0; i < data.getSection().size(); i++) {
-            PgcDetail.Result.Section section = data.getSection().get(i);
-            if (section.getEpisodeIds() != null && !section.getEpisodeIds().isEmpty()) {
-                for (Integer id : section.getEpisodeIds()) {
-                    if (!sectionMap.containsKey(id)) {
-                        sectionMap.put(id, new ArrayList<>());
+            if (!publicSectionList.isEmpty()) {
+                publicSectionList.clear();
+            }
+
+            for (PgcDetail.Result.Section section : sectionList) {
+                if (section.getEpisodeIds() != null && !section.getEpisodeIds().isEmpty()) {
+                    for (Integer episodeId : section.getEpisodeIds()) {
+                        if (!seasonSectionMap.containsKey(episodeId)) {
+                            seasonSectionMap.put(episodeId, new ArrayList<>());
+                        }
+                        seasonSectionMap.get(episodeId).add(section);
                     }
-
-                    sectionMap.get(id).add(i);
+                } else {
+                    publicSectionList.add(section);
                 }
-            } else {
-                publicSectionList.add(i);
             }
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        videoPlayerModel.getVideoPgcSeason().removeObserver(videoPgcSeasonObserver);
+        videoPlayerModel.getVideoPgcEpisode().removeObserver(videoPgcEpisodeObserver);
     }
 }

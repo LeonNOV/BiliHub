@@ -9,4 +9,4 @@ import kotlinx.android.parcel.Parcelize
  * @Desc
  */
 @Parcelize
-data class VideoSpeed(val speed: Float, val speedStr: String) : Parcelable
+data class VideoSpeed(val speed: Float, val speedStr: String, var selected: Boolean) : Parcelable

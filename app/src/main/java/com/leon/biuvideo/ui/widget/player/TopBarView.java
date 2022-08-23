@@ -7,7 +7,6 @@ import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
@@ -23,8 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.databinding.ComponentPlayerTopBarBinding;
-import com.leon.biuvideo.model.VideoEpisodeModel;
-import com.leon.biuvideo.utils.ValueUtils;
+import com.leon.biuvideo.model.VideoPlayerModel;
 import com.leon.biuvideo.utils.ViewUtils;
 
 import xyz.doikki.videoplayer.controller.ControlWrapper;
@@ -50,8 +48,8 @@ public class TopBarView extends FrameLayout implements IControlComponent {
     private boolean isRegister;
     private BatteryReceiver batteryReceiver;
 
-    private VideoEpisodeModel videoEpisodeModel;
-    private Observer<String> titleObserver;
+    private VideoPlayerModel playerModel;
+    private Observer<String> videoTitleObserver;
 
     public TopBarView(@NonNull Context context, boolean isLive) {
         super(context);
@@ -73,10 +71,10 @@ public class TopBarView extends FrameLayout implements IControlComponent {
     }
 
     protected void init() {
-        videoEpisodeModel = new ViewModelProvider(ViewUtils.scanForActivity(getContext())).get(VideoEpisodeModel.class);
+        playerModel = new ViewModelProvider(ViewUtils.scanForActivity(getContext())).get(VideoPlayerModel.class);
 
-        titleObserver = title -> binding.title.setText(title);
-        videoEpisodeModel.getTitle().observeForever(titleObserver);
+        videoTitleObserver = title -> binding.title.setText(title);
+        playerModel.getVideoTitleDisplay().observeForever(videoTitleObserver);
 
         setVisibility(GONE);
         binding = ComponentPlayerTopBarBinding.bind(LayoutInflater.from(getContext()).inflate(R.layout.component_player_top_bar, this, true));
@@ -108,7 +106,7 @@ public class TopBarView extends FrameLayout implements IControlComponent {
             isRegister = false;
         }
 
-        videoEpisodeModel.getTitle().removeObserver(titleObserver);
+        playerModel.getVideoTitleDisplay().removeObserver(videoTitleObserver);
     }
 
     @Override

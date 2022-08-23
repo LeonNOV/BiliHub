@@ -4,7 +4,7 @@ import com.leon.biuvideo.http.Quality
 
 /**
  * @Author Leon
- * @Time 2022/08/20
+ * @Time 2022/08/22
  * @Desc
  */
-data class VideoQualityWrap(val quality: Quality, val position: Int)
+data class VideoResourceWrap(var cid: String, var quality: Quality)

@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/bg"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/bg">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -120,7 +120,9 @@
             android:lineSpacingExtra="4dp"
             android:textColor="@color/black"
             android:textSize="17sp"
+            app:ep_contract_color="@color/blue"
             app:ep_contract_text="收回"
+            app:ep_expand_color="@color/blue"
             app:ep_expand_text="展开"
             app:ep_link_color="@color/blue"
             app:ep_max_line="3"
@@ -130,8 +132,6 @@
             app:ep_need_expand="true"
             app:ep_need_link="true"
             app:ep_need_mention="true"
-            app:ep_contract_color="@color/blue"
-            app:ep_expand_color="@color/blue"
             app:ep_need_self="true" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -183,7 +183,9 @@
             android:lineSpacingExtra="4dp"
             android:textColor="@color/infoColor"
             android:textSize="@dimen/infoSize"
+            app:ep_contract_color="@color/blue"
             app:ep_contract_text="收回"
+            app:ep_expand_color="@color/blue"
             app:ep_expand_text="展开"
             app:ep_link_color="@color/blue"
             app:ep_max_line="3"
@@ -193,8 +195,6 @@
             app:ep_need_expand="true"
             app:ep_need_link="true"
             app:ep_need_mention="true"
-            app:ep_contract_color="@color/blue"
-            app:ep_expand_color="@color/blue"
             app:ep_need_self="true" />
 
         <androidx.appcompat.widget.LinearLayoutCompat

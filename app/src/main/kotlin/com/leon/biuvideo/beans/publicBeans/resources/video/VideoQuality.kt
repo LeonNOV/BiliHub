@@ -17,7 +17,8 @@ data class VideoQuality(
      * 是否为普通画质，即不需要会员
      */
     val isOrdinary: Boolean,
+    var selected: Boolean,
     val quality: Quality,
-    val displayQn: String,
+    val qualityInt: Int,
     val qualityStr: String
 ) : Parcelable

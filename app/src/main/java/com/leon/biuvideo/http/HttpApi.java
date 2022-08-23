@@ -710,7 +710,7 @@ public interface HttpApi {
      * @return {@link PgcRelation}
      */
     @GET("pgc/season/episode/web/info")
-    Observable<PgcRelation> getPgcRelation(@Query("ep_id") String epId);
+    Observable<PgcRelation> getPgcRelation(@Query("ep_id") int epId);
 
     /**
      * 当前视频与已登录用户的关系数据

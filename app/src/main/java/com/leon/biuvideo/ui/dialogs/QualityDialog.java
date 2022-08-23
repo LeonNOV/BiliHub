@@ -11,19 +11,17 @@ import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDialog;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoQuality;
 import com.leon.biuvideo.databinding.DialogVideoParameterBinding;
-import com.leon.biuvideo.databinding.ItemVideoQualityBinding;
 import com.leon.biuvideo.http.Quality;
-import com.leon.biuvideo.model.VideoEpisodeModel;
+import com.leon.biuvideo.model.VideoPlayerModel;
 import com.leon.biuvideo.ui.adapters.video.VideoQualityAdapter;
 import com.leon.biuvideo.utils.ViewUtils;
+import com.leon.biuvideo.wraps.VideoResourceWrap;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @Author Leon
@@ -33,7 +31,8 @@ import java.util.Objects;
 public class QualityDialog extends AppCompatDialog {
     private VideoQualityAdapter adapter;
 
-    private VideoEpisodeModel videoEpisodeModel;
+    private VideoPlayerModel videoPlayerModel;
+    private com.leon.biuvideo.databinding.DialogVideoParameterBinding binding;
 
     public QualityDialog(@NonNull Context context) {
         super(context);
@@ -42,31 +41,9 @@ public class QualityDialog extends AppCompatDialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        videoEpisodeModel = new ViewModelProvider(ViewUtils.scanForActivity(getContext())).get(VideoEpisodeModel.class);
 
-        DialogVideoParameterBinding binding = DialogVideoParameterBinding.inflate(getLayoutInflater());
+        binding = DialogVideoParameterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        List<VideoQuality> qualities = videoEpisodeModel.getQualityList().getValue();
-        int initialIndex = 0;
-        Quality selectedQuality = videoEpisodeModel.getQualityDisplay().getValue();
-        for (int i = 0; i < qualities.size(); i++) {
-            if (selectedQuality == qualities.get(i).getQuality()) {
-                initialIndex = i;
-                break;
-            }
-        }
-
-        RecyclerView.LayoutManager layoutManager = binding.content.getLayoutManager();
-        adapter = new VideoQualityAdapter(getContext(), initialIndex);
-        adapter.setOnSelectedListener(videoQualityWrap -> {
-            videoEpisodeModel.getQuality().setValue(videoQualityWrap.getQuality());
-            ItemVideoQualityBinding.bind(Objects.requireNonNull(layoutManager.getChildAt(videoQualityWrap.getPrePosition())))
-                    .quality.setTextColor(Color.WHITE);
-        });
-        adapter.appendHead(qualities);
-
-        ViewUtils.linkAdapter(binding.content, adapter);
 
         Window window = this.getWindow();
         if (window != null) {
@@ -77,5 +54,26 @@ public class QualityDialog extends AppCompatDialog {
         }
 
         setCancelable(true);
+
+        init();
+    }
+
+    private void init() {
+        videoPlayerModel = new ViewModelProvider(ViewUtils.scanForActivity(getContext())).get(VideoPlayerModel.class);
+        List<VideoQuality> qualities = videoPlayerModel.getVideoQualityListDisplay().getValue();
+
+        adapter = new VideoQualityAdapter(getContext());
+        adapter.setOnSelectedListener(videoQualityWrap -> {
+            VideoResourceWrap resourceWrap = videoPlayerModel.getVideoResource().getValue();
+            resourceWrap.setQuality(videoQualityWrap.getQuality());
+            videoPlayerModel.getVideoResource().setValue(resourceWrap);
+
+            qualities.get(videoQualityWrap.getPosition()).setSelected(false);
+
+            adapter.notifyItemChanged(videoQualityWrap.getPosition());
+        });
+        adapter.appendHead(qualities);
+
+        ViewUtils.linkAdapter(binding.content, adapter);
     }
 }

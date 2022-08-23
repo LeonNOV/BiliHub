@@ -1,27 +1,27 @@
 package com.leon.biuvideo.ui.fragments.videoFragments;
 
-import android.graphics.Color;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseFragment.BaseFragment;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoDetail;
 import com.leon.biuvideo.databinding.FragmentMediaVideoInfoBinding;
-import com.leon.biuvideo.databinding.ItemVideoEpisodeBinding;
 import com.leon.biuvideo.http.ApiHelper;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.http.TestValue;
+import com.leon.biuvideo.model.VideoPlayerModel;
 import com.leon.biuvideo.ui.activities.publicActivities.UserActivity;
 import com.leon.biuvideo.ui.adapters.video.MediaInfoRecommendAdapter;
 import com.leon.biuvideo.ui.adapters.video.VideoEpisodeAdapter;
 import com.leon.biuvideo.utils.ValueUtils;
 import com.leon.biuvideo.utils.ViewUtils;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -43,6 +43,8 @@ public class MediaVideoInfoFragment extends BaseFragment<FragmentMediaVideoInfoB
 
     @Override
     protected void initView() {
+        VideoPlayerModel videoPlayerModel = new ViewModelProvider(ViewUtils.scanForActivity(context)).get(VideoPlayerModel.class);
+
         binding.face.setOnClickListener(v -> startActivity(UserActivity.class, Map.of(UserActivity.PARAM, data.getCard().getCard().getMid())));
         ViewUtils.setImg(context, binding.face, data.getCard().getCard().getFace());
         int roleVerify = data.getCard().getCard().getOfficial().getRole();
@@ -58,11 +60,7 @@ public class MediaVideoInfoFragment extends BaseFragment<FragmentMediaVideoInfoB
         binding.fans.setText(String.format("%s粉丝", ValueUtils.generateCN(data.getCard().getFollower())));
         binding.works.setText(String.format("%s视频", ValueUtils.generateCN(data.getCard().getArchiveCount())));
 
-        if (data.getCard().getFollowing()) {
-            binding.follow.setText("已关注");
-        } else {
-            binding.follow.setText("关注");
-        }
+        binding.follow.setText(data.getCard().getFollowing() ? "已关注" : "关注");
         binding.follow.setOnClickListener(v -> follow());
 
         binding.infoTitle.setContent(data.getView().getTitle());
@@ -100,17 +98,33 @@ public class MediaVideoInfoFragment extends BaseFragment<FragmentMediaVideoInfoB
 
         if (!data.getView().getPages().isEmpty() && data.getView().getPages().size() > 1) {
             binding.episode.setVisibility(View.VISIBLE);
-            LinearLayoutManager layoutManager = (LinearLayoutManager) binding.episode.getLayoutManager();
+
+            int unselected = context.getColor(R.color.infoColor);
+            int selected = context.getColor(R.color.blue);
+
+            List<VideoDetail.Data.View.Page> pageList = data.getView().getPages();
+            pageList.forEach(page -> page.setItemState(new VideoDetail.Data.View.Page.ItemState(unselected, false)));
+            VideoDetail.Data.View.Page.ItemState state = pageList.get(0).getItemState();
+            state.setSelected(true);
+            state.setItemColor(selected);
+
+            videoPlayerModel.getVideoTitleDisplay().setValue(pageList.get(0).getPart());
+
             VideoEpisodeAdapter adapter = new VideoEpisodeAdapter(context);
-            adapter.setOnSelectedListener(selectedPosition -> {
-                ItemVideoEpisodeBinding binding = ItemVideoEpisodeBinding.bind(layoutManager.getChildAt(selectedPosition));
-                binding.getRoot().setSelected(false);
-                binding.title.setTextColor(Color.BLACK);
-                binding.duration.setTextColor(context.getColor(R.color.infoColor));
+            adapter.setOnSelectedListener(integer -> {
+                VideoDetail.Data.View.Page.ItemState itemState = pageList.get(integer).getItemState();
+                itemState.setItemColor(unselected);
+                itemState.setSelected(false);
+
+                adapter.notifyItemChanged(integer);
             });
-            adapter.appendHead(data.getView().getPages());
+            adapter.appendHead(pageList);
 
             ViewUtils.listInitializer(binding.episode, adapter);
+        } else {
+            // 如果该视频没有选集，则播放器标题显示视频主标题；否则显示选集标题
+            new ViewModelProvider(ViewUtils.scanForActivity(context)).get(VideoPlayerModel.class)
+                    .getVideoTitleDisplay().setValue(data.getView().getTitle());
         }
     }
 
