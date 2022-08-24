@@ -20,6 +20,13 @@ class VideoPlayerModel : ViewModel() {
     }
 
     /**
+     * 设置视频评论
+     */
+    val videoRecommend: MutableLiveData<String> by lazy {
+        MutableLiveData<String>()
+    }
+
+    /**
      * 设置PGC season
      */
     val videoPgcSeason: MutableLiveData<String> by lazy {

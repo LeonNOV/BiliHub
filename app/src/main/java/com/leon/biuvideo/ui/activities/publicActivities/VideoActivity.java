@@ -1,5 +1,7 @@
 package com.leon.biuvideo.ui.activities.publicActivities;
 
+import android.util.Log;
+
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -43,8 +45,10 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
     public static final String TYPE_VIDEO = "video";
     public static final String TYPE_PGC = "pgc";
 
+    private boolean isPgc;
     private String id;
     private PlayerController playerController;
+    private HttpApi httpApi;
 
     private VideoPlayerModel videoPlayerModel;
     private Observer<VideoResourceWrap> videoResourceObserver;
@@ -64,10 +68,12 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
             setVideoController();
             initObserver();
 
-            HttpApi httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
+            httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
             if (TYPE_VIDEO.equals(params.getString(PARAM_TYPE))) {
+                this.isPgc = false;
                 new ApiHelper<>(httpApi.getVideoDetail(id)).setOnResult(this::setVideoInfo).doIt();
             } else {
+                this.isPgc = true;
                 new ApiHelper<>(httpApi.getPgcDetail(id)).setOnResult(this::setPgcInfo).doIt();
             }
         } else {
@@ -91,7 +97,7 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
 
     private void setVideoInfo(VideoDetail videoDetail) {
         //todo 此处清晰度需为用户默认指定清晰度
-        videoPlayerModel.getVideoResource().setValue(new VideoResourceWrap(videoDetail.getData().getView().getCid(), Quality.Q80));
+        videoPlayerModel.getVideoResource().setValue(new VideoResourceWrap(null, videoDetail.getData().getView().getCid(), Quality.Q80));
 
         VideoDetail.Data.View view = videoDetail.getData().getView();
 
@@ -101,7 +107,8 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
     }
 
     private void setPgcInfo(PgcDetail pgcDetail) {
-        videoPlayerModel.getVideoResource().setValue(new VideoResourceWrap(pgcDetail.getResult().getEpisodes().get(0).getCid(), Quality.Q80));
+        PgcDetail.Result.Episode episode = pgcDetail.getResult().getEpisodes().get(0);
+        videoPlayerModel.getVideoResource().setValue(new VideoResourceWrap(episode.getBvid(), episode.getCid(), Quality.Q80));
 
         ViewUtils.initTabLayout(this, binding.extra.tabLayout, binding.extra.viewPager,
                 List.of(new MediaPgcInfoFragment(pgcDetail.getResult()), new MediaCommentsFragment(String.valueOf(pgcDetail.getResult().getEpisodes().get(0).getAid()))),
@@ -111,35 +118,45 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
     /**
      * 设置视频
      *
-     * todo 普通视频和PGC内容的视频流URL链接不同，待更改
-     *
      * @param videoResourceWrap VideoResourceWrap
      */
     private void setVideoResource(VideoResourceWrap videoResourceWrap) {
-        new ApiHelper<>(new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE))
-                .getHttpApi()
-                .getVideoStream(id, videoResourceWrap.getCid(), videoResourceWrap.getQuality()))
-                .setOnResult(videoStream -> {
-                    updateQualityList(videoStream);
+        Log.d(TAG, "setVideoResource: " + videoResourceWrap);
 
-                    if (binding.player.isPlaying()) {
-                        binding.player.pause();
-                        binding.player.release();
-                    }
+        if (isPgc) {
+            new ApiHelper<>(httpApi.getPgcVideoStream(videoResourceWrap.getBvid(), videoResourceWrap.getCid(), videoResourceWrap.getQuality()))
+                    .setOnResult(pgcStream -> setVideoStream(pgcStream.getResult().getQuality(), pgcStream.getResult().getSupportFormats(),
+                            pgcStream.getResult().getDurl().get(0).getUrl())).doIt();
+            videoPlayerModel.getVideoRecommend().setValue(videoResourceWrap.getBvid());
+        } else {
+            new ApiHelper<>(httpApi.getVideoStream(id, videoResourceWrap.getCid(), videoResourceWrap.getQuality()))
+                    .setOnResult(videoStream -> setVideoStream(videoStream.getData().getQuality(), videoStream.getData().getSupportFormats(),
+                            videoStream.getData().getDurl().get(0).getUrl())).doIt();
+        }
 
-                    binding.player.setUrl(videoStream.getData().getDurl().get(0).getUrl(), ValueUtils.createPlayerVideoHeader(id));
-                    binding.player.start();
-                }).doIt();
+    }
+
+    private void setVideoStream(int nowQuality, List<VideoStream.Data.SupportFormat> supportFormatList, String url) {
+        updateQualityList(nowQuality, supportFormatList);
+
+        if (binding.player.isPlaying()) {
+            binding.player.pause();
+        }
+        binding.player.release();
+
+        binding.player.setUrl(url, ValueUtils.createPlayerVideoHeader(id, isPgc));
+        binding.player.start();
     }
 
     /**
      * 更新对应视频的清晰度列表或更新已选画质
      *
-     * @param videoStream VideoStream
+     * @param nowQuality        当前已获取的质量
+     * @param supportFormatList 可选的所有质量
      */
-    private void updateQualityList(VideoStream videoStream) {
+    private void updateQualityList(int nowQuality, List<VideoStream.Data.SupportFormat> supportFormatList) {
         List<VideoQuality> videoQualityList = new ArrayList<>();
-        videoStream.getData().getSupportFormats().forEach(supportFormat -> {
+        supportFormatList.forEach(supportFormat -> {
             String extra = null;
             boolean isOrdinary = false;
 
@@ -153,8 +170,8 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
             }
 
             Quality quality = Quality.valueOf("Q" + supportFormat.getQuality());
-            videoQualityList.add(new VideoQuality(extra, isOrdinary, videoStream.getData().getQuality() == supportFormat.getQuality(),
-                    quality, supportFormat.getQuality(), supportFormat.getDisplayDesc()));
+            videoQualityList.add(new VideoQuality(extra, isOrdinary, nowQuality == supportFormat.getQuality(),
+                    quality, supportFormat.getQuality(), supportFormat.getNewDescription()));
         });
 
         videoPlayerModel.getVideoSpeed().setValue(1.0F);

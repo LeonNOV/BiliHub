@@ -61,7 +61,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 //                VideoActivity.PARAM_ID, "BV1FV411y7oZ")));
 
         binding.home.search.setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, VideoActivity.TYPE_PGC,
-                VideoActivity.PARAM_ID, "41832")));
+                VideoActivity.PARAM_ID, "12044")));
 //        binding.home.search.setOnClickListener(view -> startActivity(ArticleActivity.class, Map.of(ArticleActivity.PARAM, "18146926")));
 //        binding.home.search.setOnClickListener(v -> startActivity(SearchActivity.class));
         binding.drawer.userContainer.setOnTouchListener((v, event) -> ViewUtils.zoom(event, binding.drawer.userContainer));

@@ -14,14 +14,17 @@ import com.leon.biuvideo.databinding.FragmentMediaPgcInfoBinding;
 import com.leon.biuvideo.http.ApiHelper;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
+import com.leon.biuvideo.http.Quality;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.model.VideoPlayerModel;
 import com.leon.biuvideo.ui.adapters.video.pgc.PgcEpisodeAdapter;
+import com.leon.biuvideo.ui.adapters.video.pgc.PgcRecommendAdapter;
 import com.leon.biuvideo.ui.adapters.video.pgc.PgcSeasonAdapter;
 import com.leon.biuvideo.ui.adapters.video.pgc.PgcSectionAdapter;
 import com.leon.biuvideo.utils.ValueUtils;
 import com.leon.biuvideo.utils.ViewUtils;
+import com.leon.biuvideo.wraps.VideoResourceWrap;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,6 +47,11 @@ public class MediaPgcInfoFragment extends BaseFragment<FragmentMediaPgcInfoBindi
     private VideoPlayerModel videoPlayerModel;
     private Observer<String> videoPgcSeasonObserver;
     private Observer<Integer> videoPgcEpisodeObserver;
+
+    private PgcSeasonAdapter pgcSeasonAdapter;
+    private PgcEpisodeAdapter episodeAdapter;
+    private PgcSectionAdapter pgcSectionAdapter;
+    private PgcRecommendAdapter pgcRecommendAdapter;
 
     public MediaPgcInfoFragment(PgcDetail.Result data) {
         this.data = data;
@@ -69,8 +77,6 @@ public class MediaPgcInfoFragment extends BaseFragment<FragmentMediaPgcInfoBindi
 
         httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
         setInfoContent(data);
-        setSeason(data.getSeasons(), data.getSeasonId());
-        setEpisode(data.getEpisodes(), data.getType());
     }
 
     /**
@@ -104,7 +110,13 @@ public class MediaPgcInfoFragment extends BaseFragment<FragmentMediaPgcInfoBindi
         binding.shareStr.setText(ValueUtils.generateCN(data.getStat().getShare()));
         binding.favoriteStr.setText(ValueUtils.generateCN(data.getStat().getFavorite()));
 
+        PgcDetail.Result.Episode episode = data.getEpisodes().get(0);
+        videoPlayerModel.getVideoResource().setValue(new VideoResourceWrap(episode.getBvid(), episode.getCid(), Quality.Q80));
+
         processSection(data.getSection());
+        setSeason(data.getSeasons(), data.getSeasonId());
+        setEpisode(data.getEpisodes(), data.getType());
+        setRecommend(data.getSeasonId());
     }
 
     /**
@@ -144,17 +156,22 @@ public class MediaPgcInfoFragment extends BaseFragment<FragmentMediaPgcInfoBindi
                 season.setItemState(itemState);
             });
 
-            PgcSeasonAdapter adapter = new PgcSeasonAdapter(context, 0);
-            adapter.setOnSelectedListener(integer -> {
+            if (pgcSeasonAdapter == null) {
+                pgcSeasonAdapter = new PgcSeasonAdapter(context, 0);
+            } else {
+                pgcSeasonAdapter.removeAll();
+            }
+
+            pgcSeasonAdapter.setOnSelectedListener(integer -> {
                 PgcDetail.Result.Season.ItemState itemState = seasonList.get(integer).getItemState();
                 itemState.setTitleColor(unselectedColor);
                 itemState.setSelected(false);
 
-                adapter.notifyItemChanged(integer);
+                pgcSeasonAdapter.notifyItemChanged(integer);
             });
-            adapter.appendHead(seasonList);
+            pgcSeasonAdapter.appendHead(seasonList);
 
-            ViewUtils.listInitializer(binding.seasons, adapter);
+            ViewUtils.listInitializer(binding.seasons, pgcSeasonAdapter);
         }
     }
 
@@ -170,17 +187,22 @@ public class MediaPgcInfoFragment extends BaseFragment<FragmentMediaPgcInfoBindi
             state.setEpColor(selectedColor);
             state.setEpSelected(true);
 
-            PgcEpisodeAdapter adapter = new PgcEpisodeAdapter(context, type, 0);
-            adapter.setOnSelectedListener(integer -> {
+            if (episodeAdapter == null) {
+                episodeAdapter = new PgcEpisodeAdapter(context, type, 0);
+            } else {
+                episodeAdapter.removeAll();
+            }
+
+            episodeAdapter.setOnSelectedListener(integer -> {
                 PgcDetail.Result.Episode.ItemState itemState = episodeList.get(integer).getItemState();
                 itemState.setEpColor(unselectedColor);
                 itemState.setEpSelected(false);
 
-                adapter.notifyItemChanged(integer);
+                episodeAdapter.notifyItemChanged(integer);
             });
-            adapter.appendHead(episodeList);
+            episodeAdapter.appendHead(episodeList);
 
-            ViewUtils.listInitializer(binding.episode, adapter);
+            ViewUtils.listInitializer(binding.episode, episodeAdapter);
 
             updateRelation(episodeList.get(0).getId());
             setSection(episodeList.get(0).getId());
@@ -199,11 +221,28 @@ public class MediaPgcInfoFragment extends BaseFragment<FragmentMediaPgcInfoBindi
             }
             resultSectionList.addAll(publicSectionList);
 
-            PgcSectionAdapter adapter = new PgcSectionAdapter(context);
-            adapter.appendHead(resultSectionList);
+            if (pgcSectionAdapter == null) {
+                pgcSectionAdapter = new PgcSectionAdapter(context);
+            } else {
+                pgcSectionAdapter.removeAll();
+            }
 
-            ViewUtils.linkAdapter(binding.section, adapter);
+            pgcSectionAdapter.appendHead(resultSectionList);
+            ViewUtils.linkAdapter(binding.section, pgcSectionAdapter);
         }
+    }
+
+    private void setRecommend(String seasonId) {
+        new ApiHelper<>(httpApi.getPgcRecommend(seasonId)).setOnResult(pgcRecommend -> {
+            if (pgcRecommendAdapter == null) {
+                pgcRecommendAdapter = new PgcRecommendAdapter(context);
+            } else {
+                pgcRecommendAdapter.removeAll();
+            }
+            pgcRecommendAdapter.appendHead(pgcRecommend.getData().getSeason());
+
+            ViewUtils.listInitializer(binding.recommend, pgcRecommendAdapter);
+        }).doIt();
     }
 
     /**

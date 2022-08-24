@@ -5,46 +5,68 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class VideoStream(
+data class PgcStream(
     @SerializedName("code")
     val code: Int,
-    @SerializedName("data")
-    val `data`: Data,
     @SerializedName("message")
     val message: String,
-    @SerializedName("ttl")
-    val ttl: Int
+    @SerializedName("result")
+    val result: Result
 ) : Parcelable {
     @Parcelize
-    data class Data(
+    data class Result(
         @SerializedName("accept_description")
         val acceptDescription: List<String>,
         @SerializedName("accept_format")
         val acceptFormat: String,
         @SerializedName("accept_quality")
         val acceptQuality: List<Int>,
+        @SerializedName("bp")
+        val bp: Int,
+        @SerializedName("code")
+        val code: Int,
         @SerializedName("durl")
         val durl: List<Durl>,
+        @SerializedName("fnval")
+        val fnval: Int,
+        @SerializedName("fnver")
+        val fnver: Int,
         @SerializedName("format")
         val format: String,
         @SerializedName("from")
         val from: String,
+        @SerializedName("has_paid")
+        val hasPaid: Boolean,
+        @SerializedName("is_drm")
+        val isDrm: Boolean,
+        @SerializedName("is_preview")
+        val isPreview: Int,
         @SerializedName("message")
         val message: String,
+        @SerializedName("no_rexcode")
+        val noRexcode: Int,
         @SerializedName("quality")
         val quality: Int,
+        @SerializedName("record_info")
+        val recordInfo: RecordInfo,
         @SerializedName("result")
         val result: String,
         @SerializedName("seek_param")
         val seekParam: String,
         @SerializedName("seek_type")
         val seekType: String,
+        @SerializedName("status")
+        val status: Int,
         @SerializedName("support_formats")
-        val supportFormats: List<SupportFormat>,
+        val supportFormats: List<VideoStream.Data.SupportFormat>,
         @SerializedName("timelength")
         val timelength: Int,
+        @SerializedName("type")
+        val type: String,
         @SerializedName("video_codecid")
-        val videoCodecid: Int
+        val videoCodecid: Int,
+        @SerializedName("video_project")
+        val videoProject: Boolean
     ) : Parcelable {
         @Parcelize
         data class Durl(
@@ -54,6 +76,8 @@ data class VideoStream(
             val backupUrl: List<String>,
             @SerializedName("length")
             val length: Int,
+            @SerializedName("md5")
+            val md5: String,
             @SerializedName("order")
             val order: Int,
             @SerializedName("size")
@@ -65,11 +89,11 @@ data class VideoStream(
         ) : Parcelable
 
         @Parcelize
-        data class SupportFormat(
-            @SerializedName("new_description")
-            val newDescription: String,
-            @SerializedName("quality")
-            val quality: Int
+        data class RecordInfo(
+            @SerializedName("record")
+            val record: String,
+            @SerializedName("record_icon")
+            val recordIcon: String
         ) : Parcelable
     }
 }

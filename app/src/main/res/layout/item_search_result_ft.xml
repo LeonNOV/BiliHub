@@ -143,9 +143,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
+        android:visibility="gone"
         tools:visibility="visible"
-        android:visibility="gone">
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
@@ -156,7 +156,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#ffa058"
-                android:textSize="30sp"
+                android:textSize="27sp"
                 android:textStyle="bold"
                 tools:text="8.8" />
 
@@ -166,7 +166,7 @@
                 android:layout_centerHorizontal="true"
                 android:text="@string/bangumi_score"
                 android:textColor="#ffa058"
-                android:textSize="15sp"
+                android:textSize="11sp"
                 android:textStyle="bold" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -177,7 +177,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/ratingScore"
             android:layout_centerHorizontal="true"
-            android:textSize="13sp"
+            android:textSize="11sp"
             tools:text="6881人评分" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>

@@ -63,7 +63,7 @@ public class PgcEpisodeAdapter extends BaseViewBindingAdapter<PgcDetail.Result.E
                 videoPlayerModel.getVideoTitleDisplay().setValue("".equals(data.getLongTitle()) ? epIndex : epIndex + data.getLongTitle());
 
                 // todo 待替换为用户默认Quality
-                videoPlayerModel.getVideoResource().setValue(new VideoResourceWrap(data.getCid(), Quality.Q80));
+                videoPlayerModel.getVideoResource().setValue(new VideoResourceWrap(data.getBvid(), data.getCid(), Quality.Q80));
 
                 PgcDetail.Result.Episode.ItemState itemState = data.getItemState();
                 itemState.setEpColor(context.getColor(R.color.blue));

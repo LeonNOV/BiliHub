@@ -215,7 +215,9 @@ public class ViewUtils {
      * @param adapter      {@link BaseViewBindingAdapter}
      */
     public static void listInitializer(RecyclerView recyclerView, RecyclerView.Adapter<?> adapter) {
-        recyclerViewInitializer(recyclerView, adapter);
+        if (recyclerView.getAdapter() == null) {
+            recyclerViewInitializer(recyclerView, adapter);
+        }
     }
 
     /**
@@ -227,10 +229,12 @@ public class ViewUtils {
      * @param adapter      {@link BaseViewBindingAdapter}
      */
     public static void linkAdapter(RecyclerView recyclerView, RecyclerView.Adapter<?> adapter) {
-        recyclerView.setAdapter(new AlphaInAnimationAdapter(adapter));
-        recyclerView.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
-        recyclerView.setMotionEventSplittingEnabled(false);
-        recyclerView.setHasFixedSize(true);
+        if (recyclerView.getAdapter() == null) {
+            recyclerView.setAdapter(new AlphaInAnimationAdapter(adapter));
+            recyclerView.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+            recyclerView.setMotionEventSplittingEnabled(false);
+            recyclerView.setHasFixedSize(true);
+        }
     }
 
     /**

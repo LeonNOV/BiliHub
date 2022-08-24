@@ -2,35 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="130dp"
-    android:layout_height="80dp"
+    android:layout_height="70dp"
     android:background="@drawable/item_selection"
     android:paddingStart="10dp"
     android:paddingEnd="0dp"
-    android:paddingBottom="10dp">
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/epIndex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/epTitle"
-        android:layout_marginTop="10dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="@color/infoColor"
-        android:textSize="13sp"
-        tools:text="第 1 集第 1 集第 1 集第 1 集第 1 集" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/epTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="5dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="@color/infoColor"
-        android:textSize="13sp"
-        tools:text="Title" />
+    android:paddingBottom="5dp">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/badge"
@@ -50,5 +26,28 @@
         android:visibility="gone"
         tools:text="会员"
         tools:visibility="visible" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/epIndex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/epTitle"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/infoColor"
+        android:textSize="11sp"
+        tools:text="第 1 集第 1 集第 1 集第 1 集第 1 集" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/epTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="5dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/infoColor"
+        android:textSize="13sp"
+        tools:text="Title" />
 
 </RelativeLayout>

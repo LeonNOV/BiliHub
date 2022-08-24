@@ -40,6 +40,8 @@ import com.leon.biuvideo.beans.publicBeans.resources.live.LiveStream;
 import com.leon.biuvideo.beans.publicBeans.resources.picture.PictureInfo;
 import com.leon.biuvideo.beans.publicBeans.resources.video.PgcDetail;
 import com.leon.biuvideo.beans.publicBeans.resources.video.PgcRelation;
+import com.leon.biuvideo.beans.publicBeans.resources.video.PgcRecommend;
+import com.leon.biuvideo.beans.publicBeans.resources.video.PgcStream;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoDetail;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoRelation;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoStream;
@@ -739,6 +741,34 @@ public interface HttpApi {
      */
     @GET("x/player/playurl?fnver=0&fnval=64&fourk=1&platform=pc")
     Observable<VideoStream> getVideoStream(@Query("bvid") String bvid, @Query("cid") String cid, @Query("qn") Quality quality);
+
+    /**
+     * 番剧\电影\纪录片\国创\电视剧\综艺 视频流获取
+     * <p>
+     * https://www.bilibili.com/video/BV1rp4y1e745
+     * <p>
+     * https://api.bilibili.com/pgc/player/web/playurl?bvid=BV1ZY4y187fA&cid=800255390&qn=64&fnver=0&fnval=64&fourk=1
+     *
+     * @param bvid    bvid
+     * @param cid     cid
+     * @param quality 清晰度数值
+     * @return {@link PgcStream}
+     */
+    @GET("pgc/player/web/playurl?fnver=0&fnval=64&fourk=1&platform=pc")
+    Observable<PgcStream> getPgcVideoStream(@Query("bvid") String bvid, @Query("cid") String cid, @Query("qn") Quality quality);
+
+    /**
+     * 番剧\电影\纪录片\国创\电视剧\综艺 推荐获取
+     * <p>
+     * https://www.bilibili.com/bangumi/play/ss39433
+     * <p>
+     * https://api.bilibili.com/pgc/season/web/related/recommend?season_id=39433
+     *
+     * @param seasonId    seasonId
+     * @return {@link PgcRecommend}
+     */
+    @GET("pgc/season/web/related/recommend")
+    Observable<PgcRecommend> getPgcRecommend(@Query("season_id") String seasonId);
 
     /**
      * 评论内容获取

@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="13dp"
             android:background="@drawable/item_video_badge_bg"
             android:backgroundTint="#00c0ff"
             android:paddingStart="10dp"
@@ -94,9 +94,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
         android:visibility="gone"
-        tools:visibility="visible">
+        tools:visibility="visible"
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
@@ -106,8 +106,8 @@
                 android:id="@+id/ratingScore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/score"
-                android:textSize="30sp"
+                android:textColor="#ffa058"
+                android:textSize="27sp"
                 android:textStyle="bold"
                 tools:text="8.8" />
 
@@ -116,8 +116,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="@string/bangumi_score"
-                android:textColor="@color/score"
-                android:textSize="15sp"
+                android:textColor="#ffa058"
+                android:textSize="11sp"
                 android:textStyle="bold" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -128,7 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/ratingScore"
             android:layout_centerHorizontal="true"
-            android:textSize="13sp"
+            android:textSize="11sp"
             tools:text="6881人评分" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>

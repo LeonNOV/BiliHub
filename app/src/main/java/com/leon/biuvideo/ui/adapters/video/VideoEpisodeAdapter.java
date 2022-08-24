@@ -44,7 +44,7 @@ public class VideoEpisodeAdapter extends BaseViewBindingAdapter<VideoDetail.Data
                 videoPlayerModel.getVideoTitleDisplay().setValue(data.getPart());
 
                 //todo 此处清晰度需为用户默认指定清晰度
-                videoPlayerModel.getVideoResource().setValue(new VideoResourceWrap(data.getCid(), Quality.Q80));
+                videoPlayerModel.getVideoResource().setValue(new VideoResourceWrap(null, data.getCid(), Quality.Q80));
 
                 VideoDetail.Data.View.Page.ItemState itemState = data.getItemState();
                 itemState.setItemColor(context.getColor(R.color.blue));
