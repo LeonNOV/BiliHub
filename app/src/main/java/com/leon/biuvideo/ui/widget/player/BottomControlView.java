@@ -15,7 +15,9 @@ import androidx.annotation.Nullable;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.databinding.ComponentPlayerBottomControlBinding;
+import com.leon.biuvideo.ui.dialogs.LiveQualityDialog;
 import com.leon.biuvideo.ui.dialogs.QualityDialog;
+import com.leon.biuvideo.ui.dialogs.RoadDialog;
 import com.leon.biuvideo.ui.dialogs.SpeedDialog;
 
 import xyz.doikki.videoplayer.controller.ControlWrapper;
@@ -63,14 +65,19 @@ public class BottomControlView extends FrameLayout implements IControlComponent,
         binding.fullScreen.setOnClickListener(v -> controlWrapper.toggleFullScreen(PlayerUtils.scanForActivity(getContext())));
         binding.play.setOnClickListener(v -> controlWrapper.togglePlay());
         binding.danmakuControl.setOnClickListener(v -> Toast.makeText(getContext(), "开发中…", Toast.LENGTH_SHORT).show());
-        binding.quality.setOnClickListener(v -> new QualityDialog(getContext()).show());
+        binding.quality.setOnClickListener(v -> {
+            if (isLive) {
+                new LiveQualityDialog(getContext()).show();
+            } else {
+                new QualityDialog(getContext()).show();
+            }
+        });
 
         if (isLive) {
             binding.speed.setVisibility(GONE);
             binding.controlContainer.setVisibility(GONE);
             binding.road.setVisibility(VISIBLE);
-            binding.road.setOnClickListener(view -> {
-            });
+            binding.road.setOnClickListener(view -> new RoadDialog(getContext()).show());
             binding.playLive.setVisibility(VISIBLE);
         } else {
             binding.speed.setOnClickListener(v -> new SpeedDialog(getContext()).show());

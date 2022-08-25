@@ -25,7 +25,6 @@ import java.util.List;
  */
 public class VideoQualityAdapter extends BaseViewBindingAdapter<VideoQuality, ItemVideoQualityBinding> {
     private PlayerController.OnSelectedListener<VideoQualityWrap> onSelectedListener;
-
     private int selectedPosition = 0;
 
     public VideoQualityAdapter(Context context) {
@@ -51,10 +50,11 @@ public class VideoQualityAdapter extends BaseViewBindingAdapter<VideoQuality, It
         binding.getRoot().setOnClickListener(view -> {
             if (onSelectedListener != null && selectedPosition != position) {
                 if (data.isOrdinary()) {
+                    data.setSelected(true);
+
                     onSelectedListener.onSelected(new VideoQualityWrap(data.getQuality(), selectedPosition));
                     selectedPosition = position;
 
-                    data.setSelected(true);
                     notifyItemChanged(position);
                 } else {
                     // do something

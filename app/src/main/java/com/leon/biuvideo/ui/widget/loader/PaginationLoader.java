@@ -113,6 +113,7 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
                                         adapter.appendTail(bs);
                                     } else if (loadType == LoadType.LOAD_TYPE_HEAD) {
                                         adapter.appendHead(bs);
+                                        binding.container.content.smoothScrollToPosition(0);
                                     } else {
                                         onError(new RuntimeException());
                                     }
@@ -122,7 +123,6 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
 
                         @Override
                         public void onError(@NonNull Throwable e) {
-                            // TODO 待替换为SnackBar
                             Toast.makeText(binding.getRoot().getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                             insertFinish(loadType, refreshLayout, false);
                         }

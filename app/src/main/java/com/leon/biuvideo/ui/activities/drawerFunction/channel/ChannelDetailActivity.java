@@ -1,6 +1,9 @@
 package com.leon.biuvideo.ui.activities.drawerFunction.channel;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.graphics.drawable.ColorDrawable;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.core.graphics.ColorKt;
@@ -42,6 +45,16 @@ public class ChannelDetailActivity extends AsyncHttpActivity<ActivityChannelDeta
     protected void init() {
         this.channelId = params.getString(PARAM_ID);
         binding.back.setOnClickListener(v -> backPressed());
+
+        binding.appBar.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
+            if (Math.abs(verticalOffset) == appBarLayout.getTotalScrollRange()) {
+                crossFade(true);
+            } else {
+                if (binding.toolBarName.getVisibility() != View.GONE) {
+                    crossFade(false);
+                }
+            }
+        });
     }
 
     @Override
@@ -66,6 +79,7 @@ public class ChannelDetailActivity extends AsyncHttpActivity<ActivityChannelDeta
         binding.subscribe.setOnClickListener(v -> Toast.makeText(context, "开发中…", Toast.LENGTH_SHORT).show());
         binding.subscribe.setTextColor(ColorKt.toColorInt(channelDetail.getData().getThemeColor()));
         binding.name.setText(channelDetail.getData().getName());
+        binding.toolBarName.setText(channelDetail.getData().getName());
         binding.count.setText(String.format(Locale.CHINESE, "%s视频", channelDetail.getData().getArchiveCount()));
         binding.play.setText(String.format(Locale.CHINESE, "%s播放", channelDetail.getData().getViewCount()));
         binding.featured.setText(String.format(Locale.CHINESE, "%s个精选视频", ValueUtils.generateCN(channelDetail.getData().getFeaturedCount())));
@@ -80,5 +94,17 @@ public class ChannelDetailActivity extends AsyncHttpActivity<ActivityChannelDeta
         }
 
         ViewUtils.initTabLayout(this, binding.content.tabLayout, binding.content.viewPager, fragments, "精选", "综合");
+    }
+
+    private void crossFade(boolean isShow) {
+        binding.toolBarName.animate()
+                .alpha(isShow ? 1f : 0f)
+                .setDuration(500)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        binding.toolBarName.setVisibility(isShow ? View.VISIBLE : View.GONE);
+                    }
+                });
     }
 }

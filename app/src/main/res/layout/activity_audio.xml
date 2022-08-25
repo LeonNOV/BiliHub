@@ -20,11 +20,11 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/back"
-            android:layout_width="@dimen/back_WH"
-            android:layout_height="@dimen/back_WH"
-            android:layout_marginStart="@dimen/topBar_margin"
+            android:layout_width="@dimen/topBarBackWH"
+            android:layout_height="@dimen/topBarBackWH"
+            android:layout_marginStart="@dimen/topBarTitleMarginStart"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:padding="@dimen/topBar_padding"
+            android:padding="@dimen/topBarBackPadding"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:src="@drawable/back" />

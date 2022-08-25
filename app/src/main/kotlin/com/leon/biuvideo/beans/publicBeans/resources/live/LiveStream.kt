@@ -39,7 +39,8 @@ data class LiveStream(
             @SerializedName("stream_type")
             val streamType: Int,
             @SerializedName("url")
-            val url: String
+            val url: String,
+            var selected: Boolean
         ) : Parcelable
 
         @Parcelize
@@ -47,7 +48,8 @@ data class LiveStream(
             @SerializedName("desc")
             val desc: String,
             @SerializedName("qn")
-            val qn: Int
+            val qn: Int,
+            var selected: Boolean
         ) : Parcelable
     }
 }

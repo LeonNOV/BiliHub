@@ -67,7 +67,7 @@ public class PlayerController extends GestureVideoController {
         addControlComponent(new LiveView(getContext(), liveInfo));
 
         topBarView = new TopBarView(getContext(), true);
-        bottomControlView = new BottomControlView(getContext(), false);
+        bottomControlView = new BottomControlView(getContext(), true);
 
         addControlComponent(topBarView, bottomControlView, new PrepareView(getContext()));
         addControlComponent(new CompleteView(getContext()), new ErrorView(getContext()), new GestureView(getContext()));

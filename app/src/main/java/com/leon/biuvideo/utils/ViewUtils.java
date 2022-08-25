@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
@@ -29,6 +30,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.BitmapEncoder;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -40,6 +42,7 @@ import com.leon.biuvideo.ui.adapters.ViewPager2Adapter;
 import com.leon.biuvideo.ui.widget.GridItemDecoration;
 import com.leon.biuvideo.ui.widget.LinearItemDecoration;
 
+import java.security.MessageDigest;
 import java.util.List;
 
 import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
@@ -204,6 +207,7 @@ public class ViewUtils {
         Glide
                 .with(context)
                 .load(imgUrl)
+                .thumbnail(0.2f)
                 .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                 .into(imageView);
     }

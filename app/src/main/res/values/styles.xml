@@ -50,10 +50,10 @@
     </style>
 
     <style name="BackStyle">
-        <item name="android:layout_width">@dimen/back_WH</item>
-        <item name="android:layout_height">@dimen/back_WH</item>
+        <item name="android:layout_width">@dimen/topBarBackWH</item>
+        <item name="android:layout_height">@dimen/topBarBackWH</item>
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
-        <item name="android:padding">@dimen/topBar_padding</item>
+        <item name="android:padding">@dimen/topBarBackPadding</item>
         <item name="android:tint">@color/white</item>
         <item name="android:src">@drawable/back</item>
     </style>

@@ -66,13 +66,16 @@ public class TopBarWidget extends LinearLayoutCompat {
 
         linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-        linearLayout.setBackgroundResource(R.color.white);
+        linearLayout.setBackgroundResource(R.color.bg);
         linearLayout.setGravity(Gravity.CENTER_VERTICAL);
+
+        int padding = context.getResources().getDimensionPixelSize(R.dimen.topBarPadding);
+        linearLayout.setPaddingRelative(padding, 0, padding, 0);
         addView(linearLayout);
 
         LayoutParams layoutParams = (LayoutParams) linearLayout.getLayoutParams();
         layoutParams.width = LayoutParams.MATCH_PARENT;
-        layoutParams.height = getResources().getDimensionPixelOffset(R.dimen.topBar_height);
+        layoutParams.height = getResources().getDimensionPixelOffset(R.dimen.topBarHeight);
         linearLayout.setLayoutParams(layoutParams);
 
         addBackView();
@@ -90,15 +93,14 @@ public class TopBarWidget extends LinearLayoutCompat {
         ImageView backView = new ImageView(context);
         backView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.back, null));
         backView.setBackground(ContextCompat.getDrawable(context, R.drawable.ripple_bg));
-        backView.setPadding(getResources().getDimensionPixelOffset(R.dimen.topBar_padding), getResources().getDimensionPixelOffset(R.dimen.topBar_padding),
-                getResources().getDimensionPixelOffset(R.dimen.topBar_padding), getResources().getDimensionPixelOffset(R.dimen.topBar_padding));
+        backView.setPadding(getResources().getDimensionPixelOffset(R.dimen.topBarPadding), getResources().getDimensionPixelOffset(R.dimen.topBarPadding),
+                getResources().getDimensionPixelOffset(R.dimen.topBarPadding), getResources().getDimensionPixelOffset(R.dimen.topBarPadding));
         backView.setOnClickListener(v -> ActivityManager.BackPressed());
 
         linearLayout.addView(backView);
         LinearLayout.LayoutParams backViewLayoutParams = (LinearLayout.LayoutParams) backView.getLayoutParams();
-        backViewLayoutParams.width = getResources().getDimensionPixelOffset(R.dimen.back_WH);
-        backViewLayoutParams.height = getResources().getDimensionPixelOffset(R.dimen.back_WH);
-        backViewLayoutParams.setMarginStart(getResources().getDimensionPixelOffset(R.dimen.topBar_margin));
+        backViewLayoutParams.width = getResources().getDimensionPixelOffset(R.dimen.topBarBackWH);
+        backViewLayoutParams.height = getResources().getDimensionPixelOffset(R.dimen.topBarBackWH);
         backView.setLayoutParams(backViewLayoutParams);
     }
 
@@ -119,8 +121,8 @@ public class TopBarWidget extends LinearLayoutCompat {
         LinearLayout.LayoutParams topBarTitleViewParams = (LinearLayout.LayoutParams) topBarTitleView.getLayoutParams();
         topBarTitleViewParams.width = LinearLayout.LayoutParams.WRAP_CONTENT;
         topBarTitleViewParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        topBarTitleViewParams.setMarginStart(getResources().getDimensionPixelOffset(R.dimen.topBar_margin));
-        topBarTitleViewParams.setMarginEnd(getResources().getDimensionPixelOffset(R.dimen.topBar_margin));
+        topBarTitleViewParams.setMarginStart(getResources().getDimensionPixelOffset(R.dimen.topBarTitleMarginStart));
+        topBarTitleViewParams.setMarginEnd(getResources().getDimensionPixelOffset(R.dimen.topBarTitleMarginStart));
         topBarTitleView.setLayoutParams(topBarTitleViewParams);
     }
 
@@ -131,7 +133,7 @@ public class TopBarWidget extends LinearLayoutCompat {
 
         LinearLayoutCompat.LayoutParams layoutParams = (LinearLayoutCompat.LayoutParams) view.getLayoutParams();
         layoutParams.width = LinearLayoutCompat.LayoutParams.MATCH_PARENT;
-        layoutParams.height = getResources().getDimensionPixelSize(R.dimen.topBarBottomLineHeight);
+        layoutParams.height = getResources().getDimensionPixelSize(R.dimen.topBarBottomLineH);
         view.setLayoutParams(layoutParams);
     }
 

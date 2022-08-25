@@ -12,13 +12,13 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/activity_login_back"
-            android:layout_width="47dp"
-            android:layout_height="47dp"
+            android:layout_width="@dimen/topBarBackWH"
+            android:layout_height="@dimen/topBarBackWH"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/topBar_margin"
+            android:layout_marginStart="@dimen/topBarTitleMarginStart"
             android:background="@drawable/ripple_bg"
             android:elevation="@dimen/elevation"
-            android:padding="10dp"
+            android:padding="@dimen/topBarBackPadding"
             android:src="@drawable/back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,15 +39,15 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/activity_login_refresh"
-            android:layout_width="47dp"
-            android:layout_height="47dp"
+            android:layout_width="@dimen/topBarBackWH"
+            android:layout_height="@dimen/topBarBackWH"
             android:layout_gravity="end|center_vertical"
             android:background="@drawable/ripple_bg"
             android:contentDescription="@string/description"
             android:elevation="@dimen/elevation"
-            android:padding="10dp"
+            android:padding="@dimen/topBarBackPadding"
             android:src="@drawable/ic_refresh"
-            android:layout_marginEnd="@dimen/topBar_margin"
+            android:layout_marginEnd="@dimen/topBarTitleMarginStart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

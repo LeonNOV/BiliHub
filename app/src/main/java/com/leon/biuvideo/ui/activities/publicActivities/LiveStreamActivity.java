@@ -1,26 +1,32 @@
 package com.leon.biuvideo.ui.activities.publicActivities;
 
-import com.leon.biuvideo.base.baseActivity.AsyncHttpActivity;
-import com.leon.biuvideo.beans.publicBeans.resources.live.LiveStream;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.leon.biuvideo.base.baseActivity.BaseActivity;
 import com.leon.biuvideo.databinding.ActivityLiveStreamBinding;
 import com.leon.biuvideo.http.ApiHelper;
 import com.leon.biuvideo.http.BaseUrl;
-import com.leon.biuvideo.http.RequestData;
+import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
+import com.leon.biuvideo.model.LivePlayerModel;
 import com.leon.biuvideo.ui.widget.player.PlayerController;
-
-import io.reactivex.rxjava3.core.Observable;
 
 /**
  * @Author Leon
  * @Time 2022/6/19
  * @Desc
  */
-public class LiveStreamActivity extends AsyncHttpActivity<ActivityLiveStreamBinding, LiveStream> {
+public class LiveStreamActivity extends BaseActivity<ActivityLiveStreamBinding> {
     public static final String PARAM = "roomId";
 
     private String roomId;
     private PlayerController playerController;
+    private HttpApi httpApi;
+
+    private LivePlayerModel livePlayerModel;
+    private Observer<Integer> liveQualityObserver;
+    private Observer<String> liveRoadObserver;
 
     @Override
     public ActivityLiveStreamBinding getViewBinding() {
@@ -30,26 +36,44 @@ public class LiveStreamActivity extends AsyncHttpActivity<ActivityLiveStreamBind
     @Override
     protected void init() {
         this.roomId = params.getString(PARAM);
-    }
+        this.livePlayerModel = new ViewModelProvider(this).get(LivePlayerModel.class);
 
-    @Override
-    protected RequestData setRequestData() {
-        return new RequestData(BaseUrl.LIVE);
-    }
+        httpApi = new RetrofitClient(BaseUrl.LIVE).getHttpApi();
 
-    @Override
-    protected Observable<LiveStream> createObservable(RetrofitClient retrofitClient) {
-        return retrofitClient.getHttpApi().getLiveStream(roomId, 10000);
-    }
+        liveQualityObserver = this::getLiveResource;
+        livePlayerModel.getLiveQuality().observeForever(liveQualityObserver);
 
-    @Override
-    protected void onAsyncResult(LiveStream liveStream) {
-        binding.player.setUrl(liveStream.getData().getDurl().get(0).getUrl());
-        new ApiHelper<>(new RetrofitClient(BaseUrl.LIVE).getHttpApi().getLiveInfo(roomId)).setOnResult(liveInfo -> {
+        liveRoadObserver = liveRoad -> {
+            if (binding.player.isPlaying()) {
+                binding.player.pause();
+            }
+            binding.player.release();
+
+            binding.player.setUrl(liveRoad);
+            binding.player.start();
+        };
+        livePlayerModel.getLiveRoad().observeForever(liveRoadObserver);
+
+        new ApiHelper<>(httpApi.getLiveInfo(roomId)).setOnResult(liveInfo -> {
             playerController = new PlayerController(context);
             playerController.addDefaultControlComponent(liveInfo);
             binding.player.setVideoController(playerController);
-            binding.player.start();
+        }).doIt();
+
+        getLiveResource(10000);
+    }
+
+    private void getLiveResource(int qn) {
+        new ApiHelper<>(httpApi.getLiveStream(roomId, qn)).setOnResult(liveStream -> {
+            liveStream.getData().getDurl().forEach(road -> road.setSelected(false));
+            liveStream.getData().getDurl().get(0).setSelected(true);
+
+            liveStream.getData().getQualityDescription().forEach(qualityDescription -> qualityDescription.setSelected(qn == qualityDescription.getQn()));
+            liveStream.getData().getQualityDescription().get(0).setSelected(true);
+
+            livePlayerModel.getLiveRoad().setValue(liveStream.getData().getDurl().get(0).getUrl());
+            livePlayerModel.getLiveRoadList().setValue(liveStream.getData().getDurl());
+            livePlayerModel.getLiveQualityList().setValue(liveStream.getData().getQualityDescription());
         }).doIt();
     }
 
@@ -82,6 +106,9 @@ public class LiveStreamActivity extends AsyncHttpActivity<ActivityLiveStreamBind
     protected void onDestroy() {
         binding.player.pause();
         binding.player.release();
+
+        livePlayerModel.getLiveRoad().removeObserver(liveRoadObserver);
+        livePlayerModel.getLiveQuality().removeObserver(liveQualityObserver);
 
         super.onDestroy();
     }

@@ -4,11 +4,21 @@
     <dimen name="corner">15dp</dimen>
     <dimen name="corner_picture">10dp</dimen>
 
-    <dimen name="topBar_margin">20dp</dimen>
-    <dimen name="topBar_height">56dp</dimen>
-    <dimen name="topBar_padding">5dp</dimen>
+<!--    <dimen name="topBar_margin">20dp</dimen>-->
+<!--    <dimen name="topBar_height">56dp</dimen>-->
+<!--    <dimen name="topBar_padding">5dp</dimen>-->
+<!--    <dimen name="topBarBottomLineHeight">0.5dp</dimen>-->
+<!--    <dimen name="margin_top_for_topBar">56.5dp</dimen>-->
 
-    <dimen name="margin_top_for_topBar">56.5dp</dimen>
+    <!-- topBarWidget -->
+    <dimen name="topBarHeight">56dp</dimen>
+    <dimen name="topBarChildHeight">55.5dp</dimen>
+    <dimen name="topBarPadding">10dp</dimen>
+
+    <dimen name="topBarBackWH">46dp</dimen>
+    <dimen name="topBarTitleMarginStart">10dp</dimen>
+    <dimen name="topBarBackPadding">10dp</dimen>
+    <dimen name="topBarBottomLineH">0.5dp</dimen>
 
     <dimen name="tagView_valueMarginEnd">5dp</dimen>
 
@@ -69,9 +79,7 @@
     <dimen name="top_bar_height_70">70dp</dimen>
     <dimen name="search_bar_default_height">50dp</dimen>
     <dimen name="user_face_WH">42dp</dimen>
-    <dimen name="back_WH">36dp</dimen>
     <dimen name="videoPlayerHeight">230dp</dimen>
-    <dimen name="topBarBottomLineHeight">0.5dp</dimen>
     <dimen name="dialogH">170dp</dimen>
 
     <dimen name="DataFilterTextSize">13sp</dimen>

@@ -240,16 +240,16 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolBar"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/topBar_height"
+                android:layout_height="@dimen/topBarHeight"
                 android:background="@android:color/transparent"
                 app:layout_collapseMode="pin">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/back"
-                    android:layout_width="@dimen/back_WH"
-                    android:layout_height="@dimen/back_WH"
+                    android:layout_width="@dimen/topBarBackWH"
+                    android:layout_height="@dimen/topBarBackWH"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="@dimen/topBar_padding"
+                    android:padding="@dimen/topBarBackPadding"
                     android:src="@drawable/back" />
 
                 <androidx.appcompat.widget.AppCompatTextView
