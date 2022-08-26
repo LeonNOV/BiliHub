@@ -46,7 +46,7 @@ public class VideoSpeedAdapter extends BaseViewBindingAdapter<VideoSpeed, ItemVi
         });
 
         binding.speed.setText(data.getSpeedStr());
-        binding.speed.setTextColor(data.getSelected() ? context.getColor(R.color.BiliBili_pink) : context.getColor(R.color.white));
+        binding.speed.setTextColor(data.getSelected() ? context.getColor(R.color.pink) : context.getColor(R.color.white));
     }
 
     public void setOnSelectedListener(PlayerController.OnSelectedListener<VideoSpeedWrap> onSelectedListener) {

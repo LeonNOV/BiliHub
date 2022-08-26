@@ -115,7 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="@string/bangumi_score"
+                android:text="@string/pgc_bangumi_score"
                 android:textColor="#ffa058"
                 android:textSize="11sp"
                 android:textStyle="bold" />

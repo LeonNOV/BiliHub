@@ -39,7 +39,7 @@ data class PopularRankBangumi(
             @SerializedName("rating")
             val rating: String,
             @SerializedName("season_id")
-            val seasonId: Int,
+            val seasonId: String,
             @SerializedName("ss_horizontal_cover")
             val ssHorizontalCover: String,
             @SerializedName("stat")

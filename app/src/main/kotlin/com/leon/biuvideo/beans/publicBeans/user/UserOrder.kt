@@ -87,7 +87,7 @@ data class UserOrder(
             @SerializedName("season_attr")
             val seasonAttr: Int,
             @SerializedName("season_id")
-            val seasonId: Int,
+            val seasonId: String,
             @SerializedName("season_status")
             val seasonStatus: Int,
             @SerializedName("season_title")
@@ -218,7 +218,7 @@ data class UserOrder(
                 @SerializedName("is_contribute")
                 val isContribute: Int?,
                 @SerializedName("mid")
-                val mid: Int,
+                val mid: String,
                 @SerializedName("type")
                 val type: Int
             ) : Parcelable
@@ -279,7 +279,7 @@ data class UserOrder(
                 @SerializedName("limit_group")
                 val limitGroup: Int,
                 @SerializedName("season_id")
-                val seasonId: Int,
+                val seasonId: String,
                 @SerializedName("section_id")
                 val sectionId: Int,
                 @SerializedName("title")

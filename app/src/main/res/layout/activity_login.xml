@@ -19,7 +19,7 @@
             android:background="@drawable/ripple_bg"
             android:elevation="@dimen/elevation"
             android:padding="@dimen/topBarBackPadding"
-            android:src="@drawable/back"
+            android:src="@drawable/ic_back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -43,7 +43,6 @@
             android:layout_height="@dimen/topBarBackWH"
             android:layout_gravity="end|center_vertical"
             android:background="@drawable/ripple_bg"
-            android:contentDescription="@string/description"
             android:elevation="@dimen/elevation"
             android:padding="@dimen/topBarBackPadding"
             android:src="@drawable/ic_refresh"

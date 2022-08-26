@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="@string/videoPlayerErrorMsg"
+            android:text="@string/video_player_error_msg"
             android:textColor="@color/white"
             android:textSize="15sp" />
 
@@ -29,7 +29,7 @@
             android:padding="10dp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:text="@string/videoPlayerErrorRetry"
+            android:text="@string/video_player_error_retry"
             android:textColor="@color/white"
             android:textSize="15sp" />
 

@@ -6,8 +6,8 @@
     android:layout_height="wrap_content">
 
     <FrameLayout
-        android:layout_width="80dp"
-        android:layout_height="120dp">
+        android:layout_width="90dp"
+        android:layout_height="130dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/cover"
@@ -16,13 +16,21 @@
             android:layout_height="match_parent"
             android:src="@drawable/lsp" />
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/badge"
-            android:layout_width="25dp"
-            android:layout_height="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/badge" />
+            android:background="@drawable/item_pgc_badge_bg"
+            android:paddingStart="10dp"
+            android:paddingTop="3dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="3dp"
+            android:textColor="@color/white"
+            android:textSize="11sp"
+            android:visibility="gone"
+            tools:text="会员"
+            tools:visibility="visible" />
 
     </FrameLayout>
 
@@ -50,7 +58,7 @@
             tools:text="电影 | 英国、漂亮国" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/epCount"
+            android:id="@+id/newEp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"

@@ -9,13 +9,18 @@ import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.beans.account.History;
 import com.leon.biuvideo.databinding.ItemHistoryBinding;
+import com.leon.biuvideo.ui.activities.publicActivities.ArticleActivity;
+import com.leon.biuvideo.ui.activities.publicActivities.LiveStreamActivity;
+import com.leon.biuvideo.ui.activities.publicActivities.VideoActivity;
 import com.leon.biuvideo.utils.ValueUtils;
 import com.leon.biuvideo.utils.ViewUtils;
+
+import java.util.Map;
 
 /**
  * @Author Leon
  * @Time 2022/07/26
- * @Desc todo 类型待定
+ * @Desc todo Item样式待定
  */
 public class HistoryAdapter extends BaseViewBindingAdapter<History.Data.Data, ItemHistoryBinding> {
     public HistoryAdapter(Context context) {
@@ -32,14 +37,24 @@ public class HistoryAdapter extends BaseViewBindingAdapter<History.Data.Data, It
         binding.getRoot().setOnClickListener(v -> {
             switch (data.getHistory().getBusiness()) {
                 case "archive":
-
+                    startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, VideoActivity.TYPE_VIDEO,
+                            VideoActivity.PARAM_ID, data.getHistory().getBvid()));
                     break;
                 case "pgc":
+                    String[] splitA = data.getUri().split("/");
+                    String seasonId = splitA[splitA.length - 1].replaceAll("ss", "");
+
+                    startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, VideoActivity.TYPE_PGC,
+                            VideoActivity.PARAM_ID, seasonId));
                     break;
                 case "live":
+                    String[] splitB = data.getUri().split("/");
+                    String roomId = splitB[splitB.length - 1];
+                    startActivity(LiveStreamActivity.class, Map.of(LiveStreamActivity.PARAM, roomId));
                     break;
                 case "article-list":
                 case "article":
+                    startActivity(ArticleActivity.class, Map.of(ArticleActivity.PARAM, data.getHistory().getOid()));
                     break;
                 default:
                     break;

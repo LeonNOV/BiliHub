@@ -33,6 +33,7 @@ public class PartitionHomeRecommendChildAdapter extends BaseViewBindingAdapter<P
     protected void onBindViewHolder(PartitionRecommend.Data.Archive data, ItemVideoBBinding binding, int position) {
         ViewGroup.LayoutParams layoutParams = binding.getRoot().getLayoutParams();
         layoutParams.width = context.getResources().getDimensionPixelSize(R.dimen.ItemVideoW);
+        layoutParams.height = context.getResources().getDimensionPixelSize(R.dimen.ItemVideoH);
         binding.getRoot().setLayoutParams(layoutParams);
 
         binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, VideoActivity.TYPE_VIDEO,

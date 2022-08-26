@@ -55,7 +55,7 @@ public class MediaVideoInfoFragment extends BaseFragment<FragmentMediaVideoInfoB
 
         binding.author.setText(data.getCard().getCard().getName());
         if (data.getCard().getCard().getVip().getStatus() != 0) {
-            binding.author.setTextColor(context.getColor(R.color.BiliBili_pink));
+            binding.author.setTextColor(context.getColor(R.color.pink));
         }
         binding.fans.setText(String.format("%s粉丝", ValueUtils.generateCN(data.getCard().getFollower())));
         binding.works.setText(String.format("%s视频", ValueUtils.generateCN(data.getCard().getArchiveCount())));

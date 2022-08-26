@@ -27,7 +27,7 @@
             android:padding="@dimen/topBarBackPadding"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:src="@drawable/back" />
+            android:src="@drawable/ic_back" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/cover"
@@ -75,7 +75,7 @@
                         android:layout_width="42dp"
                         android:layout_height="42dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
-                        android:src="@drawable/favorite" />
+                        android:src="@drawable/ic_favorite" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 

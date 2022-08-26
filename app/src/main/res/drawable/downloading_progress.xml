@@ -16,7 +16,7 @@
                 <gradient
                     android:angle="180"
                     android:endColor="#FBB5C9"
-                    android:startColor="@color/BiliBili_pink" />
+                    android:startColor="@color/pink" />
             </shape>
         </scale>
     </item>

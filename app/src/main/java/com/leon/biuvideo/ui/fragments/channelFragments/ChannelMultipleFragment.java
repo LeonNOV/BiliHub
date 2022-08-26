@@ -79,7 +79,7 @@ public class ChannelMultipleFragment extends BaseLazyFragment<FragmentChannelMul
     private void changeSelectedColor(int index) {
         if (selectedIndex != index) {
             textViews.get(selectedIndex).setTextColor(context.getColor(R.color.infoColor));
-            textViews.get(index).setTextColor(context.getColor(R.color.BiliBili_pink));
+            textViews.get(index).setTextColor(context.getColor(R.color.pink));
 
             selectedIndex = index;
             reload();

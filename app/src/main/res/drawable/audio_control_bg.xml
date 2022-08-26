@@ -5,7 +5,7 @@
             <gradient
                 android:angle="225"
                 android:endColor="#FBB5C9"
-                android:startColor="@color/BiliBili_pink" />
+                android:startColor="@color/pink" />
         </shape>
     </item>
 </ripple>

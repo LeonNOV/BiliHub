@@ -5,7 +5,7 @@
     android:layout_width="315dp"
     android:layout_height="match_parent"
     android:layout_gravity="start"
-    android:background="@drawable/drawer_navigation_bg"
+    android:background="@drawable/bg_drawer_navigation"
     app:headerLayout="@null"
     tools:openDrawer="start">
 
@@ -15,7 +15,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="@dimen/drawer_margin"
         android:layout_marginBottom="@dimen/drawer_margin"
-        android:background="@drawable/drawer_bg">
+        android:background="@drawable/bg_drawer">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -29,7 +29,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="15dp"
-                android:background="@drawable/drawer_face_bg"
+                android:background="@drawable/bg_drawer_face"
                 android:elevation="@dimen/elevation"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp">
@@ -54,7 +54,7 @@
                     android:layout_marginEnd="4dp"
                     android:layout_toStartOf="@+id/user_logout"
                     android:layout_toEndOf="@id/user_face"
-                    android:text="@string/noLogin"
+                    android:text="@string/no_login"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -93,7 +93,7 @@
                     android:id="@+id/partition"
                     style="@style/DrawerFunctionStyle"
                     android:text="@string/drawer_partition"
-                    app:drawableStartCompat="@drawable/function_partition" />
+                    app:drawableStartCompat="@drawable/drawer_function_partition" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/channel"
@@ -131,9 +131,11 @@
                     android:text="@string/drawer_history"
                     app:drawableStartCompat="@drawable/drawer_function_history" />
 
+                <!-- todo 下载功能前期暂不加入 -->
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/download"
                     style="@style/DrawerFunctionStyle"
+                    android:visibility="gone"
                     android:text="@string/drawer_download"
                     app:drawableStartCompat="@drawable/drawer_function_download" />
 

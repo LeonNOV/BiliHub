@@ -52,8 +52,8 @@ public class MediaCommentsFragment extends BaseLazyFragment<FragmentMediaComment
             aid = ValueUtils.bv2av(bvid);
             mode = 3;
 
-            binding.mode.setText(R.string.ReplyModeHot);
-            binding.refresh.setText(R.string.ReplyHot);
+            binding.mode.setText(R.string.reply_mode_hot);
+            binding.refresh.setText(R.string.reply_hot);
 
             reload();
         };
@@ -61,13 +61,13 @@ public class MediaCommentsFragment extends BaseLazyFragment<FragmentMediaComment
 
         binding.refresh.setOnClickListener(v -> {
             if (mode == 3) {
-                binding.mode.setText(R.string.ReplyModeNew);
-                binding.refresh.setText(R.string.ReplyNew);
+                binding.mode.setText(R.string.reply_mode_new);
+                binding.refresh.setText(R.string.reply_new);
 
                 mode = 2;
             } else {
-                binding.mode.setText(R.string.ReplyModeHot);
-                binding.refresh.setText(R.string.ReplyHot);
+                binding.mode.setText(R.string.reply_mode_hot);
+                binding.refresh.setText(R.string.reply_hot);
 
                 mode = 3;
             }

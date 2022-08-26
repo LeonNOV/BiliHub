@@ -34,7 +34,7 @@ public class FilterUtils {
     public void addTextView(int position, AppCompatTextView textView) {
         if (!this.textViewMap.containsKey(position)) {
             if (position == selectedPosition) {
-                textView.setTextColor(context.getColor(R.color.BiliBili_pink));
+                textView.setTextColor(context.getColor(R.color.pink));
             }
 
             this.textViewMap.put(position, textView);
@@ -42,7 +42,7 @@ public class FilterUtils {
     }
 
     private void changeColor(int position) {
-        Objects.requireNonNull(this.textViewMap.get(position)).setTextColor(context.getColor(R.color.BiliBili_pink));
+        Objects.requireNonNull(this.textViewMap.get(position)).setTextColor(context.getColor(R.color.pink));
         Objects.requireNonNull(this.textViewMap.get(selectedPosition)).setTextColor(context.getColor(R.color.infoColor));
     }
 }

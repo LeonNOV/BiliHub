@@ -62,7 +62,7 @@ public class VideoQualityAdapter extends BaseViewBindingAdapter<VideoQuality, It
             }
         });
 
-        binding.quality.setTextColor(data.getSelected() ? context.getColor(R.color.BiliBili_pink) : context.getColor(R.color.white));
+        binding.quality.setTextColor(data.getSelected() ? context.getColor(R.color.pink) : context.getColor(R.color.white));
         binding.quality.setText(data.getQualityStr());
 
         if (data.getExtra() != null) {

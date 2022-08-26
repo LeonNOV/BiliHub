@@ -9,4 +9,10 @@ public class DataStoreKey {
     public static final String UID = "uid";
     public static final String COOKIE = "Cookie";
     public static final String LOGIN_STATUS = "loginStatus";
+
+    public static final String VIDEO_QUALITY = "videoQuality";
+    public static final String VIDEO_QUALITY_DISPLAY = "videoQualityDisplay";
+
+    public static final String LIVE_QUALITY = "liveQuality";
+    public static final String LIVE_QUALITY_DISPLAY = "liveQualityDisplay";
 }

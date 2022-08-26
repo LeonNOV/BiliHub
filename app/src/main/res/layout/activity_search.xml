@@ -24,7 +24,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/back" />
+            app:srcCompat="@drawable/ic_back" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title"
@@ -65,7 +65,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="10dp"
                 android:tint="@color/black"
-                app:srcCompat="@drawable/home_search" />
+                app:srcCompat="@drawable/ic_home_search" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/searchEditor"
@@ -124,7 +124,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hotSearch"
+            android:text="@string/hot_search"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />

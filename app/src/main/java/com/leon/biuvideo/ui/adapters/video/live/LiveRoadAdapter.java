@@ -60,7 +60,7 @@ public class LiveRoadAdapter extends BaseViewBindingAdapter<LiveStream.Data.Durl
 
         binding.road.setText(String.format(Locale.CHINESE, "线路%d", data.getOrder()));
         if (data.getSelected()) {
-            binding.road.setTextColor(context.getColor(R.color.BiliBili_pink));
+            binding.road.setTextColor(context.getColor(R.color.pink));
         } else {
             binding.road.setTextColor(context.getColor(R.color.white));
         }

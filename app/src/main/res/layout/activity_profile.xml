@@ -54,7 +54,7 @@
                         android:layout_alignParentBottom="true"
                         android:layout_marginEnd="20dp"
                         android:layout_marginBottom="10dp"
-                        android:background="@drawable/follow_bg"
+                        android:background="@drawable/bg_follow"
                         android:elevation="5dp"
                         android:gravity="center"
                         android:text="@string/editProfile"
@@ -93,7 +93,7 @@
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:layout_marginEnd="10dp"
-                            app:srcCompat="@drawable/gender_woman" />
+                            app:srcCompat="@drawable/ic_gender_woman" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/uid"
@@ -204,7 +204,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:background="@drawable/round_corners6dp_bg"
-                            android:backgroundTint="@color/BiliBili_pink"
+                            android:backgroundTint="@color/pink"
                             android:ellipsize="end"
                             android:maxLength="10"
                             android:padding="5dp"
@@ -303,7 +303,7 @@
                     android:layout_height="@dimen/topBarBackWH"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:padding="@dimen/topBarBackPadding"
-                    android:src="@drawable/back" />
+                    android:src="@drawable/ic_back" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/toolBarName"

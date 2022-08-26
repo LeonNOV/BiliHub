@@ -35,7 +35,7 @@ public class HotSearchAdapter extends BaseViewBindingAdapter<HotSearch.Data.Tren
         binding.getRoot().setOnClickListener(v -> startActivity(SearchResultActivity.class, Map.of(SearchResultActivity.PARAM, data.getKeyword())));
 
         if (position < 3) {
-            binding.keyword.setTextColor(context.getColor(R.color.BiliBili_pink));
+            binding.keyword.setTextColor(context.getColor(R.color.pink));
             binding.keyword.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
             binding.rank.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
         }

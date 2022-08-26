@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
+    android:background="@color/primary"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -16,20 +16,20 @@
             android:id="@+id/sortHot"
             style="@style/FilterItemStyle"
             android:layout_weight="1"
-            android:text="@string/channelMultipleFilterHot"
-            android:textColor="@color/BiliBili_pink" />
+            android:text="@string/channel_multiple_filter_hot"
+            android:textColor="@color/pink" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/sortView"
             style="@style/FilterItemStyle"
             android:layout_weight="1"
-            android:text="@string/channelMultipleFilterView" />
+            android:text="@string/channel_multiple_filter_view" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/sortNew"
             style="@style/FilterItemStyle"
             android:layout_weight="1"
-            android:text="@string/channelMultipleFilterNew" />
+            android:text="@string/channel_multiple_filter_new" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

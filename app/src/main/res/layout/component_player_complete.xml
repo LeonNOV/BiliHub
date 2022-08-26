@@ -13,7 +13,7 @@
         android:layout_gravity="center"
         android:drawableTop="@drawable/video_replay"
         android:drawablePadding="15dp"
-        android:text="@string/videoPlayerCompleteReplay"
+        android:text="@string/video_player_complete_replay"
         android:textColor="@android:color/white"
         android:textSize="15sp" />
 

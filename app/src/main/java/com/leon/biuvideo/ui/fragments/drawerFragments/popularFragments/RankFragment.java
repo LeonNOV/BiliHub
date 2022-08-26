@@ -8,7 +8,6 @@ import com.leon.biuvideo.beans.home.drawerFunction.popular.PopularRank;
 import com.leon.biuvideo.beans.home.drawerFunction.popular.PopularRankBangumi;
 import com.leon.biuvideo.beans.home.drawerFunction.popular.PopularRankPgc;
 import com.leon.biuvideo.databinding.PageFilterRecyclerBinding;
-import com.leon.biuvideo.databinding.PageFilterRefreshBinding;
 import com.leon.biuvideo.http.ApiHelper;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.Condition;
@@ -63,7 +62,7 @@ public class RankFragment extends BaseLazyFragment<PageFilterRecyclerBinding> {
         rankList.add(new Rank<>("时尚", httpApi.getPopularRank("155"), 0));
         rankList.add(new Rank<>("娱乐", httpApi.getPopularRank("5"), 0));
         rankList.add(new Rank<>("影视", httpApi.getPopularRank("181"), 0));
-        rankList.add(new Rank<>("电影", httpApi.getPopularRankPgc(Condition.SeasonType.Document), 1));
+        rankList.add(new Rank<>("电影", httpApi.getPopularRankPgc(Condition.SeasonType.Movie), 1));
         rankList.add(new Rank<>("电视剧", httpApi.getPopularRankPgc(Condition.SeasonType.TelePlay), 1));
         rankList.add(new Rank<>("综艺", httpApi.getPopularRankPgc(Condition.SeasonType.Variety), 1));
         rankList.add(new Rank<>("原创", httpApi.getPopularRank("0", "origin"), 0));
@@ -117,13 +116,13 @@ public class RankFragment extends BaseLazyFragment<PageFilterRecyclerBinding> {
                     PopularRankPgc popularRankPgc = (PopularRankPgc) parcelable;
                     for (PopularRankPgc.Data.Media media : popularRankPgc.getData().getList()) {
                         popularDataList.add(new PopularData(PopularAdapter.PopularType.Rank, media.getCover(), 0, media.getTitle(), media.getNewEp().getIndexShow(),
-                                media.getStat().getView(), media.getStat().getDanmaku(), "", String.valueOf(media.getSeasonId())));
+                                media.getStat().getView(), media.getStat().getDanmaku(), "", media.getSeasonId()));
                     }
                 } else if (parcelable instanceof PopularRankBangumi) {
                     PopularRankBangumi rankBangumi = (PopularRankBangumi) parcelable;
                     for (PopularRankBangumi.Result.Media media : rankBangumi.getResult().getList()) {
                         popularDataList.add(new PopularData(PopularAdapter.PopularType.Rank, media.getCover(), 0, media.getTitle(), media.getNewEp().getIndexShow(),
-                                media.getStat().getView(), media.getStat().getDanmaku(), "", String.valueOf(media.getSeasonId())));
+                                media.getStat().getView(), media.getStat().getDanmaku(), "", media.getSeasonId()));
                     }
                 } else {
                     return;

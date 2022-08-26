@@ -5,7 +5,7 @@
     android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/bg"
+    android:background="@color/primary"
     android:paddingStart="10dp"
     android:paddingTop="0dp"
     android:paddingEnd="10dp"

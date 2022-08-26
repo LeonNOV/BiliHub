@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg">
+    android:background="@color/primary">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -37,7 +37,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="20dp"
-                android:background="@drawable/follow_bg"
+                android:background="@drawable/bg_follow"
                 android:elevation="5dp"
                 android:gravity="center"
                 android:paddingStart="20dp"
@@ -121,7 +121,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/bangumi_score"
+                    android:text="@string/pgc_bangumi_score"
                     android:textColor="@color/score"
                     android:textSize="13sp" />
 
@@ -142,7 +142,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
-                    android:text="@string/bangumiInfoDetail"
+                    android:text="@string/pgc_bangumi_info_detail"
                     android:textColor="@color/infoColor"
                     android:textSize="13sp" />
 
@@ -150,7 +150,7 @@
                     android:layout_width="16dp"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_arrow"
-                    android:text="@string/bangumi_score"
+                    android:text="@string/pgc_bangumi_score"
                     android:textColor="@color/infoColor"
                     android:textSize="13sp"
                     android:tint="@color/infoColor" />
@@ -300,7 +300,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="@string/episode"
+                android:text="@string/pgc_episode"
                 android:textColor="@color/black"
                 android:textSize="17sp" />
 
@@ -332,7 +332,7 @@
             android:id="@+id/recommend"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/bg"
+            android:background="@color/primary"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 

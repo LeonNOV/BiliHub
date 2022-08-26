@@ -66,7 +66,7 @@ public class TopBarWidget extends LinearLayoutCompat {
 
         linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-        linearLayout.setBackgroundResource(R.color.bg);
+        linearLayout.setBackgroundResource(R.color.primary);
         linearLayout.setGravity(Gravity.CENTER_VERTICAL);
 
         int padding = context.getResources().getDimensionPixelSize(R.dimen.topBarPadding);
@@ -91,7 +91,7 @@ public class TopBarWidget extends LinearLayoutCompat {
      */
     private void addBackView() {
         ImageView backView = new ImageView(context);
-        backView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.back, null));
+        backView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_back, null));
         backView.setBackground(ContextCompat.getDrawable(context, R.drawable.ripple_bg));
         backView.setPadding(getResources().getDimensionPixelOffset(R.dimen.topBarPadding), getResources().getDimensionPixelOffset(R.dimen.topBarPadding),
                 getResources().getDimensionPixelOffset(R.dimen.topBarPadding), getResources().getDimensionPixelOffset(R.dimen.topBarPadding));

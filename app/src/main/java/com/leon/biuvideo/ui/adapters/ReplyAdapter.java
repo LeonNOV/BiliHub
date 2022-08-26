@@ -54,7 +54,7 @@ public class ReplyAdapter<T extends Parcelable> extends BaseViewBindingAdapter<T
         binding.face.setOnClickListener(v -> startActivity(UserActivity.class, Map.of(UserActivity.PARAM, data.getMid())));
         binding.name.setText(data.getMember().getUname());
         if (data.getMember().getVip().getVipStatus() == 1) {
-            binding.name.setTextColor(context.getColor(R.color.BiliBili_pink));
+            binding.name.setTextColor(context.getColor(R.color.pink));
         }
 
         int roleVerify = data.getMember().getOfficialVerify().getType();
@@ -92,7 +92,7 @@ public class ReplyAdapter<T extends Parcelable> extends BaseViewBindingAdapter<T
         binding.face.setOnClickListener(v -> startActivity(UserActivity.class, Map.of(UserActivity.PARAM, data.getMid())));
         binding.name.setText(data.getMember().getUname());
         if (data.getMember().getVip().getVipStatus() == 1) {
-            binding.name.setTextColor(context.getColor(R.color.BiliBili_pink));
+            binding.name.setTextColor(context.getColor(R.color.pink));
         }
 
         int roleVerify = data.getMember().getOfficialVerify().getType();

@@ -55,14 +55,14 @@
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
         <item name="android:padding">@dimen/topBarBackPadding</item>
         <item name="android:tint">@color/white</item>
-        <item name="android:src">@drawable/back</item>
+        <item name="android:src">@drawable/ic_back</item>
     </style>
 
     <style name="DrawerFunctionStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:background">@drawable/drawer_function_bg</item>
+        <item name="android:background">@drawable/bg_drawer_function</item>
         <item name="android:drawablePadding">15dp</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingStart">30dp</item>
@@ -100,7 +100,7 @@
         <item name="android:background">@color/white</item>
         <item name="tabIndicator">@drawable/indicator</item>
         <item name="tabIndicatorAnimationMode">elastic</item>
-        <item name="tabIndicatorColor">@color/tabLayoutIndicatorColor</item>
+        <item name="tabIndicatorColor">@color/theme_tab_indicator</item>
         <item name="tabIndicatorFullWidth">false</item>
         <item name="tabSelectedTextColor">@color/black</item>
     </style>

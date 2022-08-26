@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/setting_dialog_bg"
+    android:orientation="vertical"
+    android:padding="@dimen/cardPadding">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/donation_desc"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="50dp"
+        android:paddingEnd="50dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/aliPay"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/ripple_bg"
+            android:padding="10dp"
+            android:src="@drawable/donation_amount_alipay" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/weChatPay"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:scaleType="centerCrop"
+            android:layout_gravity="end"
+            android:background="@drawable/ripple_bg"
+            android:padding="10dp"
+            android:src="@drawable/donation_amount_wechatpay" />
+
+    </FrameLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

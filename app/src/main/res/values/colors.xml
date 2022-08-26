@@ -9,39 +9,46 @@
     <color name="teal_700">#FF018786</color>
     <color name="black_overlay">#66000000</color>
 
+    <!-- 普通颜色资源-1 -->
     <color name="blue">#2196f3</color>
-    <color name="BiliBili_pink">#FB7299</color>
+    <color name="pink">#FB7299</color>
     <color name="gray">#545555</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="bg">@color/white</color>
-    <color name="topBarBottomLine">#CCCCCC</color>
-    <color name="tabTextColor">#888888</color>
-    <color name="hintColor">#a4a4a4</color>
-    <color name="bottomSheet_topView_bg">#DCDCDC</color>
 
+    <!-- 普通颜色资源-2 -->
     <color name="warn_dialog_cancel_color">#bdbdbd</color>
     <color name="warn_dialog_confirm_color">#00bfa5</color>
-    <color name="rippleColor">#80E5E5E5</color>
-
-    <color name="video_length_bg">#99000000</color>
-    <color name="invalid_foreground">#80000000</color>
-
     <color name="cancel_color">#F13939</color>
-    <color name="operation_color">#0288D1</color>
-    <color name="tabLayoutIndicatorColor">#FFA200</color>
 
-    <color name="infoColor">#686868</color>
-
-    <color name="qualityBg">#80000000</color>
-    <color name="drawer_bg">#B5B5B5</color>
-    <color name="topBar">#ffffff</color>
-    <color name="follow_color">#757575</color>
-    <color name="picture_viewer_theme">#878787</color>
-    <color name="dialog_bg">#B3424242</color>
-
+    <!-- 普通颜色资源-3 -->
     <color name="ItemPopularPrecious">#d67716</color>
     <color name="ItemPopularWeekly">#fccb24</color>
     <color name="ItemPopularHot">#fc6738</color>
     <color name="score">#ffa058</color>
+
+    <!-- 主题颜色资源 -->
+    <color name="primary">@color/white</color>
+    <color name="secondary">#3290E3</color>
+
+    <color name="infoColor">#686868</color>
+    <color name="follow_color">#757575</color>
+
+    <color name="topBarBottomLine">#CCCCCC</color>
+    <color name="tabTextColor">#888888</color>
+    <color name="hintColor">#a4a4a4</color>
+
+<!--    <color name="rippleColor">#80BCBCBC</color>-->
+    <color name="rippleColor">#80E5E5E5</color>
+
+    <color name="theme_tab_indicator">#FFA200</color>
+
+    <color name="drawer_bg">#B5B5B5</color>
+    <color name="topBar">@color/primary</color>
+
+    <color name="picture_viewer_theme">#878787</color>
+    <color name="dialog_bg">#B3424242</color>
+
+    <color name="DialogSecondaryColor">#f2f2f2</color>
+    <color name="DialogPrimaryColor">@color/pink</color>
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
+    android:background="@color/primary"
     android:orientation="vertical"
     tools:context=".ui.activities.drawerFunction.WatchLaterActivity">
 
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@string/clear" />
+                android:text="@string/watch_later_clear" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -65,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@string/removeWatched" />
+                android:text="@string/watch_later_remove_watched" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -49,8 +49,8 @@ public class ReplyDetailDialog extends BottomSheetDialog {
         super.onCreate(savedInstanceState);
 
         binding = DialogReplyDetailBinding.inflate(getLayoutInflater());
-        binding.close.setOnClickListener(v -> dismiss());
         setContentView(binding.getRoot());
+        binding.close.setOnClickListener(v -> dismiss());
 
         Window window = getWindow();
         WindowManager.LayoutParams attributes = window.getAttributes();
@@ -76,7 +76,7 @@ public class ReplyDetailDialog extends BottomSheetDialog {
         binding.face.setOnClickListener(v -> ActivityManager.startActivity(getContext(), UserActivity.class, Map.of(UserActivity.PARAM, member.getMid())));
         binding.name.setText(member.getUname());
         if (member.getVip().getVipStatus() == 1) {
-            binding.name.setTextColor(getContext().getColor(R.color.BiliBili_pink));
+            binding.name.setTextColor(getContext().getColor(R.color.pink));
         }
 
         int roleVerify = member.getOfficialVerify().getType();

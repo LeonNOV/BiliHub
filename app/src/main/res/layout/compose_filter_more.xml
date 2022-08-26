@@ -14,9 +14,9 @@
         style="@style/DataListDefaultFilterStyle"
         android:layout_marginStart="10dp"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:drawableEnd="@drawable/expand_more"
+        android:drawableEnd="@drawable/ic_expand_more"
         android:drawablePadding="5dp"
         android:drawableTint="@color/infoColor"
-        android:text="@string/filter" />
+        android:text="@string/filter_more_filter" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

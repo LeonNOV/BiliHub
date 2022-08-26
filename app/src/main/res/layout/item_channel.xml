@@ -97,7 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="@drawable/ripple_bg"
-        android:backgroundTint="@color/tabLayoutIndicatorColor"
+        android:backgroundTint="@color/theme_tab_indicator"
         android:gravity="center"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"

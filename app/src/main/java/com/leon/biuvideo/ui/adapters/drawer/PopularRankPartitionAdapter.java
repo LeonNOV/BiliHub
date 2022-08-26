@@ -29,7 +29,7 @@ public class PopularRankPartitionAdapter extends BaseViewBindingAdapter<String, 
     @Override
     protected void onBindViewHolder(String data, ItemTextBinding binding, int position) {
         if (position == 0) {
-            binding.content.setTextColor(context.getColor(R.color.BiliBili_pink));
+            binding.content.setTextColor(context.getColor(R.color.pink));
         }
 
         binding.content.setText(data);

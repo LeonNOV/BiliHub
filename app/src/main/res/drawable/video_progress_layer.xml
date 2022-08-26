@@ -13,7 +13,7 @@
         <scale android:scaleWidth="100%">
             <shape>
                 <corners android:radius="20dp" />
-                <solid android:color="@color/BiliBili_pink" />
+                <solid android:color="@color/pink" />
             </shape>
         </scale>
     </item>

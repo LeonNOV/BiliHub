@@ -29,7 +29,7 @@ data class PopularRank(
             @SerializedName("bvid")
             val bvid: String,
             @SerializedName("cid")
-            val cid: Int,
+            val cid: String,
             @SerializedName("copyright")
             val copyright: Int,
             @SerializedName("ctime")
@@ -102,7 +102,7 @@ data class PopularRank(
                 @SerializedName("bvid")
                 val bvid: String,
                 @SerializedName("cid")
-                val cid: Int,
+                val cid: String,
                 @SerializedName("copyright")
                 val copyright: Int,
                 @SerializedName("ctime")
@@ -165,7 +165,7 @@ data class PopularRank(
                     @SerializedName("face")
                     val face: String,
                     @SerializedName("mid")
-                    val mid: Int,
+                    val mid: String,
                     @SerializedName("name")
                     val name: String
                 ) : Parcelable
@@ -234,7 +234,7 @@ data class PopularRank(
                 @SerializedName("face")
                 val face: String,
                 @SerializedName("mid")
-                val mid: Int,
+                val mid: String,
                 @SerializedName("name")
                 val name: String
             ) : Parcelable

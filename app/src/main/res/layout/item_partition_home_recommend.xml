@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@id/pointer"
-            android:text="@string/videoRecommend"
+            android:text="@string/video_recommend"
             android:textSize="11sp" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -61,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:text="@string/partitionHomeSubRefresh"
+                android:text="@string/partition_home_sub_refresh"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
@@ -84,7 +84,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/partitionHomeSubMore"
+                android:text="@string/partition_home_sub_more"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 

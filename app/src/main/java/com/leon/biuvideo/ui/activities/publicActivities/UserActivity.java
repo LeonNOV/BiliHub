@@ -96,10 +96,10 @@ public class UserActivity extends AsyncHttpActivity<ActivityUserBinding, UserInf
 
         switch (userInfo.getData().getSex()) {
             case "男":
-                binding.gender.setImageResource(R.drawable.gender_man);
+                binding.gender.setImageResource(R.drawable.ic_gender_man);
                 break;
             case "女":
-                binding.gender.setImageResource(R.drawable.gender_woman);
+                binding.gender.setImageResource(R.drawable.ic_gender_woman);
                 break;
             default:
                 binding.gender.setVisibility(View.GONE);
@@ -107,15 +107,7 @@ public class UserActivity extends AsyncHttpActivity<ActivityUserBinding, UserInf
         }
 
         binding.follow.setText(userInfo.getData().isFollowed() ? "已关注" : "关注");
-        binding.follow.setOnClickListener(v -> {
-            if (userInfo.getData().isFollowed()) {
-                binding.follow.setText("关注");
-                userInfo.getData().setFollowed(false);
-            } else {
-                binding.follow.setText("已关注");
-                userInfo.getData().setFollowed(true);
-            }
-        });
+        binding.follow.setOnClickListener(v -> Toast.makeText(context, "开发中…", Toast.LENGTH_SHORT).show());
 
         binding.uid.setText(String.format(Locale.CHINESE, "UID: %d", userInfo.getData().getMid()));
         binding.desc.setText(userInfo.getData().getSign());

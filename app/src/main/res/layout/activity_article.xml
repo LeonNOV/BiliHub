@@ -36,7 +36,7 @@
                     android:layout_height="@dimen/topBarBackWH"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:padding="@dimen/topBarBackPadding"
-                    android:src="@drawable/back" />
+                    android:src="@drawable/ic_back" />
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -47,7 +47,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/article_bg"
+        android:background="@drawable/bg_article"
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -107,7 +107,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="20dp"
-                        android:background="@drawable/follow_bg"
+                        android:background="@drawable/bg_follow"
                         android:elevation="5dp"
                         android:gravity="center"
                         android:text="@string/follow"

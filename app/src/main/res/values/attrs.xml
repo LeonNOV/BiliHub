@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TopBarWidget">
+        <attr name="title" format="string"/>
+        <attr name="withBottomLine" format="boolean"/>
+    </declare-styleable>
+</resources>

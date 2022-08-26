@@ -2,6 +2,7 @@ package com.leon.biuvideo.ui.adapters.user;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.leon.biuvideo.R;
@@ -34,6 +35,7 @@ public class UserVideoAdapter extends BaseViewBindingAdapter<UserVideo.Data.Data
         binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, VideoActivity.TYPE_VIDEO,
                 VideoActivity.PARAM_ID, data.getBvid())));
 
+        binding.author.setVisibility(View.GONE);
         binding.danmaku.setText(ValueUtils.generateCN(data.getVideoReview()));
         binding.extra.setText(data.getLength());
         binding.title.setText(data.getTitle());

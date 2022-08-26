@@ -59,7 +59,7 @@ public class PopularRankAdapter extends BaseViewBindingMultipleAdapter<PopularDa
     }
 
     private void initItemVideo(ItemVideoBinding binding, PopularData data) {
-        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, String.valueOf(VideoActivity.TYPE_VIDEO),
+        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, VideoActivity.TYPE_VIDEO,
                 VideoActivity.PARAM_ID, data.getId())));
 
         ViewUtils.setImg(context, binding.cover, data.getCover());

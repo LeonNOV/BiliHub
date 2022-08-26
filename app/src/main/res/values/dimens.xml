@@ -91,6 +91,7 @@
     <dimen name="filterItemSize">13sp</dimen>
 
     <dimen name="dialog_width">270dp</dimen>
+    <dimen name="dialog_height">560dp</dimen>
 
     <dimen name="LinearItemOffset">10dp</dimen>
     <dimen name="GridItemVerticalOffset">10dp</dimen>

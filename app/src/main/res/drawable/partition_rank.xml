@@ -5,16 +5,16 @@
     android:viewportHeight="1024">
   <path
       android:pathData="M454.9,659.1h114.3v171.7H454.9z"
-      android:fillColor="@color/BiliBili_pink"/>
+      android:fillColor="@color/pink"/>
   <path
       android:pathData="M340.6,773.5m57.1,0l228.6,0q57.1,0 57.1,57.1l0,0.2q0,57.1 -57.1,57.1l-228.6,0q-57.1,0 -57.1,-57.1l0,-0.2q0,-57.1 57.1,-57.1Z"
-      android:fillColor="@color/BiliBili_pink"/>
+      android:fillColor="@color/pink"/>
   <path
       android:pathData="M740.6,258.5h114.3c31.6,0 57.1,25.6 57.1,57.1v114.7c0,63.1 -51.2,114.3 -114.3,114.3h-57.1V258.5zM169.1,258.5h114.3v286.2H226.3C163.2,544.6 112,493.4 112,430.3v-114.7c0,-31.6 25.6,-57.1 57.1,-57.1z"
       android:fillColor="#fdb8cc"/>
   <path
       android:pathData="M340.6,144h342.9c63.1,0 114.3,51.2 114.3,114.3v172.3c0,157.8 -127.9,285.7 -285.7,285.7s-285.7,-127.9 -285.7,-285.7V258.3C226.3,195.2 277.5,144 340.6,144z"
-      android:fillColor="@color/BiliBili_pink"/>
+      android:fillColor="@color/pink"/>
   <path
       android:pathData="M539.1,278.7l0,0a28.6,28.6 0,0 1,0 40.4L458.3,400.1a28.5,28.5 0,0 1,-40.4 0l-0,-0a28.6,28.6 0,0 1,0 -40.4l80.9,-81a28.5,28.5 0,0 1,40.4 0zM636.7,393.2l0,0a28.6,28.6 0,0 1,0 40.4l-121.3,121.5a28.5,28.5 0,0 1,-40.4 0l-0,-0a28.6,28.6 0,0 1,0 -40.4L596.3,393.2a28.5,28.5 0,0 1,40.4 0z"
       android:strokeAlpha="0.5"

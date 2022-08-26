@@ -5,10 +5,10 @@
     android:viewportHeight="1024">
     <path
         android:fillAlpha="0.22"
-        android:fillColor="@color/BiliBili_pink"
+        android:fillColor="@color/pink"
         android:pathData="M512,512m-512,0a512,512 0,1 0,1024 0,512 512,0 1,0 -1024,0Z"
         android:strokeAlpha="0.22" />
     <path
-        android:fillColor="@color/BiliBili_pink"
+        android:fillColor="@color/pink"
         android:pathData="M512,512m-224,0a224,224 0,1 0,448 0,224 224,0 1,0 -448,0Z" />
 </vector>

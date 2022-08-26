@@ -44,7 +44,7 @@
             android:clickable="true"
             android:focusable="true"
             android:padding="11dp"
-            android:src="@drawable/home_search" />
+            android:src="@drawable/ic_home_search" />
 
         <View
             android:layout_width="match_parent"

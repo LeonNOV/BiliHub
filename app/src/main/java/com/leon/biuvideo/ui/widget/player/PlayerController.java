@@ -202,7 +202,7 @@ public class PlayerController extends GestureVideoController {
         void onPlayStateChanged(int playState);
     }
 
-    public static interface OnSelectedListener<T> {
+    public interface OnSelectedListener<T> {
         void onSelected(T t);
     }
 }

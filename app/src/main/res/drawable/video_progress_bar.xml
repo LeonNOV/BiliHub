@@ -22,7 +22,7 @@
         <clip>
             <shape>
                 <corners android:radius="@dimen/corner_6dp"/>
-                <solid android:color="@color/BiliBili_pink"/>
+                <solid android:color="@color/pink"/>
             </shape>
         </clip>
     </item>

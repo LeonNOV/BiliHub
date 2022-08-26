@@ -26,7 +26,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="18dp"
                 android:layout_height="18dp"
-                android:src="@drawable/home_search"
+                android:src="@drawable/ic_home_search"
                 android:tint="#BCBCBC" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -72,6 +72,6 @@
         android:id="@+id/search_result_viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bg" />
+        android:background="@color/primary" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

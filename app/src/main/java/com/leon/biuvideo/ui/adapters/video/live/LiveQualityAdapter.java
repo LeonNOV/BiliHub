@@ -14,10 +14,8 @@ import com.leon.biuvideo.model.LivePlayerModel;
 import com.leon.biuvideo.ui.widget.player.PlayerController;
 import com.leon.biuvideo.utils.ViewUtils;
 import com.leon.biuvideo.wraps.LiveQualityWrap;
-import com.leon.biuvideo.wraps.LiveRoadWrap;
 
 import java.util.List;
-import java.util.Locale;
 
 /**
  * @Author Leon
@@ -61,7 +59,7 @@ public class LiveQualityAdapter extends BaseViewBindingAdapter<LiveStream.Data.Q
 
         binding.road.setText(data.getDesc());
         if (data.getSelected()) {
-            binding.road.setTextColor(context.getColor(R.color.BiliBili_pink));
+            binding.road.setTextColor(context.getColor(R.color.pink));
         } else {
             binding.road.setTextColor(context.getColor(R.color.white));
         }

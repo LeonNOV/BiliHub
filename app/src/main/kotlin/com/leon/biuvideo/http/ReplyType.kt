@@ -5,7 +5,7 @@ package com.leon.biuvideo.http
  * @Time 2022/08/13
  * @Desc
  */
-enum class ReplyType() {
+enum class ReplyType {
     /**
      * 视频
      */

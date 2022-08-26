@@ -119,7 +119,7 @@
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="10dp"
-                        android:background="@drawable/follow_bg"
+                        android:background="@drawable/bg_follow"
                         android:elevation="5dp"
                         android:gravity="center"
                         android:paddingStart="30dp"
@@ -147,7 +147,7 @@
                     android:layout_height="@dimen/topBarBackWH"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:padding="@dimen/topBarBackPadding"
-                    android:src="@drawable/back" />
+                    android:src="@drawable/ic_back" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/toolBarName"

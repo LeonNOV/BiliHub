@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="13dp"
-    android:paddingStart="30dp"
-    android:paddingEnd="0dp"
     android:background="?attr/selectableItemBackground"
+    android:paddingStart="30dp"
+    android:paddingTop="13dp"
+    android:paddingEnd="0dp"
     android:paddingBottom="13dp">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -16,6 +16,7 @@
         android:layout_gravity="center_vertical"
         android:textColor="@color/white"
         android:textSize="18sp"
-        tools:text="1.25x" />
+        tools:text="1.25x"
+        tools:textColor="@color/black" />
 
 </FrameLayout>

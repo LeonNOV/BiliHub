@@ -9,7 +9,7 @@
         android:id="@+id/sub"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/bg"
+        android:background="@color/primary"
         app:elevation="0dp">
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -93,7 +93,7 @@
                     app:ep_expand_text="展开"
                     app:ep_link_color="@color/blue"
                     app:ep_max_line="6"
-                    app:ep_mention_color="@color/BiliBili_pink"
+                    app:ep_mention_color="@color/pink"
                     app:ep_need_always_showright="false"
                     app:ep_need_contract="true"
                     app:ep_need_expand="true"
@@ -160,7 +160,7 @@
                     android:background="@drawable/round_corners6dp_bg"
                     android:backgroundTint="#F4F4F4"
                     android:padding="5dp"
-                    android:text="@string/upLiked"
+                    android:text="@string/reply_up_liked"
                     android:textColor="@color/infoColor"
                     android:textSize="13sp"
                     android:visibility="gone"

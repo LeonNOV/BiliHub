@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
+    android:background="@color/primary"
     android:orientation="vertical">
 
     <com.leon.biuvideo.ui.widget.TopBarWidget
@@ -18,12 +18,12 @@
         android:layout_height="match_parent"
         android:overScrollMode="never">
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/cardMargin"
@@ -32,143 +32,169 @@
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <com.leon.biuvideo.ui.widget.CardTitle
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:card_title="@string/setting_baseSetting" />
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/setting_base_setting"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <RelativeLayout
-                    android:id="@+id/setting_imgOriginalMode"
+                    android:id="@+id/imgOriginalMode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ripple_setting_item_bg">
+                    android:background="@drawable/ripple_bg"
+                    android:padding="10dp">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="@string/setting_imgOriginalMode"
+                        android:text="@string/setting_img_original_mode"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         tools:ignore="RelativeOverlap" />
 
-                    <Switch
+                    <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/setting_imgOriginalModel_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:checked="false"
-                        android:clickable="false"
-                        tools:ignore="UseSwitchCompatOrMaterialXml" />
+                        android:clickable="false" />
 
                 </RelativeLayout>
 
                 <FrameLayout
-                    android:id="@+id/setting_cleanCache"
+                    android:id="@+id/cleanCache"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ripple_setting_item_bg">
+                    android:background="@drawable/ripple_bg"
+                    android:padding="10dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="20dp"
-                        android:text="@string/setting_clearCache"
+                        android:text="@string/setting_clear_cache"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
-                    <TextView
-                        android:id="@+id/setting_cacheSize"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/cacheSize"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:clickable="false"
-                        android:text="@string/setting_default_cacheSize"
+                        android:textColor="@color/gray"
+                        android:textSize="15sp"
+                        tools:text="0.0B" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/recommendStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ripple_bg"
+                    android:padding="10dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/setting_recommend_style"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/recommend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:clickable="false"
+                        android:text="@string/setting_default_recommend_style"
                         android:textColor="@color/gray"
                         android:textSize="15sp" />
 
                 </FrameLayout>
 
-                <TextView
-                    android:id="@+id/setting_recommendStyle"
-                    android:layout_width="match_parent"
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/cardMargin"
+                android:layout_marginEnd="@dimen/cardMargin"
+                android:layout_marginBottom="@dimen/cardMargin"
+                android:background="@drawable/ripple_bg"
+                android:elevation="@dimen/elevation"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ripple_setting_item_bg"
-                    android:text="@string/setting_recommendStyle"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/setting_play"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/cardMargin"
-                android:layout_marginEnd="@dimen/cardMargin"
-                android:layout_marginBottom="@dimen/cardMargin"
-                android:orientation="vertical"
-                android:background="@drawable/ripple_bg"
-                android:elevation="@dimen/elevation"
-                android:padding="20dp">
-
-                <com.leon.biuvideo.ui.widget.CardTitle
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:card_title="@string/setting_play" />
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <FrameLayout
-                    android:id="@+id/setting_play_quality_container"
+                    android:id="@+id/videoQualityContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ripple_setting_item_bg">
+                    android:background="@drawable/ripple_bg"
+                    android:padding="10dp">
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/setting_play_quality"
+                        android:text="@string/setting_video_quality"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
-                    <TextView
-                        android:id="@+id/setting_play_quality"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/videoQuality"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
-                        android:text="@string/setting_default_quality"
+                        android:text="@string/setting_default_video_quality"
                         android:textColor="@color/gray"
                         android:textSize="14sp" />
 
                 </FrameLayout>
 
                 <FrameLayout
-                    android:id="@+id/setting_download_quality_container"
+                    android:id="@+id/liveQualityContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ripple_setting_item_bg"
-                    android:visibility="gone">
+                    android:background="@drawable/ripple_bg"
+                    android:padding="10dp">
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/setting_download_quality"
+                        android:text="@string/setting_live_quality"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
-                    <TextView
-                        android:id="@+id/setting_download_quality"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/liveQuality"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
-                        android:text="@string/setting_default_quality"
+                        android:text="@string/setting_default_live_quality"
                         android:textColor="@color/gray"
                         android:textSize="14sp" />
 
                 </FrameLayout>
 
-            </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/cardMargin"
@@ -179,50 +205,48 @@
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <com.leon.biuvideo.ui.widget.CardTitle
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:card_title="@string/setting_about" />
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/setting_about"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/setting_about"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/about"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ripple_setting_item_bg"
+                    android:background="@drawable/ripple_bg"
+                    android:padding="10dp"
                     android:text="@string/setting_about_app"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
-                <TextView
-                    android:id="@+id/setting_donation"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/donation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ripple_setting_item_bg"
+                    android:background="@drawable/ripple_bg"
+                    android:padding="10dp"
                     android:text="@string/setting_donation"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/setting_open_source_license"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ripple_setting_item_bg"
+                    android:background="@drawable/ripple_bg"
+                    android:padding="10dp"
                     android:text="@string/setting_open_source_license"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
-                <TextView
-                    android:id="@+id/setting_thanks_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ripple_setting_item_bg"
-                    android:text="@string/setting_thanksList"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-            </LinearLayout>
-
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/cardMargin"
@@ -233,24 +257,29 @@
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <com.leon.biuvideo.ui.widget.CardTitle
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:card_title="@string/setting_feedBack" />
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/setting_feed_back"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/setting_feedback"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/feedback"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ripple_setting_item_bg"
-                    android:text="@string/setting_submitFeedback"
+                    android:background="@drawable/ripple_bg"
+                    android:padding="10dp"
+                    android:text="@string/setting_submit_feed_back"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
-            </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </ScrollView>
 
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

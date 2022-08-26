@@ -15,6 +15,7 @@
             style="@style/Cover"
             android:layout_width="170dp"
             android:layout_height="100dp"
+            android:foreground="@drawable/res_item_fade"
             app:shapeAppearance="@style/Cover"
             tools:src="@drawable/lsp" />
 
@@ -24,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:layout_margin="10dp"
+            android:tint="@color/white"
             tools:src="@drawable/collect_b" />
 
     </FrameLayout>

@@ -98,7 +98,7 @@ data class History(
                 @SerializedName("epid")
                 val epid: Int,
                 @SerializedName("oid")
-                val oid: Int,
+                val oid: String,
                 @SerializedName("page")
                 val page: Int,
                 @SerializedName("part")

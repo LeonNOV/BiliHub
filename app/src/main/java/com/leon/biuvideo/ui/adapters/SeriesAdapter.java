@@ -3,7 +3,6 @@ package com.leon.biuvideo.ui.adapters;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
@@ -35,7 +34,7 @@ public class SeriesAdapter extends BaseViewBindingAdapter<Series.Data.Item, Item
     protected void onBindViewHolder(Series.Data.Item data, ItemTextBinding binding, int position) {
         binding.content.setText(String.format(Locale.CHINESE, "第%d期 %s", data.getNumber(), data.getSubject()));
         if (selectedIndex == position) {
-            binding.content.setTextColor(context.getColor(R.color.BiliBili_pink));
+            binding.content.setTextColor(context.getColor(R.color.pink));
         }
         binding.getRoot().setOnClickListener(v -> {
             if (onItemListener != null) {

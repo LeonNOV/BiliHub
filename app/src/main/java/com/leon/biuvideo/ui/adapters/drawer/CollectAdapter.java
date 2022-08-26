@@ -36,8 +36,8 @@ public class CollectAdapter extends BaseViewBindingAdapter<CollectFolder.Data.Co
         // 11：收藏文件夹
         // 21：合集文件夹
         if (data.getType() == 11) {
-            binding.getRoot().setOnClickListener(v -> startActivity(FolderDetailActivity.class, Map.of(FolderDetailActivity.PARAM_B, String.valueOf(data.getId()))));
             binding.icon.setImageResource(R.drawable.collect_a);
+            binding.getRoot().setOnClickListener(v -> startActivity(FolderDetailActivity.class, Map.of(FolderDetailActivity.PARAM_B, String.valueOf(data.getId()))));
         } else {
             binding.icon.setImageResource(R.drawable.collect_b);
             binding.getRoot().setOnClickListener(v -> startActivity(FolderDetailActivity.class, Map.of(FolderDetailActivity.PARAM_A, String.valueOf(data.getId()))));
