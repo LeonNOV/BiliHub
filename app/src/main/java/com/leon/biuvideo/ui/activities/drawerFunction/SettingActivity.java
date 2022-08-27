@@ -9,6 +9,7 @@ import com.leon.biuvideo.model.SettingModel;
 import com.leon.biuvideo.ui.activities.drawerFunction.setting.SettingQualityActivity;
 import com.leon.biuvideo.ui.dialogs.AboutDialog;
 import com.leon.biuvideo.ui.dialogs.DonationDialog;
+import com.leon.biuvideo.ui.dialogs.RecommendStyleDialog;
 import com.leon.biuvideo.utils.FileUtils;
 import com.leon.biuvideo.utils.PreferenceUtils;
 
@@ -23,6 +24,7 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding> {
     public static SettingModel settingModel;
     private Observer<String> videoQualityObserver;
     private Observer<String> liveQualityObserver;
+    private Observer<Integer> recommendStyleObserver;
 
     @Override
     public ActivitySettingBinding getViewBinding() {
@@ -41,6 +43,16 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding> {
         settingModel.getLiveQualityDisplay().observeForever(liveQualityObserver);
         settingModel.getLiveQualityDisplay().setValue("原画");
 
+        recommendStyleObserver = style -> {
+            if (style == 1) {
+                binding.recommend.setText("单列");
+            } else if (style == 2) {
+                binding.recommend.setText("双列");
+            }
+        };
+        settingModel.getRecommendStyle().observeForever(recommendStyleObserver);
+        settingModel.getRecommendStyle().setValue(PreferenceUtils.getRecommendStyle(context));
+
         binding.videoQualityContainer.setOnClickListener(v -> startActivity(SettingQualityActivity.class,
                 Map.of(SettingQualityActivity.PARAM_TYPE, SettingQualityActivity.PARAM_VIDEO)));
 
@@ -52,8 +64,16 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding> {
             FileUtils.clearAllCache(context);
             binding.cacheSize.setText(FileUtils.getTotalCacheSize(context));
         });
+
+        binding.imgModeSwitch.setChecked(PreferenceUtils.getImgMode(context));
+        binding.imgMode.setOnClickListener(v -> {
+            boolean isChecked = binding.imgModeSwitch.isChecked();
+            binding.imgModeSwitch.setChecked(!isChecked);
+            PreferenceUtils.setImgMode(context, !isChecked);
+        });
         binding.about.setOnClickListener(v -> new AboutDialog(context).show());
         binding.donation.setOnClickListener(v -> new DonationDialog(context).show());
+        binding.recommendStyle.setOnClickListener(v -> new RecommendStyleDialog(context).show());
     }
 
     @Override

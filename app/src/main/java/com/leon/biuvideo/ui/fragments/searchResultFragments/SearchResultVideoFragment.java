@@ -1,8 +1,5 @@
 package com.leon.biuvideo.ui.fragments.searchResultFragments;
 
-import android.os.Parcelable;
-import android.provider.MediaStore;
-
 import com.leon.biuvideo.base.baseFragment.BaseLazyFragment;
 import com.leon.biuvideo.beans.home.searchResult.SearchResultVideo;
 import com.leon.biuvideo.databinding.FragmentVideoResultBinding;

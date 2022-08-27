@@ -32,7 +32,7 @@ data class Partition(
         @SerializedName("subChannelId")
         val subChannelId: Int,
         @SerializedName("tid")
-        val tid: Int,
+        val tid: Int?,
         @SerializedName("url")
         val url: String
     ) : Parcelable

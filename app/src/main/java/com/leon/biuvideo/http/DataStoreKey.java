@@ -15,4 +15,7 @@ public class DataStoreKey {
 
     public static final String LIVE_QUALITY = "liveQuality";
     public static final String LIVE_QUALITY_DISPLAY = "liveQualityDisplay";
+
+    public static final String RECOMMEND_STYLE = "recommendStyle";
+    public static final String IMG_MODE = "imgMode";
 }

@@ -2,6 +2,7 @@ package com.leon.biuvideo.ui.activities.search;
 
 import androidx.fragment.app.Fragment;
 
+import com.leon.biuvideo.base.baseActivity.ActivityManager;
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
 import com.leon.biuvideo.databinding.ActivitySearchResultBinding;
 import com.leon.biuvideo.ui.fragments.searchResultFragments.SearchResultBangumiFragment;
@@ -34,8 +35,8 @@ public class SearchResultActivity extends BaseActivity<ActivitySearchResultBindi
         String keyword = params.getString(PARAM, "");
 
         binding.searchResultKeyword.setText(keyword);
+        binding.searchResultClear.setOnClickListener(v -> ActivityManager.startWithFinishActivity(context, SearchActivity.class));
         binding.searchResultCancel.setOnClickListener(v -> backPressed());
-        binding.searchResultClear.setOnClickListener(v -> startActivity(SearchActivity.class));
         binding.searchResultKeyword.setOnClickListener(v -> backPressed());
 
         /*

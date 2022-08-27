@@ -11,7 +11,6 @@ import com.leon.biuvideo.databinding.ItemPartitionHomeRecommendBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.ui.widget.LinearItemDecoration;
 import com.leon.biuvideo.ui.widget.loader.RecyclerViewLoader;
 import com.leon.biuvideo.utils.ViewUtils;
 
@@ -60,7 +59,7 @@ public class PartitionHomeRecommendAdapter extends BaseViewBindingAdapter<String
         binding.refresh.setOnClickListener(v -> reload(loader, ridList.get(position)));
         binding.more.setOnClickListener(v -> {
             if (onMoveToPage != null) {
-                onMoveToPage.onMove(ridList.get(position));
+                onMoveToPage.onMove(position);
             }
         });
         binding.name.setText(data);

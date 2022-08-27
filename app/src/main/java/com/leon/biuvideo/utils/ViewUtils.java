@@ -28,6 +28,7 @@ import androidx.viewbinding.ViewBinding;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapEncoder;
@@ -204,12 +205,11 @@ public class ViewUtils {
     }
 
     public static void setImg(Context context, ImageView imageView, String imgUrl) {
-        Glide
-                .with(context)
-                .load(imgUrl)
-                .thumbnail(0.2f)
-                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                .into(imageView);
+        RequestBuilder<Drawable> builder = Glide.with(context).load(imgUrl);
+        if (!PreferenceUtils.getImgMode(context)) {
+            builder = builder.thumbnail(0.2f);
+        }
+        builder.diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).into(imageView);
     }
 
     /**

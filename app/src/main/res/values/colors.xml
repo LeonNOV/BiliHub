@@ -14,7 +14,7 @@
     <color name="pink">#FB7299</color>
     <color name="gray">#545555</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#FFFFFF</color>
 
     <!-- 普通颜色资源-2 -->
     <color name="warn_dialog_cancel_color">#bdbdbd</color>

@@ -88,7 +88,7 @@ data class PartitionData(
         @SerializedName("is_union_video")
         val isUnionVideo: Int,
         @SerializedName("mid")
-        val mid: Int,
+        val mid: String,
         @SerializedName("pic")
         val pic: String,
         @SerializedName("play")

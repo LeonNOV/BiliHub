@@ -123,6 +123,7 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
     private void setVideoResource(VideoResourceWrap videoResourceWrap) {
         Log.d(TAG, "setVideoResource: " + videoResourceWrap);
 
+        // todo 获取VIP等视频时会出现NPE
         if (isPgc) {
             new ApiHelper<>(httpApi.getPgcVideoStream(videoResourceWrap.getBvid(), videoResourceWrap.getCid(), videoResourceWrap.getQuality()))
                     .setOnResult(pgcStream -> setVideoStream(pgcStream.getResult().getQuality(), pgcStream.getResult().getSupportFormats(),

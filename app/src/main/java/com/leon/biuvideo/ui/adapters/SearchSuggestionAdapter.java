@@ -31,8 +31,7 @@ public class SearchSuggestionAdapter extends BaseViewBindingAdapter<SearchSugges
     @Override
     protected void onBindViewHolder(SearchSuggestion.Result.Tag data, ItemSearchSuggestionBinding binding, int position) {
         binding.item.setText(data.getTerm());
-        binding.item.setOnClickListener(v -> {
-            ActivityManager.startActivity(context, SearchResultActivity.class, Map.of("keyword", data.getValue()));
-        });
+        binding.item.setOnClickListener(v -> ActivityManager.startWithFinishActivity(context,
+                SearchResultActivity.class, Map.of(SearchResultActivity.PARAM, data.getValue())));
     }
 }

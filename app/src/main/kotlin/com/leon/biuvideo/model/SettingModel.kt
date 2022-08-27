@@ -25,4 +25,11 @@ class SettingModel : ViewModel() {
     val liveQualityDisplay: MutableLiveData<String> by lazy {
         MutableLiveData<String>()
     }
+
+    /**
+     * 已选样式
+     */
+    val recommendStyle: MutableLiveData<Int> by lazy {
+        MutableLiveData<Int>()
+    }
 }

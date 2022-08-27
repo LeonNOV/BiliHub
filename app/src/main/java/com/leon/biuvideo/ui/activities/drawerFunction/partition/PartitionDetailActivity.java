@@ -11,6 +11,7 @@ import com.leon.biuvideo.ui.fragments.drawerFragments.partition.PartitionHomeFra
 import com.leon.biuvideo.utils.ViewUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -35,20 +36,22 @@ public class PartitionDetailActivity extends BaseActivity<ActivityPartitionDetai
         int pageCount = partition.getSubs().size();
 
         List<Integer> ridList = new ArrayList<>(pageCount);
-        String[] titles = new String[pageCount + 1];
-        titles[0] = "推荐";
+        List<String> titleList = new ArrayList<>(pageCount);
+        String[] tabTitles = new String[pageCount + 1];
+        tabTitles[0] = "推荐";
 
         List<Fragment> fragments = new ArrayList<>(pageCount);
         for (int i = 0; i < pageCount; i++) {
             Partition.Sub sub = partition.getSubs().get(i);
-
-            fragments.add(new PartitionFragment(sub.getTid()));
-
-            titles[i + 1] = sub.getName();
-            ridList.add(sub.getTid());
+            if (sub.getTid() != null) {
+                fragments.add(new PartitionFragment(sub.getTid()));
+                titleList.add(sub.getName());
+                ridList.add(sub.getTid());
+                tabTitles[i + 1] = sub.getName();
+            }
         }
-        fragments.add(0, new PartitionHomeFragment(ridList, titles, binding.content.viewPager));
+        fragments.add(0, new PartitionHomeFragment(ridList, titleList, binding.content.viewPager));
 
-        ViewUtils.initTabLayout(this, binding.content.tabLayout, binding.content.viewPager, fragments, titles);
+        ViewUtils.initTabLayout(this, binding.content.tabLayout, binding.content.viewPager, fragments, tabTitles);
     }
 }

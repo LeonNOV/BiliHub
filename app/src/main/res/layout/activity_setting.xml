@@ -42,7 +42,7 @@
                     android:textStyle="bold" />
 
                 <RelativeLayout
-                    android:id="@+id/imgOriginalMode"
+                    android:id="@+id/imgMode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/ripple_bg"
@@ -58,12 +58,11 @@
                         tools:ignore="RelativeOverlap" />
 
                     <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/setting_imgOriginalModel_switch"
+                        android:id="@+id/imgModeSwitch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:checked="false"
                         android:clickable="false" />
 
                 </RelativeLayout>

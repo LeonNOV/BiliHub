@@ -11,10 +11,8 @@ import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.biuvideo.beans.home.channel.UserChannelCategory;
 import com.leon.biuvideo.databinding.ItemChannelBinding;
 import com.leon.biuvideo.ui.activities.drawerFunction.channel.ChannelDetailActivity;
-import com.leon.biuvideo.utils.ValueUtils;
 import com.leon.biuvideo.utils.ViewUtils;
 
-import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -43,6 +41,5 @@ public class UserChannelAdapter extends BaseViewBindingAdapter<UserChannelCatego
 
         ViewUtils.setImg(context, binding.face, data.getCover());
         binding.name.setText(data.getName());
-        binding.subscribe.setText(String.format(Locale.CHINESE, "订阅 %s", ValueUtils.generateCN(data.getSubscribedCount())));
     }
 }

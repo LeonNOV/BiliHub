@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.base.baseAdapter.BaseViewBindingAdapter;
@@ -43,8 +42,5 @@ public class RelationDetailAdapter extends BaseViewBindingAdapter<RelationDetail
             binding.mark.setVisibility(View.VISIBLE);
             binding.mark.setImageResource(verifyType == 0 ? R.drawable.ic_person_verify : R.drawable.ic_official_verify);
         }
-        binding.action.setOnClickListener(v -> {
-            Toast.makeText(context, "开发中…", Toast.LENGTH_SHORT).show();
-        });
     }
 }

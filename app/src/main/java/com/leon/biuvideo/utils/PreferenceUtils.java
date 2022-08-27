@@ -31,4 +31,20 @@ public class PreferenceUtils {
         DataStoreUtils.INSTANCE.putData(context, DataStoreKey.LIVE_QUALITY, qn);
         DataStoreUtils.INSTANCE.putData(context, DataStoreKey.LIVE_QUALITY_DISPLAY, display);
     }
+
+    public static int getRecommendStyle(Context context) {
+        return DataStoreUtils.INSTANCE.getData(context, DataStoreKey.RECOMMEND_STYLE, 1);
+    }
+
+    public static void setRecommendStyle(Context context, int column) {
+        DataStoreUtils.INSTANCE.putData(context, DataStoreKey.RECOMMEND_STYLE, column);
+    }
+
+    public static boolean getImgMode(Context context) {
+        return DataStoreUtils.INSTANCE.getData(context, DataStoreKey.IMG_MODE, false);
+    }
+
+    public static void setImgMode(Context context, boolean isOriginal) {
+        DataStoreUtils.INSTANCE.putData(context, DataStoreKey.IMG_MODE, isOriginal);
+    }
 }

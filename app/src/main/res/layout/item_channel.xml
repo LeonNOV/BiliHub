@@ -1,109 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.mcxtzhang.swipemenulib.SwipeMenuLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    style="@style/ItemStyle"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/round_bg"
-    android:clickable="true"
-    android:focusable="true"
-    android:orientation="vertical">
+    android:layout_height="84dp"
+    android:background="@drawable/ripple_bg">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/container"
-        style="@style/ItemStyle"
-        android:layout_width="match_parent"
-        android:layout_height="84dp"
-        android:background="@drawable/ripple_bg">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/face"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_centerVertical="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/lsp" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/face"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_centerVertical="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/lsp" />
-
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:orientation="vertical">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                tools:text="漫展" />
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/extraContainer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/extraA"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/infoColor"
-                    android:textSize="12sp"
-                    tools:text="11.5万个视频" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/extraB"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:textColor="@color/infoColor"
-                    android:textSize="12sp"
-                    tools:text="831个精选视频" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-        </FrameLayout>
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <!--<androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/expanded"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/ripple_bg"
-        android:gravity="center"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="点击展开查看预览"
-            android:textColor="@color/infoColor"
-            android:textSize="13sp" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="16dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/expand_more"
-            android:tint="@color/infoColor" />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>-->
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/subscribe"
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="@drawable/ripple_bg"
-        android:backgroundTint="@color/theme_tab_indicator"
-        android:gravity="center"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        tools:ignore="RelativeOverlap"
-        tools:text="订阅39.5万" />
+        android:layout_marginStart="10dp"
+        android:orientation="vertical">
 
-</com.mcxtzhang.swipemenulib.SwipeMenuLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            tools:text="漫展" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/extraContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/extraA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/infoColor"
+                android:textSize="12sp"
+                tools:text="11.5万个视频" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/extraB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:textColor="@color/infoColor"
+                android:textSize="12sp"
+                tools:text="831个精选视频" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </FrameLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

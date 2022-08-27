@@ -39,6 +39,8 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
      */
     private boolean isFirstInsertFlag = false;
 
+    private boolean isEnabled = true;
+
     private final RefreshContentBinding binding;
     private final BaseViewBindingAdapter<B, ? extends ViewBinding> adapter;
 
@@ -167,7 +169,7 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
                     binding.empty.container.setVisibility(View.VISIBLE);
                 }
 
-                closeSmart();
+                toggleSmart();
             }
         }
     }
@@ -193,11 +195,12 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
     }
 
     /**
-     * 关闭刷新和加载控件
+     * 关闭/开启 刷新和加载控件
      */
-    public void closeSmart() {
-        binding.container.container.setEnableRefresh(false);
-        binding.container.container.setEnableLoadMore(false);
+    public void toggleSmart() {
+        isEnabled = !isEnabled;
+
+        binding.container.container.setEnableLoadMore(isEnabled);
     }
 
     /**
@@ -227,6 +230,9 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
      * @param updateInterface updateInterface
      */
     public PaginationLoader<T, B> setUpdateInterface(UpdateInterface<T> updateInterface) {
+        if (updateInterface != null && !isEnabled) {
+            toggleSmart();
+        }
         this.updateInterface = updateInterface;
 
         return this;

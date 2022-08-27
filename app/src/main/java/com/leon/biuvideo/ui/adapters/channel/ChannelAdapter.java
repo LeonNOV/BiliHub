@@ -38,6 +38,5 @@ public class ChannelAdapter extends BaseViewBindingAdapter<ChannelData.Data.Arch
         binding.name.setText(data.getName());
         binding.extraA.setText(String.format(Locale.CHINESE, "%s个视频", data.getArchiveCount()));
         binding.extraB.setText(String.format(Locale.CHINESE, "%s个精选视频", ValueUtils.generateCN(data.getFeaturedCount())));
-        binding.subscribe.setText(String.format(Locale.CHINESE, "订阅 %s", ValueUtils.generateCN(data.getSubscribedCount())));
     }
 }
