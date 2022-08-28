@@ -32,7 +32,7 @@ public class SearchResultBangumiFragment extends BaseLazyFragment<FragmentResult
 
     @Override
     protected void initView() {
-        httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
+        httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
         loader = new PaginationLoader<>(binding.content, new SearchResultBangumiAdapter(context));
         loader.setGuide(searchResultMedia -> searchResultMedia.getData().getResult());
         loader.setUpdateInterface(loadType -> httpApi.getSearchResultBangumi(++pageNum, keyword));

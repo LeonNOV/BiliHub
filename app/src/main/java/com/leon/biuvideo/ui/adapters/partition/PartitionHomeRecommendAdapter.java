@@ -15,7 +15,6 @@ import com.leon.biuvideo.ui.widget.loader.RecyclerViewLoader;
 import com.leon.biuvideo.utils.ViewUtils;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 /**
@@ -36,7 +35,7 @@ public class PartitionHomeRecommendAdapter extends BaseViewBindingAdapter<String
     public PartitionHomeRecommendAdapter(Context context, List<Integer> ridList) {
         super(context);
         this.ridList = ridList;
-        this.httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, HttpApi.DEFAULT_COOKIE)).getHttpApi();
+        this.httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
     }
 
     @Override

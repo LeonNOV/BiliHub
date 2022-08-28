@@ -13,11 +13,11 @@ import com.leon.biuvideo.http.ApiHelper;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.model.VideoPlayerModel;
 import com.leon.biuvideo.ui.activities.publicActivities.UserActivity;
 import com.leon.biuvideo.ui.adapters.video.MediaInfoRecommendAdapter;
 import com.leon.biuvideo.ui.adapters.video.VideoEpisodeAdapter;
+import com.leon.biuvideo.utils.PreferenceUtils;
 import com.leon.biuvideo.utils.ValueUtils;
 import com.leon.biuvideo.utils.ViewUtils;
 
@@ -83,14 +83,16 @@ public class MediaVideoInfoFragment extends BaseFragment<FragmentMediaVideoInfoB
         binding.favoriteStr.setText(ValueUtils.generateCN(data.getView().getStat().getFavorite()));
         binding.shareStr.setText(ValueUtils.generateCN(data.getView().getStat().getShare()));
 
-        new ApiHelper<>(new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE))
-                .getHttpApi()
-                .getVideoRelation(data.getView().getBvid()))
-                .setOnResult(videoRelation -> {
-                    binding.likeImg.setSelected(videoRelation.getData().getLike());
-                    binding.coinImg.setSelected(videoRelation.getData().getCoin() > 0);
-                    binding.favoriteImg.setSelected(videoRelation.getData().getFavorite());
-                }).doIt();
+        if (PreferenceUtils.getLoginStatus(context)) {
+            new ApiHelper<>(new RetrofitClient(BaseUrl.API, context)
+                    .getHttpApi()
+                    .getVideoRelation(data.getView().getBvid()))
+                    .setOnResult(videoRelation -> {
+                        binding.likeImg.setSelected(videoRelation.getData().getLike());
+                        binding.coinImg.setSelected(videoRelation.getData().getCoin() > 0);
+                        binding.favoriteImg.setSelected(videoRelation.getData().getFavorite());
+                    }).doIt();
+        }
 
         MediaInfoRecommendAdapter recommendAdapter = new MediaInfoRecommendAdapter(context);
         recommendAdapter.appendHead(data.getRelated());

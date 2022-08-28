@@ -8,7 +8,6 @@ import com.leon.biuvideo.databinding.ActivityWatchLaterBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.adapters.drawer.WatchLaterAdapter;
 import com.leon.biuvideo.ui.widget.loader.RecyclerViewLoader;
 
@@ -33,7 +32,7 @@ public class WatchLaterActivity extends BaseActivity<ActivityWatchLaterBinding> 
         RecyclerViewLoader<WatchLater, WatchLater.Data.WatchLaterData> loader = new RecyclerViewLoader<>(binding.content, new WatchLaterAdapter(context));
         loader
                 .setGuide(watchLater -> watchLater.getData().getList())
-                .setObservable(new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi().getUserWatchLater())
+                .setObservable(new RetrofitClient(BaseUrl.API, context).getHttpApi().getUserWatchLater())
                 .obtain(false);
     }
 }

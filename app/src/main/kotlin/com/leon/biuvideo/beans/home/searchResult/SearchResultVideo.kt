@@ -105,7 +105,7 @@ data class SearchResultVideo(
             @SerializedName("like")
             val like: Int,
             @SerializedName("mid")
-            val mid: Int,
+            val mid: String,
             @SerializedName("pic")
             val pic: String,
             @SerializedName("play")

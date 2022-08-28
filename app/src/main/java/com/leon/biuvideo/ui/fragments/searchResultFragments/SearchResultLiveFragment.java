@@ -34,7 +34,7 @@ public class SearchResultLiveFragment extends BaseLazyFragment<FragmentResultLiv
 
     @Override
     protected void initView() {
-        httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
+        httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
         loader = new PaginationLoader<>(binding.content, new SearchResultLiveAdapter(context), new GridLayoutManager(context, 2));
         loader.setGuide(searchResultLive -> searchResultLive.getData().getResult().getLiveRoom());
         loader.setUpdateInterface(loadType -> httpApi.getSearchResultLive(++pageNum, keyword, null, null));

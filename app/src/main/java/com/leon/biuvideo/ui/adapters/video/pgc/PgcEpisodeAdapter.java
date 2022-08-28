@@ -18,6 +18,7 @@ import com.leon.biuvideo.databinding.ItemPgcEpisodeBinding;
 import com.leon.biuvideo.http.Quality;
 import com.leon.biuvideo.model.VideoPlayerModel;
 import com.leon.biuvideo.ui.widget.player.PlayerController;
+import com.leon.biuvideo.utils.PreferenceUtils;
 import com.leon.biuvideo.utils.ViewUtils;
 import com.leon.biuvideo.wraps.VideoResourceWrap;
 
@@ -61,9 +62,7 @@ public class PgcEpisodeAdapter extends BaseViewBindingAdapter<PgcDetail.Result.E
                 videoPlayerModel.getVideoPgcEpisode().setValue(data.getId());
                 String epIndex = getEpIndex(data);
                 videoPlayerModel.getVideoTitleDisplay().setValue("".equals(data.getLongTitle()) ? epIndex : epIndex + data.getLongTitle());
-
-                // todo 待替换为用户默认Quality
-                videoPlayerModel.getVideoResource().setValue(new VideoResourceWrap(data.getBvid(), data.getCid(), Quality.Q80));
+                videoPlayerModel.getVideoResource().setValue(new VideoResourceWrap(data.getBvid(), data.getCid(), PreferenceUtils.getVideoQuality(context)));
 
                 PgcDetail.Result.Episode.ItemState itemState = data.getItemState();
                 itemState.setEpColor(context.getColor(R.color.blue));

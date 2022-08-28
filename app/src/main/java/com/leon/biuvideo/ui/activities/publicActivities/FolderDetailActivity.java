@@ -6,20 +6,16 @@ import com.leon.biuvideo.beans.account.FolderDetailMedia;
 import com.leon.biuvideo.beans.account.FavoriteFolderDetail;
 import com.leon.biuvideo.databinding.ActivityFolderDetailBinding;
 import com.leon.biuvideo.http.BaseUrl;
-import com.leon.biuvideo.http.DataStoreKey;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.adapters.drawer.FolderDetailMediaAdapter;
 import com.leon.biuvideo.ui.widget.loader.PaginationLoader;
-import com.leon.biuvideo.utils.DataStoreUtils;
 import com.leon.biuvideo.utils.ValueUtils;
 import com.leon.biuvideo.utils.ViewUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 /**
  * @Author Leon
@@ -54,8 +50,7 @@ public class FolderDetailActivity extends BaseActivity<ActivityFolderDetailBindi
     }
 
     private void initContent() {
-//        httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, DataStoreUtils.INSTANCE.getData(context, DataStoreKey.COOKIE, HttpApi.DEFAULT_COOKIE))).getHttpApi();
-        httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
+        httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
         if (seasonId != null) {
             new Col(new PaginationLoader<>(binding.content, new FolderDetailMediaAdapter(context)));
         } else if (mediaId != null) {

@@ -13,6 +13,7 @@ import com.leon.biuvideo.databinding.ItemVideoEpisodeBinding;
 import com.leon.biuvideo.http.Quality;
 import com.leon.biuvideo.model.VideoPlayerModel;
 import com.leon.biuvideo.ui.widget.player.PlayerController;
+import com.leon.biuvideo.utils.PreferenceUtils;
 import com.leon.biuvideo.utils.ValueUtils;
 import com.leon.biuvideo.utils.ViewUtils;
 import com.leon.biuvideo.wraps.VideoResourceWrap;
@@ -42,9 +43,7 @@ public class VideoEpisodeAdapter extends BaseViewBindingAdapter<VideoDetail.Data
         binding.getRoot().setOnClickListener(view -> {
             if (onSelectedListener != null && selectedPosition != position) {
                 videoPlayerModel.getVideoTitleDisplay().setValue(data.getPart());
-
-                //todo 此处清晰度需为用户默认指定清晰度
-                videoPlayerModel.getVideoResource().setValue(new VideoResourceWrap(null, data.getCid(), Quality.Q80));
+                videoPlayerModel.getVideoResource().setValue(new VideoResourceWrap(null, data.getCid(), PreferenceUtils.getVideoQuality(context)));
 
                 VideoDetail.Data.View.Page.ItemState itemState = data.getItemState();
                 itemState.setItemColor(context.getColor(R.color.blue));

@@ -6,11 +6,8 @@ import com.leon.biuvideo.databinding.PagePaginationBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.adapters.drawer.relation.RelationDetailAdapter;
 import com.leon.biuvideo.ui.widget.loader.PaginationLoader;
-
-import java.util.Map;
 
 /**
  * @Author Leon
@@ -32,7 +29,7 @@ public class RelationDetailActivity extends BaseActivity<PagePaginationBinding> 
         String tagId = params.getString(PARAM_A);
         binding.topBar.setTopBarTitle(params.getString(PARAM_B));
 
-        HttpApi httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
+        HttpApi httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
         PaginationLoader<RelationDetail, RelationDetail.Data> loader = new PaginationLoader<>(binding.content, new RelationDetailAdapter(context));
         loader.setGuide(RelationDetail::getData);
         loader.setUpdateInterface(loadType -> httpApi.getUserRelationDetail(tagId, ++pageNum)).obtain();

@@ -6,7 +6,6 @@ import com.leon.biuvideo.databinding.ActivityHistoryBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.adapters.drawer.HistoryAdapter;
 import com.leon.biuvideo.ui.widget.loader.PaginationLoader;
 
@@ -28,7 +27,7 @@ public class HistoryActivity extends BaseActivity<ActivityHistoryBinding> {
 
     @Override
     protected void init() {
-        HttpApi httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
+        HttpApi httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
         PaginationLoader<History, History.Data.Data> loader = new PaginationLoader<>(binding.content, new HistoryAdapter(context));
         loader.setGuide(history -> {
             History.Data.Cursor cursor = history.getData().getCursor();

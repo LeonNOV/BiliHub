@@ -34,7 +34,7 @@ public class SearchResultCinephileFragment extends BaseLazyFragment<FragmentResu
 
     @Override
     protected void initView() {
-        httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
+        httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
         loader = new PaginationLoader<>(binding.content, new SearchResultFtAdapter(context));
         loader.setGuide(searchResultMedia -> searchResultMedia.getData().getResult());
         loader.setUpdateInterface(loadType -> httpApi.getSearchResultFt(++pageNum, keyword));

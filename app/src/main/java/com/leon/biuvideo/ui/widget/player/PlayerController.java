@@ -13,16 +13,9 @@ import androidx.annotation.Nullable;
 
 import com.leon.biuvideo.R;
 import com.leon.biuvideo.beans.publicBeans.resources.live.LiveInfo;
-import com.leon.biuvideo.beans.publicBeans.resources.video.VideoQuality;
 import com.leon.biuvideo.databinding.ComponentPlayerControllerBinding;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import xyz.doikki.videoplayer.controller.GestureVideoController;
-import xyz.doikki.videoplayer.controller.IControlComponent;
 import xyz.doikki.videoplayer.player.VideoView;
 import xyz.doikki.videoplayer.util.PlayerUtils;
 

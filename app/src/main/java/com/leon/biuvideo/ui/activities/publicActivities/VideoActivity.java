@@ -1,6 +1,7 @@
 package com.leon.biuvideo.ui.activities.publicActivities;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -8,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.appbar.AppBarLayout;
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
 import com.leon.biuvideo.beans.publicBeans.resources.video.PgcDetail;
+import com.leon.biuvideo.beans.publicBeans.resources.video.PgcStream;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoDetail;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoQuality;
 import com.leon.biuvideo.beans.publicBeans.resources.video.VideoStream;
@@ -17,19 +19,18 @@ import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.Quality;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.model.VideoPlayerModel;
 import com.leon.biuvideo.ui.fragments.videoFragments.MediaCommentsFragment;
 import com.leon.biuvideo.ui.fragments.videoFragments.MediaPgcInfoFragment;
 import com.leon.biuvideo.ui.fragments.videoFragments.MediaVideoInfoFragment;
 import com.leon.biuvideo.ui.widget.player.PlayerController;
+import com.leon.biuvideo.utils.PreferenceUtils;
 import com.leon.biuvideo.utils.ValueUtils;
 import com.leon.biuvideo.utils.ViewUtils;
 import com.leon.biuvideo.wraps.VideoResourceWrap;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import xyz.doikki.videoplayer.player.VideoView;
 
@@ -68,7 +69,7 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
             setVideoController();
             initObserver();
 
-            httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
+            httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
             if (TYPE_VIDEO.equals(params.getString(PARAM_TYPE))) {
                 this.isPgc = false;
                 new ApiHelper<>(httpApi.getVideoDetail(id)).setOnResult(this::setVideoInfo).doIt();
@@ -96,8 +97,7 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
     }
 
     private void setVideoInfo(VideoDetail videoDetail) {
-        //todo 此处清晰度需为用户默认指定清晰度
-        videoPlayerModel.getVideoResource().setValue(new VideoResourceWrap(null, videoDetail.getData().getView().getCid(), Quality.Q80));
+        videoPlayerModel.getVideoResource().setValue(new VideoResourceWrap(null, videoDetail.getData().getView().getCid(), PreferenceUtils.getVideoQuality(context)));
 
         VideoDetail.Data.View view = videoDetail.getData().getView();
 
@@ -121,13 +121,19 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
      * @param videoResourceWrap VideoResourceWrap
      */
     private void setVideoResource(VideoResourceWrap videoResourceWrap) {
-        Log.d(TAG, "setVideoResource: " + videoResourceWrap);
-
         // todo 获取VIP等视频时会出现NPE
         if (isPgc) {
             new ApiHelper<>(httpApi.getPgcVideoStream(videoResourceWrap.getBvid(), videoResourceWrap.getCid(), videoResourceWrap.getQuality()))
-                    .setOnResult(pgcStream -> setVideoStream(pgcStream.getResult().getQuality(), pgcStream.getResult().getSupportFormats(),
-                            pgcStream.getResult().getDurl().get(0).getUrl())).doIt();
+                    .setOnResult(pgcStream -> {
+                        List<PgcStream.Result.Durl> videoList = pgcStream.getResult().getDurl();
+                        if (!videoList.isEmpty()) {
+                            setVideoStream(pgcStream.getResult().getQuality(), pgcStream.getResult().getSupportFormats(), videoList.get(0).getUrl());
+                        } else {
+                            binding.player.release();
+                            Toast.makeText(context, "f**k~~~ 获取不到视频链接", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }).doIt();
             videoPlayerModel.getVideoRecommend().setValue(videoResourceWrap.getBvid());
         } else {
             new ApiHelper<>(httpApi.getVideoStream(id, videoResourceWrap.getCid(), videoResourceWrap.getQuality()))

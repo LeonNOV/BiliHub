@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.widget.SeekBar;
 
 import com.leon.biuvideo.http.HttpApi;
-import com.leon.biuvideo.http.TestValue;
 
 import java.io.IOException;
 import java.util.Map;
@@ -87,7 +86,7 @@ public class AudioController {
         try {
             mediaPlayer.setDataSource(context, Uri.parse(audioUrl),
 
-                    Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE,
+                    Map.of(HttpApi.COOKIE, PreferenceUtils.getCookie(context),
                             "User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36 Edg/86.0.622.51",
                             "Connection", "keep-alive",
                             "Referer", "https://www.bilibili.com/"));

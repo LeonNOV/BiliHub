@@ -17,7 +17,6 @@ import com.leon.biuvideo.databinding.DialogReplyDetailBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.activities.publicActivities.UserActivity;
 import com.leon.biuvideo.ui.adapters.ReplyAdapter;
 import com.leon.biuvideo.ui.widget.loader.PaginationLoader;
@@ -58,7 +57,7 @@ public class ReplyDetailDialog extends BottomSheetDialog {
         attributes.height = WindowManager.LayoutParams.MATCH_PARENT;
         window.setAttributes(attributes);
 
-        HttpApi httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
+        HttpApi httpApi = new RetrofitClient(BaseUrl.API, getContext()).getHttpApi();
         PaginationLoader<SubReply, SubReply.Data.Reply> loader = new PaginationLoader<>(binding.subReply, new ReplyAdapter<>(getContext(), true));
         loader.setGuide(subReply -> {
             if (pageNum == 1) {

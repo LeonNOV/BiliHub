@@ -6,7 +6,6 @@ import com.leon.biuvideo.databinding.PageRecyclerBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.adapters.drawer.relation.RelationTagsAdapter;
 import com.leon.biuvideo.ui.widget.loader.RecyclerViewLoader;
 
@@ -29,7 +28,7 @@ public class RelationActivity extends BaseActivity<PageRecyclerBinding> {
         RecyclerViewLoader<RelationTags, RelationTags.Data> loader = new RecyclerViewLoader<>(binding.content, new RelationTagsAdapter(context));
         loader
                 .setGuide(RelationTags::getData)
-                .setObservable(new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi().getUserRelationGroups())
+                .setObservable(new RetrofitClient(BaseUrl.API, context).getHttpApi().getUserRelationGroups())
                 .obtain(false);
     }
 }

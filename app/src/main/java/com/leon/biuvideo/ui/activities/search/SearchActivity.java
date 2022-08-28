@@ -95,7 +95,7 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding> {
         });
         loader
                 .setGuide(hotSearch -> hotSearch.getData().getTrending().getList())
-                .setObservable(new RetrofitClient(BaseUrl.API).getHttpApi().getHotSearch())
+                .setObservable(new RetrofitClient(BaseUrl.API, context).getHttpApi().getHotSearch())
                 .obtain(false);
     }
 
@@ -106,7 +106,7 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding> {
      */
     private void getSuggestion(String keyword) {
         if (httpApi == null) {
-            httpApi = new RetrofitClient(BaseUrl.SEARCH).getHttpApi();
+            httpApi = new RetrofitClient(BaseUrl.SEARCH, context).getHttpApi();
             loader = new RecyclerViewLoader<>(binding.searchSuggestion, new SearchSuggestionAdapter(context));
             loader.setGuide(searchSuggestion -> searchSuggestion.getResult().getTag());
         }

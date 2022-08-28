@@ -10,7 +10,6 @@ import com.leon.biuvideo.databinding.FragmentChannelBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.adapters.channel.ChannelAdapter;
 import com.leon.biuvideo.ui.adapters.channel.UserChannelAdapter;
 import com.leon.biuvideo.ui.widget.loader.PaginationLoader;
@@ -19,7 +18,6 @@ import com.leon.biuvideo.ui.widget.loader.RecyclerViewLoader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 /**
  * @Author Leon
@@ -65,7 +63,7 @@ public class ChannelFragment extends BaseLazyFragment<FragmentChannelBinding> {
 
                         return result;
                     })
-                    .setObservable(new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi().getUserChannelCategory())
+                    .setObservable(new RetrofitClient(BaseUrl.API, context).getHttpApi().getUserChannelCategory())
                     .obtain(false);
         } else {
             binding.count.setText(String.format(Locale.CHINESE, "共%s个频道", category.getChannelCount()));

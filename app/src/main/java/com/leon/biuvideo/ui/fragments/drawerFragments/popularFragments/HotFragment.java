@@ -7,13 +7,11 @@ import com.leon.biuvideo.databinding.RefreshContentBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.adapters.drawer.PopularAdapter;
 import com.leon.biuvideo.ui.widget.loader.PaginationLoader;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Author Leon
@@ -32,7 +30,7 @@ public class HotFragment extends BaseLazyFragment<RefreshContentBinding> {
 
     @Override
     protected void initView() {
-        httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
+        httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
         loader = new PaginationLoader<>(binding, new PopularAdapter(context));
         loader.setGuide(popularHot -> {
             List<PopularData> popularDataList = new ArrayList<>(popularHot.getData().getList().size());

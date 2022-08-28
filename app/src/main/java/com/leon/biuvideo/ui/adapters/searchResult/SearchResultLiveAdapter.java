@@ -2,6 +2,7 @@ package com.leon.biuvideo.ui.adapters.searchResult;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -45,7 +46,7 @@ public class SearchResultLiveAdapter extends BaseViewBindingAdapter<SearchResult
 
         binding.play.setText(data.getWatchedShow().getTextSmall());
         binding.tag.setText(data.getCateName());
-        binding.title.setText(data.getTitle());
+        binding.title.setText(Html.fromHtml(data.getTitle().replaceAll("<em class=\"keyword\">", "<font color=#fb7299>").replaceAll("</em>", "</font>"), Html.FROM_HTML_MODE_COMPACT));
         binding.author.setText(data.getUname());
     }
 }

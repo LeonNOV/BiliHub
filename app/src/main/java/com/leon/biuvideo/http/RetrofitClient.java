@@ -1,6 +1,10 @@
 package com.leon.biuvideo.http;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
+
+import com.leon.biuvideo.utils.PreferenceUtils;
 
 import java.util.Map;
 
@@ -21,6 +25,10 @@ public class RetrofitClient {
 
     public RetrofitClient(@BaseUrl String baseUrl) {
         createRetrofitClient(getClient(), baseUrl);
+    }
+
+    public RetrofitClient(@BaseUrl String baseUrl, Context context) {
+        this(baseUrl, Map.of(HttpApi.COOKIE, PreferenceUtils.getCookie(context)));
     }
 
     public RetrofitClient(@BaseUrl String baseUrl, Map<String, String> headers) {

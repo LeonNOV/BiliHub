@@ -16,7 +16,6 @@ import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.Quality;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.model.VideoPlayerModel;
 import com.leon.biuvideo.ui.adapters.video.pgc.PgcEpisodeAdapter;
 import com.leon.biuvideo.ui.adapters.video.pgc.PgcRecommendAdapter;
@@ -75,7 +74,7 @@ public class MediaPgcInfoFragment extends BaseFragment<FragmentMediaPgcInfoBindi
         };
         videoPlayerModel.getVideoPgcEpisode().observeForever(videoPgcEpisodeObserver);
 
-        httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
+        httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
         setInfoContent(data);
     }
 

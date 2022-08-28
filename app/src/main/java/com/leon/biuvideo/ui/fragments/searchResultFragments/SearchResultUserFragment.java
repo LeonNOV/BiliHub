@@ -34,7 +34,7 @@ public class SearchResultUserFragment extends BaseLazyFragment<FragmentResultUse
 
     @Override
     protected void initView() {
-        httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
+        httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
         loader = new PaginationLoader<>(binding.content, new SearchResultUserAdapter(context));
         loader.setGuide(searchResultUser -> searchResultUser.getData().getResult());
         loader.setUpdateInterface(loadType -> httpApi.getSearchResultUser(++pageNum, keyword, null, null, null));

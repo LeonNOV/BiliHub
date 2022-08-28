@@ -87,7 +87,7 @@ data class SearchResultUser(
             @SerializedName("level")
             val level: Int,
             @SerializedName("mid")
-            val mid: Int,
+            val mid: String,
             @SerializedName("official_verify")
             val officialVerify: OfficialVerify,
             @SerializedName("res")

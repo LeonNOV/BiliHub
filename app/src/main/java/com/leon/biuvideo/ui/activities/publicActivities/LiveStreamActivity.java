@@ -11,6 +11,7 @@ import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.model.LivePlayerModel;
 import com.leon.biuvideo.ui.widget.player.PlayerController;
+import com.leon.biuvideo.utils.PreferenceUtils;
 
 /**
  * @Author Leon
@@ -60,7 +61,7 @@ public class LiveStreamActivity extends BaseActivity<ActivityLiveStreamBinding> 
             binding.player.setVideoController(playerController);
         }).doIt();
 
-        getLiveResource(10000);
+        getLiveResource(PreferenceUtils.getLiveQuality(context));
     }
 
     private void getLiveResource(int qn) {

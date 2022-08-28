@@ -6,11 +6,9 @@ import com.leon.biuvideo.databinding.ComposeListBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.adapters.drawer.FolderAdapter;
 import com.leon.biuvideo.ui.widget.loader.RecyclerViewLoader;
-
-import java.util.Map;
+import com.leon.biuvideo.utils.PreferenceUtils;
 
 /**
  * @Author Leon
@@ -28,10 +26,10 @@ public class FolderListFragment extends BaseLazyFragment<ComposeListBinding> {
 
     @Override
     protected void initView() {
-        HttpApi httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
+        HttpApi httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
         loader = new RecyclerViewLoader<FavoriteFolder, FavoriteFolder.Data.Folder>(binding.getRoot(), new FolderAdapter(context))
                 .setGuide(favoriteFolder -> favoriteFolder.getData().getList())
-                .setObservable(httpApi.getFavoriteFolder(TestValue.MID));
+                .setObservable(httpApi.getFavoriteFolder(PreferenceUtils.getUid(context)));
     }
 
     @Override

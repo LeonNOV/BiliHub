@@ -13,8 +13,7 @@ import android.webkit.WebViewClient;
 
 import com.leon.biuvideo.base.baseActivity.BaseActivity;
 import com.leon.biuvideo.databinding.ActivityLoginBinding;
-import com.leon.biuvideo.http.DataStoreKey;
-import com.leon.biuvideo.utils.DataStoreUtils;
+import com.leon.biuvideo.utils.PreferenceUtils;
 import com.leon.biuvideo.utils.ViewUtils;
 
 import java.util.HashMap;
@@ -112,9 +111,9 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
                         backPressed();
                     }
 
-                    DataStoreUtils.INSTANCE.putData(context, DataStoreKey.COOKIE, cookieStr);
-                    DataStoreUtils.INSTANCE.putData(context, DataStoreKey.UID, cookieMap.get("DedeUserID"));
-                    DataStoreUtils.INSTANCE.putData(context, DataStoreKey.LOGIN_STATUS, true);
+                    PreferenceUtils.setCookie(context, cookieStr);
+                    PreferenceUtils.setUid(context, cookieMap.get("DedeUserID"));
+                    PreferenceUtils.setLoginStatus(context, true);
 
                     updateViewModel(true);
 

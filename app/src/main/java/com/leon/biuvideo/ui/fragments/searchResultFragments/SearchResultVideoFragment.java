@@ -9,6 +9,9 @@ import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
 import com.leon.biuvideo.ui.adapters.searchResult.SearchResultVideoAdapter;
 import com.leon.biuvideo.ui.widget.loader.PaginationLoader;
+import com.leon.biuvideo.utils.PreferenceUtils;
+
+import java.util.Map;
 
 /**
  * @Author Leon
@@ -38,7 +41,7 @@ public class SearchResultVideoFragment extends BaseLazyFragment<FragmentVideoRes
     @Override
     protected void initView() {
         adapter = new SearchResultVideoAdapter(context);
-        httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
+        httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
         loader = new PaginationLoader<>(binding.content, adapter);
         loader.setGuide(searchResultVideo -> searchResultVideo.getData().getResult());
         loader.setUpdateInterface(loadType -> httpApi.getSearchResultVideo(++pageNum, keyword, videoOrder, videoDuration, videoTids));

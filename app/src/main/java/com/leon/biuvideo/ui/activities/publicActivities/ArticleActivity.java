@@ -11,8 +11,8 @@ import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RequestData;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.utils.FileUtils;
+import com.leon.biuvideo.utils.PreferenceUtils;
 import com.leon.biuvideo.utils.ViewUtils;
 
 import org.jsoup.Jsoup;
@@ -55,7 +55,7 @@ public class ArticleActivity extends AsyncHttpActivity<ActivityArticleBinding, A
 
     @Override
     protected RequestData setRequestData() {
-        return new RequestData(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE));
+        return new RequestData(BaseUrl.API, Map.of(HttpApi.COOKIE, PreferenceUtils.getCookie(context)));
     }
 
     @Override
@@ -83,7 +83,7 @@ public class ArticleActivity extends AsyncHttpActivity<ActivityArticleBinding, A
      * @param uid   UID
      */
     private void getAuthorInfo(String uid) {
-        new ApiHelper<>(new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi().getUserInfo(uid))
+        new ApiHelper<>(new RetrofitClient(BaseUrl.API, context).getHttpApi().getUserInfo(uid))
                 .setOnResult(userInfo -> {
                     ViewUtils.setImg(context, binding.face, userInfo.getData().getFace());
                     binding.author.setText(userInfo.getData().getName());

@@ -18,10 +18,8 @@ import com.leon.biuvideo.beans.home.HomeRecommend;
 import com.leon.biuvideo.databinding.ActivityMainBinding;
 import com.leon.biuvideo.http.ApiHelper;
 import com.leon.biuvideo.http.BaseUrl;
-import com.leon.biuvideo.http.DataStoreKey;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.activities.drawerFunction.channel.ChannelActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.FavoriteActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.HistoryActivity;
@@ -32,12 +30,11 @@ import com.leon.biuvideo.ui.activities.drawerFunction.SettingActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.WatchLaterActivity;
 import com.leon.biuvideo.ui.activities.drawerFunction.partition.PartitionActivity;
 import com.leon.biuvideo.ui.activities.publicActivities.DownloadActivity;
-import com.leon.biuvideo.ui.activities.publicActivities.LiveStreamActivity;
-import com.leon.biuvideo.ui.activities.publicActivities.VideoActivity;
 import com.leon.biuvideo.ui.activities.search.SearchActivity;
 import com.leon.biuvideo.ui.adapters.HomeRecommendAdapter;
 import com.leon.biuvideo.ui.widget.loader.PaginationLoader;
 import com.leon.biuvideo.utils.DataStoreUtils;
+import com.leon.biuvideo.utils.PreferenceUtils;
 import com.leon.biuvideo.utils.ViewUtils;
 
 import java.util.Map;
@@ -72,48 +69,42 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
         setDrawerFunctionListener();
 
-        // todo 开发中不启用
-//        Boolean loginStatus = DataStoreUtils.INSTANCE.getData(DataStoreKey.LOGIN_STATUS, false);
-//        if (loginStatus) {
-//            refreshData();
-//        } else {
-//            initObserver();
-//        }
+        boolean loginStatus = PreferenceUtils.getLoginStatus(context);
+        if (loginStatus) {
+            refreshData();
+        } else {
+            initObserver();
+        }
 
-//        HttpApi httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
-//        PaginationLoader<HomeRecommend, HomeRecommend.Data.Item> loader = new PaginationLoader<>(binding.home.data, new HomeRecommendAdapter(context), new GridLayoutManager(context, 2));
-//        loader.enabledRefresh(true);
-//        loader.setGuide(homeRecommend -> homeRecommend.getData().getItem());
-//        loader.setUpdateInterface(loadType -> httpApi.getHomeRecommend());
-//        loader.firstObtain();
+        HttpApi httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
+        PaginationLoader<HomeRecommend, HomeRecommend.Data.Item> loader = new PaginationLoader<>(binding.home.data, new HomeRecommendAdapter(context), new GridLayoutManager(context, 2));
+        loader.enabledRefresh(true);
+        loader.setGuide(homeRecommend -> homeRecommend.getData().getItem());
+        loader.setUpdateInterface(loadType -> httpApi.getHomeRecommend());
+        loader.firstObtain();
     }
 
     /**
      * drawer function action
      */
     private void setDrawerFunctionListener() {
-        binding.drawer.popular.setOnClickListener(v -> startPage(PopularActivity.class, null));
-        binding.drawer.partition.setOnClickListener(v -> startPage(PartitionActivity.class, null));
-        binding.drawer.channel.setOnClickListener(v -> startPage(ChannelActivity.class, null));
-        binding.drawer.orders.setOnClickListener(v -> startPage(OrderActivity.class, null));
-        binding.drawer.favorites.setOnClickListener(v -> startPage(FavoriteActivity.class, null));
-        binding.drawer.later.setOnClickListener(v -> startPage(WatchLaterActivity.class, null));
-        binding.drawer.follows.setOnClickListener(v -> startPage(RelationActivity.class, null));
-        binding.drawer.history.setOnClickListener(v -> startPage(HistoryActivity.class, null));
-        binding.drawer.download.setOnClickListener(v -> startPage(DownloadActivity.class, null));
-        binding.drawer.settings.setOnClickListener(v -> startPage(SettingActivity.class, null));
+        binding.drawer.popular.setOnClickListener(v -> startPage(PopularActivity.class));
+        binding.drawer.partition.setOnClickListener(v -> startPage(PartitionActivity.class));
+        binding.drawer.channel.setOnClickListener(v -> startPage(ChannelActivity.class));
+        binding.drawer.orders.setOnClickListener(v -> startPage(OrderActivity.class));
+        binding.drawer.favorites.setOnClickListener(v -> startPage(FavoriteActivity.class));
+        binding.drawer.later.setOnClickListener(v -> startPage(WatchLaterActivity.class));
+        binding.drawer.follows.setOnClickListener(v -> startPage(RelationActivity.class));
+        binding.drawer.history.setOnClickListener(v -> startPage(HistoryActivity.class));
+        binding.drawer.download.setOnClickListener(v -> startPage(DownloadActivity.class));
+        binding.drawer.settings.setOnClickListener(v -> startPage(SettingActivity.class));
     }
 
     /**
      * start the DataListActivity
      */
-    private void startPage(Class<? extends BaseActivity<? extends ViewBinding>> targetClass, Map<String, String> params) {
-        if (params == null) {
-            startActivity(targetClass);
-        } else {
-            startActivity(targetClass, params);
-        }
-
+    private void startPage(Class<? extends BaseActivity<? extends ViewBinding>> targetClass) {
+        startActivity(targetClass);
         delayCloseDrawer();
     }
 
@@ -125,9 +116,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(1, r -> new Thread(r, "delayCloseDrawer"));
         }
 
-        scheduledThreadPoolExecutor.schedule(() -> {
-            binding.getRoot().closeDrawer(GravityCompat.START);
-        }, 800, TimeUnit.MILLISECONDS);
+        scheduledThreadPoolExecutor.schedule(() -> binding.getRoot().closeDrawer(GravityCompat.START), 800, TimeUnit.MILLISECONDS);
     }
 
     /**
@@ -144,7 +133,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                     model.getLoginStatus().removeObserver(this);
                     model = null;
                 }
-
             }
         });
     }
@@ -154,7 +142,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
      */
     private void refreshData() {
         new ApiHelper<>(new RetrofitClient(BaseUrl.API,
-                Map.of(HttpApi.COOKIE, DataStoreUtils.INSTANCE.getData(context, DataStoreKey.COOKIE, ""))).getHttpApi().getAccountInfo())
+                Map.of(HttpApi.COOKIE, PreferenceUtils.getCookie(context))).getHttpApi().getAccountInfo())
                 .setOnResult(accountNav -> {
                     // 0：获取成功，即登陆成功
                     // -101：获取失败，即登录失败

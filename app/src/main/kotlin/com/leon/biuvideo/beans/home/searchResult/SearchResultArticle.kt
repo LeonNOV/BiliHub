@@ -81,7 +81,7 @@ data class SearchResultArticle(
             @SerializedName("like")
             val like: Int,
             @SerializedName("mid")
-            val mid: Int,
+            val mid: String,
             @SerializedName("pub_time")
             val pubTime: Int,
             @SerializedName("rank_index")

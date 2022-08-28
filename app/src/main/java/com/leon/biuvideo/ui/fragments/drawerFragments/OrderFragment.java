@@ -6,13 +6,11 @@ import com.leon.biuvideo.databinding.PageFilterRefreshBinding;
 import com.leon.biuvideo.http.BaseUrl;
 import com.leon.biuvideo.http.HttpApi;
 import com.leon.biuvideo.http.RetrofitClient;
-import com.leon.biuvideo.http.TestValue;
 import com.leon.biuvideo.ui.adapters.user.UserOrderAdapter;
 import com.leon.biuvideo.ui.widget.loader.PaginationLoader;
 import com.leon.biuvideo.utils.filter.FilterAdapter;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Author Leon
@@ -60,7 +58,7 @@ public class OrderFragment extends BaseLazyFragment<PageFilterRefreshBinding> {
         binding.filter.setAdapter(filterAdapter);
 
         adapter = new UserOrderAdapter(context);
-        httpApi = new RetrofitClient(BaseUrl.API, Map.of(HttpApi.COOKIE, TestValue.TEST_COOKIE)).getHttpApi();
+        httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
         loader = new PaginationLoader<>(binding.content, adapter);
         loader.setGuide(userOrder -> userOrder.getData().getList());
         loader.setUpdateInterface(loadType -> httpApi.getUserOrder(type, followStatus, ++pageNum, mid));
