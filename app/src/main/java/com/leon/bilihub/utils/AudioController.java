@@ -3,13 +3,18 @@ package com.leon.bilihub.utils;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.SeekBar;
 
+import androidx.lifecycle.ViewModelProvider;
+
 import com.leon.bilihub.http.HttpApi;
+import com.leon.bilihub.model.AudioProgressModel;
+import com.leon.bilihub.wraps.AudioProgressWrap;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -40,6 +45,11 @@ public class AudioController {
     public static final int FINISHED = 3;
 
     /**
+     * 释放状态
+     */
+    public static final int RELEASED = 4;
+
+    /**
      * 播放状态
      */
     public static int PLAY_STAT = PREPARED_BEFORE;
@@ -52,8 +62,12 @@ public class AudioController {
     public int audioDuration = -1;
     private int bufferPosition = 0;
 
+    private final AudioProgressModel audioProgressModel;
+    private Handler progressHandler;
+
     public AudioController(Context context) {
         this.context = context;
+        audioProgressModel = new ViewModelProvider(ViewUtils.scanForActivity(context)).get(AudioProgressModel.class);
     }
 
     public void setAudioControllerCallback(AudioControllerCallback audioControllerCallback) {
@@ -65,23 +79,26 @@ public class AudioController {
             mediaPlayer = new MediaPlayer();
         }
 
-        ScheduledExecutorService executorService = new ScheduledThreadPoolExecutor(1, r -> new Thread(r, "audio_thread"));
-        executorService.scheduleAtFixedRate(() -> {
-            try {
-                if (audioControllerCallback != null && PLAY_STAT == PLAYING) {
-                    int currentPosition = mediaPlayer.getCurrentPosition();
-                    int duration = mediaPlayer.getDuration();
-
-                    if (audioDuration == -1) {
-                        audioDuration = duration;
-                    }
-
-                    audioControllerCallback.progress(currentPosition, bufferPosition, duration);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+        new ScheduledThreadPoolExecutor(1, r -> new Thread(r, "audio_thread")).scheduleWithFixedDelay(() -> {
+            if (PLAY_STAT != RELEASED) {
+                progressHandler.sendEmptyMessage(1);
             }
         }, 5, 500, TimeUnit.MILLISECONDS);
+
+        progressHandler = new Handler(Looper.getMainLooper(), msg -> {
+            if (msg.what == 1 && PLAY_STAT == PLAYING) {
+                int currentPosition = mediaPlayer.getCurrentPosition();
+                int duration = mediaPlayer.getDuration();
+
+                if (audioDuration == -1) {
+                    audioDuration = duration;
+                }
+
+                audioProgressModel.getAudioProgress().setValue(new AudioProgressWrap(currentPosition, bufferPosition, duration));
+            }
+
+            return true;
+        });
 
         try {
             mediaPlayer.setDataSource(context, Uri.parse(audioUrl),
@@ -123,6 +140,9 @@ public class AudioController {
 
     public void release() {
         if (mediaPlayer != null) {
+            PLAY_STAT = RELEASED;
+
+            mediaPlayer.pause();
             mediaPlayer.release();
         }
     }
@@ -147,15 +167,6 @@ public class AudioController {
         void finished();
 
         /**
-         * 进度监听
-         *
-         * @param currentPosition 当前进度
-         * @param bufferPosition  缓冲进度
-         * @param duration        总进度
-         */
-        void progress(int currentPosition, int bufferPosition, int duration);
-
-        /**
          * 播放状态
          *
          * @param stat stat
@@ -170,7 +181,8 @@ public class AudioController {
          * @param seekBar seekBar
          */
         @Override
-        default void onStartTrackingTouch(SeekBar seekBar) {}
+        default void onStartTrackingTouch(SeekBar seekBar) {
+        }
 
         /**
          * do something
@@ -178,6 +190,7 @@ public class AudioController {
          * @param seekBar seekBar
          */
         @Override
-        default void onStopTrackingTouch(SeekBar seekBar){}
+        default void onStopTrackingTouch(SeekBar seekBar) {
+        }
     }
 }

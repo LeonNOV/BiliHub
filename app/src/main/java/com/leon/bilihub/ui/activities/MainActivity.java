@@ -29,6 +29,7 @@ import com.leon.bilihub.ui.activities.drawerFunction.PopularActivity;
 import com.leon.bilihub.ui.activities.drawerFunction.SettingActivity;
 import com.leon.bilihub.ui.activities.drawerFunction.WatchLaterActivity;
 import com.leon.bilihub.ui.activities.drawerFunction.partition.PartitionActivity;
+import com.leon.bilihub.ui.activities.publicActivities.AudioActivity;
 import com.leon.bilihub.ui.activities.publicActivities.DownloadActivity;
 import com.leon.bilihub.ui.activities.search.SearchActivity;
 import com.leon.bilihub.ui.adapters.HomeRecommendAdapter;
@@ -60,6 +61,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     protected void init() {
         binding.home.userFace.setOnClickListener(v -> binding.getRoot().openDrawer(GravityCompat.START));
         binding.home.search.setOnClickListener(v -> startActivity(SearchActivity.class));
+        binding.home.search.setOnClickListener(v -> startActivity(AudioActivity.class, Map.of(AudioActivity.PARAM, "653250")));
         binding.drawer.userContainer.setOnTouchListener((v, event) -> ViewUtils.zoom(event, binding.drawer.userContainer));
         binding.drawer.userContainer.setOnClickListener(v -> {
             startActivity(LoginActivity.class);

@@ -26,6 +26,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:padding="@dimen/topBarBackPadding"
             android:layout_marginTop="10dp"
+            android:tint="@color/white"
             android:layout_marginBottom="10dp"
             android:src="@drawable/ic_back" />
 
@@ -84,6 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
                     android:textSize="15sp"
                     tools:text="UserName" />
 
@@ -102,7 +104,7 @@
                     android:layout_below="@id/seekBar"
                     android:layout_marginTop="5dp"
                     android:text="00:00"
-                    android:textColor="@color/infoColor" />
+                    android:textColor="@color/white" />
 
                 <SeekBar
                     android:id="@+id/seekBar"
@@ -127,7 +129,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="5dp"
                     android:text="00:00"
-                    android:textColor="@color/infoColor" />
+                    android:textColor="@color/white" />
 
             </RelativeLayout>
 
@@ -144,6 +146,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="50dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="10dp"
                     android:src="@drawable/audio_download" />
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -159,6 +162,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
+                    android:padding="10dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:src="@drawable/audio_play_video" />
 

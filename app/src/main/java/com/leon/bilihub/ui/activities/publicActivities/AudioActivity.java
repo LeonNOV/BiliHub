@@ -2,6 +2,11 @@ package com.leon.bilihub.ui.activities.publicActivities;
 
 import android.widget.Toast;
 
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.leon.bilihub.base.baseActivity.AsyncHttpActivity;
 import com.leon.bilihub.beans.publicBeans.resources.audio.AudioInfo;
 import com.leon.bilihub.databinding.ActivityAudioBinding;
@@ -9,22 +14,28 @@ import com.leon.bilihub.http.ApiHelper;
 import com.leon.bilihub.http.BaseUrl;
 import com.leon.bilihub.http.RequestData;
 import com.leon.bilihub.http.RetrofitClient;
+import com.leon.bilihub.model.AudioProgressModel;
 import com.leon.bilihub.utils.AudioController;
+import com.leon.bilihub.utils.ViewUtils;
+import com.leon.bilihub.wraps.AudioProgressWrap;
 
 import java.util.Map;
 
 import io.reactivex.rxjava3.core.Observable;
+import jp.wasabeef.glide.transformations.BlurTransformation;
 
 /**
  * @Author Leon
  * @Time 2022/6/19
  * @Desc 音频播放界面
- * todo 待完善
  */
 public class AudioActivity extends AsyncHttpActivity<ActivityAudioBinding, AudioInfo> implements AudioController.AudioControllerCallback {
     public static final String PARAM = "sid";
     private String sid;
     private AudioController audioController;
+
+    private AudioProgressModel progressModel;
+    private Observer<AudioProgressWrap> audioProgressObserver;
 
     @Override
     public ActivityAudioBinding getViewBinding() {
@@ -37,7 +48,30 @@ public class AudioActivity extends AsyncHttpActivity<ActivityAudioBinding, Audio
         binding.back.setOnClickListener(v -> backPressed());
         binding.like.setOnClickListener(v -> Toast.makeText(context, "开发中…", Toast.LENGTH_SHORT).show());
         binding.control.setOnClickListener(v -> audioController.setPlayerStat());
-        binding.download.setOnClickListener(v -> Toast.makeText(context, "download", Toast.LENGTH_SHORT).show());
+        binding.download.setOnClickListener(v -> Toast.makeText(context, "开发中…", Toast.LENGTH_SHORT).show());
+
+        progressModel = new ViewModelProvider(this).get(AudioProgressModel.class);
+        audioProgressObserver = audioProgress -> {
+            if (audioProgress.getDuration() > 0) {
+                binding.seekBar.setEnabled(true);
+
+                int videoPos = (int) (audioProgress.getCurrentPosition() * 1.0 / audioProgress.getDuration() * binding.seekBar.getMax());
+
+                binding.seekBar.setProgress(videoPos);
+            } else {
+                binding.seekBar.setEnabled(false);
+            }
+
+            if (audioProgress.getBufferPosition() >= 95) {
+                binding.seekBar.setSecondaryProgress(binding.seekBar.getMax());
+            } else {
+                binding.seekBar.setSecondaryProgress(audioProgress.getBufferPosition() * 10);
+            }
+
+            binding.length.setText(toLengthStr(audioProgress.getDuration()));
+            binding.progress.setText(toLengthStr(audioProgress.getCurrentPosition()));
+        };
+        progressModel.getAudioProgress().observeForever(audioProgressObserver);
     }
 
     @Override
@@ -61,10 +95,13 @@ public class AudioActivity extends AsyncHttpActivity<ActivityAudioBinding, Audio
             }
         });
 
-//            Glide
-//                    .with(context).load(audioInfo.getData().getCover())
-//                    .apply(RequestOptions.bitmapTransform(new BlurTransformation(25, 3))).into(binding.audioBg);
-//            ViewUtils.setImg(context, binding.cover, audioInfo.getData().getCover());
+        Glide
+                .with(context)
+                .load(audioInfo.getData().getCover())
+                .apply(RequestOptions.bitmapTransform(new BlurTransformation(25, 3)))
+                .into(binding.audioBg);
+
+        ViewUtils.setImg(context, binding.cover, audioInfo.getData().getCover());
 
         binding.title.setText(audioInfo.getData().getTitle());
         binding.author.setText(audioInfo.getData().getAuthor());
@@ -87,40 +124,18 @@ public class AudioActivity extends AsyncHttpActivity<ActivityAudioBinding, Audio
      * 获取音频链接，并实例化{@link AudioController}
      */
     private void getAudioResourcesUrl() {
-        new ApiHelper<>(new RetrofitClient(BaseUrl.MAIN).getHttpApi().getAudioResources(sid))
+        new ApiHelper<>(new RetrofitClient(BaseUrl.MAIN, context).getHttpApi().getAudioResources(sid))
                 .setOnResult(audioResources -> {
                     audioController = new AudioController(context);
+                    audioController.setAudioControllerCallback(AudioActivity.this);
                     audioController.setUrl(audioResources.getData().getCdns().get(0));
                     audioController.setPlayerStat();
-                    audioController.setAudioControllerCallback(AudioActivity.this);
                 }).doIt();
     }
 
     @Override
     public void finished() {
         binding.control.setSelected(false);
-    }
-
-    @Override
-    public void progress(int currentPosition, int bufferPosition, int duration) {
-        if (duration > 0) {
-            binding.seekBar.setEnabled(true);
-
-            int videoPos = (int) (currentPosition * 1.0 / duration * binding.seekBar.getMax());
-
-            binding.seekBar.setProgress(videoPos);
-        } else {
-            binding.seekBar.setEnabled(false);
-        }
-
-        if (bufferPosition >= 95) {
-            binding.seekBar.setSecondaryProgress(binding.seekBar.getMax());
-        } else {
-            binding.seekBar.setSecondaryProgress(bufferPosition * 10);
-        }
-
-        binding.length.setText(toLengthStr(duration));
-        binding.progress.setText(toLengthStr(currentPosition));
     }
 
     @Override
@@ -150,8 +165,10 @@ public class AudioActivity extends AsyncHttpActivity<ActivityAudioBinding, Audio
     }
 
     @Override
-    public void onBackPressed() {
+    protected void onDestroy() {
+        progressModel.getAudioProgress().removeObserver(audioProgressObserver);
         audioController.release();
-        super.onBackPressed();
+
+        super.onDestroy();
     }
 }
