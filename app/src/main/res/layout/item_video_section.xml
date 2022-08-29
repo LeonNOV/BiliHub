@@ -52,7 +52,7 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <com.leon.biuvideo.ui.widget.HorizontalRecyclerView
+    <com.leon.bilihub.ui.widget.HorizontalRecyclerView
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

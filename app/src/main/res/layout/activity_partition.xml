@@ -6,7 +6,7 @@
     android:background="@color/primary"
     android:orientation="vertical">
 
-    <com.leon.biuvideo.ui.widget.TopBarWidget
+    <com.leon.bilihub.ui.widget.TopBarWidget
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="分区" />

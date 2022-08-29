@@ -6,7 +6,7 @@
     android:orientation="vertical"
     tools:context=".ui.activities.drawerFunction.partition.PartitionDetailActivity">
 
-    <com.leon.biuvideo.ui.widget.TopBarWidget
+    <com.leon.bilihub.ui.widget.TopBarWidget
         android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

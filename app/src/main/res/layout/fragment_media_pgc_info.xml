@@ -278,7 +278,7 @@
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.leon.biuvideo.ui.widget.HorizontalRecyclerView
+        <com.leon.bilihub.ui.widget.HorizontalRecyclerView
             android:id="@+id/seasons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -304,7 +304,7 @@
                 android:textColor="@color/black"
                 android:textSize="17sp" />
 
-            <com.leon.biuvideo.ui.widget.HorizontalRecyclerView
+            <com.leon.bilihub.ui.widget.HorizontalRecyclerView
                 android:id="@+id/episode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

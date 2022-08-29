@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.leon.biuvideo">
+    package="com.leon.bilihub">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -22,92 +22,92 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.activities.drawerFunction.setting.SettingQualityActivity"
+            android:name="com.leon.bilihub.ui.activities.drawerFunction.setting.SettingQualityActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.publicActivities.FolderDetailActivity"
+            android:name="com.leon.bilihub.ui.activities.publicActivities.FolderDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.publicActivities.PictureViewerActivity"
+            android:name="com.leon.bilihub.ui.activities.publicActivities.PictureViewerActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.drawerFunction.channel.ChannelDetailActivity"
+            android:name="com.leon.bilihub.ui.activities.drawerFunction.channel.ChannelDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.drawerFunction.channel.ChannelActivity"
+            android:name="com.leon.bilihub.ui.activities.drawerFunction.channel.ChannelActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.drawerFunction.HistoryActivity"
+            android:name="com.leon.bilihub.ui.activities.drawerFunction.HistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.publicActivities.RelationDetailActivity"
+            android:name="com.leon.bilihub.ui.activities.publicActivities.RelationDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.drawerFunction.RelationActivity"
+            android:name="com.leon.bilihub.ui.activities.drawerFunction.RelationActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.drawerFunction.WatchLaterActivity"
+            android:name="com.leon.bilihub.ui.activities.drawerFunction.WatchLaterActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.drawerFunction.FavoriteActivity"
+            android:name="com.leon.bilihub.ui.activities.drawerFunction.FavoriteActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.drawerFunction.OrderActivity"
+            android:name="com.leon.bilihub.ui.activities.drawerFunction.OrderActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.publicActivities.DownloadActivity"
+            android:name="com.leon.bilihub.ui.activities.publicActivities.DownloadActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.publicActivities.LiveStreamActivity"
+            android:name="com.leon.bilihub.ui.activities.publicActivities.LiveStreamActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:screenOrientation="fullSensor" />
         <activity
-            android:name=".ui.activities.publicActivities.UserActivity"
+            android:name="com.leon.bilihub.ui.activities.publicActivities.UserActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.publicActivities.UserAudioActivity"
+            android:name="com.leon.bilihub.ui.activities.publicActivities.UserAudioActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.publicActivities.VideoActivity"
+            android:name="com.leon.bilihub.ui.activities.publicActivities.VideoActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:screenOrientation="fullSensor" />
         <activity
-            android:name=".ui.activities.publicActivities.PictureActivity"
+            android:name="com.leon.bilihub.ui.activities.publicActivities.PictureActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.publicActivities.AudioActivity"
+            android:name="com.leon.bilihub.ui.activities.publicActivities.AudioActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.publicActivities.ArticleActivity"
+            android:name="com.leon.bilihub.ui.activities.publicActivities.ArticleActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.drawerFunction.PopularActivity"
+            android:name="com.leon.bilihub.ui.activities.drawerFunction.PopularActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.drawerFunction.partition.PartitionDetailActivity"
+            android:name="com.leon.bilihub.ui.activities.drawerFunction.partition.PartitionDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.drawerFunction.partition.PartitionActivity"
+            android:name="com.leon.bilihub.ui.activities.drawerFunction.partition.PartitionActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.drawerFunction.SettingActivity"
+            android:name="com.leon.bilihub.ui.activities.drawerFunction.SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.ProfileActivity"
+            android:name="com.leon.bilihub.ui.activities.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.search.SearchResultActivity"
+            android:name="com.leon.bilihub.ui.activities.search.SearchResultActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.search.SearchActivity"
+            android:name="com.leon.bilihub.ui.activities.search.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.LoginActivity"
+            android:name="com.leon.bilihub.ui.activities.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.MainActivity"
+            android:name="com.leon.bilihub.ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

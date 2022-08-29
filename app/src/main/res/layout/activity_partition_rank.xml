@@ -6,13 +6,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
-    <com.leon.biuvideo.ui.widget.TopBarWidget
+    <com.leon.bilihub.ui.widget.TopBarWidget
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="全站排行榜"
         app:withBottomLine="false" />
 
-    <com.leon.biuvideo.ui.widget.HorizontalRecyclerView
+    <com.leon.bilihub.ui.widget.HorizontalRecyclerView
         android:id="@+id/filter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
