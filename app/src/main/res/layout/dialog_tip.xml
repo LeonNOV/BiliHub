@@ -20,12 +20,10 @@
         android:textColor="@color/black"
         android:textSize="17sp"
         android:textStyle="bold"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="Title"
-        tools:visibility="visible" />
+        tools:text="Title" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/content"
@@ -65,7 +63,7 @@
             android:background="@drawable/dialog_action_cancel"
             android:elevation="5dp"
             android:gravity="center"
-            android:text="返回"
+            tools:text="返回"
             android:textColor="@color/black" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -81,7 +79,7 @@
             android:background="@drawable/dialog_action_confirm"
             android:elevation="5dp"
             android:gravity="center"
-            android:text="确定"
+            tools:text="确定"
             android:textColor="@color/white" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>

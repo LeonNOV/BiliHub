@@ -6,7 +6,7 @@ import com.leon.bilihub.databinding.PageRecyclerBinding;
 import com.leon.bilihub.http.BaseUrl;
 import com.leon.bilihub.http.RetrofitClient;
 import com.leon.bilihub.ui.adapters.drawer.relation.RelationTagsAdapter;
-import com.leon.bilihub.ui.dialogs.LoginDialog;
+import com.leon.bilihub.ui.dialogs.TipDialog;
 import com.leon.bilihub.ui.widget.loader.RecyclerViewLoader;
 import com.leon.bilihub.utils.PreferenceUtils;
 
@@ -31,7 +31,7 @@ public class RelationActivity extends BaseActivity<PageRecyclerBinding> {
                     .setObservable(new RetrofitClient(BaseUrl.API, context).getHttpApi().getUserRelationGroups())
                     .obtain(false);
         } else {
-            new LoginDialog(context).show();
+            TipDialog.showLoginTipDialog(context);
         }
     }
 }

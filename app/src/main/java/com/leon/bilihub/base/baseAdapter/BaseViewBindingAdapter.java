@@ -111,7 +111,7 @@ public abstract class BaseViewBindingAdapter<B, V extends ViewBinding> extends R
     public void appendHead (Collection<B> addOns) {
         this.beans.addAll(0, addOns);
 
-        notifyItemRangeInserted(0, addOns.size() - 1);
+        notifyItemRangeInserted(0, addOns.size());
     }
 
     /**
@@ -122,7 +122,7 @@ public abstract class BaseViewBindingAdapter<B, V extends ViewBinding> extends R
     public void appendTail(B addOn) {
         this.beans.add(addOn);
 
-        notifyItemInserted(this.beans.size() - 1);
+        notifyItemInserted(this.beans.size());
     }
 
     /**

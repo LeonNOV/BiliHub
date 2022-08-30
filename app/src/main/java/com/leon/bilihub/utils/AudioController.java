@@ -144,6 +144,8 @@ public class AudioController {
 
             mediaPlayer.pause();
             mediaPlayer.release();
+            mediaPlayer = null;
+            progressHandler = null;
         }
     }
 

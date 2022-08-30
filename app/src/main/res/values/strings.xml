@@ -90,6 +90,9 @@
     <string name="about_app_copyright_desc">「BiuVideo」该APP的初衷是打造一款轻量级的B站第三方客户端，该APP含有
         资源缓存功能，请合理使用，资源版权归属于原作者，请不要用于商业用途，否则一切后果自负。</string>
     <string name="recommend_style_desc">选择主页推荐显示样式</string>
+    <string name="setting_recommend_style_tip">下一次启动即可生效</string>
+    <string name="setting_video_quality_default">1080P 高清 (默认)</string>
+    <string name="setting_live_quality_default">原画 (默认)</string>
 
     <!-- 主页侧滑栏 -->
     <string name="drawer_popular">热门排行</string>

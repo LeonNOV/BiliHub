@@ -75,6 +75,8 @@ public class MediaPgcInfoFragment extends BaseFragment<FragmentMediaPgcInfoBindi
         videoPlayerModel.getVideoPgcEpisode().observeForever(videoPgcEpisodeObserver);
 
         httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
+
+        setSeason(data.getSeasons(), data.getSeasonId());
         setInfoContent(data);
     }
 
@@ -109,12 +111,35 @@ public class MediaPgcInfoFragment extends BaseFragment<FragmentMediaPgcInfoBindi
         binding.shareStr.setText(ValueUtils.generateCN(data.getStat().getShare()));
         binding.favoriteStr.setText(ValueUtils.generateCN(data.getStat().getFavorite()));
 
-        PgcDetail.Result.Episode episode = data.getEpisodes().get(0);
-        videoPlayerModel.getVideoResource().setValue(new VideoResourceWrap(episode.getBvid(), episode.getCid(), Quality.Q80));
-
+        // empty只出现在片源为预告的情况下
         processSection(data.getSection());
-        setSeason(data.getSeasons(), data.getSeasonId());
-        setEpisode(data.getEpisodes(), data.getType());
+        if (!data.getEpisodes().isEmpty()) {
+            PgcDetail.Result.Episode episode = data.getEpisodes().get(0);
+            videoPlayerModel.getVideoResource().setValue(new VideoResourceWrap(episode.getBvid(), episode.getCid(), Quality.Q80));
+            updateRelation(data.getEpisodes().get(0).getId());
+            setEpisode(data.getEpisodes(), data.getType());
+            setSection(data.getEpisodes().get(0).getId());
+        } else {
+            PgcDetail.Result.Stat stat = data.getStat();
+            binding.likeStr.setText(ValueUtils.generateCN(stat.getLikes()));
+            binding.coinStr.setText(ValueUtils.generateCN(stat.getCoins()));
+            binding.favoriteStr.setText(ValueUtils.generateCN(stat.getFavorite()));
+            binding.shareStr.setText(ValueUtils.generateCN(stat.getShare()));
+
+            if (episodeAdapter != null) {
+                episodeAdapter.removeAll();
+            }
+            binding.episodeContainer.setVisibility(View.GONE);
+
+            if (pgcSectionAdapter != null) {
+                pgcSectionAdapter.removeAll();
+            }
+            binding.section.setVisibility(View.GONE);
+
+            videoPlayerModel.getVideoResource().setValue(null);
+            videoPlayerModel.getVideoRecommend().setValue(null);
+        }
+
         setRecommend(data.getSeasonId());
     }
 
@@ -135,112 +160,6 @@ public class MediaPgcInfoFragment extends BaseFragment<FragmentMediaPgcInfoBindi
             binding.coinStr.setText(ValueUtils.generateCN(stat.getCoin()));
 
             binding.favoriteImg.setSelected(community.getFavorite() == 1);
-        }).doIt();
-    }
-
-    private void setSeason(List<PgcDetail.Result.Season> seasonList, String seasonId) {
-        if (seasonList != null && seasonList.size() > 1) {
-            binding.seasons.setVisibility(View.VISIBLE);
-
-            int selectedColor = context.getColor(R.color.blue);
-            int unselectedColor = context.getColor(R.color.infoColor);
-
-            seasonList.forEach(season -> {
-                PgcDetail.Result.Season.ItemState itemState;
-                if (seasonId.equals(season.getSeasonId())) {
-                    itemState = new PgcDetail.Result.Season.ItemState(selectedColor, true);
-                } else {
-                    itemState = new PgcDetail.Result.Season.ItemState(unselectedColor, false);
-                }
-                season.setItemState(itemState);
-            });
-
-            if (pgcSeasonAdapter == null) {
-                pgcSeasonAdapter = new PgcSeasonAdapter(context, 0);
-            } else {
-                pgcSeasonAdapter.removeAll();
-            }
-
-            pgcSeasonAdapter.setOnSelectedListener(integer -> {
-                PgcDetail.Result.Season.ItemState itemState = seasonList.get(integer).getItemState();
-                itemState.setTitleColor(unselectedColor);
-                itemState.setSelected(false);
-
-                pgcSeasonAdapter.notifyItemChanged(integer);
-            });
-            pgcSeasonAdapter.appendHead(seasonList);
-
-            ViewUtils.listInitializer(binding.seasons, pgcSeasonAdapter);
-        }
-    }
-
-    private void setEpisode(List<PgcDetail.Result.Episode> episodeList, int type) {
-        if (episodeList != null && episodeList.size() > 1) {
-            binding.episodeContainer.setVisibility(View.VISIBLE);
-
-            int selectedColor = context.getColor(R.color.blue);
-            int unselectedColor = context.getColor(R.color.infoColor);
-
-            episodeList.forEach(episode -> episode.setItemState(new PgcDetail.Result.Episode.ItemState(unselectedColor, false)));
-            PgcDetail.Result.Episode.ItemState state = episodeList.get(0).getItemState();
-            state.setEpColor(selectedColor);
-            state.setEpSelected(true);
-
-            if (episodeAdapter == null) {
-                episodeAdapter = new PgcEpisodeAdapter(context, type, 0);
-            } else {
-                episodeAdapter.removeAll();
-            }
-
-            episodeAdapter.setOnSelectedListener(integer -> {
-                PgcDetail.Result.Episode.ItemState itemState = episodeList.get(integer).getItemState();
-                itemState.setEpColor(unselectedColor);
-                itemState.setEpSelected(false);
-
-                episodeAdapter.notifyItemChanged(integer);
-            });
-            episodeAdapter.appendHead(episodeList);
-
-            ViewUtils.listInitializer(binding.episode, episodeAdapter);
-
-            updateRelation(episodeList.get(0).getId());
-            setSection(episodeList.get(0).getId());
-        }
-    }
-
-    private void setSection(int episodeId) {
-        if (!seasonSectionMap.isEmpty() || !publicSectionList.isEmpty()) {
-            binding.section.setVisibility(View.VISIBLE);
-
-            List<PgcDetail.Result.Section> resultSectionList = new ArrayList<>();
-            List<PgcDetail.Result.Section> epSectionList = seasonSectionMap.get(episodeId);
-
-            if (epSectionList != null) {
-                resultSectionList.addAll(epSectionList);
-            }
-            resultSectionList.addAll(publicSectionList);
-
-            if (pgcSectionAdapter == null) {
-                pgcSectionAdapter = new PgcSectionAdapter(context);
-            } else {
-                pgcSectionAdapter.removeAll();
-            }
-
-            pgcSectionAdapter.appendHead(resultSectionList);
-            ViewUtils.linkAdapter(binding.section, pgcSectionAdapter);
-        }
-    }
-
-    private void setRecommend(String seasonId) {
-        new ApiHelper<>(httpApi.getPgcRecommend(seasonId)).setOnResult(pgcRecommend -> {
-            if (pgcRecommendAdapter == null) {
-                pgcRecommendAdapter = new PgcRecommendAdapter(context);
-            } else {
-                pgcRecommendAdapter.removeAll();
-            }
-            pgcRecommendAdapter.appendHead(pgcRecommend.getData().getSeason());
-
-            ViewUtils.listInitializer(binding.recommend, pgcRecommendAdapter);
         }).doIt();
     }
 
@@ -272,11 +191,114 @@ public class MediaPgcInfoFragment extends BaseFragment<FragmentMediaPgcInfoBindi
         }
     }
 
+    private void setSeason(List<PgcDetail.Result.Season> seasonList, String seasonId) {
+        if (seasonList != null && seasonList.size() > 1) {
+            binding.seasons.setVisibility(View.VISIBLE);
+
+            int selectedColor = context.getColor(R.color.blue);
+            int unselectedColor = context.getColor(R.color.infoColor);
+
+            int selectedPosition = 0;
+            for (int i = 0; i < seasonList.size(); i++) {
+                PgcDetail.Result.Season season = seasonList.get(i);
+                PgcDetail.Result.Season.ItemState itemState;
+                if (seasonId.equals(season.getSeasonId())) {
+                    itemState = new PgcDetail.Result.Season.ItemState(selectedColor, true);
+                    selectedPosition = i;
+                } else {
+                    itemState = new PgcDetail.Result.Season.ItemState(unselectedColor, false);
+                }
+                season.setItemState(itemState);
+            }
+
+            if (pgcSeasonAdapter == null) {
+                pgcSeasonAdapter = new PgcSeasonAdapter(context, selectedPosition);
+                ViewUtils.listInitializer(binding.seasons, pgcSeasonAdapter);
+            } else {
+                pgcSeasonAdapter.removeAll();
+            }
+
+            pgcSeasonAdapter.setOnSelectedListener(integer -> {
+                PgcDetail.Result.Season.ItemState itemState = seasonList.get(integer).getItemState();
+                itemState.setTitleColor(unselectedColor);
+                itemState.setSelected(false);
+
+                pgcSeasonAdapter.notifyItemChanged(integer);
+            });
+            pgcSeasonAdapter.appendHead(seasonList);
+        }
+    }
+
+    private void setEpisode(List<PgcDetail.Result.Episode> episodeList, int type) {
+        if (episodeList != null && episodeList.size() > 1) {
+            binding.episodeContainer.setVisibility(View.VISIBLE);
+
+            int selectedColor = context.getColor(R.color.blue);
+            int unselectedColor = context.getColor(R.color.infoColor);
+
+            episodeList.forEach(episode -> episode.setItemState(new PgcDetail.Result.Episode.ItemState(unselectedColor, false)));
+            PgcDetail.Result.Episode.ItemState state = episodeList.get(0).getItemState();
+            state.setEpColor(selectedColor);
+            state.setEpSelected(true);
+
+            if (episodeAdapter == null) {
+                episodeAdapter = new PgcEpisodeAdapter(context, type, 0);
+                ViewUtils.listInitializer(binding.episode, episodeAdapter);
+            } else {
+                episodeAdapter.removeAll();
+            }
+
+            episodeAdapter.setOnSelectedListener(integer -> {
+                PgcDetail.Result.Episode.ItemState itemState = episodeList.get(integer).getItemState();
+                itemState.setEpColor(unselectedColor);
+                itemState.setEpSelected(false);
+
+                episodeAdapter.notifyItemChanged(integer);
+            });
+            episodeAdapter.appendHead(episodeList);
+        }
+    }
+
+    private void setSection(int episodeId) {
+        if (!seasonSectionMap.isEmpty() || !publicSectionList.isEmpty()) {
+            binding.section.setVisibility(View.VISIBLE);
+
+            List<PgcDetail.Result.Section> resultSectionList = new ArrayList<>();
+            List<PgcDetail.Result.Section> epSectionList = seasonSectionMap.get(episodeId);
+
+            if (epSectionList != null) {
+                resultSectionList.addAll(epSectionList);
+            }
+            resultSectionList.addAll(publicSectionList);
+
+            if (pgcSectionAdapter == null) {
+                pgcSectionAdapter = new PgcSectionAdapter(context);
+                ViewUtils.linkAdapter(binding.section, pgcSectionAdapter);
+            } else {
+                pgcSectionAdapter.removeAll();
+            }
+
+            pgcSectionAdapter.appendHead(resultSectionList);
+        }
+    }
+
+    private void setRecommend(String seasonId) {
+        new ApiHelper<>(httpApi.getPgcRecommend(seasonId)).setOnResult(pgcRecommend -> {
+            if (pgcRecommendAdapter == null) {
+                pgcRecommendAdapter = new PgcRecommendAdapter(context);
+                ViewUtils.listInitializer(binding.recommend, pgcRecommendAdapter);
+            } else {
+                pgcRecommendAdapter.removeAll();
+            }
+            pgcRecommendAdapter.appendHead(pgcRecommend.getData().getSeason());
+        }).doIt();
+    }
+
     @Override
     public void onDestroy() {
-        super.onDestroy();
-
         videoPlayerModel.getVideoPgcSeason().removeObserver(videoPgcSeasonObserver);
         videoPlayerModel.getVideoPgcEpisode().removeObserver(videoPgcEpisodeObserver);
+
+        super.onDestroy();
     }
 }

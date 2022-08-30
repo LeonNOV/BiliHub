@@ -4,10 +4,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.leon.bilihub.R;
 import com.leon.bilihub.databinding.DialogRecommendStyleBinding;
 import com.leon.bilihub.model.SettingModel;
 import com.leon.bilihub.utils.PreferenceUtils;
@@ -60,6 +62,7 @@ public class RecommendStyleDialog extends BottomSheetDialog {
             binding.doubleRadio.setChecked(false);
             settingModel.getRecommendStyle().setValue(1);
             PreferenceUtils.setRecommendStyle(getContext(), 1);
+            Toast.makeText(getContext(), R.string.setting_recommend_style_tip, Toast.LENGTH_SHORT).show();
         });
 
         binding.doubleContainer.setOnClickListener(v -> {
@@ -67,6 +70,7 @@ public class RecommendStyleDialog extends BottomSheetDialog {
             binding.doubleRadio.setChecked(true);
             settingModel.getRecommendStyle().setValue(2);
             PreferenceUtils.setRecommendStyle(getContext(), 2);
+            Toast.makeText(getContext(), R.string.setting_recommend_style_tip, Toast.LENGTH_SHORT).show();
         });
     }
 }

@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment;
 
 import com.leon.bilihub.base.baseActivity.BaseActivity;
 import com.leon.bilihub.databinding.ActivityOrderBinding;
-import com.leon.bilihub.ui.dialogs.LoginDialog;
+import com.leon.bilihub.ui.dialogs.TipDialog;
 import com.leon.bilihub.ui.fragments.drawerFragments.OrderFragment;
 import com.leon.bilihub.utils.PreferenceUtils;
 import com.leon.bilihub.utils.ViewUtils;
@@ -33,7 +33,7 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding> {
 
             ViewUtils.initTabLayout(this, binding.content.tabLayout, binding.content.viewPager, fragments, "番剧", "剧集");
         } else {
-            new LoginDialog(context).show();
+            TipDialog.showLoginTipDialog(context);
         }
     }
 }

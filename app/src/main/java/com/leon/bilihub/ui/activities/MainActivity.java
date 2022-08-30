@@ -29,16 +29,15 @@ import com.leon.bilihub.ui.activities.drawerFunction.PopularActivity;
 import com.leon.bilihub.ui.activities.drawerFunction.SettingActivity;
 import com.leon.bilihub.ui.activities.drawerFunction.WatchLaterActivity;
 import com.leon.bilihub.ui.activities.drawerFunction.partition.PartitionActivity;
-import com.leon.bilihub.ui.activities.publicActivities.AudioActivity;
 import com.leon.bilihub.ui.activities.publicActivities.DownloadActivity;
 import com.leon.bilihub.ui.activities.search.SearchActivity;
 import com.leon.bilihub.ui.adapters.HomeRecommendAdapter;
+import com.leon.bilihub.ui.dialogs.TipDialog;
 import com.leon.bilihub.ui.widget.loader.PaginationLoader;
 import com.leon.bilihub.utils.DataStoreUtils;
 import com.leon.bilihub.utils.PreferenceUtils;
 import com.leon.bilihub.utils.ViewUtils;
 
-import java.util.Map;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -50,6 +49,7 @@ import java.util.concurrent.TimeUnit;
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
     private ScheduledThreadPoolExecutor scheduledThreadPoolExecutor;
     public static AccountViewModel model;
+    private HttpApi httpApi;
 
     @Override
     public ActivityMainBinding getViewBinding() {
@@ -61,15 +61,30 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     protected void init() {
         binding.home.userFace.setOnClickListener(v -> binding.getRoot().openDrawer(GravityCompat.START));
         binding.home.search.setOnClickListener(v -> startActivity(SearchActivity.class));
-        binding.home.search.setOnClickListener(v -> startActivity(AudioActivity.class, Map.of(AudioActivity.PARAM, "653250")));
         binding.drawer.userContainer.setOnTouchListener((v, event) -> ViewUtils.zoom(event, binding.drawer.userContainer));
         binding.drawer.userContainer.setOnClickListener(v -> {
             startActivity(LoginActivity.class);
 //            startActivity(ProfileActivity.class);
         });
-        binding.drawer.userLogout.setOnClickListener(v -> localAccountStatus(null));
+        binding.drawer.userLogout.setOnClickListener(v -> {
+            TipDialog tipDialog = new TipDialog(context);
+            tipDialog.setTitle("退出");
+            tipDialog.setContent("是否要退出当前账户？");
+            tipDialog.setActionStr("取消", "退出");
+            tipDialog.setOnActionListener(action -> {
+                if (action) {
+                    localAccountStatus(null);
+                    tipDialog.dismiss();
+                } else {
+                    tipDialog.dismiss();
+                }
+            });
+            tipDialog.show();
+        });
 
         setDrawerFunctionListener();
+
+        httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
 
         boolean loginStatus = PreferenceUtils.getLoginStatus(context);
         if (loginStatus) {
@@ -78,12 +93,17 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             initObserver();
         }
 
-        HttpApi httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
-        PaginationLoader<HomeRecommend, HomeRecommend.Data.Item> loader = new PaginationLoader<>(binding.home.data, new HomeRecommendAdapter(context), new GridLayoutManager(context, 2));
-//        loader.enabledRefresh(true);
-//        loader.setGuide(homeRecommend -> homeRecommend.getData().getItem());
-//        loader.setUpdateInterface(loadType -> httpApi.getHomeRecommend());
-//        loader.firstObtain();
+        PaginationLoader<HomeRecommend, HomeRecommend.Data.Item> loader;
+        int recommendStyle = PreferenceUtils.getRecommendStyle(context);
+        if (recommendStyle == 1) {
+            loader = new PaginationLoader<>(binding.home.data, new HomeRecommendAdapter(context));
+        } else {
+            loader = new PaginationLoader<>(binding.home.data, new HomeRecommendAdapter(context), new GridLayoutManager(context, 2));
+        }
+        loader.enabledRefresh(true);
+        loader.setGuide(homeRecommend -> homeRecommend.getData().getItem());
+        loader.setUpdateInterface(loadType -> httpApi.getHomeRecommend());
+        loader.firstObtain();
     }
 
     /**
@@ -130,6 +150,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             @Override
             public void onChanged(Boolean loginStatus) {
                 if (loginStatus) {
+                    // 使用新的Cookie实例化HttpApi
+                    httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
                     refreshData();
 
                     model.getLoginStatus().removeObserver(this);
@@ -143,8 +165,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
      * 获取已登录用户数据
      */
     private void refreshData() {
-        new ApiHelper<>(new RetrofitClient(BaseUrl.API,
-                Map.of(HttpApi.COOKIE, PreferenceUtils.getCookie(context))).getHttpApi().getAccountInfo())
+        new ApiHelper<>(httpApi.getAccountInfo())
                 .setOnResult(accountNav -> {
                     // 0：获取成功，即登陆成功
                     // -101：获取失败，即登录失败
@@ -172,8 +193,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             binding.drawer.userName.setText("");
             binding.drawer.userLogout.setVisibility(View.GONE);
 
-        // 登录成功
+            // 登录成功
         } else {
+            PreferenceUtils.setVipStatus(context, accountNav.getData().getVipStatus() != 0);
             binding.drawer.userContainer.setEnabled(false);
             ViewUtils.setImg(context, binding.drawer.userFace, accountNav.getData().getFace());
             ViewUtils.setImg(context, binding.home.userFace, accountNav.getData().getFace());

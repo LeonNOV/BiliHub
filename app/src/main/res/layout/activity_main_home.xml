@@ -22,7 +22,7 @@
             android:focusable="true"
             android:padding="5dp"
             android:src="@drawable/user_face_default"
-            app:civ_border_color="@color/gray"
+            app:civ_border_color="@color/infoColor"
             app:civ_border_width="@dimen/face_border_width" />
 
         <androidx.appcompat.widget.AppCompatImageView

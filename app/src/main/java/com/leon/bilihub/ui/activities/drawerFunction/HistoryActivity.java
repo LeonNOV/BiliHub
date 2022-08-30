@@ -7,7 +7,7 @@ import com.leon.bilihub.http.BaseUrl;
 import com.leon.bilihub.http.HttpApi;
 import com.leon.bilihub.http.RetrofitClient;
 import com.leon.bilihub.ui.adapters.drawer.HistoryAdapter;
-import com.leon.bilihub.ui.dialogs.LoginDialog;
+import com.leon.bilihub.ui.dialogs.TipDialog;
 import com.leon.bilihub.ui.widget.loader.PaginationLoader;
 import com.leon.bilihub.utils.PreferenceUtils;
 
@@ -39,7 +39,7 @@ public class HistoryActivity extends BaseActivity<ActivityHistoryBinding> {
             });
             loader.setUpdateInterface(loadType -> httpApi.getUserHistory(max, viewAt)).obtain();
         } else {
-            new LoginDialog(context).show();
+            TipDialog.showLoginTipDialog(context);
         }
     }
 }

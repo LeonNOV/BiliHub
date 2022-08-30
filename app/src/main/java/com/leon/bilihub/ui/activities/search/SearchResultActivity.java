@@ -7,7 +7,7 @@ import com.leon.bilihub.base.baseActivity.BaseActivity;
 import com.leon.bilihub.databinding.ActivitySearchResultBinding;
 import com.leon.bilihub.ui.fragments.searchResultFragments.SearchResultBangumiFragment;
 import com.leon.bilihub.ui.fragments.searchResultFragments.SearchResultArticleFragment;
-import com.leon.bilihub.ui.fragments.searchResultFragments.SearchResultCinephileFragment;
+import com.leon.bilihub.ui.fragments.searchResultFragments.SearchResultPgcFragment;
 import com.leon.bilihub.ui.fragments.searchResultFragments.SearchResultLiveFragment;
 import com.leon.bilihub.ui.fragments.searchResultFragments.SearchResultUserFragment;
 import com.leon.bilihub.ui.fragments.searchResultFragments.SearchResultVideoFragment;
@@ -52,7 +52,7 @@ public class SearchResultActivity extends BaseActivity<ActivitySearchResultBindi
         fragments.add(new SearchResultBangumiFragment(keyword));
         fragments.add(new SearchResultLiveFragment(keyword));
         fragments.add(new SearchResultUserFragment(keyword));
-        fragments.add(new SearchResultCinephileFragment(keyword));
+        fragments.add(new SearchResultPgcFragment(keyword));
         fragments.add(new SearchResultArticleFragment(keyword));
 
         ViewUtils.initTabLayout(this, binding.searchResultTabLayout, binding.searchResultViewPager,

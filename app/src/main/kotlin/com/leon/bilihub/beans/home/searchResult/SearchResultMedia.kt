@@ -117,7 +117,7 @@ data class SearchResultMedia(
             @SerializedName("pubtime")
             val pubtime: Int,
             @SerializedName("season_id")
-            val seasonId: Int,
+            val seasonId: String,
             @SerializedName("season_type")
             val seasonType: Int,
             @SerializedName("season_type_name")

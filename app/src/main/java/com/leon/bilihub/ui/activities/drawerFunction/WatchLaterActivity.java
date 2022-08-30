@@ -8,7 +8,7 @@ import com.leon.bilihub.databinding.ActivityWatchLaterBinding;
 import com.leon.bilihub.http.BaseUrl;
 import com.leon.bilihub.http.RetrofitClient;
 import com.leon.bilihub.ui.adapters.drawer.WatchLaterAdapter;
-import com.leon.bilihub.ui.dialogs.LoginDialog;
+import com.leon.bilihub.ui.dialogs.TipDialog;
 import com.leon.bilihub.ui.widget.loader.RecyclerViewLoader;
 import com.leon.bilihub.utils.PreferenceUtils;
 
@@ -35,7 +35,7 @@ public class WatchLaterActivity extends BaseActivity<ActivityWatchLaterBinding> 
                     .setObservable(new RetrofitClient(BaseUrl.API, context).getHttpApi().getUserWatchLater())
                     .obtain(false);
         } else {
-            new LoginDialog(context).show();
+            TipDialog.showLoginTipDialog(context);
         }
     }
 }

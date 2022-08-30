@@ -22,9 +22,9 @@ import java.util.Map;
  * @Time 2022/08/02
  * @Desc
  */
-public class SearchResultFtAdapter extends BaseViewBindingAdapter<SearchResultMedia.Data.Result, ItemSearchResultFtBinding> {
+public class SearchResultPgcAdapter extends BaseViewBindingAdapter<SearchResultMedia.Data.Result, ItemSearchResultFtBinding> {
 
-    public SearchResultFtAdapter(Context context) {
+    public SearchResultPgcAdapter(Context context) {
         super(context);
     }
 
@@ -35,8 +35,8 @@ public class SearchResultFtAdapter extends BaseViewBindingAdapter<SearchResultMe
 
     @Override
     protected void onBindViewHolder(SearchResultMedia.Data.Result data, ItemSearchResultFtBinding binding, int position) {
-        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, VideoActivity.TYPE_VIDEO,
-                VideoActivity.PARAM_ID, String.valueOf(data.getMediaId()))));
+        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, VideoActivity.TYPE_PGC,
+                VideoActivity.PARAM_ID, data.getSeasonId())));
 
         ViewUtils.setImg(context, binding.cover, data.getCover());
         if (data.getBadges() != null && !data.getBadges().isEmpty()) {

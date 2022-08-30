@@ -50,13 +50,6 @@ class VideoPlayerModel : ViewModel() {
     /**
      * 播放器所显示清晰度
      */
-    val videoQuality: MutableLiveData<Quality> by lazy {
-        MutableLiveData<Quality>()
-    }
-
-    /**
-     * 播放器所显示清晰度
-     */
     val videoQualityListDisplay: MutableLiveData<List<VideoQuality>> by lazy {
         MutableLiveData<List<VideoQuality>>()
     }

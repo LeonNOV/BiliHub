@@ -35,7 +35,7 @@ public class SearchResultBangumiAdapter extends BaseViewBindingAdapter<SearchRes
     @Override
     protected void onBindViewHolder(SearchResultMedia.Data.Result data, ItemSearchResultBangumiBinding binding, int position) {
         binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, VideoActivity.TYPE_PGC,
-                VideoActivity.PARAM_ID, String.valueOf(data.getSeasonId()))));
+                VideoActivity.PARAM_ID, data.getSeasonId())));
 
         ViewUtils.setImg(context, binding.cover, data.getCover());
         if (data.getBadges() != null && !data.getBadges().isEmpty()) {

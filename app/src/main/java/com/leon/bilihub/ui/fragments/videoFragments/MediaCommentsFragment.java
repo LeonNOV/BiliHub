@@ -49,13 +49,19 @@ public class MediaCommentsFragment extends BaseLazyFragment<FragmentMediaComment
         videoPlayerModel = new ViewModelProvider(ViewUtils.scanForActivity(context)).get(VideoPlayerModel.class);
 
         videoRecommendObserver = bvid -> {
-            aid = ValueUtils.bv2av(bvid);
-            mode = 3;
+            if (bvid != null) {
+                aid = ValueUtils.bv2av(bvid);
+                mode = 3;
 
-            binding.mode.setText(R.string.reply_mode_hot);
-            binding.refresh.setText(R.string.reply_hot);
+                binding.mode.setText(R.string.reply_mode_hot);
+                binding.refresh.setText(R.string.reply_hot);
 
-            reload();
+                reload();
+            } else {
+                if (adapter != null) {
+                    adapter.removeAll();
+                }
+            }
         };
         videoPlayerModel.getVideoRecommend().observeForever(videoRecommendObserver);
 
@@ -82,7 +88,9 @@ public class MediaCommentsFragment extends BaseLazyFragment<FragmentMediaComment
             next = reply.getData().getCursor().getNext();
             return reply.getData().getReplies();
         });
-        loader.setUpdateInterface(loadType -> httpApi.getReply(aid, mode, next, ReplyType.Video));
+        if (aid != null) {
+            loader.setUpdateInterface(loadType -> httpApi.getReply(aid, mode, next, ReplyType.Video));
+        }
     }
 
     @Override

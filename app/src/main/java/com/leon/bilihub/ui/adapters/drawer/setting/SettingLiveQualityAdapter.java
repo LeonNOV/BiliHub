@@ -50,7 +50,12 @@ public class SettingLiveQualityAdapter extends BaseViewBindingAdapter<SettingVal
             }
         });
 
-        binding.getRoot().setText(data.getDisplay());
+        if (data.getQn() == 10000) {
+            binding.getRoot().setText(R.string.setting_live_quality_default);
+        } else {
+            binding.getRoot().setText(data.getDisplay());
+        }
+
         TextViewCompat.setCompoundDrawableTintList(binding.getRoot(), ColorStateList.valueOf(data.isSelected() ? context.getColor(R.color.pink) : Color.TRANSPARENT));
     }
 

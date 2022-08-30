@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@color/gray" />
+        android:foreground="#4D000000"
+        android:src="@color/white" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,20 +24,20 @@
             android:layout_width="@dimen/topBarBackWH"
             android:layout_height="@dimen/topBarBackWH"
             android:layout_marginStart="@dimen/topBarTitleMarginStart"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:padding="@dimen/topBarBackPadding"
-            android:layout_marginTop="10dp"
-            android:tint="@color/white"
-            android:layout_marginBottom="10dp"
-            android:src="@drawable/ic_back" />
+            android:src="@drawable/ic_back"
+            android:tint="@color/white" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/cover"
             android:layout_width="match_parent"
-            app:shapeAppearance="@style/Cover"
+            android:layout_height="400dp"
             android:layout_margin="20dp"
             android:src="#A8A8A8"
-            android:layout_height="400dp"/>
+            app:shapeAppearance="@style/Cover" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -162,8 +163,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
-                    android:padding="10dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="10dp"
                     android:src="@drawable/audio_play_video" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>

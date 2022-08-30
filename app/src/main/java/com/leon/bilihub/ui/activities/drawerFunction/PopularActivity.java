@@ -2,12 +2,10 @@ package com.leon.bilihub.ui.activities.drawerFunction;
 
 import com.leon.bilihub.base.baseActivity.BaseActivity;
 import com.leon.bilihub.databinding.ActivityPopularBinding;
-import com.leon.bilihub.ui.dialogs.LoginDialog;
 import com.leon.bilihub.ui.fragments.drawerFragments.popularFragments.HotFragment;
 import com.leon.bilihub.ui.fragments.drawerFragments.popularFragments.PreciousFragment;
 import com.leon.bilihub.ui.fragments.drawerFragments.popularFragments.RankFragment;
 import com.leon.bilihub.ui.fragments.drawerFragments.popularFragments.WeeklyFragment;
-import com.leon.bilihub.utils.PreferenceUtils;
 import com.leon.bilihub.utils.ViewUtils;
 
 import java.util.List;

@@ -11,6 +11,7 @@ import androidx.core.widget.TextViewCompat;
 import com.leon.bilihub.R;
 import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
 import com.leon.bilihub.databinding.ItemSettingDialogBinding;
+import com.leon.bilihub.http.Quality;
 import com.leon.bilihub.ui.activities.drawerFunction.SettingActivity;
 import com.leon.bilihub.ui.widget.player.PlayerController;
 import com.leon.bilihub.utils.PreferenceUtils;
@@ -50,7 +51,11 @@ public class SettingVideoQualityAdapter extends BaseViewBindingAdapter<SettingVa
             }
         });
 
-        binding.getRoot().setText(data.getDisplay());
+        if (data.getQuality() == Quality.Q80) {
+            binding.getRoot().setText(R.string.setting_video_quality_default);
+        } else {
+            binding.getRoot().setText(data.getDisplay());
+        }
         TextViewCompat.setCompoundDrawableTintList(binding.getRoot(), ColorStateList.valueOf(data.isSelected() ? context.getColor(R.color.pink) : Color.TRANSPARENT));
 
     }

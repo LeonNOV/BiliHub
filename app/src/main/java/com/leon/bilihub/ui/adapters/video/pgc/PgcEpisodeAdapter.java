@@ -62,6 +62,7 @@ public class PgcEpisodeAdapter extends BaseViewBindingAdapter<PgcDetail.Result.E
                 Toast.makeText(context, String.format(Locale.CHINESE, "该选集需要%s才能观看", data.getBadge()), Toast.LENGTH_SHORT).show();
             } else if (onSelectedListener != null && selectedPosition != position) {
                 videoPlayerModel.getVideoPgcEpisode().setValue(data.getId());
+
                 String epIndex = getEpIndex(data);
                 videoPlayerModel.getVideoTitleDisplay().setValue("".equals(data.getLongTitle()) ? epIndex : epIndex + data.getLongTitle());
                 videoPlayerModel.getVideoResource().setValue(new VideoResourceWrap(data.getBvid(), data.getCid(), PreferenceUtils.getVideoQuality(context)));

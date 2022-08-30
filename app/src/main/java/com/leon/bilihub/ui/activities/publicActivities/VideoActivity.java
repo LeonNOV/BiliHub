@@ -53,7 +53,6 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
     private VideoPlayerModel videoPlayerModel;
     private Observer<VideoResourceWrap> videoResourceObserver;
     private Observer<Float> videoSpeedObserver;
-    private Observer<Quality> videoQualityObserver;
 
     @Override
     public ActivityVideoBinding getViewBinding() {
@@ -89,16 +88,11 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
 
         videoSpeedObserver = speed -> binding.player.setSpeed(speed);
         videoPlayerModel.getVideoSpeed().observeForever(videoSpeedObserver);
-
-        videoQualityObserver = quality -> {
-        };
-        videoPlayerModel.getVideoQuality().observeForever(videoQualityObserver);
     }
 
     private void setVideoInfo(VideoDetail videoDetail) {
-        videoPlayerModel.getVideoResource().setValue(new VideoResourceWrap(null, videoDetail.getData().getView().getCid(), PreferenceUtils.getVideoQuality(context)));
-
         VideoDetail.Data.View view = videoDetail.getData().getView();
+        videoPlayerModel.getVideoResource().setValue(new VideoResourceWrap(null, view.getCid(), PreferenceUtils.getVideoQuality(context)));
 
         ViewUtils.initTabLayout(this, binding.extra.tabLayout, binding.extra.viewPager,
                 List.of(new MediaVideoInfoFragment(videoDetail.getData()), new MediaCommentsFragment(view.getAid())),
@@ -106,11 +100,15 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
     }
 
     private void setPgcInfo(PgcDetail pgcDetail) {
-        PgcDetail.Result.Episode episode = pgcDetail.getResult().getEpisodes().get(0);
-        videoPlayerModel.getVideoResource().setValue(new VideoResourceWrap(episode.getBvid(), episode.getCid(), Quality.Q80));
+        final MediaCommentsFragment commentsFragment;
+        if (pgcDetail.getResult().getEpisodes().isEmpty()) {
+            commentsFragment = new MediaCommentsFragment(null);
+        } else {
+            commentsFragment = new MediaCommentsFragment(String.valueOf(pgcDetail.getResult().getEpisodes().get(0).getAid()));
+        }
 
         ViewUtils.initTabLayout(this, binding.extra.tabLayout, binding.extra.viewPager,
-                List.of(new MediaPgcInfoFragment(pgcDetail.getResult()), new MediaCommentsFragment(String.valueOf(pgcDetail.getResult().getEpisodes().get(0).getAid()))),
+                List.of(new MediaPgcInfoFragment(pgcDetail.getResult()), commentsFragment),
                 "简介", "评论");
     }
 
@@ -120,19 +118,17 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
      * @param videoResourceWrap VideoResourceWrap
      */
     private void setVideoResource(VideoResourceWrap videoResourceWrap) {
-        // todo 获取VIP等视频时会出现NPE
+        if (videoResourceWrap == null) {
+            binding.player.pause();
+            binding.player.release();
+            Toast.makeText(context, "没有选集可用来播放~~~", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if (isPgc) {
             new ApiHelper<>(httpApi.getPgcVideoStream(videoResourceWrap.getBvid(), videoResourceWrap.getCid(), videoResourceWrap.getQuality()))
-                    .setOnResult(pgcStream -> {
-                        List<PgcStream.Result.Durl> videoList = pgcStream.getResult().getDurl();
-                        if (!videoList.isEmpty()) {
-                            setVideoStream(pgcStream.getResult().getQuality(), pgcStream.getResult().getSupportFormats(), videoList.get(0).getUrl());
-                        } else {
-                            binding.player.release();
-                            Toast.makeText(context, "f**k~~~ 获取不到视频链接", Toast.LENGTH_SHORT).show();
-                        }
-
-                    }).doIt();
+                    .setOnResult(pgcStream -> setVideoStream(pgcStream.getResult().getQuality(), pgcStream.getResult().getSupportFormats(),
+                            pgcStream.getResult().getDurl().get(0).getUrl())).doIt();
             videoPlayerModel.getVideoRecommend().setValue(videoResourceWrap.getBvid());
         } else {
             new ApiHelper<>(httpApi.getVideoStream(id, videoResourceWrap.getCid(), videoResourceWrap.getQuality()))
@@ -241,7 +237,6 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
 
         videoPlayerModel.getVideoResource().removeObserver(videoResourceObserver);
         videoPlayerModel.getVideoSpeed().removeObserver(videoSpeedObserver);
-        videoPlayerModel.getVideoQuality().removeObserver(videoQualityObserver);
 
         super.onDestroy();
     }

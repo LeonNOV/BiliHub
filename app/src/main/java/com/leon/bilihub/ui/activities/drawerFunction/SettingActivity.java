@@ -37,11 +37,11 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding> {
 
         videoQualityObserver = display -> binding.videoQuality.setText(display);
         settingModel.getVideoQualityDisplay().observeForever(videoQualityObserver);
-        settingModel.getVideoQualityDisplay().setValue("1080P 高清");
+        settingModel.getVideoQualityDisplay().setValue(PreferenceUtils.getVideoQualityDisplay(context));
 
         liveQualityObserver = display -> binding.liveQuality.setText(display);
         settingModel.getLiveQualityDisplay().observeForever(liveQualityObserver);
-        settingModel.getLiveQualityDisplay().setValue("原画");
+        settingModel.getLiveQualityDisplay().setValue(PreferenceUtils.getLiveQualityDisplay(context));
 
         recommendStyleObserver = style -> {
             if (style == 1) {
@@ -80,6 +80,7 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding> {
     protected void onDestroy() {
         settingModel.getVideoQualityDisplay().removeObserver(videoQualityObserver);
         settingModel.getLiveQualityDisplay().removeObserver(liveQualityObserver);
+        settingModel.getRecommendStyle().removeObserver(recommendStyleObserver);
         settingModel = null;
 
         super.onDestroy();
