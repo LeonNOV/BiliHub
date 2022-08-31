@@ -77,7 +77,7 @@ public class PreferenceUtils {
     }
 
     public static int getRecommendStyle(Context context) {
-        return DataStoreUtils.INSTANCE.getData(context, DataStoreKey.RECOMMEND_STYLE, 1);
+        return DataStoreUtils.INSTANCE.getData(context, DataStoreKey.RECOMMEND_STYLE, 2);
     }
 
     public static void setRecommendStyle(Context context, int column) {

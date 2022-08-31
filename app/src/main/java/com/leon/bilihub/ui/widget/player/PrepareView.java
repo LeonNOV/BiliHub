@@ -48,13 +48,11 @@ public class PrepareView extends FrameLayout implements IControlComponent {
     private void init() {
         binding = ComponentPlayerPrepareBinding.bind(LayoutInflater.from(getContext()).inflate(R.layout.component_player_prepare, this, true));
 
-        binding.play.setOnClickListener(v -> controlWrapper.start());
         binding.continuePlay.setOnClickListener(v -> {
             binding.netWarningContainer.setVisibility(GONE);
             VideoViewManager.instance().setPlayOnMobileNetwork(true);
             controlWrapper.start();
         });
-//        setOnClickListener(v -> controlWrapper.start());
     }
 
     @Override
@@ -80,7 +78,6 @@ public class PrepareView extends FrameLayout implements IControlComponent {
                 bringToFront();
                 setVisibility(VISIBLE);
 
-                binding.play.setVisibility(GONE);
                 binding.netWarningContainer.setVisibility(GONE);
                 break;
             case VideoView.STATE_PLAYING:
@@ -95,7 +92,6 @@ public class PrepareView extends FrameLayout implements IControlComponent {
                 setVisibility(VISIBLE);
                 bringToFront();
 
-                binding.play.setVisibility(VISIBLE);
                 binding.netWarningContainer.setVisibility(GONE);
                 break;
             case VideoView.STATE_START_ABORT:

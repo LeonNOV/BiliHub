@@ -15,6 +15,8 @@ import androidx.annotation.Nullable;
 import com.leon.bilihub.R;
 import com.leon.bilihub.databinding.ComponentPlayerGestureBinding;
 
+import java.util.Locale;
+
 import xyz.doikki.videoplayer.controller.ControlWrapper;
 import xyz.doikki.videoplayer.controller.IGestureComponent;
 import xyz.doikki.videoplayer.player.VideoView;
@@ -28,8 +30,6 @@ import xyz.doikki.videoplayer.util.PlayerUtils;
 public class GestureView extends FrameLayout implements IGestureComponent {
     private ControlWrapper controlWrapper;
     private ComponentPlayerGestureBinding binding;
-
-    private OnDraggingListener onDraggingListener;
 
     /**
      * 是否为第一次出现VideoView.STATE_PLAYING
@@ -88,8 +88,6 @@ public class GestureView extends FrameLayout implements IGestureComponent {
             if (playState == VideoView.STATE_PLAYING && isFirstPlayingState) {
                 setVisibility(GONE);
                 isFirstPlayingState = false;
-            } else {
-                setVisibility(VISIBLE);
             }
         }
     }
@@ -148,10 +146,6 @@ public class GestureView extends FrameLayout implements IGestureComponent {
         }
 
         binding.percent.setText(String.format("%s/%s", PlayerUtils.stringForTime(slidePosition), PlayerUtils.stringForTime(duration)));
-
-        if (onDraggingListener != null) {
-            onDraggingListener.onDragging(duration, slidePosition);
-        }
     }
 
     @Override
@@ -160,7 +154,7 @@ public class GestureView extends FrameLayout implements IGestureComponent {
         binding.progress.setProgress(percent);
 
         binding.icon.setImageResource(R.drawable.video_brightness);
-        binding.percent.setText("%" + percent);
+        binding.percent.setText(String.format(Locale.CHINESE, "%d%%", percent));
     }
 
     @Override
@@ -173,21 +167,14 @@ public class GestureView extends FrameLayout implements IGestureComponent {
             binding.icon.setImageResource(R.drawable.video_volume);
         }
 
-        binding.percent.setText(percent + "%");
+        binding.percent.setText(String.format(Locale.CHINESE, "%d%%", percent));
         binding.progress.setProgress(percent);
     }
 
-    public void setOnDraggingListener(OnDraggingListener onDraggingListener) {
-        this.onDraggingListener = onDraggingListener;
-    }
-
-    public interface OnDraggingListener {
-        /**
-         * 手势快进/快退
-         *
-         * @param duration      总进度
-         * @param slidePosition 快进进度
-         */
-        void onDragging(int duration, int slidePosition);
-    }
+//    @Override
+//    protected void onDetachedFromWindow() {
+//        setVisibility(GONE);
+//
+//        super.onDetachedFromWindow();
+//    }
 }

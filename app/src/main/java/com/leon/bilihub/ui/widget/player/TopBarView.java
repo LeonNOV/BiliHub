@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -27,7 +28,6 @@ import com.leon.bilihub.utils.ViewUtils;
 
 import xyz.doikki.videoplayer.controller.ControlWrapper;
 import xyz.doikki.videoplayer.controller.IControlComponent;
-import xyz.doikki.videoplayer.player.BaseVideoView;
 import xyz.doikki.videoplayer.player.VideoView;
 import xyz.doikki.videoplayer.util.PlayerUtils;
 
@@ -162,11 +162,7 @@ public class TopBarView extends FrameLayout implements IControlComponent {
         switch (playState) {
             case VideoView.STATE_IDLE:
             case VideoView.STATE_START_ABORT:
-            case VideoView.STATE_PREPARING:
-            case VideoView.STATE_PREPARED:
-            case VideoView.STATE_ERROR:
-            case BaseVideoView.STATE_PLAYING:
-            case VideoView.STATE_PLAYBACK_COMPLETED:
+            case VideoView.STATE_PLAYING:
                 setVisibility(GONE);
                 break;
             default:
@@ -231,10 +227,16 @@ public class TopBarView extends FrameLayout implements IControlComponent {
                 return;
             }
 
-            int current = extras.getInt("level");
-            int total = extras.getInt("scale");
-            int percent = current * 100 / total;
-            batteryImageView.getDrawable().setLevel(percent);
+            int status = extras.getInt(BatteryManager.EXTRA_STATUS);
+            if (status == BatteryManager.BATTERY_STATUS_CHARGING) {
+                batteryImageView.setImageResource(R.drawable.player_battery_charging);
+            } else {
+                int current = extras.getInt(BatteryManager.EXTRA_LEVEL);
+                int total = extras.getInt(BatteryManager.EXTRA_SCALE);
+                int percent = current * 100 / total;
+                batteryImageView.setImageResource(R.drawable.player_battery);
+                batteryImageView.getDrawable().setLevel(percent);
+            }
         }
     }
 }

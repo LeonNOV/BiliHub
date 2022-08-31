@@ -18,6 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:visibility="gone"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
             tools:visibility="visible">
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -36,7 +38,7 @@
                 android:id="@+id/battery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/dkplayer_battery_level"
+                android:src="@drawable/player_battery_100"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

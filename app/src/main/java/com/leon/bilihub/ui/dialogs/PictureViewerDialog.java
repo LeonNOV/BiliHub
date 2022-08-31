@@ -33,12 +33,12 @@ public class PictureViewerDialog extends AppCompatDialog {
         setContentView(binding.getRoot());
 
         binding.all.setOnClickListener(v -> {
-            Toast.makeText(context, "save all", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "开发中…", Toast.LENGTH_SHORT).show();
             dismiss();
         });
 
         binding.current.setOnClickListener(v -> {
-            Toast.makeText(context, "save current", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "开发中…", Toast.LENGTH_SHORT).show();
             dismiss();
         });
 

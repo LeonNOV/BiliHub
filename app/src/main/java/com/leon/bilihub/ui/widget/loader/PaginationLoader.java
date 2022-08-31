@@ -125,7 +125,7 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
 
                         @Override
                         public void onError(@NonNull Throwable e) {
-//                            Toast.makeText(binding.getRoot().getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(binding.getRoot().getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                             insertFinish(loadType, refreshLayout, false);
                         }
 

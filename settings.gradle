@@ -13,5 +13,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "BiuVideo-V4"
+rootProject.name = "BiliHub"
 include ':app'

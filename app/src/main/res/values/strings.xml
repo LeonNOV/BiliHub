@@ -2,7 +2,6 @@
     <string name="application_name">BiliHub</string>
 
     <!-- 筛选组件 -->
-    <string name="filter_more_filter">筛选</string>
 
     <!-- 稍后观看 -->
     <string name="watch_later_clear">一键清空</string>
@@ -120,7 +119,6 @@
     <string name="user_follow">关注</string>
     <string name="user_fans">粉丝</string>
     <string name="follow">关注</string>
-    <string name="cancel_follow">取消关注</string>
     <string name="editProfile">编辑资料</string>
     <string name="profileMore">更多</string>
     <string name="cancel">取消</string>

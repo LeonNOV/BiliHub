@@ -8,26 +8,72 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.leon.biuvideo"
+        applicationId "com.leon.bilihub"
         minSdk 24
         targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        versionCode 46
+        versionName "1.2.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
-            /**
-             * 设置支持的架构平台
-             * arm64-v8a和armeabi-v7a为手机端
-             * 其中arm64-v8a为市面上新出的手机所使用的架构，兼容armeabi-v7a
-             * armeabi-v7a支持老版本的手机
-             * 如果要在虚拟机上运行，一定要加上x86
-             * 如果需要支持平板，则需要加上x86或x86_64
-             * x86_64支持新上市的平板，向下兼容x86
-             */
             abiFilters "arm64-v8a", "x86_64"
         }
+    }
+
+    flavorDimensions "versionCode"
+
+    signingConfigs {
+        debug {
+            v1SigningEnabled true
+            v2SigningEnabled true
+
+            keyAlias 'jm'
+            keyPassword 'bilihub'
+            storePassword 'bilihub'
+            storeFile file('bilihub.jks')
+        }
+
+        release {
+            v1SigningEnabled true
+            v2SigningEnabled true
+
+            keyAlias 'jm'
+            keyPassword 'bilihub'
+            storePassword 'bilihub'
+            storeFile file('bilihub.jks')
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    /* 配置渠道 */
+    productFlavors {
+        huluxia {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "huluxia"]
+        }
+        gitee {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "gitee"]
+        }
+        github {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "github"]
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     viewBinding {
@@ -38,20 +84,6 @@ android {
         viewBinding true
     }
 
-    androidExtensions {
-        experimental = true
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
-    }
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -80,9 +112,6 @@ dependencies {
     // 状态栏工具
     implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
 
-    // 单Activity框架
-    implementation 'me.xuexuan:fragmentationx:1.0.6'
-
     // 友盟统计SDK
     /*
     您务必告知用户您选择友盟+SDK服务，请在《隐私政策》中增加如下参考条款：
@@ -103,27 +132,14 @@ dependencies {
 
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
-//    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
     // An Android transformation library providing a variety of image transformations for Glide.
     implementation 'jp.wasabeef:glide-transformations:4.3.0'
 
-    // Fastjson
-//    implementation 'com.alibaba:fastjson:1.2.32'
-
-    // FlycoTabLayout
-//    implementation 'io.github.h07000223:flycoTabLayout:3.0.0'
-
-    // CircleProgressView
-    // https://github.com/jenly1314/CircleProgressView.git
-//    implementation 'com.github.jenly1314:circleprogressview:1.1.3'
-
     // OkHttp
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-
-//    implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
-//    implementation 'com.squareup.moshi:moshi-kotlin:1.12.0'
 
     // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-gson
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
@@ -160,11 +176,6 @@ dependencies {
 
     // https://github.com/Doikki/DKVideoPlayer
     implementation 'xyz.doikki.android.dkplayer:dkplayer-java:3.3.7'
-    // 包含StandardVideoController的实现
-    implementation 'xyz.doikki.android.dkplayer:dkplayer-ui:3.3.7'
-    // 使用exoplayer进行解码
-//    implementation 'xyz.doikki.android.dkplayer:player-exo:3.3.7'
-    // 使用ijkplayer进行解码
     implementation 'xyz.doikki.android.dkplayer:player-ijk:3.3.7'
 
     // https://github.com/MZCretin/ExpandableTextView

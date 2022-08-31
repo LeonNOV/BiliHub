@@ -43,7 +43,6 @@ public class PictureViewerActivity extends BaseActivity<ActivityPictureViewerBin
         int currentIndex = params.getInt(PARAM_B);
 
         binding.indicator.setText(String.format(Locale.CHINESE, "%d/%d", currentIndex + 1, pictures.size()));
-        binding.content.setCurrentItem(currentIndex);
         binding.content.setPageMargin(40);
         binding.content.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -55,6 +54,7 @@ public class PictureViewerActivity extends BaseActivity<ActivityPictureViewerBin
         PictureViewerAdapter adapter = new PictureViewerAdapter(context, pictures);
 
         binding.content.setAdapter(adapter);
+        binding.content.setCurrentItem(currentIndex);
     }
 
     /**

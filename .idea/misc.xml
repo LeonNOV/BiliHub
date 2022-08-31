@@ -138,6 +138,13 @@
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/drawable/partition_technology.xml" value="0.273" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/drawable/partition_teleplay.xml" value="0.3175" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/drawable/partition_test.xml" value="0.2115" />
+        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/drawable/player_battery.xml" value="0.2875" />
+        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/drawable/player_battery_0.xml" value="0.2765" />
+        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/drawable/player_battery_100.xml" value="0.1935" />
+        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/drawable/player_battery_25.xml" value="0.2765" />
+        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/drawable/player_battery_50.xml" value="0.2875" />
+        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/drawable/player_battery_75.xml" value="0.1935" />
+        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/drawable/player_battery_charging.xml" value="0.2875" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/drawable/point.xml" value="0.244" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/drawable/pointer.xml" value="0.316" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/drawable/progress_bar_drawable.xml" value="0.1645" />
@@ -238,7 +245,7 @@
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/component_player_gesture.xml" value="0.7985948477751756" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/component_player_live.xml" value="0.23680555555555555" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/component_player_prepare.xml" value="0.7962529274004684" />
-        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/component_player_top_bar.xml" value="0.6861826697892272" />
+        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/component_player_top_bar.xml" value="0.2243421052631579" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/compose_dialog_confirm.xml" value="0.7985948477751756" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/compose_filter.xml" value="0.7985948477751756" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/compose_filter_more.xml" value="0.2961876832844575" />
@@ -374,7 +381,7 @@
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/refresh_container.xml" value="0.35520833333333335" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/refresh_content.xml" value="0.7985948477751756" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/refresh_empty.xml" value="0.35520833333333335" />
-        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/refresh_loading.xml" value="0.35520833333333335" />
+        <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/refresh_loading.xml" value="0.7985948477751756" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/search_suggestion_item.xml" value="0.3541666666666667" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/tab_layout_title.xml" value="0.35520833333333335" />
         <entry key="..\:/CodeProjects/AndroidProjects/BiuVideoV4/app/src/main/res/layout/user_article_item.xml" value="0.35520833333333335" />
