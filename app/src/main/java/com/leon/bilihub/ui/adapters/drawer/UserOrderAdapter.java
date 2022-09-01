@@ -1,4 +1,4 @@
-package com.leon.bilihub.ui.adapters.user;
+package com.leon.bilihub.ui.adapters.drawer;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import androidx.core.graphics.ColorKt;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.publicBeans.user.UserOrder;
 import com.leon.bilihub.databinding.ItemUserOrderBinding;
 import com.leon.bilihub.ui.activities.publicActivities.VideoActivity;
@@ -23,7 +23,7 @@ import java.util.Map;
  * @Time 2022/07/11
  * @Desc
  */
-public class UserOrderAdapter extends BaseViewBindingAdapter<UserOrder.Data.Order, ItemUserOrderBinding> {
+public class UserOrderAdapter extends ViewBindingAdapter<UserOrder.Data.Order, ItemUserOrderBinding> {
     public UserOrderAdapter(Context context) {
         super(context);
     }

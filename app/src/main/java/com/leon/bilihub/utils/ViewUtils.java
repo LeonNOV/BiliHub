@@ -31,11 +31,11 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.leon.bilihub.R;
 import com.leon.bilihub.base.baseActivity.BaseActivity;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.ui.ViewPagerTouchMonitorListener;
 import com.leon.bilihub.ui.adapters.ViewPager2Adapter;
-import com.leon.bilihub.ui.widget.GridItemDecoration;
-import com.leon.bilihub.ui.widget.LinearItemDecoration;
+import com.leon.bilihub.ui.widget.decoration.GridItemDecoration;
+import com.leon.bilihub.ui.widget.decoration.LinearItemDecoration;
 
 import java.util.List;
 
@@ -209,7 +209,7 @@ public class ViewUtils {
      * recyclerView initializer
      *
      * @param recyclerView {@link RecyclerView}
-     * @param adapter      {@link BaseViewBindingAdapter}
+     * @param adapter      {@link ViewBindingAdapter}
      */
     public static void listInitializer(RecyclerView recyclerView, RecyclerView.Adapter<?> adapter) {
         if (recyclerView.getAdapter() == null) {
@@ -223,7 +223,7 @@ public class ViewUtils {
      * Item之间无间隔
      *
      * @param recyclerView {@link RecyclerView}
-     * @param adapter      {@link BaseViewBindingAdapter}
+     * @param adapter      {@link ViewBindingAdapter}
      */
     public static void linkAdapter(RecyclerView recyclerView, RecyclerView.Adapter<?> adapter) {
         if (recyclerView.getAdapter() == null) {

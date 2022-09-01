@@ -1,4 +1,4 @@
-package com.leon.bilihub.ui.adapters;
+package com.leon.bilihub.ui.adapters.video;
 
 import android.content.Context;
 import android.os.Parcelable;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.publicBeans.resources.Reply;
 import com.leon.bilihub.beans.publicBeans.resources.SubReply;
 import com.leon.bilihub.databinding.ItemReplyBinding;
@@ -25,7 +25,7 @@ import java.util.Map;
  * @Time 2022/08/13
  * @Desc
  */
-public class ReplyAdapter<T extends Parcelable> extends BaseViewBindingAdapter<T, ItemReplyBinding> {
+public class ReplyAdapter<T extends Parcelable> extends ViewBindingAdapter<T, ItemReplyBinding> {
     private final boolean isSubReply;
 
     public ReplyAdapter(Context context, boolean isSubReply) {

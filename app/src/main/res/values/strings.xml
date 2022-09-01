@@ -82,12 +82,11 @@
     <string name="setting_default_live_quality">原画</string>
     <string name="donation_desc">捐赠并不是必须的，不捐赠并不影响该APP的正常使用，当然每一份捐赠都会给予我更多的动力来维护该APP。</string>
     <string name="about_app_summary_title">简介</string>
-    <string name="about_app_summary">V3版本以至，欢迎各位使用，如果对该APP感兴趣的话，可以进行捐赠哦~</string>
+    <string name="about_app_summary">新版以至，欢迎各位使用。</string>
     <string name="about_app_open_source_project">开源项目</string>
     <string name="about_app_join_group_chat">加入群聊</string>
     <string name="about_app_copyright_notice">版权声明</string>
-    <string name="about_app_copyright_desc">「BiuVideo」该APP的初衷是打造一款轻量级的B站第三方客户端，该APP含有
-        资源缓存功能，请合理使用，资源版权归属于原作者，请不要用于商业用途，否则一切后果自负。</string>
+    <string name="about_app_copyright_desc">「BiliHub」是一款轻量级的哔哩哔哩动画第三方工具，资源版权归属于原作者，请不要用于商业用途，否则一切后果自负。</string>
     <string name="recommend_style_desc">选择主页推荐显示样式</string>
     <string name="setting_recommend_style_tip">下一次启动即可生效</string>
     <string name="setting_video_quality_default">1080P 高清 (默认)</string>
@@ -123,4 +122,5 @@
     <string name="profileMore">更多</string>
     <string name="cancel">取消</string>
     <string name="close">关闭</string>
+    <string name="reply_detail">评论回复</string>
 </resources>

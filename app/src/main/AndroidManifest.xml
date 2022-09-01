@@ -15,7 +15,7 @@
         android:label="@string/application_name"
         android:roundIcon="@mipmap/app_logo_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar"
+        android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
             android:name="com.leon.bilihub.ui.activities.drawerFunction.setting.SettingQualityActivity"

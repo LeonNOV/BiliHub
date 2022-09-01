@@ -1,4 +1,4 @@
-package com.leon.bilihub.ui.adapters.drawer;
+package com.leon.bilihub.ui.adapters.drawer.popular;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.home.drawerFunction.popular.PopularData;
 import com.leon.bilihub.databinding.ItemPopularBinding;
 import com.leon.bilihub.ui.activities.publicActivities.VideoActivity;
@@ -20,7 +20,7 @@ import java.util.Map;
  * @Time 2022/08/03
  * @Desc
  */
-public class PopularAdapter extends BaseViewBindingAdapter<PopularData, ItemPopularBinding> {
+public class PopularAdapter extends ViewBindingAdapter<PopularData, ItemPopularBinding> {
     public PopularAdapter(Context context) {
         super(context);
     }

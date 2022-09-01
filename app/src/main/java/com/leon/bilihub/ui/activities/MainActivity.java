@@ -30,7 +30,6 @@ import com.leon.bilihub.ui.activities.drawerFunction.SettingActivity;
 import com.leon.bilihub.ui.activities.drawerFunction.WatchLaterActivity;
 import com.leon.bilihub.ui.activities.drawerFunction.partition.PartitionActivity;
 import com.leon.bilihub.ui.activities.publicActivities.DownloadActivity;
-import com.leon.bilihub.ui.activities.publicActivities.UserActivity;
 import com.leon.bilihub.ui.activities.search.SearchActivity;
 import com.leon.bilihub.ui.adapters.HomeRecommendAdapter;
 import com.leon.bilihub.ui.dialogs.TipDialog;
@@ -39,7 +38,6 @@ import com.leon.bilihub.utils.DataStoreUtils;
 import com.leon.bilihub.utils.PreferenceUtils;
 import com.leon.bilihub.utils.ViewUtils;
 
-import java.util.Map;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -61,6 +59,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void init() {
+        closeImmersion();
+
         binding.home.userFace.setOnClickListener(v -> binding.getRoot().openDrawer(GravityCompat.START));
         binding.home.search.setOnClickListener(v -> startActivity(SearchActivity.class));
         binding.drawer.userContainer.setOnTouchListener((v, event) -> ViewUtils.zoom(event, binding.drawer.userContainer));
@@ -76,10 +76,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             tipDialog.setOnActionListener(action -> {
                 if (action) {
                     localAccountStatus(null);
-                    tipDialog.dismiss();
-                } else {
-                    tipDialog.dismiss();
                 }
+
+                tipDialog.dismiss();
             });
             tipDialog.show();
         });
@@ -102,10 +101,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         } else {
             loader = new PaginationLoader<>(binding.home.data, new HomeRecommendAdapter(context), new GridLayoutManager(context, 2));
         }
-//        loader.enabledRefresh(true);
-//        loader.setGuide(homeRecommend -> homeRecommend.getData().getItem());
-//        loader.setUpdateInterface(loadType -> httpApi.getHomeRecommend());
-//        loader.firstObtain();
+        loader.enabledRefresh(true);
+        loader.setGuide(homeRecommend -> homeRecommend.getData().getItem());
+        loader.setUpdateInterface(loadType -> httpApi.getHomeRecommend());
+        loader.firstObtain();
     }
 
     /**

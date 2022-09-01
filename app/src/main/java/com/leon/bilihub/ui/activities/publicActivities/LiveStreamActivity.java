@@ -36,6 +36,8 @@ public class LiveStreamActivity extends BaseActivity<ActivityLiveStreamBinding> 
 
     @Override
     protected void init() {
+        closeImmersion();
+
         this.roomId = params.getString(PARAM);
         this.livePlayerModel = new ViewModelProvider(this).get(LivePlayerModel.class);
 

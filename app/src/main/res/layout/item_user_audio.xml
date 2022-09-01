@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:drawableStart="@drawable/comment_reply"
+                android:drawableStart="@drawable/item_user_comment_reply"
                 android:drawablePadding="5dp"
                 android:textColor="@color/infoColor"
                 android:textSize="15sp"

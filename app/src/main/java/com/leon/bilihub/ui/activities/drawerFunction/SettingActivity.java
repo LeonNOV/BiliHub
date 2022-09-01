@@ -1,5 +1,9 @@
 package com.leon.bilihub.ui.activities.drawerFunction;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.widget.Toast;
+
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -74,6 +78,21 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding> {
         binding.about.setOnClickListener(v -> new AboutDialog(context).show());
         binding.donation.setOnClickListener(v -> new DonationDialog(context).show());
         binding.recommendStyle.setOnClickListener(v -> new RecommendStyleDialog(context).show());
+        binding.license.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setAction("android.intent.action.VIEW");
+            intent.setData(Uri.parse("https://gitee.com/leon_xf/bili-hub/blob/master/LICENSE"));
+            startActivity(intent);
+        });
+        binding.feedback.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setData(Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26jump_from%3Dwebapi%26k%3D" + "f7iJCgrDQnvPELv8QrJizOtBYTymrh5c"));
+            try {
+                context.startActivity(intent);
+            } catch (Exception e) {
+                Toast.makeText(context, "调起QQ失败，请检查QQ是否为最新版或是否已安装QQ", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

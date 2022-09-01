@@ -1,11 +1,11 @@
-package com.leon.bilihub.ui.adapters.partition;
+package com.leon.bilihub.ui.adapters.drawer.partition;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.partition.PartitionRecommend;
 import com.leon.bilihub.databinding.ItemPartitionHomeRecommendBinding;
 import com.leon.bilihub.http.BaseUrl;
@@ -22,7 +22,7 @@ import java.util.Random;
  * @Time 2022/07/13
  * @Desc
  */
-public class PartitionHomeRecommendAdapter extends BaseViewBindingAdapter<String, ItemPartitionHomeRecommendBinding> {
+public class PartitionHomeRecommendAdapter extends ViewBindingAdapter<String, ItemPartitionHomeRecommendBinding> {
     private final List<Integer> ridList;
     private final HttpApi httpApi;
     private OnMoveToPage onMoveToPage;

@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.home.drawerFunction.Series;
 import com.leon.bilihub.databinding.ItemTextBinding;
 
@@ -16,7 +16,7 @@ import java.util.Locale;
  * @Time 2022/07/05
  * @Desc
  */
-public class SeriesAdapter extends BaseViewBindingAdapter<Series.Data.Item, ItemTextBinding> {
+public class SeriesAdapter extends ViewBindingAdapter<Series.Data.Item, ItemTextBinding> {
     private final int selectedIndex;
     private OnItemListener onItemListener;
 

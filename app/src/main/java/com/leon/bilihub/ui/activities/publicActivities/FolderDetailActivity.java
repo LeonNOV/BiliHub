@@ -8,7 +8,7 @@ import com.leon.bilihub.databinding.ActivityFolderDetailBinding;
 import com.leon.bilihub.http.BaseUrl;
 import com.leon.bilihub.http.HttpApi;
 import com.leon.bilihub.http.RetrofitClient;
-import com.leon.bilihub.ui.adapters.drawer.FolderDetailMediaAdapter;
+import com.leon.bilihub.ui.adapters.drawer.favFolder.FolderDetailMediaAdapter;
 import com.leon.bilihub.ui.widget.loader.PaginationLoader;
 import com.leon.bilihub.utils.ValueUtils;
 import com.leon.bilihub.utils.ViewUtils;

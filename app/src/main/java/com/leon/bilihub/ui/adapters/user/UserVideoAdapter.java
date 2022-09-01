@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.publicBeans.user.UserVideo;
 import com.leon.bilihub.databinding.ItemVideoBinding;
 import com.leon.bilihub.ui.activities.publicActivities.VideoActivity;
@@ -20,7 +20,7 @@ import java.util.Map;
  * @Time 2022/07/07
  * @Desc
  */
-public class UserVideoAdapter extends BaseViewBindingAdapter<UserVideo.Data.DataList.Video, ItemVideoBinding> {
+public class UserVideoAdapter extends ViewBindingAdapter<UserVideo.Data.DataList.Video, ItemVideoBinding> {
     public UserVideoAdapter(Context context) {
         super(context);
     }

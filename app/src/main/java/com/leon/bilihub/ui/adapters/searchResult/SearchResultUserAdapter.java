@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.home.searchResult.SearchResultUser;
 import com.leon.bilihub.databinding.ItemUserBinding;
 import com.leon.bilihub.ui.activities.publicActivities.UserActivity;
@@ -19,7 +19,7 @@ import java.util.Map;
  * @Time 2022/08/06
  * @Desc
  */
-public class SearchResultUserAdapter extends BaseViewBindingAdapter<SearchResultUser.Data.Result, ItemUserBinding> {
+public class SearchResultUserAdapter extends ViewBindingAdapter<SearchResultUser.Data.Result, ItemUserBinding> {
     public SearchResultUserAdapter(Context context) {
         super(context);
     }

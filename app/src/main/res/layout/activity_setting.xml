@@ -8,7 +8,6 @@
     android:orientation="vertical">
 
     <com.leon.bilihub.ui.widget.TopBarWidget
-        android:id="@+id/setting_topBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="@string/settings" />
@@ -234,7 +233,7 @@
                     android:textSize="15sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/setting_open_source_license"
+                    android:id="@+id/license"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/ripple_bg"

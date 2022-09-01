@@ -1,13 +1,13 @@
-package com.leon.bilihub.ui.adapters.channel;
+package com.leon.bilihub.ui.adapters.drawer.channel;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.databinding.ItemVideoBBinding;
-import com.leon.bilihub.beans.home.channel.ChannelDetailFeatured;
+import com.leon.bilihub.beans.home.channel.ChannelDetailMultiple;
 import com.leon.bilihub.ui.activities.publicActivities.VideoActivity;
 import com.leon.bilihub.utils.ValueUtils;
 import com.leon.bilihub.utils.ViewUtils;
@@ -19,8 +19,8 @@ import java.util.Map;
  * @Time 2022/07/16
  * @Desc
  */
-public class ChannelFeaturedAdapter extends BaseViewBindingAdapter<ChannelDetailFeatured.Data.Archive, ItemVideoBBinding> {
-    public ChannelFeaturedAdapter(Context context) {
+public class ChannelMultipleContentAdapter extends ViewBindingAdapter<ChannelDetailMultiple.Data.Archive, ItemVideoBBinding> {
+    public ChannelMultipleContentAdapter(Context context) {
         super(context);
     }
 
@@ -30,13 +30,18 @@ public class ChannelFeaturedAdapter extends BaseViewBindingAdapter<ChannelDetail
     }
 
     @Override
-    protected void onBindViewHolder(ChannelDetailFeatured.Data.Archive data, ItemVideoBBinding binding, int position) {
+    protected void onBindViewHolder(ChannelDetailMultiple.Data.Archive data, ItemVideoBBinding binding, int position) {
         binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, VideoActivity.TYPE_VIDEO,
                 VideoActivity.PARAM_ID, data.getBvid())));
 
         ViewUtils.setImg(context, binding.cover, data.getCover());
         binding.play.setText(data.getViewCount());
-        binding.danmaku.setText(ValueUtils.generateCN(data.getDanmaku()));
+
+        if (data.getDanmaku() == null) {
+            binding.danmaku.setText("-");
+        } else {
+            binding.danmaku.setText(ValueUtils.generateCN(data.getDanmaku()));
+        }
         binding.extra.setText(data.getDuration());
         binding.title.setText(data.getName());
         binding.author.setText(data.getAuthorName());

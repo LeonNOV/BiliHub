@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.databinding.ItemFilterBinding;
 
 /**
@@ -13,7 +13,7 @@ import com.leon.bilihub.databinding.ItemFilterBinding;
  * @Time 2022/07/16
  * @Desc
  */
-public class FilterAdapter<T> extends BaseViewBindingAdapter<T, ItemFilterBinding> {
+public class FilterAdapter<T> extends ViewBindingAdapter<T, ItemFilterBinding> {
     private final FilterUtils filterUtils;
     private OnFilterCallback<T> onFilterCallback;
     private int selected = 0;

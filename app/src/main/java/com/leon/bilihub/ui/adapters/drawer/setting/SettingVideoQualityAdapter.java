@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import androidx.core.widget.TextViewCompat;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.databinding.ItemSettingDialogBinding;
 import com.leon.bilihub.http.Quality;
 import com.leon.bilihub.ui.activities.drawerFunction.SettingActivity;
@@ -22,7 +22,7 @@ import com.leon.bilihub.values.SettingValueCreator;
  * @Time 2022/08/25
  * @Desc
  */
-public class SettingVideoQualityAdapter extends BaseViewBindingAdapter<SettingValueCreator.SettingVideoQuality, ItemSettingDialogBinding> {
+public class SettingVideoQualityAdapter extends ViewBindingAdapter<SettingValueCreator.SettingVideoQuality, ItemSettingDialogBinding> {
     private PlayerController.OnSelectedListener<Integer> onSelectedListener;
     private int selectedPosition;
 

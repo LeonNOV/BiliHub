@@ -8,7 +8,8 @@ import androidx.annotation.IntDef;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.BaseAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.databinding.RefreshContentBinding;
 import com.leon.bilihub.utils.ViewUtils;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -42,19 +43,19 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
     private boolean isEnabled = true;
 
     private final RefreshContentBinding binding;
-    private final BaseViewBindingAdapter<B, ? extends ViewBinding> adapter;
+    private final BaseAdapter<B, ?> adapter;
 
     private UpdateInterface<T> updateInterface;
     private GuideInterface<T, B> guideInterface;
 
-    public PaginationLoader(@NonNull RefreshContentBinding binding, BaseViewBindingAdapter<B, ? extends ViewBinding> adapter) {
+    public PaginationLoader(@NonNull RefreshContentBinding binding, BaseAdapter<B, ?> adapter) {
         this.binding = binding;
         this.adapter = adapter;
 
         init();
     }
 
-    public PaginationLoader(@NonNull RefreshContentBinding binding, BaseViewBindingAdapter<B, ? extends ViewBinding> adapter, RecyclerView.LayoutManager layoutManager) {
+    public PaginationLoader(@NonNull RefreshContentBinding binding, BaseAdapter<B, ?> adapter, RecyclerView.LayoutManager layoutManager) {
         this.binding = binding;
         this.adapter = adapter;
         this.binding.container.content.setLayoutManager(layoutManager);
@@ -248,8 +249,8 @@ public class PaginationLoader<T extends Parcelable, B extends Parcelable> {
         Observable<T> update(@LoadType int loadType);
     }
 
-    public interface OnInit<B>{
-        void onInit(RecyclerView content, BaseViewBindingAdapter<B, ? extends ViewBinding> adapter);
+    public interface OnInit<B> {
+        void onInit(RecyclerView content, ViewBindingAdapter<B, ? extends ViewBinding> adapter);
     }
 }
 

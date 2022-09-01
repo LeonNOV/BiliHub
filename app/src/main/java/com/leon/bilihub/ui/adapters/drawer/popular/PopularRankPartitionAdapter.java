@@ -1,11 +1,11 @@
-package com.leon.bilihub.ui.adapters.drawer;
+package com.leon.bilihub.ui.adapters.drawer.popular;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.databinding.ItemTextBinding;
 
 /**
@@ -13,7 +13,7 @@ import com.leon.bilihub.databinding.ItemTextBinding;
  * @Time 2022/07/04
  * @Desc
  */
-public class PopularRankPartitionAdapter extends BaseViewBindingAdapter<String, ItemTextBinding> {
+public class PopularRankPartitionAdapter extends ViewBindingAdapter<String, ItemTextBinding> {
     private int preSelectedIndex = 0;
     private OnItemSelectedListener onItemSelectedListener;
 

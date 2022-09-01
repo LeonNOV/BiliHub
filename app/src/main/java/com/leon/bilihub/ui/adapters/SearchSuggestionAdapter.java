@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
 import com.leon.bilihub.base.baseActivity.ActivityManager;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.search.SearchSuggestion;
 import com.leon.bilihub.databinding.ItemSearchSuggestionBinding;
 import com.leon.bilihub.ui.activities.search.SearchResultActivity;
@@ -18,7 +18,7 @@ import java.util.Map;
  * @Time 2022/06/30
  * @Desc
  */
-public class SearchSuggestionAdapter extends BaseViewBindingAdapter<SearchSuggestion.Result.Tag, ItemSearchSuggestionBinding> {
+public class SearchSuggestionAdapter extends ViewBindingAdapter<SearchSuggestion.Result.Tag, ItemSearchSuggestionBinding> {
     public SearchSuggestionAdapter(Context context) {
         super(context);
     }

@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.publicBeans.resources.video.VideoSpeed;
 import com.leon.bilihub.databinding.ItemVideoSpeedBinding;
 import com.leon.bilihub.ui.widget.player.PlayerController;
@@ -16,7 +16,7 @@ import com.leon.bilihub.wraps.VideoSpeedWrap;
  * @Time 2022/08/19
  * @Desc
  */
-public class VideoSpeedAdapter extends BaseViewBindingAdapter<VideoSpeed, ItemVideoSpeedBinding> {
+public class VideoSpeedAdapter extends ViewBindingAdapter<VideoSpeed, ItemVideoSpeedBinding> {
 
     private PlayerController.OnSelectedListener<VideoSpeedWrap> onSelectedListener;
     private int selectedPosition;

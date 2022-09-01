@@ -25,11 +25,11 @@ data class HomeRecommend(
             @SerializedName("bvid")
             val bvid: String,
             @SerializedName("cid")
-            val cid: Int,
+            val cid: String,
             @SerializedName("duration")
             val duration: Int,
             @SerializedName("id")
-            val id: Int,
+            val id: String,
             @SerializedName("is_followed")
             val isFollowed: Int,
             @SerializedName("owner")
@@ -50,7 +50,7 @@ data class HomeRecommend(
                 @SerializedName("face")
                 val face: String,
                 @SerializedName("mid")
-                val mid: Int,
+                val mid: String,
                 @SerializedName("name")
                 val name: String
             ) : Parcelable

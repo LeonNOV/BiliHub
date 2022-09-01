@@ -14,8 +14,8 @@ import com.leon.bilihub.http.Condition;
 import com.leon.bilihub.http.HttpApi;
 import com.leon.bilihub.http.Rank;
 import com.leon.bilihub.http.RetrofitClient;
-import com.leon.bilihub.ui.adapters.drawer.PopularAdapter;
-import com.leon.bilihub.ui.adapters.drawer.relation.PopularRankAdapter;
+import com.leon.bilihub.ui.adapters.drawer.popular.PopularAdapter;
+import com.leon.bilihub.ui.adapters.drawer.popular.PopularRankViewBindingAdapter;
 import com.leon.bilihub.utils.ViewUtils;
 import com.leon.bilihub.utils.filter.FilterAdapter;
 
@@ -30,7 +30,7 @@ import java.util.List;
 public class RankFragment extends BaseLazyFragment<PageFilterRecyclerBinding> {
     private int pre = -1;
 
-    private PopularRankAdapter adapter;
+    private PopularRankViewBindingAdapter adapter;
     private List<Rank<? extends Parcelable>> rankList;
 
     @Override
@@ -83,7 +83,7 @@ public class RankFragment extends BaseLazyFragment<PageFilterRecyclerBinding> {
         filterAdapter.appendHead(rankList);
         binding.filter.setAdapter(filterAdapter);
 
-        adapter = new PopularRankAdapter(context);
+        adapter = new PopularRankViewBindingAdapter(context);
         ViewUtils.listInitializer(binding.content, adapter);
     }
 
@@ -98,9 +98,9 @@ public class RankFragment extends BaseLazyFragment<PageFilterRecyclerBinding> {
 
             adapter.removeAll();
             if (rank.getType() == 0) {
-                adapter.setLayoutId(PopularRankAdapter.ITEM_VIDEO);
+                adapter.setLayoutId(PopularRankViewBindingAdapter.ITEM_VIDEO);
             } else {
-                adapter.setLayoutId(PopularRankAdapter.ITEM_RANK_PGC);
+                adapter.setLayoutId(PopularRankViewBindingAdapter.ITEM_RANK_PGC);
             }
 
             new ApiHelper<>(rank.getObserver()).setOnResult(parcelable -> {

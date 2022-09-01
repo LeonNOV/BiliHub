@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.home.searchResult.SearchResultLive;
 import com.leon.bilihub.databinding.ItemSearchResultLiveBinding;
 import com.leon.bilihub.ui.activities.publicActivities.LiveStreamActivity;
@@ -19,7 +19,7 @@ import java.util.Map;
  * @Time 2022/08/06
  * @Desc
  */
-public class SearchResultLiveAdapter extends BaseViewBindingAdapter<SearchResultLive.Data.Result.LiveRoom, ItemSearchResultLiveBinding> {
+public class SearchResultLiveAdapter extends ViewBindingAdapter<SearchResultLive.Data.Result.LiveRoom, ItemSearchResultLiveBinding> {
     public SearchResultLiveAdapter(Context context) {
         super(context);
     }

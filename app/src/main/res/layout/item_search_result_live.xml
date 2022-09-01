@@ -61,7 +61,7 @@
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/as_person"
+                    android:src="@drawable/ic_person"
                     android:tint="@color/white" />
 
                 <androidx.appcompat.widget.AppCompatTextView

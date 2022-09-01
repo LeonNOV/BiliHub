@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import androidx.viewbinding.ViewBinding;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.home.HomeRecommend;
 import com.leon.bilihub.databinding.ItemVideoBBinding;
 import com.leon.bilihub.databinding.ItemVideoBinding;
@@ -23,7 +23,7 @@ import java.util.Map;
  * @Time 2022/06/24
  * @Desc
  */
-public class HomeRecommendAdapter extends BaseViewBindingAdapter<HomeRecommend.Data.Item, ViewBinding> {
+public class HomeRecommendAdapter extends ViewBindingAdapter<HomeRecommend.Data.Item, ViewBinding> {
     private final int recommendStyle;
 
     public HomeRecommendAdapter(Context context) {

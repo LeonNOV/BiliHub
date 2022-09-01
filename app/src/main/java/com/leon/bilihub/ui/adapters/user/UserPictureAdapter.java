@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.publicBeans.user.UserPicture;
 import com.leon.bilihub.databinding.ItemUserPictureBinding;
 import com.leon.bilihub.ui.activities.publicActivities.PictureActivity;
@@ -21,7 +21,7 @@ import java.util.Map;
  * @Time 2022/07/08
  * @Desc
  */
-public class UserPictureAdapter extends BaseViewBindingAdapter<UserPicture.Data.Item, ItemUserPictureBinding> {
+public class UserPictureAdapter extends ViewBindingAdapter<UserPicture.Data.Item, ItemUserPictureBinding> {
     public UserPictureAdapter(Context context) {
         super(context);
     }

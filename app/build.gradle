@@ -11,8 +11,8 @@ android {
         applicationId "com.leon.bilihub"
         minSdk 24
         targetSdk 31
-        versionCode 46
-        versionName "1.2.1"
+        versionCode 48
+        versionName "4.2.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 

@@ -10,7 +10,7 @@ import com.leon.bilihub.http.BaseUrl;
 import com.leon.bilihub.http.HttpApi;
 import com.leon.bilihub.http.RetrofitClient;
 import com.leon.bilihub.ui.adapters.SeriesAdapter;
-import com.leon.bilihub.ui.adapters.drawer.PopularAdapter;
+import com.leon.bilihub.ui.adapters.drawer.popular.PopularAdapter;
 import com.leon.bilihub.ui.dialogs.SeriesPopupWindow;
 import com.leon.bilihub.ui.widget.loader.RecyclerViewLoader;
 

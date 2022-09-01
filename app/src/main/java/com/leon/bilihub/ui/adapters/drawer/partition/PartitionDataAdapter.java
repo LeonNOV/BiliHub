@@ -1,11 +1,11 @@
-package com.leon.bilihub.ui.adapters.partition;
+package com.leon.bilihub.ui.adapters.drawer.partition;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.partition.PartitionData;
 import com.leon.bilihub.databinding.ItemPartitionVideoBinding;
 import com.leon.bilihub.ui.activities.publicActivities.VideoActivity;
@@ -19,7 +19,7 @@ import java.util.Map;
  * @Time 2022/07/15
  * @Desc
  */
-public class PartitionDataAdapter extends BaseViewBindingAdapter<PartitionData.Result, ItemPartitionVideoBinding> {
+public class PartitionDataAdapter extends ViewBindingAdapter<PartitionData.Result, ItemPartitionVideoBinding> {
     public PartitionDataAdapter(Context context) {
         super(context);
     }

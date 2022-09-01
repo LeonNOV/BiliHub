@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.home.searchResult.SearchResultVideo;
 import com.leon.bilihub.databinding.ItemVideoBinding;
 import com.leon.bilihub.ui.activities.publicActivities.VideoActivity;
@@ -20,7 +20,7 @@ import java.util.Map;
  * @Time 2022/08/02
  * @Desc
  */
-public class SearchResultVideoAdapter extends BaseViewBindingAdapter<SearchResultVideo.Data.Result, ItemVideoBinding> {
+public class SearchResultVideoAdapter extends ViewBindingAdapter<SearchResultVideo.Data.Result, ItemVideoBinding> {
     public SearchResultVideoAdapter(Context context) {
         super(context);
     }

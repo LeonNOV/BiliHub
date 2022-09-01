@@ -11,8 +11,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
+import com.gyf.immersionbar.BarHide;
+import com.gyf.immersionbar.ImmersionBar;
 import com.leon.bilihub.R;
 import com.leon.bilihub.databinding.DialogAboutBinding;
+import com.leon.bilihub.utils.ViewUtils;
+import com.leon.bilihub.utils.donation.DonationHelper;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -22,30 +26,32 @@ import org.jetbrains.annotations.NotNull;
  * @Desc 关于弹窗
  */
 public class AboutDialog extends AlertDialog {
-    private final static String GITEE = "https://gitee.com/leon_xf/biu-video";
-    private final static String GITHUB = "https://github.com/LeonNOV/BiuVideo";
-    private com.leon.bilihub.databinding.DialogAboutBinding binding;
+    private final static String GITEE = "https://gitee.com/leon_xf/bili-hub";
+    private final static String GITHUB = "https://github.com/LeonNOV/BiliHub";
+    private DialogAboutBinding binding;
 
     public AboutDialog(@NotNull Context context) {
-        super(context);
+        super(context, R.style.FullScreenDialog);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        ImmersionBar.with(ViewUtils.scanForActivity(getContext()), this).hideBar(BarHide.FLAG_HIDE_STATUS_BAR).init();
+
         binding = DialogAboutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         Window window = getWindow();
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         window.setWindowAnimations(R.style.paning_anim_style);
-        window.setBackgroundDrawableResource(android.R.color.transparent);
 
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.height = WindowManager.LayoutParams.MATCH_PARENT;
         attributes.width = WindowManager.LayoutParams.MATCH_PARENT;
         window.setAttributes(attributes);
+
+        setCanceledOnTouchOutside(false);
 
         initView();
     }
@@ -60,12 +66,6 @@ public class AboutDialog extends AlertDialog {
         }
 
         binding.aboutAppVersion.setText(versionName);
-        binding.versionContainer.setOnClickListener(v -> {
-//            OpenScreenDialog openScreenDialog = new OpenScreenDialog(getContext());
-//            openScreenDialog.show();
-            dismiss();
-        });
-
         binding.gitee.setOnClickListener(v -> {
             Intent intent = new Intent();
             intent.setAction("android.intent.action.VIEW");
@@ -89,6 +89,9 @@ public class AboutDialog extends AlertDialog {
                 Toast.makeText(getContext(), "调起QQ失败，请检查QQ是否为最新版或是否已安装QQ", Toast.LENGTH_SHORT).show();
             }
         });
+
+        binding.weChatPay.setOnClickListener(v -> DonationHelper.WeChat(getContext()));
+        binding.aliPay.setOnClickListener(v -> DonationHelper.Ali(getContext()));
 
         binding.close.setOnClickListener(v -> dismiss());
     }

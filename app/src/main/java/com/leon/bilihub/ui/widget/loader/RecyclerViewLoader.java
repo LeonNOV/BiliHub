@@ -6,7 +6,7 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.utils.ViewUtils;
 
 import java.util.List;
@@ -28,19 +28,19 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
  */
 public class RecyclerViewLoader<T extends Parcelable, B extends Parcelable>{
     private final RecyclerView recyclerView;
-    private final BaseViewBindingAdapter<B, ? extends ViewBinding> adapter;
+    private final ViewBindingAdapter<B, ? extends ViewBinding> adapter;
 
     private Observable<T> observable;
     private PaginationLoader.GuideInterface<T, B> guideInterface;
 
-    public RecyclerViewLoader(RecyclerView recyclerView, BaseViewBindingAdapter<B, ? extends ViewBinding> adapter) {
+    public RecyclerViewLoader(RecyclerView recyclerView, ViewBindingAdapter<B, ? extends ViewBinding> adapter) {
         this.recyclerView = recyclerView;
         this.adapter = adapter;
 
         init();
     }
 
-    public RecyclerViewLoader(RecyclerView recyclerView, BaseViewBindingAdapter<B, ? extends ViewBinding> adapter, PaginationLoader.OnInit<B> onInit) {
+    public RecyclerViewLoader(RecyclerView recyclerView, ViewBindingAdapter<B, ? extends ViewBinding> adapter, PaginationLoader.OnInit<B> onInit) {
         this.recyclerView = recyclerView;
         this.adapter = adapter;
 
@@ -90,7 +90,7 @@ public class RecyclerViewLoader<T extends Parcelable, B extends Parcelable>{
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        Toast.makeText(adapter.context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(adapter.getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

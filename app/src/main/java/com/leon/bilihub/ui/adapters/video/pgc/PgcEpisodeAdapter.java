@@ -13,7 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.publicBeans.resources.video.PgcDetail;
 import com.leon.bilihub.databinding.ItemPgcEpisodeBinding;
 import com.leon.bilihub.model.VideoPlayerModel;
@@ -29,7 +29,7 @@ import java.util.Locale;
  * @Time 2022/08/21
  * @Desc
  */
-public class PgcEpisodeAdapter extends BaseViewBindingAdapter<PgcDetail.Result.Episode, ItemPgcEpisodeBinding> {
+public class PgcEpisodeAdapter extends ViewBindingAdapter<PgcDetail.Result.Episode, ItemPgcEpisodeBinding> {
     private final String epSuffix;
 
     private PlayerController.OnSelectedListener<Integer> onSelectedListener;

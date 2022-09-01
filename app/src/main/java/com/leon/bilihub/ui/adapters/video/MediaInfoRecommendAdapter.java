@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.publicBeans.resources.video.VideoDetail;
 import com.leon.bilihub.databinding.ItemVideoBinding;
 import com.leon.bilihub.ui.activities.publicActivities.VideoActivity;
@@ -19,7 +19,7 @@ import java.util.Map;
  * @Time 2022/08/11
  * @Desc
  */
-public class MediaInfoRecommendAdapter extends BaseViewBindingAdapter<VideoDetail.Data.Related, ItemVideoBinding> {
+public class MediaInfoRecommendAdapter extends ViewBindingAdapter<VideoDetail.Data.Related, ItemVideoBinding> {
     public MediaInfoRecommendAdapter(Context context) {
         super(context);
     }

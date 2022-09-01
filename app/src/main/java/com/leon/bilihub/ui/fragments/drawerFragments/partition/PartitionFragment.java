@@ -10,7 +10,7 @@ import com.leon.bilihub.http.ApiHelper;
 import com.leon.bilihub.http.BaseUrl;
 import com.leon.bilihub.http.HttpApi;
 import com.leon.bilihub.http.RetrofitClient;
-import com.leon.bilihub.ui.adapters.partition.PartitionDataAdapter;
+import com.leon.bilihub.ui.adapters.drawer.partition.PartitionDataAdapter;
 import com.leon.bilihub.ui.widget.loader.PaginationLoader;
 import com.leon.bilihub.utils.ValueUtils;
 import com.leon.bilihub.utils.filter.FilterAdapter;

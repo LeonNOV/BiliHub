@@ -26,7 +26,7 @@
             android:layout_gravity="end|bottom"
             android:layout_margin="10dp"
             android:tint="@color/white"
-            tools:src="@drawable/collect_b" />
+            tools:src="@drawable/item_collect_b" />
 
     </FrameLayout>
 

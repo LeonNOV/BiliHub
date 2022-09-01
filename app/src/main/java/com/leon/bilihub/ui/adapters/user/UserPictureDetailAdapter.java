@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.publicBeans.resources.picture.PictureInfo;
 import com.leon.bilihub.databinding.ItemPictureBinding;
 import com.leon.bilihub.ui.activities.publicActivities.PictureViewerActivity;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * @Time 2022/07/29
  * @Desc 相簿详情页图片适配器
  */
-public class UserPictureDetailAdapter extends BaseViewBindingAdapter<PictureInfo.Data.Item.Modules.ModuleDynamic.Major.Draw.Item, ItemPictureBinding> {
+public class UserPictureDetailAdapter extends ViewBindingAdapter<PictureInfo.Data.Item.Modules.ModuleDynamic.Major.Draw.Item, ItemPictureBinding> {
     private final Bundle bundle;
 
     public UserPictureDetailAdapter(Context context, ArrayList<PictureInfo.Data.Item.Modules.ModuleDynamic.Major.Draw.Item> pictures) {

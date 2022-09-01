@@ -61,6 +61,8 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
 
     @Override
     protected void init() {
+        closeImmersion();
+
         if (params.containsKey(PARAM_ID)) {
             this.id = params.getString(PARAM_ID);
 

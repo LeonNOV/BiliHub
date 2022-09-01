@@ -18,7 +18,7 @@ import com.leon.bilihub.http.BaseUrl;
 import com.leon.bilihub.http.HttpApi;
 import com.leon.bilihub.http.RetrofitClient;
 import com.leon.bilihub.ui.activities.publicActivities.UserActivity;
-import com.leon.bilihub.ui.adapters.ReplyAdapter;
+import com.leon.bilihub.ui.adapters.video.ReplyAdapter;
 import com.leon.bilihub.ui.widget.loader.PaginationLoader;
 import com.leon.bilihub.utils.ValueUtils;
 import com.leon.bilihub.utils.ViewUtils;
@@ -28,7 +28,7 @@ import java.util.Map;
 /**
  * @Author Leon
  * @Time 2022/08/20
- * @Desc todo 只有在完全展开的情况下，数据才能展示完全，待修复
+ * @Desc
  */
 public class ReplyDetailDialog extends BottomSheetDialog {
     private final String oid;
@@ -49,7 +49,7 @@ public class ReplyDetailDialog extends BottomSheetDialog {
 
         binding = DialogReplyDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        binding.close.setOnClickListener(v -> dismiss());
+        binding.back.setOnClickListener(v -> dismiss());
 
         Window window = getWindow();
         WindowManager.LayoutParams attributes = window.getAttributes();

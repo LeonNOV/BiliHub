@@ -9,7 +9,7 @@ import com.leon.bilihub.http.BaseUrl;
 import com.leon.bilihub.http.HttpApi;
 import com.leon.bilihub.http.RetrofitClient;
 import com.leon.bilihub.beans.home.channel.ChannelDetailFeatured;
-import com.leon.bilihub.ui.adapters.channel.ChannelFeaturedAdapter;
+import com.leon.bilihub.ui.adapters.drawer.channel.ChannelFeaturedAdapter;
 import com.leon.bilihub.utils.filter.FilterAdapter;
 import com.leon.bilihub.ui.widget.loader.PaginationLoader;
 

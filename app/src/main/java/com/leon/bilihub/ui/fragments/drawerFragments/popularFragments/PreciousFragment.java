@@ -6,7 +6,7 @@ import com.leon.bilihub.beans.home.drawerFunction.popular.PopularPrecious;
 import com.leon.bilihub.databinding.PageSubRecyclerBinding;
 import com.leon.bilihub.http.BaseUrl;
 import com.leon.bilihub.http.RetrofitClient;
-import com.leon.bilihub.ui.adapters.drawer.PopularAdapter;
+import com.leon.bilihub.ui.adapters.drawer.popular.PopularAdapter;
 import com.leon.bilihub.ui.widget.loader.RecyclerViewLoader;
 
 import java.util.ArrayList;

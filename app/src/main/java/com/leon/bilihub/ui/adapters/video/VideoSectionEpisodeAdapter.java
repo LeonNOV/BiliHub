@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.publicBeans.resources.video.VideoDetail;
 import com.leon.bilihub.databinding.ItemVideoEpisodeBinding;
 import com.leon.bilihub.utils.ValueUtils;
@@ -15,7 +15,7 @@ import com.leon.bilihub.utils.ValueUtils;
  * @Time 2022/08/19
  * @Desc
  */
-public class VideoSectionEpisodeAdapter extends BaseViewBindingAdapter<VideoDetail.Data.View.UgcSeason.Section.Episode, ItemVideoEpisodeBinding> {
+public class VideoSectionEpisodeAdapter extends ViewBindingAdapter<VideoDetail.Data.View.UgcSeason.Section.Episode, ItemVideoEpisodeBinding> {
     public VideoSectionEpisodeAdapter(Context context) {
         super(context);
     }

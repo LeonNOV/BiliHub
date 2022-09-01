@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
 import com.leon.bilihub.base.baseActivity.ActivityManager;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.home.HotSearch;
 import com.leon.bilihub.databinding.ItemHotSearchBinding;
 import com.leon.bilihub.ui.activities.search.SearchResultActivity;
@@ -21,7 +21,7 @@ import java.util.Map;
  * @Time 2022/07/15
  * @Desc
  */
-public class HotSearchAdapter extends BaseViewBindingAdapter<HotSearch.Data.Trending.Data, ItemHotSearchBinding> {
+public class HotSearchAdapter extends ViewBindingAdapter<HotSearch.Data.Trending.Data, ItemHotSearchBinding> {
     public HotSearchAdapter(Context context) {
         super(context);
     }

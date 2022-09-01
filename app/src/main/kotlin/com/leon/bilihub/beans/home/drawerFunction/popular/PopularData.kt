@@ -1,7 +1,7 @@
 package com.leon.bilihub.beans.home.drawerFunction.popular
 
 import android.os.Parcelable
-import com.leon.bilihub.ui.adapters.drawer.PopularAdapter
+import com.leon.bilihub.ui.adapters.drawer.popular.PopularAdapter
 import kotlinx.android.parcel.Parcelize
 
 /**

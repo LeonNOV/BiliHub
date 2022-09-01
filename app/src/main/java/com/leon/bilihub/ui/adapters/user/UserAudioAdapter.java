@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.publicBeans.user.UserAudio;
 import com.leon.bilihub.databinding.ItemUserAudioBinding;
 import com.leon.bilihub.ui.activities.publicActivities.AudioActivity;
@@ -19,7 +19,7 @@ import java.util.Map;
  * @Time 2022/07/08
  * @Desc
  */
-public class UserAudioAdapter extends BaseViewBindingAdapter<UserAudio.Data.Audio, ItemUserAudioBinding> {
+public class UserAudioAdapter extends ViewBindingAdapter<UserAudio.Data.Audio, ItemUserAudioBinding> {
 
     public UserAudioAdapter(Context context) {
         super(context);

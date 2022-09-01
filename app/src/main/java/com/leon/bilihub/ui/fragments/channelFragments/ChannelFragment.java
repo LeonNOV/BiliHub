@@ -10,8 +10,8 @@ import com.leon.bilihub.databinding.FragmentChannelBinding;
 import com.leon.bilihub.http.BaseUrl;
 import com.leon.bilihub.http.HttpApi;
 import com.leon.bilihub.http.RetrofitClient;
-import com.leon.bilihub.ui.adapters.channel.ChannelAdapter;
-import com.leon.bilihub.ui.adapters.channel.UserChannelAdapter;
+import com.leon.bilihub.ui.adapters.drawer.channel.ChannelAdapter;
+import com.leon.bilihub.ui.adapters.drawer.channel.UserChannelAdapter;
 import com.leon.bilihub.ui.widget.loader.PaginationLoader;
 import com.leon.bilihub.ui.widget.loader.RecyclerViewLoader;
 

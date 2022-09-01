@@ -1,96 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="@dimen/cardMargin"
-    android:background="@drawable/round_corners6dp_bg"
-    android:padding="10dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/versionContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
+            android:layout_margin="20dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/ripple_round_corners6dp_bg"
-            android:elevation="5dp"
+            android:background="@drawable/round_bg"
+            android:elevation="8dp"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:paddingTop="10dp"
             android:paddingBottom="10dp">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/app_name"
+                android:text="@string/application_name"
                 android:textColor="@color/pink"
                 android:textSize="35sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/about_app_version"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
                 android:textColor="@color/infoColor"
-                tools:text="3.0.0-beta"/>
+                android:textSize="15sp"
+                tools:text="3.0.0-beta" />
 
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="20dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/round_corners6dp_bg"
-            android:elevation="5dp"
+            android:background="@drawable/round_bg"
+            android:elevation="8dp"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="20dp">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
                 android:text="@string/about_app_summary_title"
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:padding="10dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/about_app_summary"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="20dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/round_corners6dp_bg"
-            android:elevation="5dp"
+            android:background="@drawable/round_bg"
+            android:elevation="8dp"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="20dp">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
                 android:text="@string/about_app_open_source_project"
                 android:textColor="@color/black"
                 android:textSize="15sp"
@@ -99,11 +91,10 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 android:paddingStart="50dp"
                 android:paddingEnd="50dp">
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/gitee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -111,7 +102,7 @@
                     android:padding="10dp"
                     android:src="@drawable/about_app_gitee" />
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/github"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -122,49 +113,100 @@
 
             </FrameLayout>
 
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="20dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/round_corners6dp_bg"
-            android:elevation="5dp"
+            android:background="@drawable/round_bg"
+            android:elevation="8dp"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="20dp">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/setting_donation"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:text="@string/donation_desc"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="50dp"
+                android:paddingEnd="50dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/weChatPay"
+                    android:layout_width="82dp"
+                    android:layout_height="82dp"
+                    android:background="@drawable/ripple_round_corners6dp_bg"
+                    android:padding="10dp"
+                    android:src="@drawable/donation_amount_wechatpay" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/aliPay"
+                    android:layout_width="82dp"
+                    android:layout_height="82dp"
+                    android:layout_gravity="end"
+                    android:background="@drawable/ripple_round_corners6dp_bg"
+                    android:padding="10dp"
+                    android:src="@drawable/donation_amount_alipay" />
+
+            </FrameLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/round_bg"
+            android:elevation="8dp"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/about_app_join_group_chat"
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="10dp"
                 android:background="@drawable/ripple_round_corners6dp_bg"
                 android:src="@drawable/ic_qq_group_chat" />
 
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="20dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/round_corners6dp_bg"
-            android:elevation="5dp"
+            android:background="@drawable/round_bg"
+            android:elevation="8dp"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="20dp">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/about_app_copyright_notice"
@@ -172,7 +214,7 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -180,22 +222,22 @@
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/close"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/ripple_round_corners6dp_bg"
+            android:layout_margin="20dp"
+            android:background="@drawable/round_bg"
             android:backgroundTint="@color/theme_tab_indicator"
-            android:elevation="3dp"
+            android:elevation="8dp"
             android:gravity="center_horizontal"
             android:padding="15dp"
             android:text="@string/close"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.core.widget.NestedScrollView>

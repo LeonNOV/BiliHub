@@ -10,7 +10,7 @@ import com.leon.bilihub.http.BaseUrl;
 import com.leon.bilihub.http.HttpApi;
 import com.leon.bilihub.http.RetrofitClient;
 import com.leon.bilihub.beans.home.channel.ChannelDetailMultiple;
-import com.leon.bilihub.ui.adapters.channel.ChannelMultipleContentAdapter;
+import com.leon.bilihub.ui.adapters.drawer.channel.ChannelMultipleContentAdapter;
 import com.leon.bilihub.ui.widget.loader.PaginationLoader;
 
 import java.util.ArrayList;

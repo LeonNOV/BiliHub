@@ -1,11 +1,11 @@
-package com.leon.bilihub.ui.adapters.drawer;
+package com.leon.bilihub.ui.adapters.drawer.favFolder;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.account.FavoriteFolder;
 import com.leon.bilihub.databinding.ItemFolderBinding;
 import com.leon.bilihub.ui.activities.publicActivities.FolderDetailActivity;
@@ -17,7 +17,7 @@ import java.util.Map;
  * @Time 2022/07/12
  * @Desc
  */
-public class FolderAdapter extends BaseViewBindingAdapter<FavoriteFolder.Data.Folder, ItemFolderBinding> {
+public class FolderAdapter extends ViewBindingAdapter<FavoriteFolder.Data.Folder, ItemFolderBinding> {
     public FolderAdapter(Context context) {
         super(context);
     }

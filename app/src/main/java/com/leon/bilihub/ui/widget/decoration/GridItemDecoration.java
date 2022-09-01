@@ -1,4 +1,4 @@
-package com.leon.bilihub.ui.widget;
+package com.leon.bilihub.ui.widget.decoration;
 
 import android.graphics.Rect;
 import android.util.SparseArray;

@@ -10,7 +10,7 @@ import androidx.core.graphics.ColorKt;
 import androidx.core.view.ViewCompat;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.publicBeans.resources.video.PgcRecommend;
 import com.leon.bilihub.databinding.ItemPgcRecommendBinding;
 import com.leon.bilihub.ui.activities.publicActivities.VideoActivity;
@@ -25,7 +25,7 @@ import java.util.Map;
  * @Time 2022/08/24
  * @Desc
  */
-public class PgcRecommendAdapter extends BaseViewBindingAdapter<PgcRecommend.Data.Season, ItemPgcRecommendBinding> {
+public class PgcRecommendAdapter extends ViewBindingAdapter<PgcRecommend.Data.Season, ItemPgcRecommendBinding> {
     public PgcRecommendAdapter(Context context) {
         super(context);
     }

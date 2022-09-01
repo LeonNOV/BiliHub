@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.publicBeans.user.UserArticle;
 import com.leon.bilihub.databinding.ItemUserArticleBinding;
 import com.leon.bilihub.ui.activities.publicActivities.ArticleActivity;
@@ -19,7 +19,7 @@ import java.util.Map;
  * @Time 2022/07/08
  * @Desc 用户界面
  */
-public class UserArticleAdapter extends BaseViewBindingAdapter<UserArticle.Data.Article, ItemUserArticleBinding> {
+public class UserArticleAdapter extends ViewBindingAdapter<UserArticle.Data.Article, ItemUserArticleBinding> {
     public UserArticleAdapter(Context context) {
         super(context);
     }

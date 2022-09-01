@@ -4,7 +4,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.leon.bilihub.base.baseFragment.BaseFragment;
 import com.leon.bilihub.databinding.FragmentPartitionHomeBinding;
-import com.leon.bilihub.ui.adapters.partition.PartitionHomeRecommendAdapter;
+import com.leon.bilihub.ui.adapters.drawer.partition.PartitionHomeRecommendAdapter;
 
 import java.util.List;
 

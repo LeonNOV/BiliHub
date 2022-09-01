@@ -11,7 +11,7 @@ import androidx.core.view.ViewCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.publicBeans.resources.video.PgcDetail;
 import com.leon.bilihub.databinding.ItemPgcSeasonBinding;
 import com.leon.bilihub.model.VideoPlayerModel;
@@ -23,7 +23,7 @@ import com.leon.bilihub.utils.ViewUtils;
  * @Time 2022/08/21
  * @Desc
  */
-public class PgcSeasonAdapter extends BaseViewBindingAdapter<PgcDetail.Result.Season, ItemPgcSeasonBinding> {
+public class PgcSeasonAdapter extends ViewBindingAdapter<PgcDetail.Result.Season, ItemPgcSeasonBinding> {
     private PlayerController.OnSelectedListener<Integer> onSelectedListener;
     private int selectedPosition;
 

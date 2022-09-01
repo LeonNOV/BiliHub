@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.account.RelationTags;
 import com.leon.bilihub.databinding.ItemFolderBinding;
 import com.leon.bilihub.ui.activities.publicActivities.RelationDetailActivity;
@@ -17,7 +17,7 @@ import java.util.Map;
  * @Time 2022/07/12
  * @Desc
  */
-public class RelationTagsAdapter extends BaseViewBindingAdapter<RelationTags.Data, ItemFolderBinding> {
+public class RelationTagsAdapter extends ViewBindingAdapter<RelationTags.Data, ItemFolderBinding> {
     public RelationTagsAdapter(Context context) {
         super(context);
     }

@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.publicBeans.resources.live.LiveStream;
 import com.leon.bilihub.databinding.ItemLiveRoadBinding;
 import com.leon.bilihub.model.LivePlayerModel;
@@ -23,7 +23,7 @@ import java.util.Locale;
  * @Time 2022/08/25
  * @Desc
  */
-public class LiveRoadAdapter extends BaseViewBindingAdapter<LiveStream.Data.Durl, ItemLiveRoadBinding> {
+public class LiveRoadAdapter extends ViewBindingAdapter<LiveStream.Data.Durl, ItemLiveRoadBinding> {
     private PlayerController.OnSelectedListener<LiveRoadWrap> onSelectedListener;
     private int selectedPosition = 0;
 

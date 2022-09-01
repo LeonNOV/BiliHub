@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.account.WatchLater;
 import com.leon.bilihub.databinding.ItemVideoBinding;
 import com.leon.bilihub.ui.activities.publicActivities.VideoActivity;
@@ -20,7 +20,7 @@ import java.util.Map;
  * @Time 2022/07/12
  * @Desc
  */
-public class WatchLaterAdapter extends BaseViewBindingAdapter<WatchLater.Data.WatchLaterData, ItemVideoBinding> {
+public class WatchLaterAdapter extends ViewBindingAdapter<WatchLater.Data.WatchLaterData, ItemVideoBinding> {
 
     public WatchLaterAdapter(Context context) {
         super(context);

@@ -35,6 +35,7 @@ public abstract class BaseActivity<T extends ViewBinding> extends AppCompatActiv
     protected Context context;
     protected View rootView;
     protected Bundle params;
+    private boolean immersion = true;
 
     /**
      * ViewPagerTouchMonitorListener stack
@@ -59,13 +60,15 @@ public abstract class BaseActivity<T extends ViewBinding> extends AppCompatActiv
         // 设置布局内容
         setContentView(rootView);
 
-        // 处理沉浸式状态栏
-        onImmersion();
-
         // 设置进入动画
         overridePendingTransition(enterIn, exitOut);
 
         init();
+
+        // 处理沉浸式状态栏
+        if (immersion) {
+            onImmersion();
+        }
     }
 
     /**
@@ -110,7 +113,12 @@ public abstract class BaseActivity<T extends ViewBinding> extends AppCompatActiv
      * 初始化沉浸式
      */
     protected void onImmersion() {
-        ImmersionBar.with(this).statusBarColorInt(context.getColor(R.color.black)).fitsSystemWindows(true).init();
+        ImmersionBar.with(this).barColor(R.color.primary).statusBarDarkFont(true).fitsSystemWindows(true).init();
+    }
+
+    public void closeImmersion() {
+        this.immersion = false;
+        ImmersionBar.hideStatusBar(getWindow());
     }
 
     protected void startActivity(Class<? extends BaseActivity<? extends ViewBinding>> targetClass) {

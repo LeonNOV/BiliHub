@@ -6,7 +6,7 @@ import com.leon.bilihub.databinding.RefreshContentBinding;
 import com.leon.bilihub.http.BaseUrl;
 import com.leon.bilihub.http.HttpApi;
 import com.leon.bilihub.http.RetrofitClient;
-import com.leon.bilihub.ui.adapters.drawer.CollectAdapter;
+import com.leon.bilihub.ui.adapters.drawer.favFolder.CollectAdapter;
 import com.leon.bilihub.ui.widget.loader.PaginationLoader;
 import com.leon.bilihub.utils.PreferenceUtils;
 

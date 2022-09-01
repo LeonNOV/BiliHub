@@ -1,11 +1,11 @@
-package com.leon.bilihub.ui.adapters.drawer;
+package com.leon.bilihub.ui.adapters.drawer.favFolder;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.account.CollectFolder;
 import com.leon.bilihub.databinding.ItemCollectBinding;
 import com.leon.bilihub.ui.activities.publicActivities.FolderDetailActivity;
@@ -20,7 +20,7 @@ import java.util.Map;
  * @Time 2022/07/12
  * @Desc
  */
-public class CollectAdapter extends BaseViewBindingAdapter<CollectFolder.Data.CollectData, ItemCollectBinding> {
+public class CollectAdapter extends ViewBindingAdapter<CollectFolder.Data.CollectData, ItemCollectBinding> {
     public CollectAdapter(Context context) {
         super(context);
     }
@@ -36,10 +36,10 @@ public class CollectAdapter extends BaseViewBindingAdapter<CollectFolder.Data.Co
         // 11：收藏文件夹
         // 21：合集文件夹
         if (data.getType() == 11) {
-            binding.icon.setImageResource(R.drawable.collect_a);
+            binding.icon.setImageResource(R.drawable.item_collect_a);
             binding.getRoot().setOnClickListener(v -> startActivity(FolderDetailActivity.class, Map.of(FolderDetailActivity.PARAM_B, String.valueOf(data.getId()))));
         } else {
-            binding.icon.setImageResource(R.drawable.collect_b);
+            binding.icon.setImageResource(R.drawable.item_collect_b);
             binding.getRoot().setOnClickListener(v -> startActivity(FolderDetailActivity.class, Map.of(FolderDetailActivity.PARAM_A, String.valueOf(data.getId()))));
         }
 

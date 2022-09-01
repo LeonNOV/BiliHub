@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.publicBeans.resources.video.VideoQuality;
 import com.leon.bilihub.databinding.ItemVideoQualityBinding;
 import com.leon.bilihub.model.VideoPlayerModel;
@@ -25,7 +25,7 @@ import java.util.Locale;
  * @Time 2022/08/19
  * @Desc
  */
-public class VideoQualityAdapter extends BaseViewBindingAdapter<VideoQuality, ItemVideoQualityBinding> {
+public class VideoQualityAdapter extends ViewBindingAdapter<VideoQuality, ItemVideoQualityBinding> {
     private PlayerController.OnSelectedListener<VideoQualityWrap> onSelectedListener;
     private int selectedPosition = 0;
 

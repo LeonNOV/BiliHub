@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.publicBeans.resources.video.VideoDetail;
 import com.leon.bilihub.databinding.ItemVideoSectionBinding;
 import com.leon.bilihub.utils.ViewUtils;
@@ -18,7 +18,7 @@ import java.util.Locale;
  * @Time 2022/08/19
  * @Desc
  */
-public class VideoSectionAdapter extends BaseViewBindingAdapter<VideoDetail.Data.View.UgcSeason.Section, ItemVideoSectionBinding> {
+public class VideoSectionAdapter extends ViewBindingAdapter<VideoDetail.Data.View.UgcSeason.Section, ItemVideoSectionBinding> {
     public VideoSectionAdapter(Context context) {
         super(context);
     }

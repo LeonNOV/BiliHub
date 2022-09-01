@@ -12,7 +12,7 @@ import com.leon.bilihub.http.HttpApi;
 import com.leon.bilihub.http.ReplyType;
 import com.leon.bilihub.http.RetrofitClient;
 import com.leon.bilihub.model.VideoPlayerModel;
-import com.leon.bilihub.ui.adapters.ReplyAdapter;
+import com.leon.bilihub.ui.adapters.video.ReplyAdapter;
 import com.leon.bilihub.ui.widget.loader.PaginationLoader;
 import com.leon.bilihub.utils.ValueUtils;
 import com.leon.bilihub.utils.ViewUtils;

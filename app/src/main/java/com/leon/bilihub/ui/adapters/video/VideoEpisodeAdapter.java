@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.publicBeans.resources.video.VideoDetail;
 import com.leon.bilihub.databinding.ItemVideoEpisodeBinding;
 import com.leon.bilihub.model.VideoPlayerModel;
@@ -22,7 +22,7 @@ import com.leon.bilihub.wraps.VideoResourceWrap;
  * @Time 2022/08/19
  * @Desc
  */
-public class VideoEpisodeAdapter extends BaseViewBindingAdapter<VideoDetail.Data.View.Page, ItemVideoEpisodeBinding> {
+public class VideoEpisodeAdapter extends ViewBindingAdapter<VideoDetail.Data.View.Page, ItemVideoEpisodeBinding> {
     private PlayerController.OnSelectedListener<Integer> onSelectedListener;
     private final VideoPlayerModel videoPlayerModel;
     private int selectedPosition = 0;

@@ -1,11 +1,11 @@
-package com.leon.bilihub.ui.adapters.drawer;
+package com.leon.bilihub.ui.adapters.drawer.favFolder;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.account.FolderDetailMedia;
 import com.leon.bilihub.databinding.ItemFolderDetailMediaBinding;
 import com.leon.bilihub.ui.activities.publicActivities.VideoActivity;
@@ -19,7 +19,7 @@ import java.util.Map;
  * @Time 2022/08/03
  * @Desc
  */
-public class FolderDetailMediaAdapter extends BaseViewBindingAdapter<FolderDetailMedia, ItemFolderDetailMediaBinding> {
+public class FolderDetailMediaAdapter extends ViewBindingAdapter<FolderDetailMedia, ItemFolderDetailMediaBinding> {
     public FolderDetailMediaAdapter(Context context) {
         super(context);
     }

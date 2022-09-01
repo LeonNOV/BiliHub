@@ -1,9 +1,4 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowFullscreen">true</item>
-    </style>
-
     <!-- PictureViewer动画 -->
     <style name="paning_anim_style">
         <!-- 进入 -->
@@ -13,12 +8,16 @@
         <item name="android:windowExitAnimation">@anim/picture_viewer_exit</item>
     </style>
 
+    <style name="FullScreenDialog" parent="Widget.MaterialComponents.MaterialCalendar.Fullscreen">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
     <style name="CustomEditText" parent="Theme.AppCompat.Light">
         <item name="colorControlNormal">#000000</item>
         <item name="colorControlActivated">#000000</item>
     </style>
-
-    <!-- X轴靠右进出动画 -->
 
     <style name="UserData">
         <item name="android:layout_width">wrap_content</item>

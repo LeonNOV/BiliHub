@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.leon.bilihub.R;
-import com.leon.bilihub.base.baseAdapter.BaseViewBindingAdapter;
+import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.publicBeans.resources.video.PgcDetail;
 import com.leon.bilihub.databinding.ItemPgcSectionBinding;
 import com.leon.bilihub.utils.ViewUtils;
@@ -15,7 +15,7 @@ import com.leon.bilihub.utils.ViewUtils;
  * @Time 2022/08/21
  * @Desc
  */
-public class PgcSectionAdapter extends BaseViewBindingAdapter<PgcDetail.Result.Section, ItemPgcSectionBinding> {
+public class PgcSectionAdapter extends ViewBindingAdapter<PgcDetail.Result.Section, ItemPgcSectionBinding> {
     public PgcSectionAdapter(Context context) {
         super(context);
     }
