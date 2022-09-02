@@ -150,7 +150,7 @@ public class PlayerController extends GestureVideoController {
                 }
                 break;
             case VideoView.PLAYER_FULL_SCREEN:
-                binding.lock.setVisibility(VISIBLE);
+                binding.lock.setVisibility(isShowing() ? VISIBLE : GONE);
                 break;
             default:
                 break;

@@ -89,7 +89,7 @@ public class TopBarView extends FrameLayout implements IControlComponent {
             }
         });
 
-        binding.more.setOnClickListener(v -> Toast.makeText(getContext(), "more", Toast.LENGTH_SHORT).show());
+        binding.more.setOnClickListener(v -> Toast.makeText(getContext(), "开发中…", Toast.LENGTH_SHORT).show());
 
         batteryReceiver = new BatteryReceiver(binding.battery);
     }

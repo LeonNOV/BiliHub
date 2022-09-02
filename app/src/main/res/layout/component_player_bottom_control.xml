@@ -124,6 +124,7 @@
                 android:inputType="text"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
+                android:enabled="false"
                 android:textColorHint="#B1B1B1"
                 android:textSize="15sp" />
 

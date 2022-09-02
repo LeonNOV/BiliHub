@@ -17,13 +17,8 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/lsp"
+            android:foreground="@drawable/res_item_fade"
             app:shapeAppearance="@style/VideoCoverDouble" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:src="@drawable/res_item_fade" />
 
         <RelativeLayout
             android:layout_width="match_parent"

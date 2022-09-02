@@ -170,11 +170,4 @@ public class GestureView extends FrameLayout implements IGestureComponent {
         binding.percent.setText(String.format(Locale.CHINESE, "%d%%", percent));
         binding.progress.setProgress(percent);
     }
-
-//    @Override
-//    protected void onDetachedFromWindow() {
-//        setVisibility(GONE);
-//
-//        super.onDetachedFromWindow();
-//    }
 }
