@@ -1,5 +1,8 @@
 package com.leon.bilihub.utils;
 
+import android.text.Html;
+import android.text.Spanned;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -54,6 +57,16 @@ public class ValueUtils {
         secondStr = secondStr.length() < 2 ? "0" + secondStr : secondStr;
 
         return minuteStr + ":" + secondStr;
+    }
+
+    /**
+     * 对关键字进行处理
+     *
+     * @param origin 原文
+     * @return Spanned
+     */
+    public static Spanned keywordTrim(String origin) {
+        return Html.fromHtml(origin.replaceAll("<em class=\"keyword\">", "<font color=#fb7299>").replaceAll("</em>", "</font>"), Html.FROM_HTML_MODE_COMPACT);
     }
 
     /**
@@ -269,8 +282,7 @@ public class ValueUtils {
     }
 
     /**
-     *
-     * @param qn    清晰度代码
+     * @param qn 清晰度代码
      * @return 1：需VIP，2：需登录，3：不需登录
      */
     public static int videoIdentify(int qn) {

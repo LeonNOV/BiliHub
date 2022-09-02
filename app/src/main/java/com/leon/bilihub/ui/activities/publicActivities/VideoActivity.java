@@ -63,7 +63,7 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
     protected void init() {
         closeImmersion();
 
-        if (params.containsKey(PARAM_ID)) {
+        if (params != null && params.containsKey(PARAM_ID)) {
             this.id = params.getString(PARAM_ID);
 
             setVideoController();

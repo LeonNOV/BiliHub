@@ -62,38 +62,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/infoColor"
-                    android:textSize="13sp"
+                    android:textSize="11sp"
                     tools:text="全24话" />
 
-                <androidx.appcompat.widget.LinearLayoutCompat
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_video_play"
-                        android:drawablePadding="5dp"
-                        android:gravity="center_vertical"
-                        android:textColor="@color/infoColor"
-                        android:textSize="13sp"
-                        tools:text="4.7万" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/danmaku"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:drawableStart="@drawable/ic_danmaku"
-                        android:drawablePadding="5dp"
-                        android:gravity="center_vertical"
-                        android:textColor="@color/infoColor"
-                        android:textSize="13sp"
-                        tools:text="106" />
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
+                    android:drawableStart="@drawable/ic_video_play"
+                    android:drawablePadding="5dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/infoColor"
+                    android:textSize="13sp"
+                    android:layout_marginTop="5dp"
+                    tools:text="1ddd234.7万" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

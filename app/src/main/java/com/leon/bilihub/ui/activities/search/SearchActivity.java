@@ -10,6 +10,7 @@ import android.view.inputmethod.EditorInfo;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.leon.bilihub.R;
+import com.leon.bilihub.base.baseActivity.ActivityManager;
 import com.leon.bilihub.base.baseActivity.BaseActivity;
 import com.leon.bilihub.beans.home.HotSearch;
 import com.leon.bilihub.beans.search.SearchSuggestion;
@@ -33,6 +34,8 @@ import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
  * @Desc
  */
 public class SearchActivity extends BaseActivity<ActivitySearchBinding> {
+    public static final String PARAM = "keyword";
+
     private ViewGroup.LayoutParams layoutParams;
     private HttpApi httpApi;
     private RecyclerViewLoader<SearchSuggestion, SearchSuggestion.Result.Tag> loader;
@@ -45,6 +48,10 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding> {
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void init() {
+        if (params != null && params.containsKey(PARAM)) {
+            binding.searchEditor.setText(params.getString(PARAM));
+        }
+
         binding.searchEditor.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -117,7 +124,7 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding> {
      * @param keyWord keyword
      */
     private void goSearch(String keyWord) {
-        startActivity(SearchResultActivity.class, Map.of(SearchResultActivity.PARAM, keyWord));
+        ActivityManager.startWithFinishActivity(context, SearchResultActivity.class, Map.of(SearchResultActivity.PARAM, keyWord));
     }
 
     /**

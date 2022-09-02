@@ -43,8 +43,7 @@ public class SearchResultBangumiAdapter extends ViewBindingAdapter<SearchResultM
             binding.badge.setText(badge.getText());
         }
 
-        binding.title.setText(Html.fromHtml(data.getTitle().replaceAll("<em class=\"keyword\">", "<font color=#fb7299>").replaceAll("</em>", "</font>"), Html.FROM_HTML_MODE_COMPACT));
-
+        binding.title.setText(ValueUtils.keywordTrim(data.getTitle()));
         StringBuilder extra = new StringBuilder();
         extra
                 .append(ValueUtils.generateTime(data.getPubtime(), "yyyy", true)).append(" | ")

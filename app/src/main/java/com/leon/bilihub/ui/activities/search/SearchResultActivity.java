@@ -15,6 +15,7 @@ import com.leon.bilihub.utils.ViewUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author Leon
@@ -36,7 +37,7 @@ public class SearchResultActivity extends BaseActivity<ActivitySearchResultBindi
         binding.searchResultKeyword.setText(keyword);
         binding.searchResultClear.setOnClickListener(v -> ActivityManager.startWithFinishActivity(context, SearchActivity.class));
         binding.searchResultCancel.setOnClickListener(v -> backPressed());
-        binding.searchResultKeyword.setOnClickListener(v -> backPressed());
+        binding.searchResultKeyword.setOnClickListener(v -> ActivityManager.startWithFinishActivity(context, SearchActivity.class, Map.of(SearchActivity.PARAM, keyword)));
 
         /*
          * 综合

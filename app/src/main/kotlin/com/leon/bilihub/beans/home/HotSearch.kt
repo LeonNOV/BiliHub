@@ -23,7 +23,7 @@ data class HotSearch(
         @Parcelize
         data class Trending(
             @SerializedName("list")
-            val list: List<Data>,
+            val list: List<Data>?,
             @SerializedName("title")
             val title: String,
             @SerializedName("trackid")

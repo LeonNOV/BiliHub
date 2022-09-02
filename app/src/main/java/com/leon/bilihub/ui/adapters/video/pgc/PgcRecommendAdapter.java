@@ -51,7 +51,6 @@ public class PgcRecommendAdapter extends ViewBindingAdapter<PgcRecommend.Data.Se
         binding.title.setText(data.getTitle());
         binding.newEp.setText(data.getNewEp().getIndexShow());
         binding.view.setText(ValueUtils.generateCN(data.getStat().getView()));
-        binding.danmaku.setText(ValueUtils.generateCN(data.getStat().getDanmaku()));
 
         if (data.getRating() != null) {
             binding.ratingScore.setText(String.valueOf(data.getRating().getScore()));

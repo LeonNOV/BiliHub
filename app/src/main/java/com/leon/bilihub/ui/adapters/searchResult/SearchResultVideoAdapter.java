@@ -38,10 +38,7 @@ public class SearchResultVideoAdapter extends ViewBindingAdapter<SearchResultVid
         ViewUtils.setImg(context, binding.cover, data.getPic());
         binding.extra.setText(data.getDuration());
 
-        binding.title.setText(Html.fromHtml(data.getTitle()
-                .replaceAll("<em class=\"keyword\">", "<font color=#fb7299>")
-                .replaceAll("</em>", "</font>"), Html.FROM_HTML_MODE_COMPACT));
-
+        binding.title.setText(ValueUtils.keywordTrim(data.getTitle()));
         binding.author.setText(data.getAuthor());
         binding.view.setText(ValueUtils.generateCN(data.getPlay()));
         binding.danmaku.setText(ValueUtils.generateCN(data.getDanmaku()));

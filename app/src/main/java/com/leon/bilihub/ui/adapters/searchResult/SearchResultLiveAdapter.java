@@ -1,7 +1,6 @@
 package com.leon.bilihub.ui.adapters.searchResult;
 
 import android.content.Context;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -10,6 +9,7 @@ import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
 import com.leon.bilihub.beans.home.searchResult.SearchResultLive;
 import com.leon.bilihub.databinding.ItemSearchResultLiveBinding;
 import com.leon.bilihub.ui.activities.publicActivities.LiveStreamActivity;
+import com.leon.bilihub.utils.ValueUtils;
 import com.leon.bilihub.utils.ViewUtils;
 
 import java.util.Map;
@@ -43,9 +43,9 @@ public class SearchResultLiveAdapter extends ViewBindingAdapter<SearchResultLive
             binding.status.setSelected(false);
         }
 
+        binding.title.setText(ValueUtils.keywordTrim(data.getTitle()));
         binding.play.setText(data.getWatchedShow().getTextSmall());
-        binding.tag.setText(data.getCateName());
-        binding.title.setText(Html.fromHtml(data.getTitle().replaceAll("<em class=\"keyword\">", "<font color=#fb7299>").replaceAll("</em>", "</font>"), Html.FROM_HTML_MODE_COMPACT));
+        binding.tag.setText(ValueUtils.keywordTrim(data.getCateName()));
         binding.author.setText(data.getUname());
     }
 }
