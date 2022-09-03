@@ -2,7 +2,7 @@ package com.leon.bilihub.beans.publicBeans.resources.video
 
 import com.google.gson.annotations.SerializedName
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class PgcDetail(
@@ -559,7 +559,7 @@ data class PgcDetail(
             @SerializedName("is_follow")
             val isFollow: Int,
             @SerializedName("mid")
-            val mid: Int,
+            val mid: String,
             @SerializedName("nickname_color")
             val nicknameColor: String,
             @SerializedName("pendant")

@@ -25,7 +25,9 @@ import java.util.Map;
  * @Desc
  */
 public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
-    private static final String ORIGINAL_URL = "https://passport.bilibili.com/login?gourl=https://m.bilibili.com/index.html";
+    private static final String LOGIN_URL = "https://passport.bilibili.com/login?gourl=https://m.bilibili.com/index.html";
+    private static final String REDIRECT_URL = "https://m.bilibili.com/index.html";
+
     private static final int PROGRESS_MAX = 100;
 
     private Handler handler;
@@ -44,7 +46,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
         binding.activityLoginRefresh.setOnTouchListener((v, event) -> ViewUtils.zoom(event, binding.activityLoginRefresh));
         binding.activityLoginRefresh.setOnClickListener(v -> binding.activityLoginWebView.reload());
 
-        binding.activityLoginWebView.loadUrl(ORIGINAL_URL);
+        binding.activityLoginWebView.loadUrl(LOGIN_URL);
         initWebView();
     }
 
@@ -92,7 +94,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 //判断加载完成的页面是否为B站手机版主页
-                if ("https://m.bilibili.com/index.html".equals(url)) {
+                if (REDIRECT_URL.equals(url)) {
                     CookieManager cookieManager = CookieManager.getInstance();
                     String cookieStr = cookieManager.getCookie(url).trim();
 

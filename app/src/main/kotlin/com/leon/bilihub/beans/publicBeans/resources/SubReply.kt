@@ -2,7 +2,7 @@ package com.leon.bilihub.beans.publicBeans.resources
 
 import com.google.gson.annotations.SerializedName
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class SubReply(

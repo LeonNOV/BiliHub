@@ -2,7 +2,7 @@ package com.leon.bilihub.beans.publicBeans.user
 
 import com.google.gson.annotations.SerializedName
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class UserInfo(
@@ -40,7 +40,7 @@ data class UserInfo(
         @SerializedName("live_room")
         val liveRoom: LiveRoom,
         @SerializedName("mid")
-        val mid: Int,
+        val mid: String,
         @SerializedName("moral")
         val moral: Int,
         @SerializedName("name")

@@ -2,7 +2,7 @@ package com.leon.bilihub.beans.publicBeans.resources.video
 
 import com.google.gson.annotations.SerializedName
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class VideoDetail(
@@ -692,7 +692,7 @@ data class VideoDetail(
                 @SerializedName("label_style")
                 val labelStyle: Int,
                 @SerializedName("mid")
-                val mid: Int,
+                val mid: String,
                 @SerializedName("name")
                 val name: String,
                 @SerializedName("official")

@@ -2,7 +2,7 @@ package com.leon.bilihub.beans.publicBeans.resources.video
 
 import android.os.Parcelable
 import com.leon.bilihub.http.Quality
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 /**
  * @Author Leon

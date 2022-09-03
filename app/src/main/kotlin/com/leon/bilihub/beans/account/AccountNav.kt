@@ -2,7 +2,7 @@ package com.leon.bilihub.beans.account
 
 import com.google.gson.annotations.SerializedName
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class AccountNav(
@@ -18,17 +18,13 @@ data class AccountNav(
     @Parcelize
     data class Data(
         @SerializedName("allowance_count")
-        val allowanceCount: Int,
+        val allowanceCount: String,
         @SerializedName("answer_status")
         val answerStatus: Int,
         @SerializedName("email_verified")
         val emailVerified: Int,
         @SerializedName("face")
         val face: String,
-        @SerializedName("face_nft")
-        val faceNft: Int,
-        @SerializedName("face_nft_type")
-        val faceNftType: Int,
         @SerializedName("has_shop")
         val hasShop: Boolean,
         @SerializedName("isLogin")
@@ -38,13 +34,13 @@ data class AccountNav(
         @SerializedName("level_info")
         val levelInfo: LevelInfo,
         @SerializedName("mid")
-        val mid: Int,
+        val mid: String,
         @SerializedName("mobile_verified")
         val mobileVerified: Int,
         @SerializedName("money")
-        val money: Int,
+        val money: String,
         @SerializedName("moral")
-        val moral: Int,
+        val moral: String,
         @SerializedName("official")
         val official: Official,
         @SerializedName("officialVerify")
@@ -52,7 +48,7 @@ data class AccountNav(
         @SerializedName("pendant")
         val pendant: Pendant,
         @SerializedName("scores")
-        val scores: Int,
+        val scores: String,
         @SerializedName("shop_url")
         val shopUrl: String,
         @SerializedName("uname")
@@ -213,13 +209,13 @@ data class AccountNav(
         @Parcelize
         data class Wallet(
             @SerializedName("bcoin_balance")
-            val bcoinBalance: Int,
+            val bcoinBalance: String,
             @SerializedName("coupon_balance")
-            val couponBalance: Int,
+            val couponBalance: String,
             @SerializedName("coupon_due_time")
             val couponDueTime: Int,
             @SerializedName("mid")
-            val mid: Int
+            val mid: String
         ) : Parcelable
     }
 }

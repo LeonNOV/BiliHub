@@ -2,7 +2,7 @@ package com.leon.bilihub.beans.account
 
 import com.google.gson.annotations.SerializedName
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class FavoriteFolderDetail(
@@ -49,7 +49,7 @@ data class FavoriteFolderDetail(
             @SerializedName("media_count")
             val mediaCount: Int,
             @SerializedName("mid")
-            val mid: Int,
+            val mid: String,
             @SerializedName("mtime")
             val mtime: Int,
             @SerializedName("state")
@@ -80,7 +80,7 @@ data class FavoriteFolderDetail(
                 @SerializedName("followed")
                 val followed: Boolean,
                 @SerializedName("mid")
-                val mid: Int,
+                val mid: String,
                 @SerializedName("name")
                 val name: String,
                 @SerializedName("vip_statue")
@@ -148,7 +148,7 @@ data class FavoriteFolderDetail(
                 @SerializedName("face")
                 val face: String,
                 @SerializedName("mid")
-                val mid: Int,
+                val mid: String,
                 @SerializedName("name")
                 val name: String
             ) : Parcelable

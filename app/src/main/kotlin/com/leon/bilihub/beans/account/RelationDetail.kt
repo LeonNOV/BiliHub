@@ -2,7 +2,7 @@ package com.leon.bilihub.beans.account
 
 import com.google.gson.annotations.SerializedName
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class RelationDetail(
@@ -28,7 +28,7 @@ data class RelationDetail(
         @SerializedName("live")
         val live: Live,
         @SerializedName("mid")
-        val mid: Int,
+        val mid: String,
         @SerializedName("official_verify")
         val officialVerify: OfficialVerify,
         @SerializedName("sign")

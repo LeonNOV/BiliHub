@@ -2,7 +2,7 @@ package com.leon.bilihub.beans.publicBeans.resources.video
 
 import com.google.gson.annotations.SerializedName
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class PgcRelation(
@@ -33,7 +33,7 @@ data class PgcRelation(
             @SerializedName("is_follow")
             val isFollow: Int,
             @SerializedName("mid")
-            val mid: Int,
+            val mid: String,
             @SerializedName("uname")
             val uname: String
         ) : Parcelable

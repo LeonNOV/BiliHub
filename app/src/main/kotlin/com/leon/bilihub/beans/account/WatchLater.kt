@@ -2,7 +2,7 @@ package com.leon.bilihub.beans.account
 
 import com.google.gson.annotations.SerializedName
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class WatchLater(
@@ -92,7 +92,7 @@ data class WatchLater(
                 @SerializedName("face")
                 val face: String,
                 @SerializedName("mid")
-                val mid: Int,
+                val mid: String,
                 @SerializedName("name")
                 val name: String
             ) : Parcelable

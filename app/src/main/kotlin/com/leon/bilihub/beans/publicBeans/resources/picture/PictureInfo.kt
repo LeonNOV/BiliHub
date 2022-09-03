@@ -2,7 +2,7 @@ package com.leon.bilihub.beans.publicBeans.resources.picture
 
 import com.google.gson.annotations.SerializedName
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class PictureInfo(
@@ -79,7 +79,7 @@ data class PictureInfo(
                     @SerializedName("label")
                     val label: String,
                     @SerializedName("mid")
-                    val mid: Int,
+                    val mid: String,
                     @SerializedName("name")
                     val name: String,
                     @SerializedName("official_verify")

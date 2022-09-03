@@ -2,7 +2,7 @@ package com.leon.bilihub.beans.publicBeans.resources.audio
 
 import com.google.gson.annotations.SerializedName
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class AudioResources(
