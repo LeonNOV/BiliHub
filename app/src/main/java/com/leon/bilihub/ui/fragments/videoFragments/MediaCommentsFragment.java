@@ -50,7 +50,7 @@ public class MediaCommentsFragment extends BaseLazyFragment<FragmentMediaComment
 
         videoRecommendObserver = bvid -> {
             if (bvid != null) {
-                aid = ValueUtils.bv2av(bvid);
+                aid = String.valueOf(ValueUtils.bv2av(bvid));
                 mode = 3;
 
                 binding.mode.setText(R.string.reply_mode_hot);

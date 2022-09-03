@@ -10,6 +10,7 @@ import com.leon.bilihub.beans.account.RelationDetail;
 import com.leon.bilihub.beans.account.RelationTags;
 import com.leon.bilihub.beans.account.WatchLater;
 import com.leon.bilihub.beans.home.HomeRecommend;
+import com.leon.bilihub.beans.home.HomeRecommendApp;
 import com.leon.bilihub.beans.home.HotSearch;
 import com.leon.bilihub.beans.home.drawerFunction.popular.PopularHot;
 import com.leon.bilihub.beans.home.drawerFunction.popular.PopularPrecious;
@@ -89,6 +90,16 @@ public interface HttpApi {
      */
     @GET("x/web-interface/index/top/rcmd?fresh_type=3&version=1&ps=10&fresh_idx=1&fresh_idx_1h=1&homepage_ver=1")
     Observable<HomeRecommend> getHomeRecommend();
+
+    /**
+     * 首页推荐接口
+     * <p>
+     * https://app.bilibili.com/x/v2/feed/index?idx=0&flush=5&column=4&device=pad&device_name=SM-N9600&pull=true
+     *
+     * @return {@link HomeRecommendApp}
+     */
+    @GET("x/v2/feed/index")
+    Observable<HomeRecommendApp> getHomeRecommendApp();
 
     /**
      * https://www.bilibili.com/v/popular/rank/all
@@ -763,7 +774,7 @@ public interface HttpApi {
      * <p>
      * https://api.bilibili.com/pgc/season/web/related/recommend?season_id=39433
      *
-     * @param seasonId    seasonId
+     * @param seasonId seasonId
      * @return {@link PgcRecommend}
      */
     @GET("pgc/season/web/related/recommend")

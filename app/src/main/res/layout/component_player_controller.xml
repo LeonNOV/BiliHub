@@ -13,14 +13,16 @@
         android:layout_gravity="center_vertical|end"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:padding="6dp"
-        android:src="@drawable/video_lock" />
+        android:src="@drawable/video_lock"
+        android:visibility="gone"
+        tools:visibility="visible" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:indeterminate="true"
         android:layout_gravity="center"
+        android:indeterminate="true"
         app:indicatorColor="@color/blue"
         app:trackCornerRadius="50dp" />
 

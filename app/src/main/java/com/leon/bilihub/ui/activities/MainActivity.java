@@ -14,7 +14,7 @@ import com.leon.bilihub.R;
 import com.leon.bilihub.base.baseActivity.BaseActivity;
 import com.leon.bilihub.beans.account.AccountNav;
 import com.leon.bilihub.beans.home.AccountViewModel;
-import com.leon.bilihub.beans.home.HomeRecommend;
+import com.leon.bilihub.beans.home.HomeRecommendApp;
 import com.leon.bilihub.databinding.ActivityMainBinding;
 import com.leon.bilihub.http.ApiHelper;
 import com.leon.bilihub.http.BaseUrl;
@@ -49,7 +49,7 @@ import java.util.concurrent.TimeUnit;
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
     private ScheduledThreadPoolExecutor scheduledThreadPoolExecutor;
     public static AccountViewModel model;
-    private HttpApi httpApi;
+    private HttpApi recommendHttpApi;
 
     @Override
     public ActivityMainBinding getViewBinding() {
@@ -85,7 +85,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
         setDrawerFunctionListener();
 
-        httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
+        recommendHttpApi = new RetrofitClient(BaseUrl.APP).getHttpApi();
 
         boolean loginStatus = PreferenceUtils.getLoginStatus(context);
         if (loginStatus) {
@@ -94,7 +94,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             initObserver();
         }
 
-        PaginationLoader<HomeRecommend, HomeRecommend.Data.Item> loader;
+        PaginationLoader<HomeRecommendApp, HomeRecommendApp.Data.Item> loader;
         int recommendStyle = PreferenceUtils.getRecommendStyle(context);
         if (recommendStyle == 1) {
             loader = new PaginationLoader<>(binding.home.data, new HomeRecommendAdapter(context));
@@ -102,8 +102,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             loader = new PaginationLoader<>(binding.home.data, new HomeRecommendAdapter(context), new GridLayoutManager(context, 2));
         }
         loader.enabledRefresh(true);
-        loader.setGuide(homeRecommend -> homeRecommend.getData().getItem());
-        loader.setUpdateInterface(loadType -> httpApi.getHomeRecommend());
+        loader.setGuide(homeRecommend -> homeRecommend.getData().getItems());
+        loader.setUpdateInterface(loadType -> recommendHttpApi.getHomeRecommendApp());
         loader.firstObtain();
     }
 
@@ -151,8 +151,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             @Override
             public void onChanged(Boolean loginStatus) {
                 if (loginStatus) {
-                    // 使用新的Cookie实例化HttpApi
-                    httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
                     refreshData();
 
                     model.getLoginStatus().removeObserver(this);
@@ -166,11 +164,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
      * 获取已登录用户数据
      */
     private void refreshData() {
-        new ApiHelper<>(httpApi.getAccountInfo())
+        new ApiHelper<>(new RetrofitClient(BaseUrl.API, context).getHttpApi().getAccountInfo())
                 .setOnResult(accountNav -> {
                     // 0：获取成功，即登陆成功
                     // -101：获取失败，即登录失败
                     if (accountNav.getCode() == 0) {
+                        recommendHttpApi = new RetrofitClient(BaseUrl.APP, context).getHttpApi();
                         localAccountStatus(accountNav);
                     } else {
                         Toast.makeText(context, "登录失败", Toast.LENGTH_SHORT).show();

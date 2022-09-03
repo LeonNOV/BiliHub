@@ -243,33 +243,40 @@ public class ValueUtils {
         return bytes;
     }
 
-    /**
-     * BVID转AVID
-     *
-     * @param bvid bvid
-     * @return avid
-     */
-    public static String bv2av(String bvid) {
-        HashMap<String, Integer> mp = new HashMap<>();
-        String table = "fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF";
-        int[] ints = {11, 10, 3, 8, 4, 6, 2, 9, 5, 7};
+    private final static String TABLE = "fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF";
+    private final static int Xor = 177451812;
+    private final static long Add = 100618342136696320L;
+    private final static int[] S = { 11, 10, 3, 8, 4, 6, 2, 9, 5, 7 };
+    private final static HashMap<Character, Integer> Tr = new HashMap<>((int) (58 / 0.75 + 1));
 
-        long xor = 177451812;
-        long add = 8728348608L;
-
-        long r = 0;
+    static {
         for (int i = 0; i < 58; i++) {
-            String s1 = table.substring(i, i + 1);
-            mp.put(s1, i);
+            Tr.put(TABLE.charAt(i), i);
+        }
+    }
+
+    public static long bv2av(String bv) {
+        long r = 0;
+        long pow = 1;
+        for (int i = 0; i < 10; i++) {
+            r += Tr.get(bv.charAt(S[i])) * pow;
+            pow *= 58;
         }
 
-        for (int i = 0; i < 6; i++) {
-            String substring = bvid.substring(ints[i], ints[i] + 1);
-            Integer integer = mp.get(substring);
-            r += integer * Math.pow(58, i);
+        return (r - Add) ^ Xor;
+    }
+
+    public static String av2bv(long avNum) {
+        long x1 = (avNum ^ Xor) + Add;
+        long pow = 1;
+        char[] r = "BV          ".toCharArray();
+        for (int i = 0; i < 10; i++) {
+            int index = (int) (x1 / pow % 58);
+            pow *= 58;
+            r[S[i]] = TABLE.charAt(index);
         }
 
-        return String.valueOf((r - add) ^ xor);
+        return String.valueOf(r);
     }
 
     public static Map<String, String> createPlayerVideoHeader(String id, boolean isPgc) {
