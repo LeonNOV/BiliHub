@@ -17,9 +17,12 @@ import java.util.Map;
  * @Time 2022/07/12
  * @Desc
  */
-public class RelationTagsAdapter extends ViewBindingAdapter<RelationTags.Data, ItemFolderBinding> {
-    public RelationTagsAdapter(Context context) {
+public class RelationGroupAdapter extends ViewBindingAdapter<RelationTags.Data, ItemFolderBinding> {
+    private final boolean isView;
+
+    public RelationGroupAdapter(Context context, boolean isView) {
         super(context);
+        this.isView = isView;
     }
 
     @Override
@@ -29,11 +32,22 @@ public class RelationTagsAdapter extends ViewBindingAdapter<RelationTags.Data, I
 
     @Override
     protected void onBindViewHolder(RelationTags.Data data, ItemFolderBinding binding, int position) {
-        binding.getRoot().setOnClickListener(v -> startActivity(RelationDetailActivity.class,
-                Map.of(RelationDetailActivity.PARAM_A, String.valueOf(data.getTagid()),
-                        RelationDetailActivity.PARAM_B, data.getName())));
+        if (isView) {
+            binding.getRoot().setOnClickListener(v -> startActivity(RelationDetailActivity.class,
+                    Map.of(RelationDetailActivity.PARAM_A, data.getTagid(),
+                            RelationDetailActivity.PARAM_B, data.getName())));
+        } else {
+            binding.getRoot().setOnClickListener(v -> {
+                boolean isSelected = !data.isSelected();
+                data.setSelected(isSelected);
+                binding.action.setSelected(isSelected);
+
+                notifyItemChanged(position);
+            });
+        }
 
         binding.name.setText(data.getName());
         binding.count.setText(String.valueOf(data.getCount()));
+        binding.action.setImageResource(isView ? R.drawable.ic_arrow : R.drawable.ic_check);
     }
 }

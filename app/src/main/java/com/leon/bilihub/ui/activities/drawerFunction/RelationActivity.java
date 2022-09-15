@@ -5,7 +5,7 @@ import com.leon.bilihub.beans.account.RelationTags;
 import com.leon.bilihub.databinding.PageRecyclerBinding;
 import com.leon.bilihub.http.BaseUrl;
 import com.leon.bilihub.http.RetrofitClient;
-import com.leon.bilihub.ui.adapters.drawer.relation.RelationTagsAdapter;
+import com.leon.bilihub.ui.adapters.drawer.relation.RelationGroupAdapter;
 import com.leon.bilihub.ui.dialogs.TipDialog;
 import com.leon.bilihub.ui.widget.loader.RecyclerViewLoader;
 import com.leon.bilihub.utils.PreferenceUtils;
@@ -25,7 +25,7 @@ public class RelationActivity extends BaseActivity<PageRecyclerBinding> {
     protected void init() {
         binding.topBar.setTopBarTitle("我的关注");
         if (PreferenceUtils.getLoginStatus(context)) {
-            RecyclerViewLoader<RelationTags, RelationTags.Data> loader = new RecyclerViewLoader<>(binding.content, new RelationTagsAdapter(context));
+            RecyclerViewLoader<RelationTags, RelationTags.Data> loader = new RecyclerViewLoader<>(binding.content, new RelationGroupAdapter(context, true));
             loader
                     .setGuide(RelationTags::getData)
                     .setObservable(new RetrofitClient(BaseUrl.API, context).getHttpApi().getUserRelationGroups())

@@ -31,7 +31,7 @@ data class FavoriteFolder(
             @SerializedName("fid")
             val fid: Int,
             @SerializedName("id")
-            val id: Int,
+            val id: String,
             @SerializedName("media_count")
             val mediaCount: Int,
             @SerializedName("mid")

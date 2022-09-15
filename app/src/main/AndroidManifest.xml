@@ -104,6 +104,7 @@
             android:exported="false" />
         <activity
             android:name="com.leon.bilihub.ui.activities.MainActivity"
+            android:configChanges="keyboard"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

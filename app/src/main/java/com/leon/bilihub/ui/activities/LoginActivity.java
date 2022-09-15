@@ -102,10 +102,8 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
                     String[] split = cookieStr.split("; ");
                     Map<String, String> cookieMap = new HashMap<>(split.length);
                     for (String s : split) {
-                        if (s.startsWith("DedeUserID")) {
-                            String[] arrayTemp = s.split("=");
-                            cookieMap.put(arrayTemp[0], arrayTemp[1]);
-                        }
+                        String[] arrayTemp = s.split("=");
+                        cookieMap.put(arrayTemp[0], arrayTemp[1]);
                     }
 
                     if (!cookieMap.containsKey("DedeUserID")) {
@@ -114,6 +112,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
                     }
 
                     PreferenceUtils.setCookie(context, cookieStr);
+                    PreferenceUtils.setCsrf(context, cookieMap.get("bili_jct"));
                     PreferenceUtils.setUid(context, cookieMap.get("DedeUserID"));
                     PreferenceUtils.setLoginStatus(context, true);
 

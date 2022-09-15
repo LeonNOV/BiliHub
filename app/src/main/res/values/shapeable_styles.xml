@@ -20,4 +20,10 @@
         <item name="android:scaleType">centerCrop</item>
         <item name="cornerSize">@dimen/corner_picture</item>
     </style>
+
+    <style name="EditorConfirm">
+        <item name="cornerFamily">rounded</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="cornerSize">@dimen/corner</item>
+    </style>
 </resources>

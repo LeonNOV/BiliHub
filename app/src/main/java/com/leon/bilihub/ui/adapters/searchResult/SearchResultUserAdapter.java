@@ -31,7 +31,7 @@ public class SearchResultUserAdapter extends ViewBindingAdapter<SearchResultUser
 
     @Override
     protected void onBindViewHolder(SearchResultUser.Data.Result data, ItemUserBinding binding, int position) {
-        binding.container.setOnClickListener(v -> startActivity(UserActivity.class, Map.of(UserActivity.PARAM, String.valueOf(data.getMid()))));
+        binding.getRoot().setOnClickListener(v -> startActivity(UserActivity.class, Map.of(UserActivity.PARAM, String.valueOf(data.getMid()))));
 
         ViewUtils.setImg(context, binding.face, data.getUpic());
         binding.name.setText(data.getUname());

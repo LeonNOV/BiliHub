@@ -33,6 +33,14 @@ public class PreferenceUtils {
         DataStoreUtils.INSTANCE.putData(context, DataStoreKey.COOKIE, cookie);
     }
 
+    public static String getCsrf(Context context) {
+        return DataStoreUtils.INSTANCE.getData(context, DataStoreKey.CSRF, "");
+    }
+
+    public static void setCsrf(Context context, String csrf) {
+        DataStoreUtils.INSTANCE.putData(context, DataStoreKey.CSRF, csrf);
+    }
+
     public static boolean getVipStatus(Context context) {
         return DataStoreUtils.INSTANCE.getData(context, DataStoreKey.VIP_STATUS, false);
     }

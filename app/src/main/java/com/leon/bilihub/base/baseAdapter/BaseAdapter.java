@@ -127,6 +127,10 @@ public abstract class BaseAdapter<B, VH extends RecyclerView.ViewHolder> extends
         return position;
     }
 
+    public List<B> getDataSource() {
+        return DATA_SOURCE;
+    }
+
     public Context getContext() {
         return context;
     }

@@ -29,7 +29,7 @@ public class FolderAdapter extends ViewBindingAdapter<FavoriteFolder.Data.Folder
 
     @Override
     protected void onBindViewHolder(FavoriteFolder.Data.Folder data, ItemFolderBinding binding, int position) {
-        binding.getRoot().setOnClickListener(v -> startActivity(FolderDetailActivity.class, Map.of(FolderDetailActivity.PARAM_B, String.valueOf(data.getId()))));
+        binding.getRoot().setOnClickListener(v -> startActivity(FolderDetailActivity.class, Map.of(FolderDetailActivity.PARAM_B, data.getId())));
 
         binding.name.setText(data.getTitle());
         binding.count.setText(String.valueOf(data.getMediaCount()));

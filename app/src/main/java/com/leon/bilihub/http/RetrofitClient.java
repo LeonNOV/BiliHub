@@ -18,7 +18,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @Author Leon
  * @Time 2021/10/30
  * @Desc
- *
  */
 public class RetrofitClient {
     private Retrofit retrofit;
@@ -66,5 +65,9 @@ public class RetrofitClient {
 
     public HttpApi.HttpRaw getHttpRaw() {
         return retrofit.create(HttpApi.HttpRaw.class);
+    }
+
+    public PostApi getPostApi() {
+        return retrofit.create(PostApi.class);
     }
 }

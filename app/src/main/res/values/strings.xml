@@ -123,4 +123,8 @@
     <string name="cancel">取消</string>
     <string name="close">关闭</string>
     <string name="reply_detail">评论回复</string>
+
+    <string name="relation_group">关注分组</string>
+    <string name="confirm">确定</string>
+    <string name="add">添加</string>
 </resources>

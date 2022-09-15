@@ -1,15 +1,16 @@
-package com.leon.bilihub.beans.account
+package com.leon.bilihub.beans.post
+
 
 import com.google.gson.annotations.SerializedName
-import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import android.os.Parcelable
 
 @Parcelize
-data class RelationTags(
+data class CreateGroup(
     @SerializedName("code")
     val code: Int,
     @SerializedName("data")
-    val `data`: List<Data>,
+    val `data`: Data?,
     @SerializedName("message")
     val message: String,
     @SerializedName("ttl")
@@ -17,14 +18,7 @@ data class RelationTags(
 ) : Parcelable {
     @Parcelize
     data class Data(
-        @SerializedName("count")
-        val count: Int,
-        @SerializedName("name")
-        val name: String,
         @SerializedName("tagid")
-        val tagid: String,
-        @SerializedName("tip")
-        val tip: String,
-        var isSelected: Boolean
+        val tagid: String
     ) : Parcelable
 }

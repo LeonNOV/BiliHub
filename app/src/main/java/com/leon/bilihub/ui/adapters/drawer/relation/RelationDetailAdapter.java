@@ -31,7 +31,7 @@ public class RelationDetailAdapter extends ViewBindingAdapter<RelationDetail.Dat
 
     @Override
     protected void onBindViewHolder(RelationDetail.Data data, ItemUserBinding binding, int position) {
-        binding.container.setOnClickListener(v -> startActivity(UserActivity.class, Map.of(UserActivity.PARAM, String.valueOf(data.getMid()))));
+        binding.getRoot().setOnClickListener(v -> startActivity(UserActivity.class, Map.of(UserActivity.PARAM, data.getMid())));
 
         ViewUtils.setImg(context, binding.face, data.getFace());
         binding.name.setText(data.getUname());

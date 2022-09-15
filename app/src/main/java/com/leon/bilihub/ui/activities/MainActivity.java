@@ -32,12 +32,15 @@ import com.leon.bilihub.ui.activities.drawerFunction.partition.PartitionActivity
 import com.leon.bilihub.ui.activities.publicActivities.DownloadActivity;
 import com.leon.bilihub.ui.activities.search.SearchActivity;
 import com.leon.bilihub.ui.adapters.HomeRecommendAdapter;
+import com.leon.bilihub.ui.dialogs.RelationGroupDialog;
 import com.leon.bilihub.ui.dialogs.TipDialog;
 import com.leon.bilihub.ui.widget.loader.PaginationLoader;
 import com.leon.bilihub.utils.DataStoreUtils;
 import com.leon.bilihub.utils.PreferenceUtils;
 import com.leon.bilihub.utils.ViewUtils;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -62,7 +65,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         closeImmersion();
 
         binding.home.userFace.setOnClickListener(v -> binding.getRoot().openDrawer(GravityCompat.START));
-        binding.home.search.setOnClickListener(v -> startActivity(SearchActivity.class));
+//        binding.home.search.setOnClickListener(v -> startActivity(SearchActivity.class));
+        binding.home.search.setOnClickListener(v -> {
+            new RelationGroupDialog(context).show();
+        });
         binding.drawer.userContainer.setOnTouchListener((v, event) -> ViewUtils.zoom(event, binding.drawer.userContainer));
         binding.drawer.userContainer.setOnClickListener(v -> {
             startActivity(LoginActivity.class);
@@ -101,10 +107,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         } else {
             loader = new PaginationLoader<>(binding.home.data, new HomeRecommendAdapter(context), new GridLayoutManager(context, 2));
         }
-        loader.enabledRefresh(true);
-        loader.setGuide(homeRecommend -> homeRecommend.getData().getItems());
-        loader.setUpdateInterface(loadType -> recommendHttpApi.getHomeRecommendApp());
-        loader.firstObtain();
+//        loader.enabledRefresh(true);
+//        loader.setGuide(homeRecommend -> homeRecommend.getData().getItems());
+//        loader.setUpdateInterface(loadType -> recommendHttpApi.getHomeRecommendApp());
+//        loader.firstObtain();
     }
 
     /**
@@ -201,6 +207,18 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             ViewUtils.setImg(context, binding.home.userFace, accountNav.getData().getFace());
             binding.drawer.userName.setText(accountNav.getData().getUname());
             binding.drawer.userLogout.setVisibility(View.VISIBLE);
+
+            // 获取csrf
+            if ("".equals(PreferenceUtils.getCsrf(context))) {
+                String[] split = PreferenceUtils.getCookie(context).split("; ");
+                Map<String, String> cookieMap = new HashMap<>(split.length);
+                for (String s : split) {
+                    String[] arrayTemp = s.split("=");
+                    cookieMap.put(arrayTemp[0], arrayTemp[1]);
+                }
+
+                PreferenceUtils.setCsrf(context, cookieMap.get("bili_jct"));
+            }
         }
     }
 }

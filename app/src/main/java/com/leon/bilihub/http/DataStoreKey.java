@@ -7,6 +7,7 @@ package com.leon.bilihub.http;
  */
 public class DataStoreKey {
     public static final String UID = "uid";
+    public static final String CSRF = "csrf";
     public static final String COOKIE = "Cookie";
     public static final String LOGIN_STATUS = "loginStatus";
     public static final String VIP_STATUS = "vipStatus";
