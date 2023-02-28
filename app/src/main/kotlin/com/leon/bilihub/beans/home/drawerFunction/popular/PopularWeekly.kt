@@ -39,7 +39,7 @@ data class PopularWeekly(
             @SerializedName("label")
             val label: String,
             @SerializedName("media_id")
-            val mediaId: Int,
+            val mediaId: String,
             @SerializedName("name")
             val name: String,
             @SerializedName("number")

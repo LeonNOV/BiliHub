@@ -33,7 +33,7 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding> {
 
             ViewUtils.initTabLayout(this, binding.content.tabLayout, binding.content.viewPager, fragments, "番剧", "剧集");
         } else {
-            TipDialog.showLoginTipDialog(context);
+            TipDialog.ShowLoginTipDialog(context);
         }
     }
 }

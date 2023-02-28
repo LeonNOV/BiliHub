@@ -31,7 +31,7 @@ public class RelationActivity extends BaseActivity<PageRecyclerBinding> {
                     .setObservable(new RetrofitClient(BaseUrl.API, context).getHttpApi().getUserRelationGroups())
                     .obtain(false);
         } else {
-            TipDialog.showLoginTipDialog(context);
+            TipDialog.ShowLoginTipDialog(context);
         }
     }
 }

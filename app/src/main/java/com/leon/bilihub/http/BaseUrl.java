@@ -15,7 +15,7 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.SOURCE)
 @Target({ElementType.PARAMETER, ElementType.FIELD})
-@StringDef(value = {BaseUrl.APP, BaseUrl.API, BaseUrl.SEARCH, BaseUrl.MAIN, BaseUrl.LIVE})
+@StringDef(value = {BaseUrl.APP, BaseUrl.API, BaseUrl.VERSION_API, BaseUrl.SEARCH, BaseUrl.MAIN, BaseUrl.LIVE})
 public @interface BaseUrl {
 
     /**
@@ -23,6 +23,7 @@ public @interface BaseUrl {
      */
     String APP = "https://app.bilibili.com/";
     String API = "https://api.bilibili.com/";
+    String VERSION_API = "https://gitcode.net/";
     String SEARCH = "https://s.search.bilibili.com/";
     String MAIN = "https://www.bilibili.com/";
     String LIVE = "http://api.live.bilibili.com/";

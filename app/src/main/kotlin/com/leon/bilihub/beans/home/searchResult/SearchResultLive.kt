@@ -148,7 +148,7 @@ data class SearchResultLive(
                 @SerializedName("uface")
                 val uface: String,
                 @SerializedName("uid")
-                val uid: Int,
+                val uid: String,
                 @SerializedName("uname")
                 val uname: String,
                 @SerializedName("user_cover")
@@ -208,7 +208,7 @@ data class SearchResultLive(
                 @SerializedName("uface")
                 val uface: String,
                 @SerializedName("uid")
-                val uid: Int,
+                val uid: String,
                 @SerializedName("uname")
                 val uname: String
             ) : Parcelable

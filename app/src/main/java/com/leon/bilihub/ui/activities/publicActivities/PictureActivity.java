@@ -38,7 +38,7 @@ public class PictureActivity extends AsyncHttpActivity<ActivityPictureBinding, P
 
     @Override
     protected RequestData setRequestData() {
-        return new RequestData(BaseUrl.API);
+        return new RequestData(BaseUrl.API, Map.of("Referer", String.format("https://www.bilibili.com/%s", dynamicId)));
     }
 
     @Override
@@ -51,7 +51,7 @@ public class PictureActivity extends AsyncHttpActivity<ActivityPictureBinding, P
         PictureInfo.Data.Item.Modules.ModuleAuthor moduleAuthor = pictureInfo.getData().getItem().getModules().getModuleAuthor();
 
         ViewUtils.setImg(context, binding.face, moduleAuthor.getFace());
-        binding.face.setOnClickListener(v -> startActivity(UserActivity.class, Map.of(UserActivity.PARAM, String.valueOf(moduleAuthor.getMid()))));
+        binding.face.setOnClickListener(v -> startActivity(UserActivity.class, Map.of(UserActivity.PARAM, moduleAuthor.getMid())));
         binding.name.setText(moduleAuthor.getName());
         binding.time.setText(moduleAuthor.getPubTime());
         binding.describe.setText(pictureInfo.getData().getItem().getModules().getModuleDynamic().getDesc().getText());

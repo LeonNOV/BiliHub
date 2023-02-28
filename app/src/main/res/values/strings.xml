@@ -64,6 +64,7 @@
     <!-- 设置 -->
     <string name="setting_base_setting">基本设置</string>
     <string name="setting_img_original_mode">原图模式</string>
+    <string name="setting_list_anim_status">列表动画</string>
     <string name="setting_clear_cache">清空缓存</string>
     <string name="setting_recommend_style">设置推荐视图样式</string>
     <string name="setting_single_column">显示单列</string>

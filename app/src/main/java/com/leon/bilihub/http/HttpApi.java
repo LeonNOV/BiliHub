@@ -1,5 +1,6 @@
 package com.leon.bilihub.http;
 
+import com.leon.bilihub.beans.VersionTags;
 import com.leon.bilihub.beans.account.AccountNav;
 import com.leon.bilihub.beans.account.CollectFolder;
 import com.leon.bilihub.beans.account.CollectFolderDetail;
@@ -198,14 +199,15 @@ public interface HttpApi {
 
     /**
      * 用户详细数据-包含大部分信息
-     * https://space.bilibili.com/492393
+     * https://space.bilibili.com/38366371
      * <p>
-     * http://api.bilibili.com/x/space/acc/info?mid=492393
+     * http://api.bilibili.com/x/space/wbi/acc/info?mid=3602311
+     * https://api.bilibili.com/x/space/acc/info?mid=3602311
      *
      * @param mid UID
      * @return {@link UserInfo}
      */
-    @GET("x/space/acc/info")
+    @GET("x/space/wbi/acc/info")
     Observable<UserInfo> getUserInfo(@Query("mid") String mid);
 
     /**
@@ -841,6 +843,19 @@ public interface HttpApi {
      */
     @GET("room/v1/Room/playUrl?platform=h5")
     Observable<LiveStream> getLiveStream(@Query("cid") String roomId, @Query("qn") int qn);
+
+    /**
+     * 新版本检测
+     * <p>
+     * https://gitcode.net/qq_36318722/bilihub
+     * <p>
+     * https://gitcode.net/qq_36318722/bilihub/refs?sort=updated_desc
+     *
+     * @return {@link VersionTags}
+     */
+    @GET("qq_36318722/bilihub/refs?sort=updated_desc")
+    Call<String> getNewVersion();
+//    Observable<VersionTags> getNewVersion();
 
     interface HttpRaw {
         /**

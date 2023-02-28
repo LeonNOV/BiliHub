@@ -51,7 +51,7 @@ data class UserAudio(
             @SerializedName("title")
             val title: String,
             @SerializedName("uid")
-            val uid: Int,
+            val uid: String,
             @SerializedName("uname")
             val uname: String
         ) : Parcelable {

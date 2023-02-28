@@ -1,6 +1,8 @@
 package com.leon.bilihub.ui.dialogs;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Window;
 
@@ -86,7 +88,7 @@ public class TipDialog extends AlertDialog {
      *
      * @param context context
      */
-    public static void showLoginTipDialog(Context context) {
+    public static void ShowLoginTipDialog(Context context) {
         TipDialog tipDialog = new TipDialog(context);
         tipDialog.setTitle("未登录");
         tipDialog.setContent("未登录无法获取到用户凭证，是否前去登录？");
@@ -97,6 +99,24 @@ public class TipDialog extends AlertDialog {
             } else {
                 ActivityManager.BackPressed();
             }
+        });
+        tipDialog.show();
+    }
+
+    public static void ShowUpdateDialog(Context context, String newVersion) {
+        TipDialog tipDialog = new TipDialog(context);
+        tipDialog.setTitle("检测到新版本");
+        tipDialog.setContent(String.format("检测到新的版本[%s]已发布，是否前去下载更新？", newVersion));
+        tipDialog.setActionStr("取消", "确定");
+        tipDialog.setOnActionListener(action -> {
+            if (action) {
+                Intent intent = new Intent();
+                intent.setAction("android.intent.action.VIEW");
+                intent.setData(Uri.parse(String.format("https://gitcode.net/qq_36318722/bilihub/-/releases/%s", newVersion)));
+                context.startActivity(intent);
+            }
+
+            tipDialog.dismiss();
         });
         tipDialog.show();
     }

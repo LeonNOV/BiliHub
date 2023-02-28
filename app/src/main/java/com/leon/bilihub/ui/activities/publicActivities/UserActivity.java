@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -67,7 +68,7 @@ public class UserActivity extends AsyncHttpActivity<ActivityUserBinding, UserInf
 
     @Override
     protected RequestData setRequestData() {
-        return new RequestData(BaseUrl.API);
+        return new RequestData(BaseUrl.API, context);
     }
 
     @Override
@@ -77,6 +78,8 @@ public class UserActivity extends AsyncHttpActivity<ActivityUserBinding, UserInf
 
     @Override
     protected void onAsyncResult(UserInfo userInfo) {
+        Log.d(TAG, userInfo.toString());
+
         ViewUtils.setImg(context, binding.userBanner, userInfo.getData().getTopPhoto());
         ViewUtils.setImg(context, binding.userFace, userInfo.getData().getFace());
         binding.name.setText(userInfo.getData().getName());
@@ -109,7 +112,7 @@ public class UserActivity extends AsyncHttpActivity<ActivityUserBinding, UserInf
         binding.follow.setText(userInfo.getData().isFollowed() ? "已关注" : "关注");
         binding.follow.setOnClickListener(v -> Toast.makeText(context, "开发中…", Toast.LENGTH_SHORT).show());
 
-        binding.uid.setText(String.format(Locale.CHINESE, "UID: %d", userInfo.getData().getMid()));
+        binding.uid.setText(String.format(Locale.CHINESE, "UID: %s", userInfo.getData().getMid()));
         binding.desc.setText(userInfo.getData().getSign());
 
         if (userInfo.getData().getSysNotice().getId() != 0) {
@@ -143,7 +146,7 @@ public class UserActivity extends AsyncHttpActivity<ActivityUserBinding, UserInf
     }
 
     private void getStat() {
-        new ApiHelper<>(new RetrofitClient(BaseUrl.API).getHttpApi().getUserStat(mid))
+        new ApiHelper<>(new RetrofitClient(BaseUrl.API, context).getHttpApi().getUserStat(mid))
                 .setOnResult(userStat -> {
                     binding.fans.setText(String.valueOf(userStat.getData().getFollower()));
                     binding.following.setText(String.valueOf(userStat.getData().getFollowing()));

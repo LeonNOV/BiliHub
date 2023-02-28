@@ -41,9 +41,7 @@ public class ApiHelper<T> {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Observer<>() {
                             @Override
-                            public void onSubscribe(@NonNull Disposable d) {
-
-                            }
+                            public void onSubscribe(@NonNull Disposable d) {}
 
                             @Override
                             public void onNext(@NonNull T t) {

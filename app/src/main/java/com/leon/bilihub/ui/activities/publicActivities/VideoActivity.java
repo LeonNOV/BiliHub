@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.appbar.AppBarLayout;
 import com.leon.bilihub.base.baseActivity.BaseActivity;
 import com.leon.bilihub.beans.publicBeans.resources.video.PgcDetail;
-import com.leon.bilihub.beans.publicBeans.resources.video.PgcStream;
 import com.leon.bilihub.beans.publicBeans.resources.video.VideoDetail;
 import com.leon.bilihub.beans.publicBeans.resources.video.VideoQuality;
 import com.leon.bilihub.beans.publicBeans.resources.video.VideoStream;

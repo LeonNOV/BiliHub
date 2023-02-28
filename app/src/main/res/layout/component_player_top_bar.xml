@@ -37,7 +37,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/battery"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="26dp"
                 android:src="@drawable/player_battery_100"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -53,6 +53,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/back"
                 style="@style/BackStyle"
+                android:padding="12dp"
                 android:layout_centerVertical="true" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -72,6 +73,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/more"
                 style="@style/BackStyle"
+                android:padding="12dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/more_vert" />

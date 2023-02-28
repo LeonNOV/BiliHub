@@ -15,6 +15,7 @@ import com.gyf.immersionbar.BarHide;
 import com.gyf.immersionbar.ImmersionBar;
 import com.leon.bilihub.R;
 import com.leon.bilihub.databinding.DialogAboutBinding;
+import com.leon.bilihub.utils.Utils;
 import com.leon.bilihub.utils.ViewUtils;
 import com.leon.bilihub.utils.donation.DonationHelper;
 
@@ -65,6 +66,7 @@ public class AboutDialog extends AlertDialog {
             e.printStackTrace();
         }
 
+        binding.versionContainer.setOnClickListener(v -> Utils.CheckUpdate(getContext(), true));
         binding.aboutAppVersion.setText(versionName);
         binding.gitee.setOnClickListener(v -> {
             Intent intent = new Intent();

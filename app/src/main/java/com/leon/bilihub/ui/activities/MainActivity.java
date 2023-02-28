@@ -1,17 +1,23 @@
 package com.leon.bilihub.ui.activities;
 
 import android.annotation.SuppressLint;
+import android.content.pm.PackageManager;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.viewbinding.ViewBinding;
 
+import com.google.gson.GsonBuilder;
 import com.leon.bilihub.R;
 import com.leon.bilihub.base.baseActivity.BaseActivity;
+import com.leon.bilihub.beans.VersionTags;
 import com.leon.bilihub.beans.account.AccountNav;
 import com.leon.bilihub.beans.home.AccountViewModel;
 import com.leon.bilihub.beans.home.HomeRecommendApp;
@@ -19,6 +25,7 @@ import com.leon.bilihub.databinding.ActivityMainBinding;
 import com.leon.bilihub.http.ApiHelper;
 import com.leon.bilihub.http.BaseUrl;
 import com.leon.bilihub.http.HttpApi;
+import com.leon.bilihub.http.RequestData;
 import com.leon.bilihub.http.RetrofitClient;
 import com.leon.bilihub.ui.activities.drawerFunction.channel.ChannelActivity;
 import com.leon.bilihub.ui.activities.drawerFunction.FavoriteActivity;
@@ -32,17 +39,26 @@ import com.leon.bilihub.ui.activities.drawerFunction.partition.PartitionActivity
 import com.leon.bilihub.ui.activities.publicActivities.DownloadActivity;
 import com.leon.bilihub.ui.activities.search.SearchActivity;
 import com.leon.bilihub.ui.adapters.HomeRecommendAdapter;
-import com.leon.bilihub.ui.dialogs.RelationGroupDialog;
 import com.leon.bilihub.ui.dialogs.TipDialog;
 import com.leon.bilihub.ui.widget.loader.PaginationLoader;
 import com.leon.bilihub.utils.DataStoreUtils;
 import com.leon.bilihub.utils.PreferenceUtils;
+import com.leon.bilihub.utils.Utils;
 import com.leon.bilihub.utils.ViewUtils;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Headers;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * @Author Leon
@@ -65,15 +81,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         closeImmersion();
 
         binding.home.userFace.setOnClickListener(v -> binding.getRoot().openDrawer(GravityCompat.START));
-//        binding.home.search.setOnClickListener(v -> startActivity(SearchActivity.class));
-        binding.home.search.setOnClickListener(v -> {
-            new RelationGroupDialog(context).show();
-        });
+        binding.home.search.setOnClickListener(v -> startActivity(SearchActivity.class));
         binding.drawer.userContainer.setOnTouchListener((v, event) -> ViewUtils.zoom(event, binding.drawer.userContainer));
-        binding.drawer.userContainer.setOnClickListener(v -> {
-            startActivity(LoginActivity.class);
-//            startActivity(ProfileActivity.class);
-        });
+        binding.drawer.userContainer.setOnClickListener(v -> startActivity(LoginActivity.class));
         binding.drawer.userLogout.setOnClickListener(v -> {
             TipDialog tipDialog = new TipDialog(context);
             tipDialog.setTitle("退出");
@@ -107,10 +117,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         } else {
             loader = new PaginationLoader<>(binding.home.data, new HomeRecommendAdapter(context), new GridLayoutManager(context, 2));
         }
-//        loader.enabledRefresh(true);
-//        loader.setGuide(homeRecommend -> homeRecommend.getData().getItems());
-//        loader.setUpdateInterface(loadType -> recommendHttpApi.getHomeRecommendApp());
-//        loader.firstObtain();
+        loader.enabledRefresh(true);
+        loader.setGuide(homeRecommend -> homeRecommend.getData().getItems());
+        loader.setUpdateInterface(loadType -> recommendHttpApi.getHomeRecommendApp());
+        loader.firstObtain();
+
+        Utils.CheckUpdate(context, false);
     }
 
     /**

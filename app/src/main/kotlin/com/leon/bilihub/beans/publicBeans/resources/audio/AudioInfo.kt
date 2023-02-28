@@ -56,7 +56,7 @@ data class AudioInfo(
         @SerializedName("title")
         val title: String,
         @SerializedName("uid")
-        val uid: Int,
+        val uid: String,
         @SerializedName("uname")
         val uname: String,
         @SerializedName("vipInfo")

@@ -39,7 +39,7 @@ public class HistoryActivity extends BaseActivity<ActivityHistoryBinding> {
             });
             loader.setUpdateInterface(loadType -> httpApi.getUserHistory(max, viewAt)).obtain();
         } else {
-            TipDialog.showLoginTipDialog(context);
+            TipDialog.ShowLoginTipDialog(context);
         }
     }
 }

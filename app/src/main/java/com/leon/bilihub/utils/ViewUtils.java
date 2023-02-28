@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -262,13 +263,15 @@ public class ViewUtils {
             throw new RuntimeException("fuck~~~");
         }
 
-        BaseItemAnimator itemAnimator = new ScaleInAnimator(new OvershootInterpolator());
-        itemAnimator.setAddDuration(ITEM_ANIMATOR_DURATION);
-        itemAnimator.setRemoveDuration(ITEM_ANIMATOR_DURATION);
-        itemAnimator.setChangeDuration(ITEM_ANIMATOR_DURATION);
-        itemAnimator.setMoveDuration(ITEM_ANIMATOR_DURATION);
+        if (PreferenceUtils.getListAnimStatus(recyclerView.getContext())) {
+            BaseItemAnimator itemAnimator = new ScaleInAnimator(new OvershootInterpolator());
+            itemAnimator.setAddDuration(ITEM_ANIMATOR_DURATION);
+            itemAnimator.setRemoveDuration(ITEM_ANIMATOR_DURATION);
+            itemAnimator.setChangeDuration(ITEM_ANIMATOR_DURATION);
+            itemAnimator.setMoveDuration(ITEM_ANIMATOR_DURATION);
 
-        recyclerView.setItemAnimator(itemAnimator);
+            recyclerView.setItemAnimator(itemAnimator);
+        }
     }
 
     public static AppCompatActivity scanForActivity(Context context) {

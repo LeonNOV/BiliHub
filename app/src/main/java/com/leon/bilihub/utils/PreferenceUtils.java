@@ -99,4 +99,12 @@ public class PreferenceUtils {
     public static void setImgMode(Context context, boolean isOriginal) {
         DataStoreUtils.INSTANCE.putData(context, DataStoreKey.IMG_MODE, isOriginal);
     }
+
+    public static boolean getListAnimStatus(Context context) {
+        return DataStoreUtils.INSTANCE.getData(context, DataStoreKey.LIST_ANIM_STATUS, true);
+    }
+
+    public static void setListAnimStatus(Context context, boolean status) {
+        DataStoreUtils.INSTANCE.putData(context, DataStoreKey.LIST_ANIM_STATUS, status);
+    }
 }

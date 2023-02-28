@@ -41,7 +41,7 @@ data class History(
             @SerializedName("author_face")
             val authorFace: String,
             @SerializedName("author_mid")
-            val authorMid: Int,
+            val authorMid: String,
             @SerializedName("author_name")
             val authorName: String,
             @SerializedName("badge")

@@ -286,7 +286,7 @@ data class Reply(
                     @SerializedName("score")
                     val score: Int,
                     @SerializedName("uid")
-                    val uid: Int
+                    val uid: String
                 ) : Parcelable
 
                 @Parcelize
@@ -353,7 +353,7 @@ data class Reply(
                         @SerializedName("fan")
                         val fan: Fan,
                         @SerializedName("id")
-                        val id: Int,
+                        val id: String,
                         @SerializedName("image")
                         val image: String,
                         @SerializedName("jump_url")
@@ -738,7 +738,7 @@ data class Reply(
                         @SerializedName("score")
                         val score: Int,
                         @SerializedName("uid")
-                        val uid: Int
+                        val uid: String
                     ) : Parcelable
 
                     @Parcelize

@@ -2,10 +2,8 @@ package com.leon.bilihub.ui.activities.drawerFunction;
 
 import androidx.fragment.app.Fragment;
 
-import com.leon.bilihub.base.baseActivity.ActivityManager;
 import com.leon.bilihub.base.baseActivity.BaseActivity;
 import com.leon.bilihub.databinding.ActivityFavoriteBinding;
-import com.leon.bilihub.ui.activities.LoginActivity;
 import com.leon.bilihub.ui.dialogs.TipDialog;
 import com.leon.bilihub.ui.fragments.drawerFragments.favorite.CollectListFragment;
 import com.leon.bilihub.ui.fragments.drawerFragments.favorite.FolderListFragment;
@@ -36,7 +34,7 @@ public class FavoriteActivity extends BaseActivity<ActivityFavoriteBinding> {
 
             ViewUtils.initTabLayout(this, binding.content.tabLayout, binding.content.viewPager, fragments, "收藏夹", "合集和订阅");
         } else {
-            TipDialog.showLoginTipDialog(context);
+            TipDialog.ShowLoginTipDialog(context);
         }
     }
 }

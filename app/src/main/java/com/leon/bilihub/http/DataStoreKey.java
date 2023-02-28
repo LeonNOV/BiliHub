@@ -20,4 +20,5 @@ public class DataStoreKey {
 
     public static final String RECOMMEND_STYLE = "recommendStyle";
     public static final String IMG_MODE = "imgMode";
+    public static final String LIST_ANIM_STATUS = "listAnimStatus";
 }

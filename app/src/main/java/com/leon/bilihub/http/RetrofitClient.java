@@ -4,6 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.GsonBuilder;
 import com.leon.bilihub.utils.PreferenceUtils;
 
 import java.util.Map;
@@ -27,7 +28,9 @@ public class RetrofitClient {
     }
 
     public RetrofitClient(@BaseUrl String baseUrl, Context context) {
-        this(baseUrl, Map.of(HttpApi.COOKIE, PreferenceUtils.getCookie(context)));
+        this(baseUrl, Map.of(HttpApi.COOKIE, PreferenceUtils.getCookie(context),
+        "Origin", "https://www.bilibili.com/",
+        "User-Agent", RequestData.USER_AGENT));
     }
 
     public RetrofitClient(@BaseUrl String baseUrl, Map<String, String> headers) {
@@ -49,7 +52,7 @@ public class RetrofitClient {
         this.retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().setLenient().create()))
                 .client(client)
                 .build();
     }

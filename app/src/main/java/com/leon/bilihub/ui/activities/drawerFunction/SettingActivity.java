@@ -75,6 +75,14 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding> {
             binding.imgModeSwitch.setChecked(!isChecked);
             PreferenceUtils.setImgMode(context, !isChecked);
         });
+
+        binding.listAnimSwitch.setChecked(PreferenceUtils.getListAnimStatus(context));
+        binding.listAnim.setOnClickListener(v -> {
+            boolean isChecked = binding.listAnimSwitch.isChecked();
+            binding.listAnimSwitch.setChecked(!isChecked);
+            PreferenceUtils.setListAnimStatus(context, !isChecked);
+        });
+
         binding.about.setOnClickListener(v -> new AboutDialog(context).show());
         binding.donation.setOnClickListener(v -> new DonationDialog(context).show());
         binding.recommendStyle.setOnClickListener(v -> new RecommendStyleDialog(context).show());
