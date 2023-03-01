@@ -1,5 +1,6 @@
 package com.leon.bilihub.ui.activities.publicActivities;
 
+import android.content.pm.ActivityInfo;
 import android.widget.Toast;
 
 import androidx.lifecycle.Observer;
@@ -61,6 +62,8 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
     @Override
     protected void init() {
         closeImmersion();
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
 
         if (params != null && params.containsKey(PARAM_ID)) {
             this.id = params.getString(PARAM_ID);
