@@ -53,7 +53,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
         android:maxLines="1"
-        android:textColor="@color/black"
+        android:textColor="@color/primaryContrary"
         android:textSize="11sp"
         tools:text="阿瓦达吴大维大大伟大" />
 
@@ -68,7 +68,7 @@
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="10dp"
         android:maxLines="1"
-        android:textColor="@color/black"
+        android:textColor="@color/primaryContrary"
         android:textSize="11sp"
         tools:text="阿瓦达吴大维大大伟大阿瓦达吴大维大大伟大阿瓦阿瓦达吴大维大大伟大阿瓦达吴大维大大伟大阿瓦阿瓦达吴大维大大伟大阿瓦达吴大维大大伟大阿瓦达吴大维大大伟大阿瓦达吴大维大大伟大阿瓦达吴大维大大伟大阿瓦达吴大维大大伟大" />
 

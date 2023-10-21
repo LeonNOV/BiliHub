@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProvider;
@@ -40,6 +41,11 @@ public class RecommendStyleDialog extends BottomSheetDialog {
         attributes.width = WindowManager.LayoutParams.MATCH_PARENT;
         attributes.height = WindowManager.LayoutParams.MATCH_PARENT;
         window.setAttributes(attributes);
+
+        FrameLayout bottom = findViewById(R.id.design_bottom_sheet);
+        if (bottom != null) {
+            bottom.setBackgroundResource(android.R.color.transparent);
+        }
 
         initView();
     }

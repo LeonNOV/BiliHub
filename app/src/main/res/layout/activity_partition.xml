@@ -26,24 +26,28 @@
                 android:id="@+id/douga"
                 style="@style/PartitionStyle"
                 android:text="@string/partition_douga"
+                android:textColor="@color/primaryContrary"
                 app:drawableTopCompat="@drawable/partition_douga" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/game"
                 style="@style/PartitionStyle"
                 android:text="@string/partition_game"
+                android:textColor="@color/primaryContrary"
                 app:drawableTopCompat="@drawable/partition_game" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/kichiku"
                 style="@style/PartitionStyle"
                 android:text="@string/partition_kichiku"
+                android:textColor="@color/primaryContrary"
                 app:drawableTopCompat="@drawable/partition_kichiku" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/music"
                 style="@style/PartitionStyle"
                 android:text="@string/partition_music"
+                android:textColor="@color/primaryContrary"
                 app:drawableTopCompat="@drawable/partition_music" />
 
         </TableRow>
@@ -59,24 +63,28 @@
                 android:id="@+id/dance"
                 style="@style/PartitionStyle"
                 android:text="@string/partition_dance"
+                android:textColor="@color/primaryContrary"
                 app:drawableTopCompat="@drawable/partition_dance" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/cinephile"
                 style="@style/PartitionStyle"
                 android:text="@string/partition_cinephile"
+                android:textColor="@color/primaryContrary"
                 app:drawableTopCompat="@drawable/partition_cinephile" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/ent"
                 style="@style/PartitionStyle"
                 android:text="@string/partition_ent"
+                android:textColor="@color/primaryContrary"
                 app:drawableTopCompat="@drawable/partition_ent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/knowledge"
                 style="@style/PartitionStyle"
                 android:text="@string/partition_knowledge"
+                android:textColor="@color/primaryContrary"
                 app:drawableTopCompat="@drawable/partition_knowledge" />
 
         </TableRow>
@@ -92,24 +100,28 @@
                 android:id="@+id/tech"
                 style="@style/PartitionStyle"
                 android:text="@string/partition_tech"
+                android:textColor="@color/primaryContrary"
                 app:drawableTopCompat="@drawable/partition_tech" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/information"
                 style="@style/PartitionStyle"
                 android:text="@string/partition_information"
+                android:textColor="@color/primaryContrary"
                 app:drawableTopCompat="@drawable/partition_information" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/food"
                 style="@style/PartitionStyle"
                 android:text="@string/partition_food"
+                android:textColor="@color/primaryContrary"
                 app:drawableTopCompat="@drawable/partition_food" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/life"
                 style="@style/PartitionStyle"
                 android:text="@string/partition_life"
+                android:textColor="@color/primaryContrary"
                 app:drawableTopCompat="@drawable/partition_life" />
 
         </TableRow>
@@ -125,24 +137,28 @@
                 android:id="@+id/car"
                 style="@style/PartitionStyle"
                 android:text="@string/partition_car"
+                android:textColor="@color/primaryContrary"
                 app:drawableTopCompat="@drawable/partition_car" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/fashion"
                 style="@style/PartitionStyle"
                 android:text="@string/partition_fashion"
+                android:textColor="@color/primaryContrary"
                 app:drawableTopCompat="@drawable/partition_fashion" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/sports"
                 style="@style/PartitionStyle"
                 android:text="@string/partition_sports"
+                android:textColor="@color/primaryContrary"
                 app:drawableTopCompat="@drawable/partition_sports" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/animal"
                 style="@style/PartitionStyle"
                 android:text="@string/partition_animal"
+                android:textColor="@color/primaryContrary"
                 app:drawableTopCompat="@drawable/partition_animal" />
 
         </TableRow>

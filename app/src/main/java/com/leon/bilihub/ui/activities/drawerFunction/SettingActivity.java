@@ -83,6 +83,15 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding> {
             PreferenceUtils.setListAnimStatus(context, !isChecked);
         });
 
+        binding.darkModeSwitch.setChecked(PreferenceUtils.getDarkModeMode(context));
+        binding.darkMode.setOnClickListener(v -> {
+            boolean isChecked = binding.darkModeSwitch.isChecked();
+            binding.darkModeSwitch.setChecked(!isChecked);
+            PreferenceUtils.setDarkModeMode(context, !isChecked);
+
+            Toast.makeText(context, "重启后生效", Toast.LENGTH_SHORT).show();
+        });
+
         binding.about.setOnClickListener(v -> new AboutDialog(context).show());
         binding.donation.setOnClickListener(v -> new DonationDialog(context).show());
         binding.recommendStyle.setOnClickListener(v -> new RecommendStyleDialog(context).show());

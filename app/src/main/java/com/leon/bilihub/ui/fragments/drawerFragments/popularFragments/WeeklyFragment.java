@@ -53,7 +53,7 @@ public class WeeklyFragment extends BaseLazyFragment<FragmentPopularWeeklyBindin
             seriesPopupWindow.setAdapter(seriesAdapter);
         });
 
-        httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
+        httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
         adapter = new PopularAdapter(context);
 
         loader = new RecyclerViewLoader<>(binding.content.getRoot(), adapter);
@@ -70,7 +70,7 @@ public class WeeklyFragment extends BaseLazyFragment<FragmentPopularWeeklyBindin
 
     @Override
     protected void onLazyLoad() {
-        new ApiHelper<>(new RetrofitClient(BaseUrl.API).getHttpApi().getSeries())
+        new ApiHelper<>(new RetrofitClient(BaseUrl.API, context).getHttpApi().getSeries())
                 .setOnResult(series -> {
                     WeeklyFragment.this.itemList = series.getData().getList();
                     Series.Data.Item firstSeries = WeeklyFragment.this.itemList.get(0);

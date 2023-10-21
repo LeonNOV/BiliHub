@@ -10,7 +10,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="@dimen/topBarHeight"
-        android:background="@color/white"
+        android:background="@color/primary"
         android:gravity="center_vertical">
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -18,7 +18,7 @@
             android:layout_height="32dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:elevation="@dimen/elevation"
+            style="@style/ElevationStyle"
             android:layout_weight="1"
             android:background="@drawable/search_result_top_bar_bg"
             android:gravity="center_vertical">
@@ -37,8 +37,9 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:gravity="center_vertical"
+                android:textColorHint="@color/hintColor"
                 android:text="wadawddawdwwda"
-                android:textColor="@color/black"
+                android:textColor="@color/primaryContrary"
                 android:textSize="14sp" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -55,6 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
+            android:textColor="@color/hintColor"
             android:text="@string/cancel" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>

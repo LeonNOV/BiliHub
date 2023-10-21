@@ -36,6 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:layout_margin="20dp"
+            android:scaleType="centerCrop"
             android:src="#A8A8A8"
             app:shapeAppearance="@style/Cover" />
 

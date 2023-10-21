@@ -3,8 +3,12 @@ package com.leon.bilihub;
 import android.app.Application;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.leon.bilihub.parser.PartitionParser;
+import com.leon.bilihub.utils.PreferenceUtils;
 import com.umeng.commonsdk.UMConfigure;
 
 import xyz.doikki.videoplayer.ijk.IjkPlayerFactory;
@@ -20,6 +24,9 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        boolean darkModeMode = PreferenceUtils.getDarkModeMode(getApplicationContext());
+        AppCompatDelegate.setDefaultNightMode(darkModeMode ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
 
         new PartitionParser().initMemData(getApplicationContext());
 

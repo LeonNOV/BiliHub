@@ -49,7 +49,7 @@
             android:layout_gravity="top"
             android:ellipsize="end"
             android:maxLines="3"
-            android:textColor="@color/black"
+            android:textColor="@color/primaryContrary"
             android:textSize="15sp"
             tools:text="TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle" />
 

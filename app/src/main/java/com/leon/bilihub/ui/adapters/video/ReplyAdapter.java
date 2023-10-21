@@ -72,7 +72,7 @@ public class ReplyAdapter<T extends Parcelable> extends ViewBindingAdapter<T, It
             binding.upAction.setVisibility(View.VISIBLE);
         }
 
-        binding.count.setOnClickListener(v -> new ReplyDetailDialog(context, String.valueOf(data.getOid()), data.getRpidStr()).show());
+        binding.count.setOnClickListener(v -> new ReplyDetailDialog(context, data.getOid(), data.getRpidStr()).show());
 
         if (data.getRcount() > 0) {
             binding.count.setVisibility(View.VISIBLE);

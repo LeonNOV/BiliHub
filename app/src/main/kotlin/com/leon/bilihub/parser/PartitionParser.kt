@@ -19,7 +19,6 @@ private val partitionMap: HashMap<Int, Partition> = HashMap()
  */
 class PartitionParser {
     private val TAG: String = "WwwW"
-
     companion object {
         fun getPartitionData(partitionId: Int): Partition? {
             return partitionMap[partitionId]

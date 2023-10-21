@@ -40,7 +40,7 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="@color/primaryContrary"
             android:textSize="@dimen/infoSize"
             android:textStyle="bold"
             tools:text="撒飞洒地方撒旦发射点发生飞洒发顺丰发撒" />

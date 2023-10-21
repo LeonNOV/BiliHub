@@ -21,4 +21,8 @@ public class DataStoreKey {
     public static final String RECOMMEND_STYLE = "recommendStyle";
     public static final String IMG_MODE = "imgMode";
     public static final String LIST_ANIM_STATUS = "listAnimStatus";
+    public static final String DARK_MODE = "darkMode";
+    public static final String PROXY = "proxy";
+    public static final String IMG_KEY = "imgKey";
+    public static final String SUB_KEY = "subKey";
 }

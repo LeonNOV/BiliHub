@@ -12,7 +12,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:text="@string/recommend_style_desc"
-        android:textColor="@color/black"
+        android:textColor="@color/primaryContrary"
         android:textSize="15sp" />
 
     <RelativeLayout
@@ -28,7 +28,7 @@
             android:layout_centerVertical="true"
             android:layout_toStartOf="@id/singleRadio"
             android:text="@string/setting_single_column"
-            android:textColor="@color/black"
+            android:textColor="@color/primaryContrary"
             android:textSize="13sp" />
 
         <androidx.appcompat.widget.AppCompatRadioButton
@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
+            android:buttonTint="@color/primaryContrary"
             android:clickable="false" />
 
     </RelativeLayout>
@@ -54,7 +55,7 @@
             android:layout_centerVertical="true"
             android:layout_toStartOf="@id/doubleRadio"
             android:text="@string/setting_double_column"
-            android:textColor="@color/black"
+            android:textColor="@color/primaryContrary"
             android:textSize="13sp" />
 
         <androidx.appcompat.widget.AppCompatRadioButton
@@ -63,6 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
+            android:buttonTint="@color/primaryContrary"
             android:clickable="false" />
 
     </RelativeLayout>

@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
+
 import com.leon.bilihub.R;
 import com.leon.bilihub.base.baseActivity.AsyncHttpActivity;
 import com.leon.bilihub.beans.publicBeans.user.UserInfo;
@@ -78,8 +80,6 @@ public class UserActivity extends AsyncHttpActivity<ActivityUserBinding, UserInf
 
     @Override
     protected void onAsyncResult(UserInfo userInfo) {
-        Log.d(TAG, userInfo.toString());
-
         ViewUtils.setImg(context, binding.userBanner, userInfo.getData().getTopPhoto());
         ViewUtils.setImg(context, binding.userFace, userInfo.getData().getFace());
         binding.name.setText(userInfo.getData().getName());
@@ -185,6 +185,11 @@ public class UserActivity extends AsyncHttpActivity<ActivityUserBinding, UserInf
     }
 
     private void crossFade(boolean isShow) {
+
+        binding.back.setColorFilter(isShow ?
+                ContextCompat.getColor(context, R.color.primaryContrary) :
+                ContextCompat.getColor(context, R.color.primary));
+
         binding.toolBarName.animate()
                 .alpha(isShow ? 1f : 0f)
                 .setDuration(500)

@@ -4,21 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/primary"
     tools:context=".ui.activities.publicActivities.UserActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/primary"
         app:elevation="0dp">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/clpTab"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:contentScrim="@color/white"
+            app:contentScrim="@color/primary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -64,6 +64,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/follow"
+                        style="@style/ElevationStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="33dp"
                         android:layout_alignParentEnd="true"
@@ -71,7 +72,6 @@
                         android:layout_marginEnd="20dp"
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/bg_follow"
-                        android:elevation="5dp"
                         android:gravity="center"
                         android:paddingStart="30dp"
                         android:paddingEnd="30dp"
@@ -100,7 +100,7 @@
                             android:id="@+id/name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/black"
+                            android:textColor="@color/primaryContrary"
                             android:textSize="20sp"
                             android:textStyle="bold"
                             tools:text="Lynaz Sanehe" />
@@ -250,14 +250,15 @@
                     android:layout_height="@dimen/topBarBackWH"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:padding="@dimen/topBarBackPadding"
-                    android:src="@drawable/ic_back" />
+                    android:src="@drawable/ic_back"
+                    android:tint="@color/black" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/toolBarName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/primaryContrary"
                     android:textSize="20sp"
                     android:visibility="gone"
                     tools:text="Test" />

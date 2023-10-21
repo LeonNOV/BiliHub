@@ -60,8 +60,6 @@ data class SearchResultMedia(
             val mainHandler: String,
             @SerializedName("params_check")
             val paramsCheck: String,
-            @SerializedName("save_cache")
-            val saveCache: String,
             @SerializedName("total")
             val total: String
         ) : Parcelable

@@ -8,7 +8,6 @@ import androidx.viewbinding.ViewBinding;
 
 import com.leon.bilihub.R;
 import com.leon.bilihub.base.baseAdapter.ViewBindingAdapter;
-import com.leon.bilihub.beans.home.HomeRecommend;
 import com.leon.bilihub.beans.home.HomeRecommendApp;
 import com.leon.bilihub.databinding.ItemVideoBBinding;
 import com.leon.bilihub.databinding.ItemVideoBinding;

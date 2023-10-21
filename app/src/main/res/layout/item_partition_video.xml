@@ -80,7 +80,7 @@
             android:layout_gravity="top"
             android:ellipsize="end"
             android:maxLines="2"
-            android:textColor="@color/black"
+            android:textColor="@color/primaryContrary"
             android:textSize="12sp"
             tools:text="阿瓦达吴大维大大伟大阿瓦达吴大维大大伟大阿瓦达吴大维大大伟大阿瓦达吴大维大大伟大阿瓦达吴大维大大伟大阿瓦达吴大维大大伟大" />
 

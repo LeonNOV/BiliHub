@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height_70"
-        android:background="@color/white">
+        android:background="@color/primary">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/activity_login_back"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="@string/login_account"
-            android:textColor="@color/black"
+            android:textColor="@color/primaryContrary"
             android:textSize="25sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -1,19 +1,34 @@
 package com.leon.bilihub.utils;
 
+import android.content.Context;
 import android.text.Html;
 import android.text.Spanned;
 
+import androidx.core.net.UriKt;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.net.URLStreamHandler;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.StringJoiner;
 import java.util.zip.Inflater;
+
+import cn.hutool.core.util.URLUtil;
+import cn.hutool.crypto.SecureUtil;
 
 /**
  * @Author Leon
@@ -21,6 +36,77 @@ import java.util.zip.Inflater;
  * @Desc 数值工具类
  */
 public class ValueUtils {
+
+    private static final int[] mixinKeyEncTab = new int[]{
+            46, 47, 18, 2, 53, 8, 23, 32, 15, 50, 10, 31, 58, 3, 45, 35, 27, 43, 5, 49,
+            33, 9, 42, 19, 29, 28, 14, 39, 12, 38, 41, 13, 37, 48, 7, 16, 24, 55, 40,
+            61, 26, 17, 0, 1, 60, 51, 30, 4, 22, 25, 54, 21, 56, 59, 6, 63, 57, 62, 11,
+            36, 20, 34, 44, 52
+    };
+
+    public static String genWbi(Context context, Map<String, String> params) {
+        String imgKey = PreferenceUtils.getImgKey(context);
+        String subKey = PreferenceUtils.getSubKey(context);
+        return genWbi(imgKey, subKey, params);
+    }
+
+    public static String genWbi(String imgKey, String subKey, Map<String, String> params) {
+        StringJoiner param = new StringJoiner("&");
+
+        params.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .forEach(entry -> param.add(entry.getKey() + "=" + urlEncode(entry.getValue())));
+
+        return SecureUtil.md5(param + getMixinKey(imgKey, subKey));
+    }
+
+    private static String getMixinKey(String imgKey, String subKey) {
+        String s = imgKey + subKey;
+        StringBuilder key = new StringBuilder();
+        for (int i = 0; i < 32; i++) {
+            key.append(s.charAt(mixinKeyEncTab[i]));
+        }
+        return key.toString();
+    }
+
+    public static String urlEncode(String input) {
+        StringBuilder encoded = new StringBuilder();
+        String allowedCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~";
+
+        for (char c : input.toCharArray()) {
+            if (allowedCharacters.indexOf(c) != -1) {
+                encoded.append(c);
+            } else {
+                encoded.append('%');
+                encoded.append(String.format("%02X", (int) c).toUpperCase());
+            }
+        }
+
+        return encoded.toString();
+    }
+
+    public static String MD5(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] hashBytes = md.digest(input.getBytes());
+
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hashBytes) {
+                sb.append(String.format("%02x", b));
+            }
+
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static long getSecond() {
+        return System.currentTimeMillis() / 1000;
+    }
+
     /**
      * 生成以万结尾的字符串，小于1万则直接返回
      *

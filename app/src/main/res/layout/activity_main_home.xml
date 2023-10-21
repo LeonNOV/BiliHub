@@ -8,7 +8,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:background="@color/primary"
         android:layout_height="@dimen/top_bar_height">
+
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/user_face"
@@ -25,7 +27,33 @@
             app:civ_border_color="@color/infoColor"
             app:civ_border_width="@dimen/face_border_width" />
 
+<!--        <androidx.appcompat.widget.AppCompatImageView-->
+<!--            android:id="@+id/user_face"-->
+<!--            android:layout_width="42dp"-->
+<!--            android:layout_height="42dp"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--            android:clickable="true"-->
+<!--            android:focusable="true"-->
+<!--            android:src="@drawable/lsp" />-->
+<!--        <com.leon.bilihub.ui.widget.CircleImageView-->
+<!--            android:id="@+id/user_face"-->
+<!--            android:layout_width="42dp"-->
+<!--            android:layout_height="42dp"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--            android:clickable="true"-->
+<!--            android:focusable="true"-->
+<!--            app:ringColor="@color/black"-->
+<!--            app:ringWidth="2dp"-->
+<!--            android:src="@color/pink" />-->
+
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/logo"
             android:layout_width="26dp"
             android:layout_height="26dp"
             android:layout_centerInParent="true"

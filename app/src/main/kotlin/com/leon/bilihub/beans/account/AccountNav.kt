@@ -72,7 +72,9 @@ data class AccountNav(
         @SerializedName("vipType")
         val vipType: Int,
         @SerializedName("wallet")
-        val wallet: Wallet
+        val wallet: Wallet,
+        @SerializedName("wbi_img")
+        val wbiImg: WbiImg
     ) : Parcelable {
         @Parcelize
         data class LevelInfo(
@@ -216,6 +218,14 @@ data class AccountNav(
             val couponDueTime: Int,
             @SerializedName("mid")
             val mid: String
+        ) : Parcelable
+
+        @Parcelize
+        data class WbiImg(
+            @SerializedName("img_url")
+            val imgUrl: String,
+            @SerializedName("sub_url")
+            val subUrl: String
         ) : Parcelable
     }
 }

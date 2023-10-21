@@ -41,7 +41,7 @@ public class PartitionFragment extends BaseLazyFragment<PageFilterRefreshBinding
     @Override
     protected void initView() {
         initFilter();
-        httpApi = new RetrofitClient(BaseUrl.SEARCH).getHttpApi();
+        httpApi = new RetrofitClient(BaseUrl.SEARCH, context).getHttpApi();
         adapter = new PartitionDataAdapter(context);
         loader = new PaginationLoader<>(binding.content, adapter, new GridLayoutManager(context, 2));
         loader.setGuide(PartitionData::getResult);
@@ -53,7 +53,7 @@ public class PartitionFragment extends BaseLazyFragment<PageFilterRefreshBinding
     }
 
     private void initFilter() {
-        new ApiHelper<>(new RetrofitClient(BaseUrl.API).getHttpApi().getPartitionTags(tid))
+        new ApiHelper<>(new RetrofitClient(BaseUrl.API, context).getHttpApi().getPartitionTags(tid))
                 .setOnResult(partitionTag -> {
                     FilterAdapter<PartitionTag.Data.Tag> filterAdapter = new FilterAdapter<>(context);
                     filterAdapter.setOnFilterCallback(new FilterAdapter.OnFilterCallback<>() {

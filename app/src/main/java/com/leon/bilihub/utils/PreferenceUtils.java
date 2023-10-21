@@ -107,4 +107,36 @@ public class PreferenceUtils {
     public static void setListAnimStatus(Context context, boolean status) {
         DataStoreUtils.INSTANCE.putData(context, DataStoreKey.LIST_ANIM_STATUS, status);
     }
+
+    public static boolean getDarkModeMode(Context context) {
+        return DataStoreUtils.INSTANCE.getData(context, DataStoreKey.DARK_MODE, false);
+    }
+
+    public static void setDarkModeMode(Context context, boolean darkMode) {
+        DataStoreUtils.INSTANCE.putData(context, DataStoreKey.DARK_MODE, darkMode);
+    }
+
+    public static String getProxy(Context context) {
+        return DataStoreUtils.INSTANCE.getData(context, DataStoreKey.PROXY, "https://api.bilihub.fun/bilihub/");
+    }
+
+    public static void setProxy(Context context, String proxy) {
+        DataStoreUtils.INSTANCE.putData(context, DataStoreKey.PROXY, proxy);
+    }
+
+    public static String getImgKey(Context context) {
+        return DataStoreUtils.INSTANCE.getData(context, DataStoreKey.IMG_KEY, "");
+    }
+
+    public static void setImgKey(Context context, String imgKey) {
+        DataStoreUtils.INSTANCE.putData(context, DataStoreKey.IMG_KEY, imgKey);
+    }
+
+    public static String getSubKey(Context context) {
+        return DataStoreUtils.INSTANCE.getData(context, DataStoreKey.SUB_KEY, "");
+    }
+
+    public static void setSubKey(Context context, String subKey) {
+        DataStoreUtils.INSTANCE.putData(context, DataStoreKey.SUB_KEY, subKey);
+    }
 }

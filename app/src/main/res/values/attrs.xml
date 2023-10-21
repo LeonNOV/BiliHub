@@ -4,4 +4,9 @@
         <attr name="title" format="string"/>
         <attr name="withBottomLine" format="boolean"/>
     </declare-styleable>
+
+    <declare-styleable name="CircleImageView">
+        <attr name="ringColor" format="color" />
+        <attr name="ringWidth" format="dimension" />
+    </declare-styleable>
 </resources>

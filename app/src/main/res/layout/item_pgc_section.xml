@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/primary"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -11,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:textColor="@color/black"
+        android:textColor="@color/primaryContrary"
         android:textSize="17sp"
         tools:text="sectionName" />
 

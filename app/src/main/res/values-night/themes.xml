@@ -1,7 +1,17 @@
 <resources>
+    <color name="primary">@color/black</color>
+    <color name="primaryContrary">@color/white</color>
 
-<!--    <style name="ThemeOverlay.BiuVideoV4.FullscreenContainer" parent="">-->
-<!--        <item name="fullscreenBackgroundColor">@color/light_blue_900</item>-->
-<!--        <item name="fullscreenTextColor">@color/light_blue_A400</item>-->
-<!--    </style>-->
+    <color name="infoColor">#686868</color>
+    <color name="follow_color">#757575</color>
+
+    <color name="topBarBottomLine">#CCCCCC</color>
+    <color name="tabTextColor">#888888</color>
+    <color name="rippleColor">#80E5E5E5</color>
+
+    <color name="drawer_bg">#5E5E5E</color>
+    <color name="topBar">@color/primary</color>
+
+    <color name="picture_viewer_theme">#878787</color>
+    <color name="dialog_bg">#B3424242</color>
 </resources>

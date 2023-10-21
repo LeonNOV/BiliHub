@@ -34,8 +34,6 @@
             android:visibility="gone"
             tools:text="Test" />
 
-
-
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.recyclerview.widget.RecyclerView

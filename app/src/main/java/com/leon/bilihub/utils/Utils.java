@@ -2,29 +2,14 @@ package com.leon.bilihub.utils;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
+import android.util.Log;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
-import com.google.gson.GsonBuilder;
-import com.leon.bilihub.beans.VersionTags;
-import com.leon.bilihub.http.RequestData;
+import com.leon.bilihub.http.ApiHelper;
+import com.leon.bilihub.http.BaseUrl;
+import com.leon.bilihub.http.HttpApi;
+import com.leon.bilihub.http.RetrofitClient;
 import com.leon.bilihub.ui.dialogs.TipDialog;
-
-import java.io.IOException;
-import java.util.Map;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Headers;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 /**
  * @Author Leon
@@ -33,44 +18,24 @@ import okhttp3.Response;
  */
 public class Utils {
     public static void CheckUpdate(Context context, boolean showToast) {
-        Handler handler = new Handler(Looper.getMainLooper(), msg -> {
-            if (msg.what == 1) {
-                TipDialog.ShowUpdateDialog(context, msg.getData().getString("version"));
-            } else if (msg.what == 0 && showToast) {
-                Toast.makeText(context, "当前版本为最新版本", Toast.LENGTH_SHORT).show();
-            }
+        HttpApi.ApiGet httpApi = new RetrofitClient(BaseUrl.CONFIG, context).ApiGet();
+        new ApiHelper<>(httpApi.getConfig()).setOnResult(config -> {
+//            Log.d("WwwW", config.toString());
 
-            return true;
-        });
+            try {
+                int nowVersionCode = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
 
-        OkHttpClient build = new OkHttpClient.Builder().build();
-        build.newCall(new Request(HttpUrl.get("https://gitcode.net/qq_36318722/bilihub/refs?sort=updated_desc"), "GET", Headers.of("User-Agent", RequestData.USER_AGENT), null, Map.of())).enqueue(new Callback() {
-            @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                // 将反代理baseurl保存至preference
+                PreferenceUtils.setProxy(context, config.getProxy().getUrl());
 
-            }
-
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                VersionTags versionTags = new GsonBuilder().setLenient().create().fromJson(response.body().string(), VersionTags.class);
-                try {
-                    String curVersion = "v" + context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
-                    Message message = new Message();
-                    if (!curVersion.equals(versionTags.getTags().getFirst())) {
-                        Bundle bundle = new Bundle();
-                        bundle.putString("version", versionTags.getTags().getFirst());
-
-                        message.what = 1;
-                        message.setData(bundle);
-                    } else {
-                        message.what = 0;
-                    }
-
-                    handler.sendMessage(message);
-                } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
+                if (config.getVersion().getVersionCode() > nowVersionCode) {
+                    TipDialog.ShowUpdateDialog(context, config);
+                } else if (showToast) {
+                    Toast.makeText(context, "当前版本为最新版本", Toast.LENGTH_SHORT).show();
                 }
+            } catch (PackageManager.NameNotFoundException e) {
+                throw new RuntimeException(e);
             }
-        });
+        }).doIt();
     }
 }

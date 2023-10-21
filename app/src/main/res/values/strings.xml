@@ -39,6 +39,7 @@
     <string name="video_player_error_msg">出了点小问题，请点击重试</string>
     <string name="video_player_error_retry">重试</string>
     <string name="video_player_bottom_speed">倍速</string>
+    <string name="video_player_bottom_subtitle">字幕</string>
     <string name="video_player_bottom_road">线路</string>
     <string name="video_player_bottom_quality">清晰度</string>
     <string name="video_player_bottom_hint">快来分享一下自己的想法吧~</string>
@@ -67,6 +68,7 @@
     <string name="setting_list_anim_status">列表动画</string>
     <string name="setting_clear_cache">清空缓存</string>
     <string name="setting_recommend_style">设置推荐视图样式</string>
+    <string name="setting_dark_mode">暗夜模式（Beta）</string>
     <string name="setting_single_column">显示单列</string>
     <string name="setting_double_column">显示双列</string>
     <string name="setting_about">关于</string>
@@ -128,4 +130,6 @@
     <string name="relation_group">关注分组</string>
     <string name="confirm">确定</string>
     <string name="add">添加</string>
+    <string name="use_proxy">使用代理查询</string>
+    <string name="article_detail">文章详情</string>
 </resources>

@@ -5,14 +5,14 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.leon.bilihub"
-        minSdk 24
-        targetSdk 32
-        versionCode 61
-        versionName "4.2.8"
+        minSdk 29
+        targetSdk 33
+        versionCode 65
+        versionName "4.3.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -90,6 +90,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    packagingOptions {
+        exclude'META-INF/INDEX.LIST'
+    }
 }
 
 dependencies {
@@ -134,8 +138,10 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.5.1'//没有使用特殊Header，可以不加这行
 
     // Glide
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+//    implementation 'com.github.bumptech.glide:glide:4.15.1'
+//    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
+    implementation 'com.squareup.picasso:picasso:2.8'
 
     // An Android transformation library providing a variety of image transformations for Glide.
     implementation 'jp.wasabeef:glide-transformations:4.3.0'
@@ -160,9 +166,8 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.15.2'
 
     // Room
-    def roomVersion = "2.4.2"
-    implementation "androidx.room:room-runtime:$roomVersion"
-    annotationProcessor "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-runtime:2.4.2"
+    annotationProcessor "androidx.room:room-compiler:2.4.2"
 
     implementation "androidx.datastore:datastore:1.0.0"
     implementation "androidx.datastore:datastore-preferences:1.0.0"
@@ -179,4 +184,6 @@ dependencies {
 
     // https://github.com/MZCretin/ExpandableTextView
     implementation 'com.github.MZCretin:ExpandableTextView:v1.6.1-x'
+
+    implementation 'cn.hutool:hutool-crypto:5.8.22'
 }

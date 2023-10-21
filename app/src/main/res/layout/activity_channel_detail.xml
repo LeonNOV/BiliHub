@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/primary">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
@@ -147,6 +147,7 @@
                     android:layout_height="@dimen/topBarBackWH"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:padding="@dimen/topBarBackPadding"
+                    android:tint="@color/black"
                     android:src="@drawable/ic_back" />
 
                 <androidx.appcompat.widget.AppCompatTextView

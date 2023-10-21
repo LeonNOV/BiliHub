@@ -5,8 +5,6 @@ import android.widget.Toast;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.leon.bilihub.base.baseActivity.AsyncHttpActivity;
 import com.leon.bilihub.beans.publicBeans.resources.audio.AudioInfo;
 import com.leon.bilihub.databinding.ActivityAudioBinding;
@@ -18,6 +16,7 @@ import com.leon.bilihub.model.AudioProgressModel;
 import com.leon.bilihub.utils.AudioController;
 import com.leon.bilihub.utils.ViewUtils;
 import com.leon.bilihub.wraps.AudioProgressWrap;
+import com.squareup.picasso.Picasso;
 
 import java.util.Map;
 
@@ -95,10 +94,11 @@ public class AudioActivity extends AsyncHttpActivity<ActivityAudioBinding, Audio
             }
         });
 
-        Glide
-                .with(context)
+        Picasso
+                .get()
                 .load(audioInfo.getData().getCover())
-                .apply(RequestOptions.bitmapTransform(new BlurTransformation(25, 3)))
+                .transform(new com.leon.bilihub.ui.widget.BlurTransformation(context, 25))
+                .priority(Picasso.Priority.HIGH)
                 .into(binding.audioBg);
 
         ViewUtils.setImg(context, binding.cover, audioInfo.getData().getCover());

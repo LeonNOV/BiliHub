@@ -1,11 +1,15 @@
 package com.leon.bilihub.ui.dialogs;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.leon.bilihub.R;
 import com.leon.bilihub.databinding.DialogDonationBinding;
 import com.leon.bilihub.utils.donation.DonationHelper;
 
@@ -34,6 +38,11 @@ public class DonationDialog extends BottomSheetDialog {
         attributes.width = WindowManager.LayoutParams.MATCH_PARENT;
         attributes.height = WindowManager.LayoutParams.MATCH_PARENT;
         window.setAttributes(attributes);
+
+        FrameLayout bottom = findViewById(R.id.design_bottom_sheet);
+        if (bottom != null) {
+            bottom.setBackgroundResource(android.R.color.transparent);
+        }
 
         initView();
     }

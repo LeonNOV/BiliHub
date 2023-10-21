@@ -34,9 +34,9 @@ public abstract class AsyncHttpActivity<V extends ViewBinding, P extends Parcela
         RequestData requestData = setRequestData();
 
         if (requestData.getHeaders() != null) {
-            retrofitClient = new RetrofitClient(requestData.getBaseUrl(), requestData.getHeaders());
+            retrofitClient = new RetrofitClient(context, requestData.getBaseUrl(), requestData.getHeaders(), null);
         } else {
-            retrofitClient = new RetrofitClient(requestData.getBaseUrl());
+            retrofitClient = new RetrofitClient(requestData.getBaseUrl(), context);
         }
 
         new ApiHelper<>(createObservable(retrofitClient)).setOnResult(this::onAsyncResult).doIt();

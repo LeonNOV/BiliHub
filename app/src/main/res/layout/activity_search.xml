@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/primary"
     tools:context=".ui.activities.search.SearchActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +19,7 @@
             android:layout_height="47dp"
             android:layout_marginStart="20dp"
             android:background="@drawable/ripple_bg"
-            android:elevation="@dimen/elevation"
+            style="@style/ElevationStyle"
             android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="@string/search"
-            android:textColor="@color/black"
+            android:textColor="@color/primaryContrary"
             android:textSize="25sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -51,7 +51,9 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/search_bar_bg"
-        android:elevation="@dimen/elevation"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        style="@style/ElevationStyle"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -64,7 +66,7 @@
                 android:layout_height="20dp"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="10dp"
-                android:tint="@color/black"
+                android:tint="@color/primaryContrary"
                 app:srcCompat="@drawable/ic_home_search" />
 
             <androidx.appcompat.widget.AppCompatEditText
@@ -75,10 +77,11 @@
                 android:layout_marginEnd="40dp"
                 android:background="@null"
                 android:hint="@string/search"
+                android:textColorHint="@color/hintColor"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
                 android:maxLines="1"
-                android:textColor="@color/black"
+                android:textColor="@color/primaryContrary"
                 android:textSize="15sp" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -89,9 +92,9 @@
                 android:layout_centerVertical="true"
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="10dp"
-                android:visibility="invisible"
+                android:visibility="visible"
                 app:srcCompat="@drawable/ic_clear"
-                app:tint="@color/black" />
+                app:tint="@color/primaryContrary" />
 
         </RelativeLayout>
 
@@ -125,7 +128,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hot_search"
-            android:textColor="@color/black"
+            android:textColor="@color/primaryContrary"
             android:textSize="20sp"
             android:textStyle="bold" />
 

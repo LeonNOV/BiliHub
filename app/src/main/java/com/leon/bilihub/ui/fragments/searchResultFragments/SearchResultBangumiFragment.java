@@ -4,10 +4,12 @@ import com.leon.bilihub.base.baseFragment.BaseLazyFragment;
 import com.leon.bilihub.beans.home.searchResult.SearchResultMedia;
 import com.leon.bilihub.databinding.FragmentResultAnimeBinding;
 import com.leon.bilihub.http.BaseUrl;
+import com.leon.bilihub.http.BiliHost;
 import com.leon.bilihub.http.HttpApi;
 import com.leon.bilihub.http.RetrofitClient;
 import com.leon.bilihub.ui.adapters.searchResult.SearchResultBangumiAdapter;
 import com.leon.bilihub.ui.widget.loader.PaginationLoader;
+import com.leon.bilihub.utils.converter.ConverterFactory;
 
 /**
  * @Author Leon
@@ -21,6 +23,8 @@ public class SearchResultBangumiFragment extends BaseLazyFragment<FragmentResult
     private PaginationLoader<SearchResultMedia, SearchResultMedia.Data.Result> loader;
     private HttpApi httpApi;
 
+    private SearchResultBangumiAdapter searchResultBangumiAdapter;
+
     public SearchResultBangumiFragment(String keyword) {
         this.keyword = keyword;
     }
@@ -33,9 +37,23 @@ public class SearchResultBangumiFragment extends BaseLazyFragment<FragmentResult
     @Override
     protected void initView() {
         httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
-        loader = new PaginationLoader<>(binding.content, new SearchResultBangumiAdapter(context));
+
+        searchResultBangumiAdapter = new SearchResultBangumiAdapter(context);
+        loader = new PaginationLoader<>(binding.content, searchResultBangumiAdapter);
         loader.setGuide(searchResultMedia -> searchResultMedia.getData().getResult());
         loader.setUpdateInterface(loadType -> httpApi.getSearchResultBangumi(++pageNum, keyword));
+
+//        binding.useProxy.setOnClickListener(v -> {
+//            ConverterFactory converterFactory = new ConverterFactory();
+//            converterFactory.setConverterMiddleware(jsonObject -> jsonObject.get("data"));
+//
+//            httpApi = new RetrofitClient(context, BiliHost.API, converterFactory).getHttpApi();
+//            searchResultBangumiAdapter.removeAll();
+//            searchResultBangumiAdapter.useProxy();
+//            pageNum = 0;
+//
+//            loader.obtain();
+//        });
     }
 
     @Override

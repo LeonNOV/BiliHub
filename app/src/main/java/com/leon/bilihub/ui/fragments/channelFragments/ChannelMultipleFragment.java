@@ -61,7 +61,7 @@ public class ChannelMultipleFragment extends BaseLazyFragment<FragmentChannelMul
         });
 
         contentAdapter = new ChannelMultipleContentAdapter(context);
-        httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
+        httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
         loader = new PaginationLoader<>(binding.content, contentAdapter, new GridLayoutManager(context, 2));
         loader.setGuide(channelDetailMultiple -> {
             offset = channelDetailMultiple.getData().getOffset();

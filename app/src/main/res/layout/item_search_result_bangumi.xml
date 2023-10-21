@@ -55,7 +55,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/primaryContrary"
             android:textSize="15sp"
             tools:text="TitleTitleTitleTitleTitleTitleTitleTitleTitle" />
 

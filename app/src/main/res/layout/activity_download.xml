@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="正在下载 0"
-            android:textColor="@color/black"
+            android:textColor="@color/primaryContrary"
             android:textSize="15sp" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -55,7 +55,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
-            android:textColor="@color/black"
+            android:textColor="@color/primaryContrary"
             android:textSize="15sp" />
 
         <androidx.recyclerview.widget.RecyclerView

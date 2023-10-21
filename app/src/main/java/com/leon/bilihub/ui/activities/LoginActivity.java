@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.WebChromeClient;
@@ -25,8 +26,10 @@ import java.util.Map;
  * @Desc
  */
 public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
+    // https://passport.bilibili.com/login?gourl=https://m.bilibili.com/index.html
+    // https://passport.bilibili.com/h5-app/passport/login
     private static final String LOGIN_URL = "https://passport.bilibili.com/login?gourl=https://m.bilibili.com/index.html";
-    private static final String REDIRECT_URL = "https://m.bilibili.com/index.html";
+    private static final String REDIRECT_URL = "https://m.bilibili.com/";
 
     private static final int PROGRESS_MAX = 100;
 

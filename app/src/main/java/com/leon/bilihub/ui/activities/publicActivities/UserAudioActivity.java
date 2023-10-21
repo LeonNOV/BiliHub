@@ -26,7 +26,7 @@ public class UserAudioActivity extends BaseActivity<ActivityUserAudioBinding> {
     protected void init() {
         String mid = params.getString(UserActivity.PARAM);
 
-        HttpApi httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
+        HttpApi httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
         PaginationLoader<UserAudio, UserAudio.Data.Audio> loader = new PaginationLoader<>(binding.content, new UserAudioAdapter(context));
         loader.setGuide(userAudio -> userAudio.getData().getAudioList());
         loader.setUpdateInterface(loadType -> httpApi.getUserAudio(mid, ++pageNum)).obtain();

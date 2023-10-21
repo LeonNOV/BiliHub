@@ -21,6 +21,5 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding> {
     protected void init() {
         binding.more.setOnClickListener(v -> binding.detailInfo.setVisibility(binding.detailInfo.getVisibility() == View.GONE ? View.VISIBLE : View.INVISIBLE));
         binding.edit.setOnClickListener(v -> Toast.makeText(context, "开发中…", Toast.LENGTH_SHORT).show());
-
     }
 }

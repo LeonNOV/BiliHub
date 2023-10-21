@@ -32,7 +32,7 @@ public class MediaCommentsFragment extends BaseLazyFragment<FragmentMediaComment
     private VideoPlayerModel videoPlayerModel;
     private Observer<String> videoRecommendObserver;
 
-    private int next = 0;
+    private String next = "{\"offset\":\"\"}";
     private int mode = 3;
 
     public MediaCommentsFragment(String aid) {
@@ -81,13 +81,14 @@ public class MediaCommentsFragment extends BaseLazyFragment<FragmentMediaComment
             reload();
         });
 
-        httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
+        httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
         adapter = new ReplyAdapter<>(context, false);
         loader = new PaginationLoader<>(binding.content, adapter);
         loader.setGuide(reply -> {
-            next = reply.getData().getCursor().getNext();
+            next = String.format("{\"offset\":\"%s\"}", reply.getData().getCursor().getPaginationReply().getNextOffset());
             return reply.getData().getReplies();
         });
+
         if (aid != null) {
             loader.setUpdateInterface(loadType -> httpApi.getReply(aid, mode, next, ReplyType.Video));
         }
@@ -100,7 +101,7 @@ public class MediaCommentsFragment extends BaseLazyFragment<FragmentMediaComment
 
     private void reload () {
         if (adapter != null) {
-            next = 0;
+            next = "{\"offset\":\"\"}";
             adapter.removeAll();
             loader.setUpdateInterface(loadType -> httpApi.getReply(aid, mode, next, ReplyType.Video)).obtain();
         }

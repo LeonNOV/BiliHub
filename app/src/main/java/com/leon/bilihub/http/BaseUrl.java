@@ -15,7 +15,7 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.SOURCE)
 @Target({ElementType.PARAMETER, ElementType.FIELD})
-@StringDef(value = {BaseUrl.APP, BaseUrl.API, BaseUrl.VERSION_API, BaseUrl.SEARCH, BaseUrl.MAIN, BaseUrl.LIVE})
+@StringDef(value = {BaseUrl.APP, BaseUrl.API, BaseUrl.VERSION_API, BaseUrl.SEARCH, BaseUrl.MAIN, BaseUrl.LIVE, BaseUrl.CONFIG})
 public @interface BaseUrl {
 
     /**
@@ -27,4 +27,5 @@ public @interface BaseUrl {
     String SEARCH = "https://s.search.bilibili.com/";
     String MAIN = "https://www.bilibili.com/";
     String LIVE = "http://api.live.bilibili.com/";
+    String CONFIG = "https://gitee.com/leon_xf/bili-hub-proxy/raw/";
 }

@@ -2,6 +2,7 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ElevationStyle"
     android:layout_width="match_parent"
     android:layout_height="230dp"
     android:background="@drawable/ripple_bg"
@@ -19,8 +20,8 @@
             android:id="@+id/cover"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
             android:foreground="@drawable/res_item_fade"
+            android:scaleType="centerCrop"
             app:shapeAppearance="@style/Cover"
             tools:src="@drawable/lsp" />
 
@@ -53,7 +54,7 @@
             android:layout_alignParentTop="true"
             android:ellipsize="end"
             android:maxLines="2"
-            android:textColor="@color/black"
+            android:textColor="@color/primaryContrary"
             android:textSize="15sp"
             tools:text="介绍介绍介绍介介绍介绍绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介介绍介绍绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介介绍介绍绍介绍介绍介绍介绍介绍介绍介绍介绍" />
 

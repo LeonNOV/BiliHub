@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.leon.bilihub.R;
 import com.leon.bilihub.base.baseActivity.ActivityManager;
+import com.leon.bilihub.beans.Config;
 import com.leon.bilihub.databinding.DialogTipBinding;
 import com.leon.bilihub.ui.activities.LoginActivity;
 
@@ -103,16 +104,16 @@ public class TipDialog extends AlertDialog {
         tipDialog.show();
     }
 
-    public static void ShowUpdateDialog(Context context, String newVersion) {
+    public static void ShowUpdateDialog(Context context, Config config) {
         TipDialog tipDialog = new TipDialog(context);
         tipDialog.setTitle("检测到新版本");
-        tipDialog.setContent(String.format("检测到新的版本[%s]已发布，是否前去下载更新？", newVersion));
+        tipDialog.setContent(String.format("检测到新的版本[%s]已发布，是否前去下载更新？", config.getVersion().getVersionName()));
         tipDialog.setActionStr("取消", "确定");
         tipDialog.setOnActionListener(action -> {
             if (action) {
                 Intent intent = new Intent();
                 intent.setAction("android.intent.action.VIEW");
-                intent.setData(Uri.parse(String.format("https://gitcode.net/qq_36318722/bilihub/-/releases/%s", newVersion)));
+                intent.setData(Uri.parse(config.getVersion().getApk()));
                 context.startActivity(intent);
             }
 

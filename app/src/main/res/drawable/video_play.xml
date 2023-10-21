@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_selected="true" android:drawable="@drawable/video_play_true"/>
-    <item android:state_selected="false" android:drawable="@drawable/video_play_false"/>
+    <item android:drawable="@drawable/video_play_true" android:state_selected="true" />
+    <item android:drawable="@drawable/video_play_false" android:state_selected="false" />
 </selector>

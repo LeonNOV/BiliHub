@@ -57,7 +57,7 @@
                     android:id="@+id/author"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:textColor="@color/primaryContrary"
                     android:textSize="15sp"
                     android:textStyle="bold"
                     tools:text="AuthorName" />
@@ -96,7 +96,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/bg_follow"
-                android:elevation="5dp"
+                style="@style/ElevationStyle"
                 android:gravity="center"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
@@ -118,7 +118,7 @@
             android:layout_marginEnd="10dp"
             android:ellipsize="end"
             android:lineSpacingExtra="4dp"
-            android:textColor="@color/black"
+            android:textColor="@color/primaryContrary"
             android:textSize="17sp"
             app:ep_contract_color="@color/blue"
             app:ep_contract_text="收回"
@@ -347,6 +347,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="18dp"
                 android:layout_height="wrap_content"
+                android:tint="@color/primaryContrary"
                 android:src="@drawable/item_collect_b" />
 
             <androidx.appcompat.widget.AppCompatTextView

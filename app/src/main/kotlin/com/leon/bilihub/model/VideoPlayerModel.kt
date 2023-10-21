@@ -2,6 +2,7 @@ package com.leon.bilihub.model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.leon.bilihub.beans.publicBeans.resources.video.VideoDetail
 import com.leon.bilihub.beans.publicBeans.resources.video.VideoQuality
 import com.leon.bilihub.http.Quality
 import com.leon.bilihub.wraps.VideoResourceWrap
@@ -60,6 +61,13 @@ class VideoPlayerModel : ViewModel() {
      */
     val videoQualityDisplay: MutableLiveData<String> by lazy {
         MutableLiveData<String>()
+    }
+
+    /**
+     * 视频字幕
+     */
+    val subtitle: MutableLiveData<List<VideoDetail.Data.View.Subtitle.Data>> by lazy {
+        MutableLiveData<List<VideoDetail.Data.View.Subtitle.Data>>()
     }
 
     /**

@@ -30,7 +30,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="15dp"
                 android:background="@drawable/bg_drawer_face"
-                android:elevation="@dimen/elevation"
+                style="@style/ElevationStyle"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp">
 

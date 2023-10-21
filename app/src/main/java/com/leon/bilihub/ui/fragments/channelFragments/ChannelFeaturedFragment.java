@@ -60,7 +60,7 @@ public class ChannelFeaturedFragment extends BaseLazyFragment<PageFilterRefreshB
         filterAdapter.appendHead(options);
         binding.filter.setAdapter(filterAdapter);
 
-        httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
+        httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
         adapter = new ChannelFeaturedAdapter(context);
         loader = new PaginationLoader<>(binding.content, adapter, new GridLayoutManager(context, 2));
         loader.setGuide(channelDetailFeatured -> {

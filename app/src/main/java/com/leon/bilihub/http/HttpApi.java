@@ -1,6 +1,6 @@
 package com.leon.bilihub.http;
 
-import com.leon.bilihub.beans.VersionTags;
+import com.leon.bilihub.beans.Config;
 import com.leon.bilihub.beans.account.AccountNav;
 import com.leon.bilihub.beans.account.CollectFolder;
 import com.leon.bilihub.beans.account.CollectFolderDetail;
@@ -10,7 +10,6 @@ import com.leon.bilihub.beans.account.History;
 import com.leon.bilihub.beans.account.RelationDetail;
 import com.leon.bilihub.beans.account.RelationTags;
 import com.leon.bilihub.beans.account.WatchLater;
-import com.leon.bilihub.beans.home.HomeRecommend;
 import com.leon.bilihub.beans.home.HomeRecommendApp;
 import com.leon.bilihub.beans.home.HotSearch;
 import com.leon.bilihub.beans.home.drawerFunction.popular.PopularHot;
@@ -73,6 +72,19 @@ import retrofit2.http.Query;
 public interface HttpApi {
     String COOKIE = "Cookie";
 
+    interface ApiGet {
+        /**
+         * 配置文件
+         * <p>
+         * https://gitee.com/leon_xf/bili-hub-proxy/raw/master/config.json
+         * <p>
+         *
+         * @return {@link Config}
+         */
+        @GET("master/config.json")
+        Observable<Config> getConfig();
+    }
+
     /**
      * 搜索建议接口
      *
@@ -81,16 +93,6 @@ public interface HttpApi {
      */
     @GET("main/suggest?main_ver=v1")
     Observable<SearchSuggestion> getSearchSuggestion(@Query("term") String keyword);
-
-    /**
-     * 首页推荐接口
-     * 如果没有登录账户的话只能获取系统推荐的内容
-     * 如果登录上的话，需要在请求头加入Cookie数据，即可获取个人推荐数据
-     *
-     * @return {@link HomeRecommend}
-     */
-    @GET("x/web-interface/index/top/rcmd?fresh_type=3&version=1&ps=10&fresh_idx=1&fresh_idx_1h=1&homepage_ver=1")
-    Observable<HomeRecommend> getHomeRecommend();
 
     /**
      * 首页推荐接口
@@ -225,7 +227,7 @@ public interface HttpApi {
     /**
      * 用户视频数据
      * <p>
-     * https://api.bilibili.com/x/space/arc/search?ps=30
+     * https://api.bilibili.com/x/space/wbi/arc/search?ps=30
      * <p>
      * https://space.bilibili.com/492393/video
      *
@@ -234,7 +236,7 @@ public interface HttpApi {
      * @param order   排序方式，默认为pubdate<br>pubdate：最新发布<br>click：最多播放<br>stow：最多收藏
      * @return {@link UserVideo}
      */
-    @GET("x/space/arc/search?ps=30")
+    @GET("x/space/wbi/arc/search?ps=30")
     Observable<UserVideo> getUserVideo(@Query("mid") String mid, @Query("pn") int pageNum, @Query("order") String order);
 
     /**
@@ -789,16 +791,16 @@ public interface HttpApi {
      * <p>
      * https://www.bilibili.com/video/BV1tY4y1w7GQ
      * <p>
-     * https://api.bilibili.com/x/v2/reply/main?mode=3&next=0&oid=644125629&plat=1&type=1
+     * https://api.bilibili.com/x/v2/reply/wbi/main?mode=3&next=0&oid=644125629&plat=1&type=1
      *
      * @param oid  评论区ID
      * @param mode 0/3: 仅按热度、2: 仅按时间
-     * @param next 下一页ID
+     * @param paginationStr 下一页
      * @param type 评论类型
      * @return {@link Reply}
      */
-    @GET("x/v2/reply/main")
-    Observable<Reply> getReply(@Query("oid") String oid, @Query("mode") int mode, @Query("next") int next, @Query("type") ReplyType type);
+    @GET("x/v2/reply/wbi/main")
+    Observable<Reply> getReply(@Query("oid") String oid, @Query("mode") int mode, @Query("pagination_str") String paginationStr, @Query("type") ReplyType type);
 
     /**
      * 评论回复内容获取
@@ -843,19 +845,6 @@ public interface HttpApi {
      */
     @GET("room/v1/Room/playUrl?platform=h5")
     Observable<LiveStream> getLiveStream(@Query("cid") String roomId, @Query("qn") int qn);
-
-    /**
-     * 新版本检测
-     * <p>
-     * https://gitcode.net/qq_36318722/bilihub
-     * <p>
-     * https://gitcode.net/qq_36318722/bilihub/refs?sort=updated_desc
-     *
-     * @return {@link VersionTags}
-     */
-    @GET("qq_36318722/bilihub/refs?sort=updated_desc")
-    Call<String> getNewVersion();
-//    Observable<VersionTags> getNewVersion();
 
     interface HttpRaw {
         /**

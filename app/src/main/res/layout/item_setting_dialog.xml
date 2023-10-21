@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
+    android:background="@color/primary"
     android:drawableEnd="@drawable/ic_confirm"
     tools:drawableTint="@color/blue"
     android:gravity="center_vertical"
@@ -11,6 +11,6 @@
     android:paddingTop="13dp"
     android:paddingEnd="30dp"
     android:paddingBottom="13dp"
-    android:textColor="@color/black"
+    android:textColor="@color/primaryContrary"
     android:textSize="18sp"
     tools:text="ItemTitle" />

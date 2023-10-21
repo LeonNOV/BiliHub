@@ -68,7 +68,7 @@ public class ChannelFragment extends BaseLazyFragment<FragmentChannelBinding> {
         } else {
             binding.count.setText(String.format(Locale.CHINESE, "共%s个频道", category.getChannelCount()));
 
-            HttpApi httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
+            HttpApi httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
             loader = new PaginationLoader<>(binding.content, new ChannelAdapter(context));
             loader.setGuide(channelData -> {
                 offset = channelData.getData().getOffset();

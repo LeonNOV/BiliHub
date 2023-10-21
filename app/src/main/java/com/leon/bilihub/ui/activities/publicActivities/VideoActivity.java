@@ -15,6 +15,7 @@ import com.leon.bilihub.beans.publicBeans.resources.video.VideoStream;
 import com.leon.bilihub.databinding.ActivityVideoBinding;
 import com.leon.bilihub.http.ApiHelper;
 import com.leon.bilihub.http.BaseUrl;
+import com.leon.bilihub.http.BiliHost;
 import com.leon.bilihub.http.HttpApi;
 import com.leon.bilihub.http.Quality;
 import com.leon.bilihub.http.RetrofitClient;
@@ -26,6 +27,7 @@ import com.leon.bilihub.ui.widget.player.PlayerController;
 import com.leon.bilihub.utils.PreferenceUtils;
 import com.leon.bilihub.utils.ValueUtils;
 import com.leon.bilihub.utils.ViewUtils;
+import com.leon.bilihub.utils.converter.ConverterFactory;
 import com.leon.bilihub.wraps.VideoResourceWrap;
 
 import java.util.ArrayList;
@@ -41,10 +43,10 @@ import xyz.doikki.videoplayer.player.VideoView;
 public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
     public static final String PARAM_ID = "id";
     public static final String PARAM_TYPE = "type";
+    public static final String PARAM_PROXY = "proxy";
 
     public static final String TYPE_VIDEO = "video";
     public static final String TYPE_PGC = "pgc";
-
     private boolean isPgc;
     private String id;
     private PlayerController playerController;
@@ -61,17 +63,25 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
 
     @Override
     protected void init() {
-        closeImmersion();
+        closeAdaptive();
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
 
         if (params != null && params.containsKey(PARAM_ID)) {
             this.id = params.getString(PARAM_ID);
+            boolean proxy = params.getBoolean(PARAM_PROXY, false);
 
             setVideoController();
             initObserver();
 
-            httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
+            if (proxy) {
+                ConverterFactory converterFactory = new ConverterFactory();
+                converterFactory.setConverterMiddleware(jsonObject -> jsonObject.get("data"));
+                httpApi = new RetrofitClient(context, BiliHost.API, converterFactory).getHttpApi();
+            } else {
+                httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
+            }
+
             if (TYPE_VIDEO.equals(params.getString(PARAM_TYPE))) {
                 this.isPgc = false;
                 new ApiHelper<>(httpApi.getVideoDetail(id)).setOnResult(this::setVideoInfo).doIt();
@@ -89,6 +99,9 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
 
         videoResourceObserver = this::setVideoResource;
         videoPlayerModel.getVideoResource().observeForever(videoResourceObserver);
+
+        videoSpeedObserver = speed -> binding.player.setSpeed(speed);
+        videoPlayerModel.getVideoSpeed().observeForever(videoSpeedObserver);
 
         videoSpeedObserver = speed -> binding.player.setSpeed(speed);
         videoPlayerModel.getVideoSpeed().observeForever(videoSpeedObserver);
@@ -125,7 +138,7 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
         if (videoResourceWrap == null) {
             binding.player.pause();
             binding.player.release();
-            Toast.makeText(context, "没有选集可用来播放~~~", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "没有可播放的选集~~~", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -134,6 +147,9 @@ public class VideoActivity extends BaseActivity<ActivityVideoBinding> {
                     .setOnResult(pgcStream -> setVideoStream(pgcStream.getResult().getQuality(), pgcStream.getResult().getSupportFormats(),
                             pgcStream.getResult().getDurl().get(0).getUrl())).doIt();
             videoPlayerModel.getVideoRecommend().setValue(videoResourceWrap.getBvid());
+
+            new ApiHelper<>(httpApi.getVideoDetail(videoResourceWrap.getBvid())).setOnResult(videoDetail ->
+                    videoPlayerModel.getSubtitle().setValue(videoDetail.getData().getView().getSubtitle().getList()));
         } else {
             new ApiHelper<>(httpApi.getVideoStream(id, videoResourceWrap.getCid(), videoResourceWrap.getQuality()))
                     .setOnResult(videoStream -> setVideoStream(videoStream.getData().getQuality(), videoStream.getData().getSupportFormats(),

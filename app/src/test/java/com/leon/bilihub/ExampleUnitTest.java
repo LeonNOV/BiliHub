@@ -1,17 +1,11 @@
 package com.leon.bilihub;
 
-import android.view.View;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.viewbinding.ViewBindings;
-
-import com.leon.bilihub.databinding.ItemChannelBinding;
+import com.leon.bilihub.utils.ValueUtils;
 
 import org.junit.Test;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+import java.util.Map;
+
 
 /**
  * @Author Leon
@@ -20,60 +14,42 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public class ExampleUnitTest {
     @Test
-    public void test () {
+    public void test() {
+//        System.out.println(String.valueOf(System.currentTimeMillis() / 1000));
 
-    }
 
-    public static ItemChannelBinding bind(@NonNull View rootView) {
-        // The body of this method is generated in a way you would not otherwise write.
-        // This is done to optimize the compiled bytecode for size and performance.
-        int id;
-        missingId: {
-            id = R.id.container;
-            LinearLayoutCompat container = ViewBindings.findChildViewById(rootView, id);
-            if (container == null) {
-                break missingId;
-            }
+        String wbiImg = "https://i0.hdslb.com/bfs/wbi/7cd084941338484aae1ad9425b84077c.png";
+        String subImg = "https://i0.hdslb.com/bfs/wbi/4932caff0ff746eab6f01bf08b70ac45.png";
 
-            id = R.id.extraA;
-            AppCompatTextView extraA = ViewBindings.findChildViewById(rootView, id);
-            if (extraA == null) {
-                break missingId;
-            }
+        String wbiKey = wbiImg.substring(wbiImg.lastIndexOf("/") + 1, wbiImg.lastIndexOf("."));
+        String subKey = subImg.substring(subImg.lastIndexOf("/") + 1, subImg.lastIndexOf("."));
+        String s = ValueUtils.genWbi(wbiKey,
+                subKey,
+                Map.of(
+                        "oid", "364785592",
+                        "type", "1",
+                        "mode", "3",
+                        "pagination_str", "{\"offset\":\"\"}",
+//                        "plat", "1",
+//                        "seek_rpid", "",
+//                        "web_location", "1315875",
+                        "wts", "1697790793"
+                ));
+//
+//                {
+//                        foo: '114',
+//                bar: '514',
+//                zab: 1919810,
+//                wts: 1684746387
+//}
+//                Map.of(
+//                        "foo", 114,
+//                        "bar", 514,
+//                        "zab", 1919810,
+//                        "wts", 1684746387
+//                ));
+        System.out.println(s);
+        // 4ce663045ca53e60b5699dd77856f415
 
-            id = R.id.extraB;
-            AppCompatTextView extraB = ViewBindings.findChildViewById(rootView, id);
-            if (extraB == null) {
-                break missingId;
-            }
-
-            id = R.id.extraContainer;
-            LinearLayoutCompat extraContainer = ViewBindings.findChildViewById(rootView, id);
-            if (extraContainer == null) {
-                break missingId;
-            }
-
-            id = R.id.face;
-            CircleImageView face = ViewBindings.findChildViewById(rootView, id);
-            if (face == null) {
-                break missingId;
-            }
-
-            id = R.id.name;
-            AppCompatTextView name = ViewBindings.findChildViewById(rootView, id);
-            if (name == null) {
-                break missingId;
-            }
-
-            id = R.id.subscribe;
-            AppCompatTextView subscribe = ViewBindings.findChildViewById(rootView, id);
-            if (subscribe == null) {
-                break missingId;
-            }
-
-            return null;
-        }
-        String missingId = rootView.getResources().getResourceName(id);
-        throw new NullPointerException("Missing required view with ID: ".concat(missingId));
     }
 }

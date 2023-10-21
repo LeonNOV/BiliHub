@@ -2,6 +2,7 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/primary"
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -18,7 +19,7 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/round_bg"
             android:clickable="true"
-            android:elevation="8dp"
+            style="@style/ElevationStyle"
             android:focusable="true"
             android:gravity="center_horizontal"
             android:orientation="vertical"
@@ -50,7 +51,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/round_bg"
-            android:elevation="8dp"
+            style="@style/ElevationStyle"
             android:orientation="vertical"
             android:padding="20dp">
 
@@ -58,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/about_app_summary_title"
-                android:textColor="@color/black"
+                android:textColor="@color/primaryContrary"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -67,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/about_app_summary"
-                android:textColor="@color/black"
+                android:textColor="@color/primaryContrary"
                 android:textSize="15sp" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -78,7 +79,7 @@
             android:layout_margin="20dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/round_bg"
-            android:elevation="8dp"
+            style="@style/ElevationStyle"
             android:orientation="vertical"
             android:padding="20dp">
 
@@ -86,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/about_app_open_source_project"
-                android:textColor="@color/black"
+                android:textColor="@color/primaryContrary"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -111,6 +112,7 @@
                     android:layout_gravity="end"
                     android:background="@drawable/ripple_round_corners6dp_bg"
                     android:padding="10dp"
+                    android:tint="@color/primaryContrary"
                     android:src="@drawable/about_app_github" />
 
             </FrameLayout>
@@ -123,7 +125,7 @@
             android:layout_margin="20dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/round_bg"
-            android:elevation="8dp"
+            style="@style/ElevationStyle"
             android:orientation="vertical"
             android:padding="20dp">
 
@@ -131,7 +133,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/setting_donation"
-                android:textColor="@color/black"
+                android:textColor="@color/primaryContrary"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -140,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/donation_desc"
-                android:textColor="@color/black"
+                android:textColor="@color/primaryContrary"
                 android:textSize="15sp" />
 
             <FrameLayout
@@ -176,7 +178,7 @@
             android:layout_margin="20dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/round_bg"
-            android:elevation="8dp"
+            style="@style/ElevationStyle"
             android:orientation="vertical"
             android:padding="20dp">
 
@@ -184,7 +186,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/about_app_join_group_chat"
-                android:textColor="@color/black"
+                android:textColor="@color/primaryContrary"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -204,7 +206,7 @@
             android:layout_margin="20dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/round_bg"
-            android:elevation="8dp"
+            style="@style/ElevationStyle"
             android:orientation="vertical"
             android:padding="20dp">
 
@@ -212,7 +214,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/about_app_copyright_notice"
-                android:textColor="@color/black"
+                android:textColor="@color/primaryContrary"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -221,7 +223,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/about_app_copyright_desc"
-                android:textColor="@color/black"
+                android:textColor="@color/primaryContrary"
                 android:textSize="15sp" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -233,7 +235,7 @@
             android:layout_margin="20dp"
             android:background="@drawable/round_bg"
             android:backgroundTint="@color/theme_tab_indicator"
-            android:elevation="8dp"
+            style="@style/ElevationStyle"
             android:gravity="center_horizontal"
             android:padding="15dp"
             android:text="@string/close"

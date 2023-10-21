@@ -37,7 +37,7 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/relation_group"
-                android:textColor="@color/black"
+                android:textColor="@color/primaryContrary"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 

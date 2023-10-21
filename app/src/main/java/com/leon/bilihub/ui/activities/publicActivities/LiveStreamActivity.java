@@ -36,12 +36,12 @@ public class LiveStreamActivity extends BaseActivity<ActivityLiveStreamBinding> 
 
     @Override
     protected void init() {
-        closeImmersion();
+        closeAdaptive();
 
         this.roomId = params.getString(PARAM);
         this.livePlayerModel = new ViewModelProvider(this).get(LivePlayerModel.class);
 
-        httpApi = new RetrofitClient(BaseUrl.LIVE).getHttpApi();
+        httpApi = new RetrofitClient(BaseUrl.LIVE, context).getHttpApi();
 
         liveQualityObserver = this::getLiveResource;
         livePlayerModel.getLiveQuality().observeForever(liveQualityObserver);

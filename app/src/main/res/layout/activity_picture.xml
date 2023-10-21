@@ -52,7 +52,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:textColor="@color/black"
+                        android:textColor="@color/primaryContrary"
                         android:textSize="17sp"
                         tools:text="awdwdawd" />
 
@@ -76,7 +76,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:textColor="@color/black"
+                android:textColor="@color/primaryContrary"
                 android:textSize="17sp"
                 tools:text="awdawdawdwadawdawdawdawdawdadadadawdadad" />
 
@@ -113,6 +113,7 @@
                 android:src="@drawable/user_works_share"
                 android:textColor="@color/infoColor"
                 android:textSize="15sp"
+                android:tint="@color/primaryContrary"
                 tools:text="123" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -139,6 +140,7 @@
                 android:src="@drawable/user_works_comment"
                 android:textColor="@color/infoColor"
                 android:textSize="15sp"
+                android:tint="@color/primaryContrary"
                 tools:text="123" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -165,6 +167,7 @@
                 android:src="@drawable/user_works_like"
                 android:textColor="@color/infoColor"
                 android:textSize="15sp"
+                android:tint="@color/primaryContrary"
                 tools:text="123" />
 
             <androidx.appcompat.widget.AppCompatTextView

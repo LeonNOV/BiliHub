@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/black"
+                android:textColor="@color/primaryContrary"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 tools:text="TitleTitleTitleTitleTitle" />
@@ -301,7 +301,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="@string/pgc_episode"
-                android:textColor="@color/black"
+                android:textColor="@color/primaryContrary"
                 android:textSize="17sp" />
 
             <com.leon.bilihub.ui.widget.HorizontalRecyclerView

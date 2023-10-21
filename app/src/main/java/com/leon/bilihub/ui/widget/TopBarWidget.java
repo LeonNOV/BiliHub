@@ -111,7 +111,7 @@ public class TopBarWidget extends LinearLayoutCompat {
         topBarTitleView = new TextView(context);
         topBarTitleView.setText(topBarTitle);
         topBarTitleView.setTypeface(Typeface.DEFAULT_BOLD);
-        topBarTitleView.setTextColor(Color.BLACK);
+        topBarTitleView.setTextColor(ContextCompat.getColor(context, R.color.primaryContrary));
         topBarTitleView.setTextSize(18);
         topBarTitleView.setMaxLines(1);
         topBarTitleView.setEllipsize(TextUtils.TruncateAt.END);

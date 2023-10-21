@@ -556,6 +556,8 @@ data class VideoDetail(
             val stat: Stat,
             @SerializedName("state")
             val state: Int,
+            @SerializedName("subtitle")
+            val subtitle: Subtitle,
             @SerializedName("teenage_mode")
             val teenageMode: Int,
             @SerializedName("tid")
@@ -800,6 +802,65 @@ data class VideoDetail(
                 @SerializedName("view")
                 val view: Int
             ) : Parcelable
+
+            @Parcelize
+            data class Subtitle(
+                @SerializedName("allow_submit")
+                val allowSubmit: Boolean,
+                @SerializedName("list")
+                val list: List<Data>
+            ) : Parcelable {
+                @Parcelize
+                data class Data(
+                    @SerializedName("ai_status")
+                    val aiStatus: Int,
+                    @SerializedName("ai_type")
+                    val aiType: Int,
+                    @SerializedName("author")
+                    val author: Author,
+                    @SerializedName("id")
+                    val id: String,
+                    @SerializedName("id_str")
+                    val idStr: String,
+                    @SerializedName("is_lock")
+                    val isLock: Boolean,
+                    @SerializedName("lan")
+                    val lan: String,
+                    @SerializedName("lan_doc")
+                    val lanDoc: String,
+                    @SerializedName("subtitle_url")
+                    val subtitleUrl: String,
+                    @SerializedName("type")
+                    val type: Int,
+                    var selected: Boolean
+                ) : Parcelable {
+                    @Parcelize
+                    data class Author(
+                        @SerializedName("birthday")
+                        val birthday: Int,
+                        @SerializedName("face")
+                        val face: String,
+                        @SerializedName("in_reg_audit")
+                        val inRegAudit: Int,
+                        @SerializedName("is_deleted")
+                        val isDeleted: Int,
+                        @SerializedName("is_fake_account")
+                        val isFakeAccount: Int,
+                        @SerializedName("is_senior_member")
+                        val isSeniorMember: Int,
+                        @SerializedName("mid")
+                        val mid: Int,
+                        @SerializedName("name")
+                        val name: String,
+                        @SerializedName("rank")
+                        val rank: Int,
+                        @SerializedName("sex")
+                        val sex: String,
+                        @SerializedName("sign")
+                        val sign: String
+                    ) : Parcelable
+                }
+            }
 
             @Parcelize
             data class UgcSeason(

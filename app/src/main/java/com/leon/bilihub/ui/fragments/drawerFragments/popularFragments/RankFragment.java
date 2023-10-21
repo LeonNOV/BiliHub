@@ -40,7 +40,7 @@ public class RankFragment extends BaseLazyFragment<PageFilterRecyclerBinding> {
 
     @Override
     protected void initView() {
-        HttpApi httpApi = new RetrofitClient(BaseUrl.API).getHttpApi();
+        HttpApi httpApi = new RetrofitClient(BaseUrl.API, context).getHttpApi();
         rankList = new ArrayList<>();
         rankList.add(new Rank<>("全站", httpApi.getPopularRank("0"), 0));
         rankList.add(new Rank<>("番剧", httpApi.getPopularRankBangumi(), 2));

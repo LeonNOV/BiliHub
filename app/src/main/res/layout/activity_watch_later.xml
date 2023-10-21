@@ -40,7 +40,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@string/watch_later_clear" />
+                android:text="@string/watch_later_clear"
+                android:textColor="@color/primaryContrary" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -65,7 +66,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@string/watch_later_remove_watched" />
+                android:text="@string/watch_later_remove_watched"
+                android:textColor="@color/primaryContrary" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -75,6 +77,6 @@
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

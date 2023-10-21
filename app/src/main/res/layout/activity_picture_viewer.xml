@@ -5,6 +5,12 @@
     android:background="@color/black"
     android:layout_height="match_parent">
 
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/indicator"
         android:layout_width="wrap_content"
@@ -14,11 +20,5 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         tools:text="1/9" />
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false" />
 
 </RelativeLayout>

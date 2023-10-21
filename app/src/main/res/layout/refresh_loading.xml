@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:indeterminate="true"
-        app:indicatorColor="@color/black"
+        app:indicatorColor="@color/primaryContrary"
         app:trackCornerRadius="50dp" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/loading"
-        android:textColor="@color/black"
+        android:textColor="@color/primaryContrary"
         android:textSize="15sp" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

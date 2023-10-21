@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
@@ -12,7 +13,6 @@ import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,9 +25,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestBuilder;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.leon.bilihub.R;
@@ -37,6 +34,8 @@ import com.leon.bilihub.ui.ViewPagerTouchMonitorListener;
 import com.leon.bilihub.ui.adapters.ViewPager2Adapter;
 import com.leon.bilihub.ui.widget.decoration.GridItemDecoration;
 import com.leon.bilihub.ui.widget.decoration.LinearItemDecoration;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.RequestCreator;
 
 import java.util.List;
 
@@ -124,7 +123,7 @@ public class ViewUtils {
 
             TextView textView = tab.getCustomView().findViewById(android.R.id.text1);
             textView.setTypeface(Typeface.DEFAULT_BOLD);
-            textView.setTextColor(textView.getContext().getColor(R.color.black));
+            textView.setTextColor(textView.getContext().getColor(R.color.primaryContrary));
             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
         } else {
             View view = tab.getCustomView();
@@ -199,11 +198,15 @@ public class ViewUtils {
     }
 
     public static void setImg(Context context, ImageView imageView, String imgUrl) {
-        RequestBuilder<Drawable> builder = Glide.with(context).load(imgUrl);
+        RequestCreator creator = Picasso
+                .get()
+                .load(imgUrl);
+
         if (!PreferenceUtils.getImgMode(context)) {
-            builder = builder.thumbnail(0.2f);
+            creator = creator.config(Bitmap.Config.RGB_565);
         }
-        builder.diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).into(imageView);
+
+        creator.into(imageView);
     }
 
     /**

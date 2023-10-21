@@ -38,7 +38,7 @@ public class PictureActivity extends AsyncHttpActivity<ActivityPictureBinding, P
 
     @Override
     protected RequestData setRequestData() {
-        return new RequestData(BaseUrl.API, Map.of("Referer", String.format("https://www.bilibili.com/%s", dynamicId)));
+        return new RequestData(BaseUrl.API, context);
     }
 
     @Override

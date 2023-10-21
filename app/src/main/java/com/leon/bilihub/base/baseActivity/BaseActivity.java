@@ -1,9 +1,11 @@
 package com.leon.bilihub.base.baseActivity;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,7 +37,7 @@ public abstract class BaseActivity<T extends ViewBinding> extends AppCompatActiv
     protected Context context;
     protected View rootView;
     protected Bundle params;
-    private boolean immersion = true;
+    private boolean adaptive = true;
 
     /**
      * ViewPagerTouchMonitorListener stack
@@ -65,10 +67,26 @@ public abstract class BaseActivity<T extends ViewBinding> extends AppCompatActiv
 
         init();
 
-        // 处理沉浸式状态栏
-        if (immersion) {
-            onImmersion();
+        int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        boolean isDarkMode = currentNightMode == Configuration.UI_MODE_NIGHT_YES;
+        ImmersionBar.with(this).barColor(R.color.primary).statusBarDarkFont(!isDarkMode).init();
+
+        if (adaptive) {
+            int statusBarHeight = 0;
+            int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+            if (resourceId > 0) {
+                statusBarHeight = getResources().getDimensionPixelSize(resourceId);
+            }
+
+            View rootView = findViewById(android.R.id.content);
+            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) rootView.getLayoutParams();
+            layoutParams.topMargin = statusBarHeight;
+            rootView.setLayoutParams(layoutParams);
         }
+    }
+
+    public void closeAdaptive() {
+        this.adaptive = false;
     }
 
     /**
@@ -107,18 +125,6 @@ public abstract class BaseActivity<T extends ViewBinding> extends AppCompatActiv
         if (!onTouchEventListenerList.isEmpty()) {
             onTouchEventListenerList.pop();
         }
-    }
-
-    /**
-     * 初始化沉浸式
-     */
-    protected void onImmersion() {
-        ImmersionBar.with(this).barColor(R.color.primary).statusBarDarkFont(true).fitsSystemWindows(true).init();
-    }
-
-    public void closeImmersion() {
-        this.immersion = false;
-        ImmersionBar.hideStatusBar(getWindow());
     }
 
     protected void startActivity(Class<? extends BaseActivity<? extends ViewBinding>> targetClass) {

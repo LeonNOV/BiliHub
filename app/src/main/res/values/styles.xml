@@ -65,17 +65,23 @@
     <style name="TabLayoutStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@color/primary</item>
         <item name="tabIndicator">@drawable/indicator</item>
         <item name="tabIndicatorAnimationMode">elastic</item>
         <item name="tabIndicatorColor">@color/theme_tab_indicator</item>
         <item name="tabIndicatorFullWidth">false</item>
-        <item name="tabSelectedTextColor">@color/black</item>
+        <item name="tabTextColor">@color/primaryContrary</item>
+        <item name="tabSelectedTextColor">@color/pink</item>
     </style>
 
-    <style name="ItemStyle">
+    <style name="ItemStyle" parent="ElevationStyle">
         <item name="android:padding">10dp</item>
         <item name="android:background">@drawable/ripple_bg</item>
+    </style>
+
+    <style name="ElevationStyle">
+        <item name="android:elevation">5dp</item>
+        <item name="android:outlineSpotShadowColor">@color/primaryContrary</item>
     </style>
 
     <style name="CoverStyle">
@@ -88,7 +94,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:ellipsize">end</item>
         <item name="android:maxLines">2</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/primaryContrary</item>
         <item name="android:textSize">15sp</item>
     </style>
 

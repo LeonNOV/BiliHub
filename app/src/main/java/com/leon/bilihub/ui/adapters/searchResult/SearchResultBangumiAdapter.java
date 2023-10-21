@@ -1,6 +1,7 @@
 package com.leon.bilihub.ui.adapters.searchResult;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import java.util.Map;
  * @Desc
  */
 public class SearchResultBangumiAdapter extends ViewBindingAdapter<SearchResultMedia.Data.Result, ItemSearchResultBangumiBinding> {
+    private boolean proxy = false;
     public SearchResultBangumiAdapter(Context context) {
         super(context);
     }
@@ -34,8 +36,12 @@ public class SearchResultBangumiAdapter extends ViewBindingAdapter<SearchResultM
 
     @Override
     protected void onBindViewHolder(SearchResultMedia.Data.Result data, ItemSearchResultBangumiBinding binding, int position) {
-        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, Map.of(VideoActivity.PARAM_TYPE, VideoActivity.TYPE_PGC,
-                VideoActivity.PARAM_ID, data.getSeasonId())));
+        Bundle bundle = new Bundle();
+        bundle.putString(VideoActivity.PARAM_TYPE, VideoActivity.TYPE_PGC);
+        bundle.putString(VideoActivity.PARAM_ID, data.getSeasonId());
+        bundle.putBoolean(VideoActivity.PARAM_PROXY, proxy);
+
+        binding.getRoot().setOnClickListener(v -> startActivity(VideoActivity.class, bundle));
 
         ViewUtils.setImg(context, binding.cover, data.getCover());
         if (data.getBadges() != null && !data.getBadges().isEmpty()) {
@@ -58,5 +64,9 @@ public class SearchResultBangumiAdapter extends ViewBindingAdapter<SearchResultM
             binding.ratingScore.setText(String.valueOf(data.getMediaScore().getScore()));
             binding.ratingCount.setText(String.format(Locale.CHINESE, "%s人评分", ValueUtils.generateCN(data.getMediaScore().getUserCount())));
         }
+    }
+
+    public void useProxy() {
+        this.proxy = true;
     }
 }

@@ -10,7 +10,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:background="@color/white">
+        android:background="@color/primary">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/sortHot"

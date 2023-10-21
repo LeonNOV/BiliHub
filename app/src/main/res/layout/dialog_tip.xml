@@ -17,7 +17,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:textColor="@color/black"
+        android:textColor="@color/primaryContrary"
         android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/content"
@@ -33,7 +33,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:textColor="@color/black"
+        android:textColor="@color/primaryContrary"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +80,7 @@
             android:elevation="5dp"
             android:gravity="center"
             tools:text="确定"
-            android:textColor="@color/white" />
+            android:textColor="@color/primary" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

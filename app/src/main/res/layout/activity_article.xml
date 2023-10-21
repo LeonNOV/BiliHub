@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/primary"
     android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="170dp"
         android:background="@android:color/transparent">
@@ -15,7 +16,7 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentScrim="@color/white"
+            app:contentScrim="@color/primary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -28,6 +29,7 @@
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/topBarHeight"
+                android:background="@android:color/transparent"
                 app:layout_collapseMode="pin">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -36,6 +38,7 @@
                     android:layout_height="@dimen/topBarBackWH"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:padding="@dimen/topBarBackPadding"
+                    android:tint="@color/black"
                     android:src="@drawable/ic_back" />
 
             </androidx.appcompat.widget.Toolbar>
@@ -59,6 +62,7 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:background="@color/primary"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -67,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="20dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/primaryContrary"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     tools:text="TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle" />
@@ -96,7 +100,7 @@
                         android:layout_marginEnd="10dp"
                         android:layout_toStartOf="@+id/follow"
                         android:layout_toEndOf="@id/face"
-                        android:textColor="@color/black"
+                        android:textColor="@color/primaryContrary"
                         android:textSize="15sp"
                         tools:text="awdwdawd" />
 
@@ -108,7 +112,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="20dp"
                         android:background="@drawable/bg_follow"
-                        android:elevation="5dp"
+                        style="@style/ElevationStyle"
                         android:gravity="center"
                         android:text="@string/follow"
                         android:textColor="@color/follow_color"

@@ -28,7 +28,7 @@
             android:layout_marginStart="@dimen/topBarTitleMarginStart"
             android:layout_toEndOf="@id/back"
             android:text="@string/reply_detail"
-            android:textColor="@color/black"
+            android:textColor="@color/primaryContrary"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -94,7 +94,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
-                        android:textColor="@color/black"
+                        android:textColor="@color/primaryContrary"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         tools:text="UserName" />
@@ -114,7 +114,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:lineSpacingExtra="4dp"
-                        android:textColor="@color/black"
+                        android:textColor="@color/primaryContrary"
                         android:textSize="@dimen/infoSize"
                         app:ep_contract_color="@color/blue"
                         app:ep_contract_text="收回"
@@ -190,7 +190,7 @@
                         android:backgroundTint="#F4F4F4"
                         android:padding="5dp"
                         android:text="@string/reply_up_liked"
-                        android:textColor="@color/infoColor"
+                        android:textColor="@color/hintColor"
                         android:textSize="13sp"
                         android:visibility="gone"
                         tools:visibility="visible" />

@@ -1,8 +1,12 @@
 package com.leon.bilihub.ui.activities.publicActivities;
 
 import android.util.Base64;
+import android.view.View;
 import android.webkit.WebSettings;
 
+import androidx.core.content.ContextCompat;
+
+import com.leon.bilihub.R;
 import com.leon.bilihub.base.baseActivity.AsyncHttpActivity;
 import com.leon.bilihub.beans.publicBeans.resources.article.ArticleInfo;
 import com.leon.bilihub.databinding.ActivityArticleBinding;
@@ -44,6 +48,10 @@ public class ArticleActivity extends AsyncHttpActivity<ActivityArticleBinding, A
         this.articleId = params.getString(PARAM);
 
         binding.back.setOnClickListener(v -> backPressed());
+        binding.appBar.addOnOffsetChangedListener((appBarLayout, verticalOffset) ->
+                binding.back.setColorFilter(Math.abs(verticalOffset) == appBarLayout.getTotalScrollRange() ?
+                        ContextCompat.getColor(context, R.color.primaryContrary) :
+                        ContextCompat.getColor(context, R.color.primary)));
         WebSettings settings = binding.content.getSettings();
         settings.setDomStorageEnabled(true);
         settings.setUseWideViewPort(true);
@@ -80,7 +88,7 @@ public class ArticleActivity extends AsyncHttpActivity<ActivityArticleBinding, A
     /**
      * 获取文章作者信息
      *
-     * @param uid   UID
+     * @param uid UID
      */
     private void getAuthorInfo(String uid) {
         new ApiHelper<>(new RetrofitClient(BaseUrl.API, context).getHttpApi().getUserInfo(uid))
@@ -95,7 +103,7 @@ public class ArticleActivity extends AsyncHttpActivity<ActivityArticleBinding, A
      * 获取文章主体内容
      */
     private void getArticleContent() {
-        new ApiHelper<>(new RetrofitClient(BaseUrl.MAIN).getHttpRaw().getArticleRaw(articleId))
+        new ApiHelper<>(new RetrofitClient(BaseUrl.MAIN, context).getHttpRaw().getArticleRaw(articleId))
                 .setOnResult(responseBody -> {
                     Document document = Jsoup.parse(responseBody.string());
                     Element articleHolder = document.getElementById("read-article-holder");
@@ -131,9 +139,14 @@ public class ArticleActivity extends AsyncHttpActivity<ActivityArticleBinding, A
                     "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0 ,user-scalable=no\">\n" +
                     "<div id=\"read-article-holder\" class=\"normal-article-holder read-article-holder dark-theme\">";
 
-            String css = "<style type=\"text/css\">" + FileUtils.getAssetsContent(context, "index.css") + "</style>";
-            webPage.append(head).append(css).append("</head><body>");
-            webPage.append(html).append("<p/>").append("</body>\n</html>");
+            webPage
+                    .append(head)
+//                    .append(String.format("<style type=\"text/css\">%s</style>", FileUtils.getAssetsContent(context, "index.css")))
+                    .append(String.format("<style type=\"text/css\">%s</style>", FileUtils.getAssetsContent(context, "read-mobile-a.css")))
+                    .append(String.format("<style type=\"text/css\">%s</style>", FileUtils.getAssetsContent(context, "read-mobile-b.css")))
+                    .append("</head><body>")
+                    .append(html)
+                    .append("<p/></body>\n</html>");
 
             return webPage.toString();
         }

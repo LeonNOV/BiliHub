@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/cardMargin"
                 android:background="@drawable/ripple_bg"
-                android:elevation="@dimen/elevation"
+                style="@style/ElevationStyle"
                 android:orientation="vertical"
                 android:padding="20dp">
 
@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
                     android:text="@string/setting_base_setting"
-                    android:textColor="@color/black"
+                    android:textColor="@color/primaryContrary"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -52,7 +52,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:text="@string/setting_img_original_mode"
-                        android:textColor="@color/black"
+                        android:textColor="@color/primaryContrary"
                         android:textSize="15sp"
                         tools:ignore="RelativeOverlap" />
 
@@ -78,7 +78,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:text="@string/setting_list_anim_status"
-                        android:textColor="@color/black"
+                        android:textColor="@color/primaryContrary"
                         android:textSize="15sp"
                         tools:ignore="RelativeOverlap" />
 
@@ -104,7 +104,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/setting_clear_cache"
-                        android:textColor="@color/black"
+                        android:textColor="@color/primaryContrary"
                         android:textSize="15sp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -130,7 +130,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/setting_recommend_style"
-                        android:textColor="@color/black"
+                        android:textColor="@color/primaryContrary"
                         android:textSize="15sp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -145,6 +145,30 @@
 
                 </FrameLayout>
 
+                <RelativeLayout
+                    android:id="@+id/darkMode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ripple_bg"
+                    android:padding="10dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/setting_dark_mode"
+                        android:textColor="@color/primaryContrary"
+                        android:textSize="15sp" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/darkModeSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:clickable="false" />
+
+                </RelativeLayout>
+
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -154,7 +178,7 @@
                 android:layout_marginEnd="@dimen/cardMargin"
                 android:layout_marginBottom="@dimen/cardMargin"
                 android:background="@drawable/ripple_bg"
-                android:elevation="@dimen/elevation"
+                style="@style/ElevationStyle"
                 android:orientation="vertical"
                 android:padding="20dp">
 
@@ -163,7 +187,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
                     android:text="@string/setting_play"
-                    android:textColor="@color/black"
+                    android:textColor="@color/primaryContrary"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -178,7 +202,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/setting_video_quality"
-                        android:textColor="@color/black"
+                        android:textColor="@color/primaryContrary"
                         android:textSize="15sp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -203,7 +227,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/setting_live_quality"
-                        android:textColor="@color/black"
+                        android:textColor="@color/primaryContrary"
                         android:textSize="15sp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -226,7 +250,7 @@
                 android:layout_marginEnd="@dimen/cardMargin"
                 android:layout_marginBottom="@dimen/cardMargin"
                 android:background="@drawable/ripple_bg"
-                android:elevation="@dimen/elevation"
+                style="@style/ElevationStyle"
                 android:orientation="vertical"
                 android:padding="20dp">
 
@@ -235,7 +259,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
                     android:text="@string/setting_about"
-                    android:textColor="@color/black"
+                    android:textColor="@color/primaryContrary"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -246,7 +270,17 @@
                     android:background="@drawable/ripple_bg"
                     android:padding="10dp"
                     android:text="@string/setting_about_app"
-                    android:textColor="@color/black"
+                    android:textColor="@color/primaryContrary"
+                    android:textSize="15sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/feedback"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ripple_bg"
+                    android:padding="10dp"
+                    android:text="@string/setting_submit_feed_back"
+                    android:textColor="@color/primaryContrary"
                     android:textSize="15sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -256,7 +290,7 @@
                     android:background="@drawable/ripple_bg"
                     android:padding="10dp"
                     android:text="@string/setting_donation"
-                    android:textColor="@color/black"
+                    android:textColor="@color/primaryContrary"
                     android:textSize="15sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -266,39 +300,7 @@
                     android:background="@drawable/ripple_bg"
                     android:padding="10dp"
                     android:text="@string/setting_open_source_license"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/cardMargin"
-                android:layout_marginEnd="@dimen/cardMargin"
-                android:layout_marginBottom="@dimen/cardMargin"
-                android:background="@drawable/ripple_bg"
-                android:elevation="@dimen/elevation"
-                android:orientation="vertical"
-                android:padding="20dp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:text="@string/setting_feed_back"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/feedback"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ripple_bg"
-                    android:padding="10dp"
-                    android:text="@string/setting_submit_feed_back"
-                    android:textColor="@color/black"
+                    android:textColor="@color/primaryContrary"
                     android:textSize="15sp" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>

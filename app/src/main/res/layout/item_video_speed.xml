@@ -14,9 +14,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:textColor="@color/white"
+        android:textColor="@color/primaryContrary"
         android:textSize="18sp"
-        tools:text="1.25x"
-        tools:textColor="@color/black" />
+        tools:text="1.25x" />
 
 </FrameLayout>

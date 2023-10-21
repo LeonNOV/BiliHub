@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:gravity="start|center_vertical"
         android:padding="10dp"
-        android:textColor="@color/black"
+        android:textColor="@color/primaryContrary"
         android:textSize="15sp"
         tools:text="Test" />
 

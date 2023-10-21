@@ -41,6 +41,6 @@ public class PreciousFragment extends BaseLazyFragment<PageSubRecyclerBinding> {
 
     @Override
     protected void onLazyLoad() {
-        loader.setObservable(new RetrofitClient(BaseUrl.API).getHttpApi().getPopularPrecious()).obtain(false);
+        loader.setObservable(new RetrofitClient(BaseUrl.API, context).getHttpApi().getPopularPrecious()).obtain(false);
     }
 }
