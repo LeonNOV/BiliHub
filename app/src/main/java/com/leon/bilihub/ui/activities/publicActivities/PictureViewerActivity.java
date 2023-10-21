@@ -9,13 +9,12 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.bumptech.glide.Glide;
 import com.gyf.immersionbar.ImmersionBar;
-import com.leon.bilihub.R;
 import com.leon.bilihub.base.baseActivity.BaseActivity;
 import com.leon.bilihub.beans.publicBeans.resources.picture.PictureInfo;
 import com.leon.bilihub.databinding.ActivityPictureViewerBinding;
 import com.leon.bilihub.ui.dialogs.PictureViewerDialog;
+import com.leon.bilihub.utils.ViewUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,7 +90,7 @@ public class PictureViewerActivity extends BaseActivity<ActivityPictureViewerBin
         @Override
         public Object instantiateItem(@NonNull ViewGroup container, int position) {
             container.addView(imageViews.get(position));
-            Glide.with(context).load(pictures.get(position).getSrc()).into(imageViews.get(position));
+            ViewUtils.setImg(context, imageViews.get(position), pictures.get(position).getSrc());
 
             return imageViews.get(position);
         }
