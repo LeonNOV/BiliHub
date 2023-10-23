@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 
 import androidx.appcompat.app.AlertDialog;
@@ -52,19 +53,35 @@ public class TipDialog extends AlertDialog {
     private void initView() {
         binding.title.setText(title);
         binding.content.setText(content);
-        binding.cancel.setText(cancelStr);
-        binding.confirm.setText(confirmStr);
 
-        binding.cancel.setOnClickListener(v -> {
-            if (onActionListener != null) {
-                onActionListener.onAction(false);
-            }
-        });
-        binding.confirm.setOnClickListener(v -> {
-            if (onActionListener != null) {
-                onActionListener.onAction(true);
-            }
-        });
+        if ("".equals(cancelStr)) {
+            binding.confirmB.setText(confirmStr);
+
+            binding.confirmB.setOnClickListener(v -> {
+                if (onActionListener != null) {
+                    onActionListener.onAction(true);
+                }
+            });
+
+            binding.confirmB.setVisibility(View.VISIBLE);
+        } else {
+            binding.cancel.setText(cancelStr);
+            binding.confirm.setText(confirmStr);
+
+            binding.cancel.setOnClickListener(v -> {
+                if (onActionListener != null) {
+                    onActionListener.onAction(false);
+                }
+            });
+
+            binding.confirm.setOnClickListener(v -> {
+                if (onActionListener != null) {
+                    onActionListener.onAction(true);
+                }
+            });
+
+            binding.linearLayout.setVisibility(View.VISIBLE);
+        }
     }
 
     public void setTitle(String title) {
@@ -75,6 +92,10 @@ public class TipDialog extends AlertDialog {
         this.content = content;
     }
 
+    public void setActionStrBehind(String confirmStr) {
+        this.confirmStr = confirmStr;
+    }
+
     public void setActionStr(String cancelStr, String confirmStr) {
         this.cancelStr = cancelStr;
         this.confirmStr = confirmStr;
@@ -82,6 +103,15 @@ public class TipDialog extends AlertDialog {
 
     public void setOnActionListener(OnActionListener onActionListener) {
         this.onActionListener = onActionListener;
+    }
+
+    public static void ShowTipDialog(Context context, String title, String content, OnActionListener onActionListener) {
+        TipDialog tipDialog = new TipDialog(context);
+        tipDialog.setTitle(title);
+        tipDialog.setContent(content);
+        tipDialog.setActionStr("返回", "确定");
+        tipDialog.setOnActionListener(onActionListener);
+        tipDialog.show();
     }
 
     /**

@@ -81,7 +81,6 @@
 
     <style name="ElevationStyle">
         <item name="android:elevation">5dp</item>
-        <item name="android:outlineSpotShadowColor">@color/primaryContrary</item>
     </style>
 
     <style name="CoverStyle">

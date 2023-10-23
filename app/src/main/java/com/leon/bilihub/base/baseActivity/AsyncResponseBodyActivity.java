@@ -1,7 +1,6 @@
 package com.leon.bilihub.base.baseActivity;
 
 import android.os.Bundle;
-import android.os.Parcelable;
 
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
@@ -11,13 +10,14 @@ import com.leon.bilihub.http.RequestData;
 import com.leon.bilihub.http.RetrofitClient;
 
 import io.reactivex.rxjava3.core.Observable;
+import okhttp3.ResponseBody;
 
 /**
  * @Author Leon
  * @Time 2022/07/06
  * @Desc
  */
-public abstract class AsyncHttpActivity<V extends ViewBinding, P extends Parcelable> extends BaseActivity<V> {
+public abstract class AsyncResponseBodyActivity<V extends ViewBinding, P extends ResponseBody> extends BaseActivity<V> {
     protected boolean doNext = true;
 
     /**

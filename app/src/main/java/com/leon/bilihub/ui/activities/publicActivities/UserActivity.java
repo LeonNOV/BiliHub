@@ -4,13 +4,13 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
 import com.leon.bilihub.R;
+import com.leon.bilihub.base.baseActivity.ActivityManager;
 import com.leon.bilihub.base.baseActivity.AsyncHttpActivity;
 import com.leon.bilihub.beans.publicBeans.user.UserInfo;
 import com.leon.bilihub.databinding.ActivityUserBinding;
@@ -18,9 +18,12 @@ import com.leon.bilihub.http.ApiHelper;
 import com.leon.bilihub.http.BaseUrl;
 import com.leon.bilihub.http.RequestData;
 import com.leon.bilihub.http.RetrofitClient;
+import com.leon.bilihub.ui.activities.LoginActivity;
+import com.leon.bilihub.ui.dialogs.TipDialog;
 import com.leon.bilihub.ui.fragments.userFragments.UserArticleFragment;
 import com.leon.bilihub.ui.fragments.userFragments.UserMediaFragment;
 import com.leon.bilihub.ui.fragments.userFragments.UserPictureFragment;
+import com.leon.bilihub.utils.PreferenceUtils;
 import com.leon.bilihub.utils.ViewUtils;
 
 import java.util.List;
@@ -46,26 +49,38 @@ public class UserActivity extends AsyncHttpActivity<ActivityUserBinding, UserInf
     @Override
     protected void init() {
         mid = params.getString(PARAM, null);
-        binding.back.setOnClickListener(v -> backPressed());
 
         if (mid == null) {
             Toast.makeText(context, "mid无效", Toast.LENGTH_SHORT).show();
             backPressed();
         }
 
-        binding.follow.setOnTouchListener((v, event) -> ViewUtils.zoom(event, binding.follow));
-        binding.appBar.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
-            if (Math.abs(verticalOffset) == appBarLayout.getTotalScrollRange()) {
-                crossFade(true);
-            } else {
-                if (binding.toolBarName.getVisibility() != View.GONE) {
-                    crossFade(false);
+        if (!PreferenceUtils.getLoginStatus(context)) {
+            setDoNext(false);
+            TipDialog.ShowTipDialog(context, "未登录", "该页面需登录后才能查看，是否前去登录？",
+                    action -> {
+                        if (action) {
+                            ActivityManager.startWithFinishActivity(context, LoginActivity.class);
+                        } else {
+                            backPressed();
+                        }
+                    });
+        } else {
+            binding.back.setOnClickListener(v -> backPressed());
+            binding.follow.setOnTouchListener((v, event) -> ViewUtils.zoom(event, binding.follow));
+            binding.appBar.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
+                if (Math.abs(verticalOffset) == appBarLayout.getTotalScrollRange()) {
+                    crossFade(true);
+                } else {
+                    if (binding.toolBarName.getVisibility() != View.GONE) {
+                        crossFade(false);
+                    }
                 }
-            }
-        });
+            });
 
-        ViewUtils.initTabLayout(this, binding.userWorks.tabLayout, binding.userWorks.viewPager,
-                List.of(new UserMediaFragment(mid), new UserArticleFragment(mid), new UserPictureFragment(mid)), "视频", "专栏", "相簿");
+            ViewUtils.initTabLayout(this, binding.userWorks.tabLayout, binding.userWorks.viewPager,
+                    List.of(new UserMediaFragment(mid), new UserArticleFragment(mid), new UserPictureFragment(mid)), "视频", "专栏", "相簿");
+        }
     }
 
     @Override
@@ -80,69 +95,78 @@ public class UserActivity extends AsyncHttpActivity<ActivityUserBinding, UserInf
 
     @Override
     protected void onAsyncResult(UserInfo userInfo) {
-        ViewUtils.setImg(context, binding.userBanner, userInfo.getData().getTopPhoto());
-        ViewUtils.setImg(context, binding.userFace, userInfo.getData().getFace());
-        binding.name.setText(userInfo.getData().getName());
-        binding.toolBarName.setText(userInfo.getData().getName());
+        if (userInfo.getCode() == 0) {
+            ViewUtils.setImg(context, binding.userBanner, userInfo.getData().getTopPhoto());
+            ViewUtils.setImg(context, binding.userFace, userInfo.getData().getFace());
+            binding.name.setText(userInfo.getData().getName());
+            binding.toolBarName.setText(userInfo.getData().getName());
 
-        int roleVerify = userInfo.getData().getOfficial().getRole();
-        if (roleVerify != 0) {
-            binding.mark.setVisibility(View.VISIBLE);
-            binding.mark.setImageResource(roleVerify == 1 ? R.drawable.ic_person_verify : R.drawable.ic_official_verify);
-        }
+            int roleVerify = userInfo.getData().getOfficial().getRole();
+            if (roleVerify != 0) {
+                binding.mark.setVisibility(View.VISIBLE);
+                binding.mark.setImageResource(roleVerify == 1 ? R.drawable.ic_person_verify : R.drawable.ic_official_verify);
+            }
 
-        setLevel(userInfo.getData().getLevel());
-        if (userInfo.getData().getVip().getStatus() == 1) {
-            binding.vip.setVisibility(View.VISIBLE);
-            binding.vip.setText(userInfo.getData().getVip().getLabel().getText());
-        }
+            setLevel(userInfo.getData().getLevel());
+            if (userInfo.getData().getVip().getStatus() == 1) {
+                binding.vip.setVisibility(View.VISIBLE);
+                binding.vip.setText(userInfo.getData().getVip().getLabel().getText());
+            }
 
-        switch (userInfo.getData().getSex()) {
-            case "男":
-                binding.gender.setImageResource(R.drawable.ic_gender_man);
-                break;
-            case "女":
-                binding.gender.setImageResource(R.drawable.ic_gender_woman);
-                break;
-            default:
-                binding.gender.setVisibility(View.GONE);
-                break;
-        }
-
-        binding.follow.setText(userInfo.getData().isFollowed() ? "已关注" : "关注");
-        binding.follow.setOnClickListener(v -> Toast.makeText(context, "开发中…", Toast.LENGTH_SHORT).show());
-
-        binding.uid.setText(String.format(Locale.CHINESE, "UID: %s", userInfo.getData().getMid()));
-        binding.desc.setText(userInfo.getData().getSign());
-
-        if (userInfo.getData().getSysNotice().getId() != 0) {
-            String sysNotice = "";
-            switch (userInfo.getData().getSysNotice().getId()) {
-                case 8:
-                    sysNotice = "争议账户";
+            switch (userInfo.getData().getSex()) {
+                case "男":
+                    binding.gender.setImageResource(R.drawable.ic_gender_man);
                     break;
-                case 11:
-                case 24:
-                    sysNotice = "合约争议";
-                    break;
-                case 20:
-                    sysNotice = "纪念账号";
-                    break;
-                case 22:
-                    sysNotice = "合约诉讼";
-                    break;
-                case 25:
-                    sysNotice = "严重指控";
+                case "女":
+                    binding.gender.setImageResource(R.drawable.ic_gender_woman);
                     break;
                 default:
+                    binding.gender.setVisibility(View.GONE);
                     break;
             }
 
-            binding.accountType.setText(sysNotice);
-            binding.accountType.setTextColor(Color.parseColor(userInfo.getData().getSysNotice().getTextColor()));
-        }
+            binding.follow.setText(userInfo.getData().isFollowed() ? "已关注" : "关注");
+            binding.follow.setOnClickListener(v -> Toast.makeText(context, "开发中…", Toast.LENGTH_SHORT).show());
 
-        getStat();
+            binding.uid.setText(String.format(Locale.CHINESE, "UID: %s", userInfo.getData().getMid()));
+            binding.desc.setText(userInfo.getData().getSign());
+
+            if (userInfo.getData().getSysNotice().getId() != 0) {
+                String sysNotice = "";
+                switch (userInfo.getData().getSysNotice().getId()) {
+                    case 8:
+                        sysNotice = "争议账户";
+                        break;
+                    case 11:
+                    case 24:
+                        sysNotice = "合约争议";
+                        break;
+                    case 20:
+                        sysNotice = "纪念账号";
+                        break;
+                    case 22:
+                        sysNotice = "合约诉讼";
+                        break;
+                    case 25:
+                        sysNotice = "严重指控";
+                        break;
+                    default:
+                        break;
+                }
+
+                binding.accountType.setText(sysNotice);
+                binding.accountType.setTextColor(Color.parseColor(userInfo.getData().getSysNotice().getTextColor()));
+            }
+
+            getStat();
+        } else {
+            TipDialog tipDialog = new TipDialog(context);
+            tipDialog.setTitle("错误");
+            tipDialog.setContent("该用户数据获取失败，可能该账户已注销。");
+            tipDialog.setActionStrBehind("确定");
+            tipDialog.setOnActionListener(action -> backPressed());
+            tipDialog.show();
+        }
     }
 
     private void getStat() {

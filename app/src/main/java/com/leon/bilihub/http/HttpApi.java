@@ -856,7 +856,7 @@ public interface HttpApi {
          * @return source code
          */
         @GET("v/channel/{channelId}")
-        Call<ResponseBody> getChannelFeatured(@Path("channelId") String channelId);
+        Observable<ResponseBody> getChannelFeatured(@Path("channelId") String channelId);
 
         /**
          * 文章页面
@@ -867,6 +867,6 @@ public interface HttpApi {
          * @return source code
          */
         @GET("read/cv{articleId}")
-        Call<ResponseBody> getArticleRaw(@Path("articleId") String articleId);
+        Observable<ResponseBody> getArticleRaw(@Path("articleId") String articleId);
     }
 }

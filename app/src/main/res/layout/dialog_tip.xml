@@ -42,13 +42,15 @@
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/relativeLayout"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/content">
+        app:layout_constraintTop_toBottomOf="@+id/content"
+        tools:visibility="visible">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/cancel"
@@ -63,8 +65,8 @@
             android:background="@drawable/dialog_action_cancel"
             android:elevation="5dp"
             android:gravity="center"
-            tools:text="返回"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            tools:text="返回" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/confirm"
@@ -79,9 +81,27 @@
             android:background="@drawable/dialog_action_confirm"
             android:elevation="5dp"
             android:gravity="center"
-            tools:text="确定"
-            android:textColor="@color/primary" />
+            android:textColor="@color/primary"
+            tools:text="确定" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/confirmB"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/dialog_action_confirm"
+        android:elevation="5dp"
+        android:gravity="center"
+        android:textColor="@color/primary"
+        android:visibility="gone"
+        tools:text="确定"
+        tools:visibility="visible" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,9 +1,7 @@
 package com.leon.bilihub.ui.activities;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.core.view.GravityCompat;
 import androidx.lifecycle.Observer;
@@ -11,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.viewbinding.ViewBinding;
 
-import com.gyf.immersionbar.ImmersionBar;
 import com.leon.bilihub.R;
 import com.leon.bilihub.base.baseActivity.BaseActivity;
 import com.leon.bilihub.beans.account.AccountNav;
@@ -21,7 +18,6 @@ import com.leon.bilihub.databinding.ActivityMainBinding;
 import com.leon.bilihub.http.ApiHelper;
 import com.leon.bilihub.http.BaseUrl;
 import com.leon.bilihub.http.HttpApi;
-import com.leon.bilihub.http.ReplyType;
 import com.leon.bilihub.http.RetrofitClient;
 import com.leon.bilihub.ui.activities.drawerFunction.channel.ChannelActivity;
 import com.leon.bilihub.ui.activities.drawerFunction.FavoriteActivity;
@@ -41,7 +37,6 @@ import com.leon.bilihub.utils.DataStoreUtils;
 import com.leon.bilihub.utils.PreferenceUtils;
 import com.leon.bilihub.utils.Utils;
 import com.leon.bilihub.utils.ViewUtils;
-import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -86,16 +81,19 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             tipDialog.show();
         });
 
+
+
         setDrawerFunctionListener();
 
         recommendHttpApi = new RetrofitClient(BaseUrl.APP, context).getHttpApi();
 
         boolean loginStatus = PreferenceUtils.getLoginStatus(context);
-        if (loginStatus) {
-            refreshData();
-        } else {
+        if (!loginStatus) {
             initObserver();
         }
+
+        // 首次调用nav接口，获取Wbi数据
+        refreshData();
 
         PaginationLoader<HomeRecommendApp, HomeRecommendApp.Data.Item> loader;
         int recommendStyle = PreferenceUtils.getRecommendStyle(context);
@@ -171,14 +169,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     private void refreshData() {
         new ApiHelper<>(new RetrofitClient(BaseUrl.API, context).getHttpApi().getAccountInfo())
                 .setOnResult(accountNav -> {
-                    // 0：获取成功，即登陆成功
-                    // -101：获取失败，即登录失败
-                    if (accountNav.getCode() == 0) {
-                        recommendHttpApi = new RetrofitClient(BaseUrl.APP, context).getHttpApi();
-                        localAccountStatus(accountNav);
-                    } else {
-                        Toast.makeText(context, "登录失败", Toast.LENGTH_SHORT).show();
-                    }
+                    recommendHttpApi = new RetrofitClient(BaseUrl.APP, context).getHttpApi();
+                    localAccountStatus(accountNav);
                 }).doIt();
     }
 
@@ -200,23 +192,25 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
             // 登录成功
         } else {
-            PreferenceUtils.setVipStatus(context, accountNav.getData().getVipStatus() != 0);
-            binding.drawer.userContainer.setEnabled(false);
-            ViewUtils.setImg(context, binding.drawer.userFace, accountNav.getData().getFace());
-            ViewUtils.setImg(context, binding.home.userFace, accountNav.getData().getFace());
-            binding.drawer.userName.setText(accountNav.getData().getUname());
-            binding.drawer.userLogout.setVisibility(View.VISIBLE);
+            if (accountNav.getData().isLogin()) {
+                PreferenceUtils.setVipStatus(context, accountNav.getData().getVipStatus() != 0);
+                binding.drawer.userContainer.setEnabled(false);
+                ViewUtils.setImg(context, binding.drawer.userFace, accountNav.getData().getFace());
+                ViewUtils.setImg(context, binding.home.userFace, accountNav.getData().getFace());
+                binding.drawer.userName.setText(accountNav.getData().getUname());
+                binding.drawer.userLogout.setVisibility(View.VISIBLE);
 
-            // 获取csrf
-            if ("".equals(PreferenceUtils.getCsrf(context))) {
-                String[] split = PreferenceUtils.getCookie(context).split("; ");
-                Map<String, String> cookieMap = new HashMap<>(split.length);
-                for (String s : split) {
-                    String[] arrayTemp = s.split("=");
-                    cookieMap.put(arrayTemp[0], arrayTemp[1]);
+                // 获取csrf
+                if ("".equals(PreferenceUtils.getCsrf(context))) {
+                    String[] split = PreferenceUtils.getCookie(context).split("; ");
+                    Map<String, String> cookieMap = new HashMap<>(split.length);
+                    for (String s : split) {
+                        String[] arrayTemp = s.split("=");
+                        cookieMap.put(arrayTemp[0], arrayTemp[1]);
+                    }
+
+                    PreferenceUtils.setCsrf(context, cookieMap.get("bili_jct"));
                 }
-
-                PreferenceUtils.setCsrf(context, cookieMap.get("bili_jct"));
             }
 
             AccountNav.Data.WbiImg wbiImg = accountNav.getData().getWbiImg();

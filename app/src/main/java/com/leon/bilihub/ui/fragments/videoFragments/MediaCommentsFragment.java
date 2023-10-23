@@ -1,5 +1,7 @@
 package com.leon.bilihub.ui.fragments.videoFragments;
 
+import android.widget.Toast;
+
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -14,6 +16,7 @@ import com.leon.bilihub.http.RetrofitClient;
 import com.leon.bilihub.model.VideoPlayerModel;
 import com.leon.bilihub.ui.adapters.video.ReplyAdapter;
 import com.leon.bilihub.ui.widget.loader.PaginationLoader;
+import com.leon.bilihub.utils.PreferenceUtils;
 import com.leon.bilihub.utils.ValueUtils;
 import com.leon.bilihub.utils.ViewUtils;
 
@@ -91,6 +94,11 @@ public class MediaCommentsFragment extends BaseLazyFragment<FragmentMediaComment
 
         if (aid != null) {
             loader.setUpdateInterface(loadType -> httpApi.getReply(aid, mode, next, ReplyType.Video));
+        }
+
+        if (!PreferenceUtils.getLoginStatus(context)) {
+            Toast.makeText(context, "未登录用户只能查看第一页评论", Toast.LENGTH_SHORT).show();
+            loader.toggleSmart();
         }
     }
 
