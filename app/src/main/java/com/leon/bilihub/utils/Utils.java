@@ -2,7 +2,6 @@ package com.leon.bilihub.utils;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.leon.bilihub.http.ApiHelper;
@@ -20,7 +19,6 @@ public class Utils {
     public static void CheckUpdate(Context context, boolean showToast) {
         HttpApi.ApiGet httpApi = new RetrofitClient(BaseUrl.CONFIG, context).ApiGet();
         new ApiHelper<>(httpApi.getConfig()).setOnResult(config -> {
-//            Log.d("WwwW", config.toString());
 
             try {
                 int nowVersionCode = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
